@@ -1,14 +1,14 @@
-(function(){var s=document.createElement('style');s.setAttribute('data-extension','comfyui-ideogramhelper');s.textContent="\n.ui-btn[data-v-e258fe27] {\n  display: inline-flex; align-items: center; justify-content: center; gap: 4px;\n  min-height: 24px; padding: 3px 9px; box-sizing: border-box;\n  background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\n  border-radius: var(--radius-sm, 5px); font-size: 11px; line-height: 1; cursor: pointer; font-family: inherit;\n  white-space: nowrap; transition: border-color .1s, background .1s;\n}\n.ui-btn.icon[data-v-e258fe27] { min-width: 26px; padding: 0 6px; font-size: 12px;\n}\n.ui-btn[data-v-e258fe27] .mdi { font-size: 15px; line-height: 1;\n}\n.ui-btn[data-v-e258fe27]:hover { border-color: var(--st-accent);\n}\n.ui-btn[data-v-e258fe27]:disabled { opacity: .4; cursor: default;\n}\n.ui-btn[data-v-e258fe27]:disabled:hover { border-color: var(--st-border);\n}\n.ui-btn.on[data-v-e258fe27],\n.ui-btn.primary[data-v-e258fe27] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.ui-btn.primary[data-v-e258fe27]:hover { filter: brightness(1.08);\n}\n\n.ui-pop[data-v-ea543431] { position: relative; display: inline-flex;\n}\n.ui-pop-panel[data-v-ea543431] {\n  position: absolute; top: calc(100% + 5px); z-index: 50;\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\n  padding: 10px 12px; min-width: 240px; max-width: 320px; max-height: 360px; overflow-y: auto;\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\n  font-size: 11px; line-height: 1.5; color: var(--st-text); cursor: default;\n}\n.ui-pop-panel.right[data-v-ea543431] { right: 0;\n}\n.ui-pop-panel.left[data-v-ea543431] { left: 0;\n}\n.ui-pop-panel.up[data-v-ea543431] { top: auto; bottom: calc(100% + 5px);\n}\n\n.canvas-wrap[data-v-cdb13651] { display: flex; flex-direction: column; gap: 6px;\n}\n.toolbar[data-v-cdb13651] { display: flex; flex-wrap: wrap; gap: 5px; align-items: center;\n}\n.mdi[data-v-cdb13651] { font-size: 15px; line-height: 1;\n}\n.tag .mdi[data-v-cdb13651] { font-size: 1em;\n}\n.seg[data-v-cdb13651] { display: flex; gap: 2px;\n}\n.ic[data-v-cdb13651] {\n  display: inline-flex; align-items: center; justify-content: center;\n  min-width: 26px; height: 24px; padding: 0 6px; box-sizing: border-box;\n  background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\n  border-radius: 5px; font-size: 12px; line-height: 1; cursor: pointer;\n}\n.ic[data-v-cdb13651]:hover { border-color: var(--st-accent);\n}\n.ic.on[data-v-cdb13651] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.divider[data-v-cdb13651] { width: 1px; height: 18px; background: var(--st-border); margin: 0 2px;\n}\n.spacer[data-v-cdb13651] { flex: 1 1 auto;\n}\n.cmenu[data-v-cdb13651] { display: flex; flex-direction: column; gap: 5px; min-width: 170px;\n}\n.citem[data-v-cdb13651] { display: flex; align-items: center; gap: 6px; text-align: left; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 5px 8px; font-size: 11px; cursor: pointer;\n}\n.citem[data-v-cdb13651]:hover { border-color: var(--st-accent);\n}\n.citem.on[data-v-cdb13651] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.crow[data-v-cdb13651] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.crow input[type='range'][data-v-cdb13651] { flex: 1; accent-color: var(--st-accent);\n}\n.crow input[type='number'][data-v-cdb13651] { width: 54px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.ckrow[data-v-cdb13651] { gap: 12px;\n}\n.cdiv[data-v-cdb13651] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n.cgroup[data-v-cdb13651] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.chint[data-v-cdb13651] { margin: 2px 0 0; font-size: 10px; line-height: 1.4; color: var(--st-muted);\n}\n.cic[data-v-cdb13651] { display: inline-flex; align-items: center; justify-content: center; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; width: 26px; height: 24px; cursor: pointer;\n}\n.cic[data-v-cdb13651]:hover { border-color: var(--st-accent);\n}\n.stage[data-v-cdb13651] {\n  position: relative; width: 100%; background: var(--st-input);\n  border: 1px solid var(--st-border); border-radius: 6px; overflow: hidden;\n  touch-action: none; user-select: none; cursor: crosshair;\n}\n.stage.dragging[data-v-cdb13651] { cursor: grabbing;\n}\n.stage[data-v-cdb13651]:focus { outline: none;\n}\n.backdrop[data-v-cdb13651] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\n/* no z-index: DOM order paints it above the backdrop but below the grid/boxes */\n.livelayer[data-v-cdb13651] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\n.livebadge[data-v-cdb13651] {\n  position: absolute; top: 6px; left: 6px; z-index: 2; pointer-events: none;\n  display: inline-flex; align-items: center; gap: 3px;\n  background: rgba(0,0,0,.6); color: #fff; border-radius: 4px;\n  padding: 1px 6px 1px 4px; font-size: 9px; font-weight: 700;\n  text-transform: uppercase; letter-spacing: .5px;\n}\n.livebadge .mdi[data-v-cdb13651] { font-size: 11px; color: #ef4444; animation: livepulse-cdb13651 1.2s ease-in-out infinite;\n}\n@keyframes livepulse-cdb13651 {\n0%, 100% { opacity: 1;\n}\n50% { opacity: .25;\n}\n}\n.grid[data-v-cdb13651] {\n  position: absolute; inset: 0; pointer-events: none;\n  background-image: linear-gradient(to right, rgba(128,128,128,.18) 1px, transparent 1px),\n    linear-gradient(to bottom, rgba(128,128,128,.18) 1px, transparent 1px);\n  background-size: 10% 10%;\n}\n.box[data-v-cdb13651] { position: absolute; box-sizing: border-box; cursor: move; background: transparent; transition: background .1s;\n}\n/* border as ::after (painted after children) so the outline sits over the label */\n.box[data-v-cdb13651]::after { content: ''; position: absolute; inset: 0; border: 2px solid var(--c, #3b82f6); pointer-events: none;\n}\n.box[data-v-cdb13651]:hover { background: var(--fill);\n}\n.box.sel[data-v-cdb13651] { background: var(--fill); box-shadow: 0 0 0 1.5px var(--st-accent, #3b82f6); z-index: 4;\n}\n.box.primary[data-v-cdb13651] { box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--st-accent, #3b82f6), 0 0 10px rgba(0,0,0,.6); z-index: 5;\n}\n.box.muted[data-v-cdb13651] { opacity: 0.32; background: transparent !important;\n}\n.box.muted[data-v-cdb13651]::after { border-style: dashed;\n}\n.box.muted .tag[data-v-cdb13651] { opacity: 0.6;\n}\n.box.draft[data-v-cdb13651] { opacity: 0.8; pointer-events: none; background: rgba(156,163,175,.12);\n}\n.box.draft[data-v-cdb13651]::after { border-style: dashed;\n}\n.groupframe[data-v-cdb13651] { position: absolute; box-sizing: border-box; border: 1px dashed var(--gc, var(--st-accent, #3b82f6)); background: transparent; z-index: 6; pointer-events: none;\n}\n.groupframe .h[data-v-cdb13651] { pointer-events: auto; background: var(--gc, var(--st-accent, #3b82f6)); border-color: #fff;\n}\n.marquee[data-v-cdb13651] { position: absolute; box-sizing: border-box; border: 1px solid var(--st-accent, #3b82f6); background: color-mix(in srgb, var(--st-accent, #3b82f6) 15%, transparent); z-index: 7; pointer-events: none;\n}\n.tag[data-v-cdb13651] {\n  position: absolute; top: 0; left: 0; transform: translateY(-100%);\n  display: inline-flex; align-items: center; gap: 3px;\n  font-size: 10px; line-height: 1.4; padding: 1px 5px; white-space: nowrap;\n  max-width: 240px; overflow: hidden; border-radius: 3px 3px 0 0; pointer-events: none;\n}\n.tag .tagi[data-v-cdb13651] { flex: none;\n}\n.tag .tagn[data-v-cdb13651] { flex: none; font-weight: 700; font-variant-numeric: tabular-nums;\n}\n/* text hidden by default (icon + index only); shown on hover/selection */\n.tag .tagt[data-v-cdb13651] { display: none; overflow: hidden; text-overflow: ellipsis; max-width: 200px;\n}\n.box:hover .tag .tagt[data-v-cdb13651], .box.sel .tag .tagt[data-v-cdb13651], .box.primary .tag .tagt[data-v-cdb13651] { display: inline;\n}\n.tag .tagt[data-v-cdb13651]::before { content: '· ';\n}\n/* per-group color tab on the label's left edge; negative margins bleed to the tag edges */\n.tag.grouped .gseg[data-v-cdb13651] { flex: none; align-self: stretch; width: 4px; margin: -1px 3px -1px -5px; border-radius: 3px 0 0 0; background: var(--gc, var(--st-accent));\n}\n.h[data-v-cdb13651] { position: absolute; width: 11px; height: 11px; background: #fff; border: 1px solid #333; border-radius: 2px; z-index: 1;\n}\n.h-nw[data-v-cdb13651] { top: -6px; left: -6px; cursor: nwse-resize;\n}\n.h-n[data-v-cdb13651]  { top: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-ne[data-v-cdb13651] { top: -6px; right: -6px; cursor: nesw-resize;\n}\n.h-e[data-v-cdb13651]  { top: 50%; right: -6px; margin-top: -5px; cursor: ew-resize;\n}\n.h-se[data-v-cdb13651] { bottom: -6px; right: -6px; cursor: nwse-resize;\n}\n.h-s[data-v-cdb13651]  { bottom: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-sw[data-v-cdb13651] { bottom: -6px; left: -6px; cursor: nesw-resize;\n}\n.h-w[data-v-cdb13651]  { top: 50%; left: -6px; margin-top: -5px; cursor: ew-resize;\n}\n\n/* absolute over .studio (which is position:relative) */\n.liboverlay[data-v-acf62c2f] {\n  position: absolute; inset: 0; z-index: 60;\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 72%, transparent);\n  backdrop-filter: blur(4px);\n  display: flex; padding: 12px; box-sizing: border-box;\n  border-radius: 8px; /* follow the node's rounded corners */\n}\n.libpanel[data-v-acf62c2f] {\n  flex: 1; min-height: 0; display: flex; flex-direction: column;\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 3px);\n  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5); overflow: hidden;\n}\n\n/* ── header ─────────────────────────────────────────────── */\n.libhead[data-v-acf62c2f] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-bottom: 1px solid var(--st-border); flex-wrap: wrap;\n}\n.libhead .t[data-v-acf62c2f] { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; letter-spacing: .2px;\n}\n.libhead .t .mdi[data-v-acf62c2f] { font-size: 17px; color: var(--st-accent);\n}\n.count[data-v-acf62c2f] {\n  display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 18px;\n  padding: 0 6px; border-radius: 9px; background: color-mix(in srgb, var(--st-accent) 22%, transparent);\n  color: var(--st-accent); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;\n}\n.grow[data-v-acf62c2f] { flex: 1;\n}\n.search[data-v-acf62c2f] { display: flex; align-items: center; gap: 4px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 7px; padding: 0 6px; height: 28px; transition: border-color .12s;\n}\n.search[data-v-acf62c2f]:focus-within { border-color: var(--st-accent);\n}\n.search .mdi[data-v-acf62c2f] { font-size: 14px; color: var(--st-muted);\n}\n.search input[data-v-acf62c2f] { background: none; border: none; outline: none; color: var(--st-text); font-size: 11px; font-family: inherit; width: 130px; padding: 0;\n}\n.search .clr[data-v-acf62c2f] { display: inline-flex; background: none; border: none; color: var(--st-muted); cursor: pointer; padding: 0;\n}\n.search .clr[data-v-acf62c2f]:hover { color: var(--st-text);\n}\n\n/* ── body / grid ────────────────────────────────────────── */\n.libbody[data-v-acf62c2f] { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 11px;\n}\n.grid[data-v-acf62c2f] { display: grid; grid-template-columns: repeat(auto-fill, minmax(138px, 1fr)); gap: 11px;\n}\n.tile[data-v-acf62c2f] {\n  position: relative; display: flex; flex-direction: column; gap: 6px; padding: 6px;\n  background: var(--st-input); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 1px);\n  transition: border-color .12s, box-shadow .12s, transform .1s;\n}\n.tile[data-v-acf62c2f]:hover { border-color: var(--st-accent); box-shadow: 0 0 0 1px var(--st-accent) inset, 0 6px 16px rgba(0, 0, 0, .35); transform: translateY(-2px);\n}\n.tile.confirming[data-v-acf62c2f] { border-color: #ef4444; box-shadow: 0 0 0 1px #ef4444 inset;\n}\n.thumb[data-v-acf62c2f] {\n  position: relative; width: 100%; aspect-ratio: 1; border-radius: 5px; overflow: hidden;\n  border: none; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center;\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 60%, #000);\n}\n/* cover so the thumbnail fills the frame without letterbox bars */\n.thumb img[data-v-acf62c2f] { width: 100%; height: 100%; object-fit: cover; display: block;\n}\n.thumb .ph[data-v-acf62c2f] { font-size: 24px; color: var(--st-muted); opacity: .45;\n}\n.badge[data-v-acf62c2f] {\n  position: absolute; top: 5px; left: 5px; display: inline-flex; align-items: center; gap: 3px;\n  padding: 1px 6px; border-radius: 8px; background: rgba(0, 0, 0, .62); color: #fff;\n  font-size: 10px; font-weight: 600; backdrop-filter: blur(2px);\n}\n.badge .mdi[data-v-acf62c2f] { font-size: 11px;\n}\n.del[data-v-acf62c2f] {\n  position: absolute; top: 9px; right: 9px; z-index: 2; display: inline-flex; align-items: center; justify-content: center;\n  width: 24px; height: 24px; border-radius: 6px; background: rgba(0, 0, 0, .55); border: none; color: #fff;\n  cursor: pointer; opacity: 0; transition: opacity .12s, background .12s;\n}\n.del .mdi[data-v-acf62c2f] { font-size: 15px;\n}\n.tile:hover .del[data-v-acf62c2f] { opacity: 1;\n}\n.del[data-v-acf62c2f]:hover { background: #dc2626;\n}\n.name[data-v-acf62c2f] { font-size: 11px; color: var(--st-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px;\n}\n\n/* delete confirm overlay over the tile */\n.confirm[data-v-acf62c2f] {\n  position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px;\n  background: color-mix(in srgb, var(--st-panel) 88%, transparent); backdrop-filter: blur(2px);\n  border-radius: inherit; padding: 8px; text-align: center;\n}\n.confirm .q[data-v-acf62c2f] { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--st-text);\n}\n.confirm .q .mdi[data-v-acf62c2f] { color: #ef4444; font-size: 15px;\n}\n.cbtns[data-v-acf62c2f] { display: flex; gap: 6px;\n}\n.cbtns button[data-v-acf62c2f] { border: none; border-radius: 6px; padding: 5px 11px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: inherit;\n}\n.cbtns .yes[data-v-acf62c2f] { background: #dc2626; color: #fff;\n}\n.cbtns .yes[data-v-acf62c2f]:hover { background: #ef4444;\n}\n.cbtns .no[data-v-acf62c2f] { background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\n}\n.cbtns .no[data-v-acf62c2f]:hover { border-color: var(--st-accent);\n}\n\n/* ── empty / loading ────────────────────────────────────── */\n.empty[data-v-acf62c2f] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; height: 100%; min-height: 180px; color: var(--st-muted); font-size: 12px; text-align: center;\n}\n.empty .mdi[data-v-acf62c2f] { font-size: 17px;\n}\n.empty .big[data-v-acf62c2f] { font-size: 40px; opacity: .35;\n}\n.empty small[data-v-acf62c2f] { font-size: 11px; opacity: .8;\n}\n\n/* ── footer / save bar ──────────────────────────────────── */\n.libfoot[data-v-acf62c2f] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-top: 1px solid var(--st-border); background: color-mix(in srgb, var(--st-bg, #1a1a1f) 35%, transparent); flex-wrap: wrap;\n}\n.libfoot .fic[data-v-acf62c2f] { font-size: 16px; color: var(--st-muted);\n}\n.nm[data-v-acf62c2f] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 7px; padding: 6px 9px; font-size: 11px; font-family: inherit; width: 150px;\n}\n.nm[data-v-acf62c2f]:focus { outline: none; border-color: var(--st-accent);\n}\n.thumbck[data-v-acf62c2f] { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); white-space: nowrap; cursor: pointer;\n}\n.thumbck.disabled[data-v-acf62c2f] { opacity: .45; cursor: not-allowed;\n}\n.flash[data-v-acf62c2f] { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--st-accent); white-space: nowrap;\n}\n.flash .mdi[data-v-acf62c2f] { font-size: 14px;\n}\n.flash.err[data-v-acf62c2f] { color: #f87171;\n}\n.flash-enter-active[data-v-acf62c2f], .flash-leave-active[data-v-acf62c2f] { transition: opacity .18s;\n}\n.flash-enter-from[data-v-acf62c2f], .flash-leave-to[data-v-acf62c2f] { opacity: 0;\n}\n\n.promptfields[data-v-264dfd84] { display: flex; flex-direction: column; gap: 8px;\n}\n.minicard[data-v-264dfd84] { display: flex; flex-direction: column; gap: 4px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px); padding: 6px 8px 8px; transition: border-color .12s;\n}\n/* collapsed = header only: even out the bottom padding so the title sits centred */\n.minicard.collapsed[data-v-264dfd84] { padding-bottom: 6px;\n}\n.minicard[data-v-264dfd84]:focus-within { border-color: var(--st-accent);\n}\n.mchead[data-v-264dfd84] { display: flex; align-items: center; gap: 4px; width: 100%; text-align: left; background: none; border: none; cursor: pointer; font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted); padding: 0;\n}\n.mchead[data-v-264dfd84]:hover { color: var(--st-text);\n}\n.mchead .fc[data-v-264dfd84] { font-size: 15px; line-height: 1; margin-left: -3px;\n}\n.mchead .mdi[data-v-264dfd84] { font-size: 14px; line-height: 1;\n}\n.mchead span[data-v-264dfd84] { margin-left: 1px;\n}\n.minicard textarea[data-v-264dfd84] {\n  background: transparent; border: none; color: var(--st-text);\n  padding: 0; font-size: 12px; resize: none; overflow-y: auto; box-sizing: border-box;\n  max-height: 140px; font-family: inherit; line-height: 1.4;\n}\n.minicard textarea[data-v-264dfd84]:focus { outline: none;\n}\n\n.ui-card[data-v-5e9a1b5c] {\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\n  padding: 8px; display: flex; flex-direction: column; gap: 7px;\n}\n.ui-card-head[data-v-5e9a1b5c] { display: flex; align-items: center; justify-content: space-between; gap: 8px;\n}\n.ui-card-title[data-v-5e9a1b5c] { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\n\n.palette[data-v-a4df401c] { display: flex; flex-direction: column; gap: 4px;\n}\n.swatches[data-v-a4df401c] { display: flex; flex-wrap: wrap; gap: 6px; align-items: center;\n}\n.swatch-wrap[data-v-a4df401c] { position: relative;\n}\n.swatch[data-v-a4df401c] {\n  display: block; width: 26px; height: 26px; border-radius: 5px;\n  border: 1px solid var(--st-border); cursor: pointer; overflow: hidden;\n}\n.swatch input[data-v-a4df401c] { opacity: 0; width: 100%; height: 100%; cursor: pointer;\n}\n.add[data-v-a4df401c] {\n  width: 26px; height: 26px; border-radius: 5px; cursor: pointer;\n  border: 1px dashed var(--st-border); background: transparent;\n  color: var(--st-muted); font-size: 16px; line-height: 1;\n}\n.hint[data-v-a4df401c] { font-size: 10px; color: var(--st-muted);\n}\n\n.combo[data-v-500bd3f3] { display: flex; gap: 4px;\n}\n.combo input[data-v-500bd3f3] { flex: 1; min-width: 0; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 6px; font-size: 12px;\n}\n.cpick[data-v-500bd3f3] { flex: none; width: 74px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 5px; cursor: pointer; font-size: 11px; padding: 0 2px;\n}\n.cpick[data-v-500bd3f3]:hover { border-color: var(--st-accent);\n}\n.cpick[data-v-500bd3f3]:hover { border-color: var(--st-accent);\n}\n\n.chead[data-v-f8a1af21] { display: flex; align-items: center; gap: 4px;\n}\n.fold[data-v-f8a1af21] { display: inline-flex; align-items: center; background: none; border: none; cursor: pointer; color: var(--st-muted); padding: 0; margin-left: -3px;\n}\n.fold[data-v-f8a1af21]:hover { color: var(--st-text);\n}\n.fold .mdi[data-v-f8a1af21] { font-size: 16px; line-height: 1;\n}\n.lhgroup[data-v-f8a1af21] { display: flex; align-items: center; gap: 5px; line-height: 1;\n}\n.modebtn[data-v-f8a1af21] { display: inline-flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; color: var(--st-muted); padding: 0; line-height: 1;\n}\n.modebtn[data-v-f8a1af21]:hover { color: var(--st-accent);\n}\n.modebtn .mdi[data-v-f8a1af21] { font-size: 15px; line-height: 1; display: block;\n}\n.lhead[data-v-f8a1af21] { display: inline-flex; align-items: center; gap: 1px; background: none; border: none; cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted); padding: 0;\n}\n.lhead[data-v-f8a1af21]:hover { color: var(--st-text);\n}\n.lhead .mdi[data-v-f8a1af21] { font-size: 15px; line-height: 1;\n}\n.lmenu[data-v-f8a1af21] { display: flex; flex-direction: column; gap: 1px; min-width: 160px;\n}\n.litem[data-v-f8a1af21] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 8px; border-radius: 5px; font-size: 11px; cursor: pointer;\n}\n.litem[data-v-f8a1af21]:hover { background: var(--st-btn);\n}\n.litem.on[data-v-f8a1af21] { color: var(--st-accent);\n}\n.litem .mdi[data-v-f8a1af21] { font-size: 15px; color: var(--st-muted);\n}\n.litem.on .mdi[data-v-f8a1af21] { color: var(--st-accent);\n}\n.ldiv[data-v-f8a1af21] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n.lgroup[data-v-f8a1af21] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted); padding: 2px 8px 0;\n}\n.field[data-v-f8a1af21] { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--st-muted);\n}\n.field input[data-v-f8a1af21] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 6px; font-size: 12px;\n}\n\n.adds[data-v-c5b6f8e4] { display: flex; gap: 4px;\n}\n.chead[data-v-c5b6f8e4] { display: flex; align-items: center; gap: 4px;\n}\n.fold[data-v-c5b6f8e4] { display: inline-flex; align-items: center; background: none; border: none; cursor: pointer; color: var(--st-muted); padding: 0; margin-left: -3px;\n}\n.fold[data-v-c5b6f8e4]:hover { color: var(--st-text);\n}\n.fold .mdi[data-v-c5b6f8e4] { font-size: 16px; line-height: 1;\n}\n.lhead[data-v-c5b6f8e4] { display: inline-flex; align-items: center; gap: 1px; background: none; border: none; cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted); padding: 0;\n}\n.lhead[data-v-c5b6f8e4]:hover { color: var(--st-text);\n}\n.lhead .mdi[data-v-c5b6f8e4] { font-size: 15px;\n}\n.lhead .flt[data-v-c5b6f8e4] { font-size: 13px; margin-right: 2px;\n}\n.lmenu[data-v-c5b6f8e4] { display: flex; flex-direction: column; gap: 1px; min-width: 150px;\n}\n.litem[data-v-c5b6f8e4] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 8px; border-radius: 5px; font-size: 11px; cursor: pointer;\n}\n.litem[data-v-c5b6f8e4]:hover { background: var(--st-btn);\n}\n.litem.on[data-v-c5b6f8e4] { color: var(--st-accent);\n}\n.litem .mdi[data-v-c5b6f8e4] { font-size: 15px; color: var(--st-muted);\n}\n.litem.on .mdi[data-v-c5b6f8e4] { color: var(--st-accent);\n}\nul[data-v-c5b6f8e4] { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; flex: 1 1 auto; min-height: 0; overflow-y: auto;\n}\nli[data-v-c5b6f8e4] {\n  position: relative;\n  display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 5px;\n  background: var(--st-input); border: 1px solid transparent; cursor: pointer; font-size: 12px; color: var(--st-text);\n  transition: opacity .12s, box-shadow .12s, background .12s;\n}\nli[data-v-c5b6f8e4]:hover { border-color: var(--st-border);\n}\nli.sel[data-v-c5b6f8e4] { border-color: var(--st-accent);\n}\n/* primary = the element the editor targets */\nli.primary[data-v-c5b6f8e4] { border-color: var(--st-accent); background: color-mix(in srgb, var(--st-accent) 18%, var(--st-input));\n}\nli.primary .snip[data-v-c5b6f8e4] { font-weight: 600;\n}\n/* per-group color sliver; absolute inside the existing padding so rows stay aligned */\nli.grouped[data-v-c5b6f8e4]::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 5px 0 0 5px; background: var(--gc, var(--st-accent));\n}\nli.dragging[data-v-c5b6f8e4] { opacity: .35;\n}\nli.dragover[data-v-c5b6f8e4] { box-shadow: inset 0 3px 0 -1px var(--st-accent); background: color-mix(in srgb, var(--st-accent) 12%, var(--st-input));\n}\n.handle[data-v-c5b6f8e4] { flex: none; color: var(--st-muted); cursor: grab; font-size: 14px; opacity: .3; margin: 0 -4px 0 -2px; transition: opacity .12s, color .12s;\n}\nli:hover .handle[data-v-c5b6f8e4] { opacity: .85;\n}\n.handle[data-v-c5b6f8e4]:hover { color: var(--st-accent);\n}\n.handle[data-v-c5b6f8e4]:active { cursor: grabbing;\n}\nli.muted .snip[data-v-c5b6f8e4] { opacity: .45; text-decoration: line-through;\n}\n.typebtn[data-v-c5b6f8e4] { background: none; border: none; cursor: pointer; padding: 0; color: var(--st-muted); flex: none; line-height: 1; display: inline-flex;\n}\n.typebtn[data-v-c5b6f8e4]:hover { color: var(--st-accent);\n}\n.typebtn.off[data-v-c5b6f8e4] { opacity: .5;\n}\n.typebtn .mdi[data-v-c5b6f8e4] { font-size: 15px;\n}\n.idxchip[data-v-c5b6f8e4] {\n  flex: none; min-width: 17px; height: 16px; padding: 0 4px; box-sizing: border-box;\n  display: inline-flex; align-items: center; justify-content: center;\n  border-radius: 4px; background: var(--st-accent); color: #fff;\n  font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\n}\n.link[data-v-c5b6f8e4] { flex: none; font-size: 13px; color: var(--st-muted);\n}\n.snip[data-v-c5b6f8e4] { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.more[data-v-c5b6f8e4] { display: inline-flex; align-items: center; justify-content: center; flex: none; background: none; border: none; color: var(--st-muted); border-radius: 4px; width: 20px; height: 20px; cursor: pointer; padding: 0; opacity: 0; transition: opacity .12s;\n}\n.more .mdi[data-v-c5b6f8e4] { font-size: 16px;\n}\nli:hover .more[data-v-c5b6f8e4], li.sel .more[data-v-c5b6f8e4] { opacity: 1;\n}\n.more[data-v-c5b6f8e4]:hover { color: var(--st-text); background: var(--st-btn);\n}\n.empty[data-v-c5b6f8e4] { font-size: 11px; color: var(--st-muted); margin: 2px 0;\n}\n\n.jctrl[data-v-411cdf33] { display: flex; align-items: center; gap: 5px; flex-wrap: nowrap;\n}\n.grow[data-v-411cdf33] { flex: 1 1 auto;\n}\n.jstat[data-v-411cdf33] { font-size: 15px; line-height: 1; cursor: help;\n}\n.jstat.good[data-v-411cdf33] { color: #34d399;\n}\n.jstat.warn[data-v-411cdf33] { color: #f59e0b;\n}\n.jstat.bad[data-v-411cdf33] { color: #f87171;\n}\n.jtok[data-v-411cdf33] { display: inline-flex; align-items: center; min-height: 24px; box-sizing: border-box; font-size: 10px; color: var(--st-muted); font-family: ui-monospace, monospace; background: var(--st-btn); border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px); padding: 0 7px; cursor: help;\n}\n\n.ehead[data-v-543ee4ee] { display: flex; align-items: center; gap: 6px; width: 100%; flex-wrap: wrap;\n}\n.grow[data-v-543ee4ee] { flex: 1 1 auto;\n}\n/* overflow:hidden clips the absolute color input to the chip so it can't overlap the type buttons */\n.idchip[data-v-543ee4ee] { position: relative; display: inline-flex; flex: none; cursor: pointer; overflow: hidden; border-radius: 5px;\n}\n.idchip .n[data-v-543ee4ee] {\n  display: inline-flex; align-items: center; justify-content: center;\n  min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box;\n  border-radius: 5px; color: #fff; font-size: 11px; font-weight: 700;\n  font-variant-numeric: tabular-nums; text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\n  border: 1px solid rgba(0, 0, 0, .25);\n}\n.idchip input[data-v-543ee4ee] { position: absolute; inset: 0; opacity: 0; cursor: pointer;\n}\n.seg[data-v-543ee4ee] { display: flex; gap: 2px;\n}\n/* icon-sized to match UiButton.icon, with green/red mute state */\n.mute[data-v-543ee4ee] {\n  display: inline-flex; align-items: center; justify-content: center; flex: none;\n  min-width: 26px; height: 24px; padding: 0 6px; box-sizing: border-box;\n  background: var(--st-btn); color: #34d399; border: 1px solid var(--st-border);\n  border-radius: 5px; font-size: 12px; cursor: pointer;\n}\n.mute[data-v-543ee4ee]:hover { border-color: var(--st-accent);\n}\n.mute.off[data-v-543ee4ee] { color: #f87171;\n}\n.mute .mdi[data-v-543ee4ee] { font-size: 15px; line-height: 1;\n}\n.filine[data-v-543ee4ee] { display: flex; gap: 8px; align-items: flex-start; font-size: 11px; color: var(--st-muted);\n}\n.filine > span[data-v-543ee4ee] { width: 44px; flex: none; padding-top: 5px; text-align: right;\n}\n.filine input[type='text'][data-v-543ee4ee], .filine textarea[data-v-543ee4ee] {\n  flex: 1; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit;\n}\n.filine[data-v-543ee4ee] .palette { flex: 1;\n}\n\n.json[data-v-47a534e6] {\n  margin: 0; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 6px; padding: 8px;\n  font-size: 11px; line-height: 1.4; max-height: 320px; overflow: auto; color: var(--st-text);\n  white-space: pre; font-family: ui-monospace, monospace;\n}\n.json.edit[data-v-47a534e6] { width: 100%; box-sizing: border-box; min-height: 160px; max-height: 360px; resize: vertical; white-space: pre;\n}\n.json.edit.bad[data-v-47a534e6] { border-color: #f87171;\n}\n.errhead[data-v-47a534e6] { display: flex; align-items: center; gap: 8px; font-size: 10px; color: #f87171; font-family: ui-monospace, monospace;\n}\n.errhead .msg[data-v-47a534e6] { flex: 1;\n}\n.ebtn[data-v-47a534e6] { flex: none; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 3px; font-size: 10px; padding: 1px 6px; cursor: pointer;\n}\n.ebtn[data-v-47a534e6]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.errframe[data-v-47a534e6] { margin: 4px 0 0; padding: 6px 8px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 4px; font: 11px/1.5 ui-monospace, monospace; color: var(--st-text); white-space: pre; overflow-x: auto; cursor: pointer;\n}\n.errframe[data-v-47a534e6]:hover { border-color: var(--st-accent);\n}\n.warnlist[data-v-47a534e6] { margin: 0; padding-left: 16px; font-size: 10px; color: #f59e0b; max-height: 90px; overflow: auto;\n}\n\n.ctxbg[data-v-a8577e35] { position: fixed; inset: 0; z-index: 10000;\n}\n.ctx[data-v-a8577e35] {\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\n  --st-input: var(--comfy-input-bg, #15151a);\n  --st-btn: var(--comfy-input-bg, #2a2a30);\n  --st-text: var(--input-text, #e5e5ea);\n  --st-muted: var(--descrip-text, #9aa0aa);\n  --st-border: var(--border-color, #3a3a44);\n  --st-accent: var(--p-primary-color, #3b82f6);\n  --st-radius: var(--radius-md, 6px);\n  position: fixed; min-width: 172px; z-index: 10001;\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius);\n  padding: 4px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\n  display: flex; flex-direction: column; gap: 1px;\n}\n.ctxhead[data-v-a8577e35] { display: flex; align-items: center; gap: 6px; padding: 4px 9px 6px; color: var(--st-muted);\n}\n.ctxhead .cdot[data-v-a8577e35] { width: 9px; height: 9px; border-radius: 2px; flex: none;\n}\n.ctxhead .cnum[data-v-a8577e35] { font-size: 11px; font-weight: 600;\n}\n.ctxhead .mdi[data-v-a8577e35] { font-size: 14px; margin-left: auto;\n}\n.ctxedit[data-v-a8577e35] { margin: 0 4px 4px; padding: 5px 7px; background: var(--st-input, #15151a); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 12px; font-family: inherit;\n}\n.ctxedit[data-v-a8577e35]:focus { outline: none; border-color: var(--st-accent);\n}\n.ctxitem[data-v-a8577e35] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 9px; border-radius: calc(var(--st-radius) - 1px); cursor: pointer; font-size: 12px;\n}\n.ctxitem[data-v-a8577e35]:hover { background: var(--st-btn);\n}\n.ctxitem .mdi[data-v-a8577e35] { font-size: 15px; color: var(--st-muted);\n}\n.ctxkey[data-v-a8577e35] { margin-left: auto; font-size: 10px; color: var(--st-muted); opacity: .7;\n}\n.ctxitem.del[data-v-a8577e35]:hover { background: #b91c1c; color: #fff;\n}\n.ctxitem.del:hover .mdi[data-v-a8577e35] { color: #fff;\n}\n.ctxdiv[data-v-a8577e35] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n\n/* Map ComfyUI theme vars to semantic names (dark fallbacks); inherited by children. */\n.studio[data-v-54179a6d] {\n  --st-bg: var(--comfy-menu-bg, #1a1a1f);\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\n  --st-input: var(--comfy-input-bg, #15151a);\n  --st-btn: var(--comfy-input-bg, #2a2a30);\n  --st-text: var(--input-text, #e5e5ea);\n  --st-muted: var(--descrip-text, #9aa0aa);\n  --st-border: var(--border-color, #3a3a44);\n  --st-accent: var(--p-primary-color, #3b82f6);\n  --st-radius: var(--radius-md, 6px);\n  --st-on-accent: #fff;\n\n  display: flex; flex-direction: column; gap: 9px; padding: 10px;\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif); color: var(--st-text);\n  /* transparent so the node body shows through the gaps between cards */\n  background: transparent; box-sizing: border-box;\n  /* definite height so inner flex areas scroll; overflow-y is the small-node safety net */\n  width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; position: relative;\n  container-type: inline-size; /* width queries respond to the NODE, not the viewport */\n  cursor: default;\n}\n.studio[data-v-54179a6d] textarea,\n.studio[data-v-54179a6d] input[type='text'],\n.studio[data-v-54179a6d] input[type='number'] { cursor: text;\n}\n.studio[data-v-54179a6d] select,\n.studio[data-v-54179a6d] input[type='checkbox'],\n.studio[data-v-54179a6d] input[type='range'],\n.studio[data-v-54179a6d] input[type='color'] { cursor: pointer;\n}\n.divider[data-v-54179a6d] { width: 1px; height: 18px; background: var(--st-border); margin: 0 2px;\n}\n.help .h[data-v-54179a6d] { margin: 8px 0 3px; font-size: 10px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-accent); font-weight: 700;\n}\n.help .h[data-v-54179a6d]:first-child { margin-top: 0;\n}\n.help dl[data-v-54179a6d] { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 8px;\n}\n.help dt[data-v-54179a6d] { color: var(--st-text); font-weight: 600; white-space: nowrap;\n}\n.help dt .mdi[data-v-54179a6d] { font-size: 13px; color: var(--st-muted);\n}\n.help dd[data-v-54179a6d] { margin: 0; color: var(--st-muted);\n}\n.help .tip[data-v-54179a6d] { margin: 9px 0 0; color: var(--st-muted); border-top: 1px solid var(--st-border); padding-top: 7px;\n}\n.help .credit[data-v-54179a6d] { margin: 9px 0 0; font-size: 10px; color: var(--st-muted); line-height: 1.6;\n}\n.help .credit a[data-v-54179a6d] { color: var(--st-accent); text-decoration: none;\n}\n.help .credit a[data-v-54179a6d]:hover { text-decoration: underline;\n}\n/* resolution picker */\n.resmenu[data-v-54179a6d] { display: flex; flex-direction: column; gap: 8px; width: 244px;\n}\n.resmenu .rsec[data-v-54179a6d] { font-size: 10px; text-transform: uppercase; letter-spacing: .4px; color: var(--st-muted); font-weight: 700;\n}\n.resmenu .rdiv[data-v-54179a6d] { border-top: 1px solid var(--st-border); margin: 1px 0;\n}\n.aspects[data-v-54179a6d] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px;\n}\n.achip[data-v-54179a6d] {\n  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;\n  height: 44px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 6px;\n  color: var(--st-muted); font-size: 10px; font-weight: 600; cursor: pointer; font-family: inherit;\n  transition: border-color .1s, color .1s, background .1s;\n}\n.achip[data-v-54179a6d]:hover { border-color: var(--st-accent); color: var(--st-text);\n}\n.achip.on[data-v-54179a6d] { border-color: var(--st-accent); color: var(--st-text); background: color-mix(in srgb, var(--st-accent) 16%, var(--st-input));\n}\n.achip .arect[data-v-54179a6d] { display: block; background: currentColor; border-radius: 1px; opacity: .65;\n}\n.achip.on .arect[data-v-54179a6d] { opacity: 1;\n}\n.albl[data-v-54179a6d] { font-variant-numeric: tabular-nums;\n}\n.mprow[data-v-54179a6d] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.mppresets[data-v-54179a6d] { display: flex; gap: 3px; margin-left: auto;\n}\n.mpp[data-v-54179a6d] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 5px; padding: 3px 7px; font-size: 10px; cursor: pointer; font-family: inherit;\n}\n.mpp[data-v-54179a6d]:hover { border-color: var(--st-accent); color: var(--st-text);\n}\n.mpp.on[data-v-54179a6d] { border-color: var(--st-accent); color: var(--st-text); background: color-mix(in srgb, var(--st-accent) 16%, var(--st-input));\n}\n.mprow > input[data-v-54179a6d] { width: 54px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 4px; font-size: 11px;\n}\n.whrow[data-v-54179a6d] { display: flex; align-items: center; gap: 6px;\n}\n.whrow label[data-v-54179a6d] { display: flex; align-items: center; gap: 5px; flex: 1; font-size: 11px; color: var(--st-muted);\n}\n.whrow label span[data-v-54179a6d] { width: 11px; text-align: center;\n}\n.whrow label input[data-v-54179a6d] { width: 100%; min-width: 0; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 5px; font-size: 11px;\n}\n.whrow .swap[data-v-54179a6d] { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; flex: none; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 5px; cursor: pointer;\n}\n.whrow .swap[data-v-54179a6d]:hover { border-color: var(--st-accent); color: var(--st-accent);\n}\n.whrow .swap .mdi[data-v-54179a6d] { font-size: 15px;\n}\n/* footer: computed MP readout (left) + compact snap-divisor chips (right) */\n.rfoot[data-v-54179a6d] { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted);\n}\n.rfoot .rmp[data-v-54179a6d] { font-variant-numeric: tabular-nums;\n}\n.rfoot .snaplbl[data-v-54179a6d] { letter-spacing: .2px;\n}\n.snapchip[data-v-54179a6d] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; padding: 1px 5px; font-size: 10px; cursor: pointer; font-family: inherit; font-variant-numeric: tabular-nums;\n}\n.snapchip[data-v-54179a6d]:hover { border-color: var(--st-accent); color: var(--st-text);\n}\n.snapchip.on[data-v-54179a6d] { border-color: var(--st-accent); color: var(--st-text); background: color-mix(in srgb, var(--st-accent) 16%, var(--st-input));\n}\n.resetc[data-v-54179a6d] { width: 212px; display: flex; flex-direction: column; gap: 6px;\n}\n.resetc .rq[data-v-54179a6d] { margin: 0; display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--st-text);\n}\n.resetc .rq .mdi[data-v-54179a6d] { color: #f59e0b; font-size: 15px;\n}\n.resetc .rh[data-v-54179a6d] { margin: 0; font-size: 10px; line-height: 1.45; color: var(--st-muted);\n}\n.resetc .rbtns[data-v-54179a6d] { display: flex; gap: 6px; margin-top: 2px;\n}\n.resetc .rbtns button[data-v-54179a6d] { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border-radius: 6px; padding: 6px 8px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: inherit; border: 1px solid var(--st-border);\n}\n.resetc .rno[data-v-54179a6d] { background: var(--st-btn); color: var(--st-text);\n}\n.resetc .rno[data-v-54179a6d]:hover { border-color: var(--st-accent);\n}\n.resetc .ryes[data-v-54179a6d] { background: #dc2626; color: #fff; border-color: #dc2626;\n}\n.resetc .ryes[data-v-54179a6d]:hover { background: #ef4444;\n}\n.resetc .ryes .mdi[data-v-54179a6d] { font-size: 13px;\n}\n/* overlay settings */\n.adv[data-v-54179a6d] { display: flex; flex-direction: column; gap: 7px; font-size: 11px; color: var(--st-muted); width: 220px;\n}\n.adv .ahint[data-v-54179a6d] { margin: 0; font-size: 10px; line-height: 1.45; color: var(--st-muted);\n}\n.adv .gh[data-v-54179a6d] { font-size: 10px; text-transform: uppercase; letter-spacing: .4px; color: var(--st-muted);\n}\n.adv .orow[data-v-54179a6d] { display: flex; align-items: center; justify-content: space-between; gap: 8px;\n}\n.adv .ochecks[data-v-54179a6d] { display: flex; gap: 12px;\n}\n.adv input[type='number'][data-v-54179a6d] { width: 60px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.adv input[type='range'][data-v-54179a6d] { width: 100px; accent-color: var(--st-accent);\n}\n.adv .ck[data-v-54179a6d] { display: flex; align-items: center; gap: 4px;\n}\n.acc[data-v-54179a6d] { display: flex; align-items: center; gap: 4px; background: none; border: none; cursor: pointer; color: var(--st-muted); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 0;\n}\n.acc[data-v-54179a6d]:hover { color: var(--st-text);\n}\n.acc .mdi[data-v-54179a6d] { font-size: 16px; line-height: 1; margin-left: -3px;\n}\n/* align-items:stretch makes the sidebar fill the row height; the elements list (flex:1)\n   absorbs slack and JSON sits at the bottom. Floor is the widget minHeight, not this. */\n.main[data-v-54179a6d] { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); gap: 12px; align-items: stretch;\n}\n.left[data-v-54179a6d] { display: flex; flex-direction: column; gap: 8px; min-width: 0;\n}\n.right[data-v-54179a6d] { display: flex; flex-direction: column; gap: 8px; min-width: 0;\n}\n.rspacer[data-v-54179a6d] { flex: 1 1 auto;\n} /* pins JSON to the bottom when elements is collapsed */\n/* drawer affordances hidden in normal (wide) mode */\n.slim-controls[data-v-54179a6d], .drawer-backdrop[data-v-54179a6d] { display: none;\n}\n\n/* slim node (container query → responds to the NODE width): canvas goes full-width,\n   the sidebar becomes a drawer that slides over the canvas from a thin edge tab */\n@container (max-width: 520px) {\n  /* position:relative → the drawer/tab/backdrop anchor to the canvas area, not the\n     whole studio, so they don't cover (or grow with) the JSON/editor sections below */\n.main[data-v-54179a6d] { grid-template-columns: 1fr; position: relative;\n}\n.slim-controls[data-v-54179a6d] { display: contents;\n}   /* toolbar opener appears */\n.right[data-v-54179a6d] {\n    position: absolute; top: 0; bottom: 0; right: -10px;  /* flush to the node edge (escape the 10px studio padding) */\n    width: min(290px, 88cqw); z-index: 45;\n    box-sizing: border-box; overflow-y: auto; padding: 8px;\n    background: var(--st-panel); border-radius: 10px 0 0 10px;\n    transform: translateX(110%); transition: transform .2s ease;\n}\n.studio.panel-open .right[data-v-54179a6d] { transform: translateX(0);\n}\n.studio.panel-open .drawer-backdrop[data-v-54179a6d] {\n    display: block; position: absolute; inset: 0; z-index: 44;\n    background: color-mix(in srgb, var(--st-bg, #1a1a1f) 35%, transparent);\n}\n}\n\n.studio ::-webkit-scrollbar { width: 9px; height: 9px;\n}\n.studio ::-webkit-scrollbar-track { background: transparent;\n}\n.studio ::-webkit-scrollbar-thumb {\n  background: var(--st-border, #3a3a44); border-radius: 6px;\n  border: 2px solid transparent; background-clip: padding-box;\n}\n.studio ::-webkit-scrollbar-thumb:hover { background: var(--st-muted, #9aa0aa); background-clip: padding-box;\n}\n.studio ::-webkit-scrollbar-corner { background: transparent;\n}\n.studio * { scrollbar-width: thin; scrollbar-color: var(--st-border, #3a3a44) transparent;\n}\n\n/* standalone node (not inside .studio): define theme tokens locally for PaletteEditor */\n.palnode[data-v-3a6f20dc] {\n  --st-bg: var(--comfy-menu-bg, #1a1a1f);\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\n  --st-input: var(--comfy-input-bg, #15151a);\n  --st-btn: var(--comfy-input-bg, #2a2a30);\n  --st-text: var(--input-text, #e5e5ea);\n  --st-muted: var(--descrip-text, #9aa0aa);\n  --st-border: var(--border-color, #3a3a44);\n  --st-accent: var(--p-primary-color, #3b82f6);\n  --st-on-accent: #fff;\n  /* extra top room: the swatch remove (×) overhangs by 6px */\n  padding: 11px 8px 6px; box-sizing: border-box; width: 100%; cursor: default;\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif); color: var(--st-text);\n}\n";document.head.appendChild(s);})();import { app } from "../../../scripts/app.js";
+(function(){var s=document.createElement('style');s.setAttribute('data-extension','comfyui-mosslayout');s.textContent="\n.ui-btn[data-v-37e21519] {\r\n  display: inline-flex; align-items: center; justify-content: center; gap: 4px;\r\n  min-height: 24px; padding: 3px 9px; box-sizing: border-box;\r\n  background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\r\n  border-radius: var(--radius-sm, 5px); font-size: 11px; line-height: 1; cursor: pointer; font-family: inherit;\r\n  white-space: nowrap; transition: border-color .1s, background .1s;\n}\n.ui-btn.icon[data-v-37e21519] { min-width: 26px; padding: 0 6px; font-size: 12px;\n}\n.ui-btn[data-v-37e21519] .mdi { font-size: 15px; line-height: 1;\n}\n.ui-btn[data-v-37e21519]:hover { border-color: var(--st-accent);\n}\n.ui-btn[data-v-37e21519]:disabled { opacity: .4; cursor: default;\n}\n.ui-btn[data-v-37e21519]:disabled:hover { border-color: var(--st-border);\n}\n.ui-btn.on[data-v-37e21519],\r\n.ui-btn.primary[data-v-37e21519] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.ui-btn.primary[data-v-37e21519]:hover { filter: brightness(1.08);\n}\r\n\n.ui-pop[data-v-3afe332d] { position: relative; display: inline-flex;\n}\n.ui-pop-panel[data-v-3afe332d] {\r\n  position: absolute; top: calc(100% + 5px); z-index: 50;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 10px 12px; min-width: 240px; max-width: 320px; max-height: 360px; overflow-y: auto;\r\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\r\n  font-size: 11px; line-height: 1.5; color: var(--st-text); cursor: default;\n}\n.ui-pop-panel.right[data-v-3afe332d] { right: 0;\n}\n.ui-pop-panel.left[data-v-3afe332d] { left: 0;\n}\n.ui-pop-panel.up[data-v-3afe332d] { top: auto; bottom: calc(100% + 5px);\n}\r\n\n.canvas-wrap[data-v-0bf47a4c] { display: flex; flex-direction: column; gap: 6px;\n}\n.toolbar[data-v-0bf47a4c] { display: flex; flex-wrap: wrap; gap: 5px; align-items: center;\n}\n.mdi[data-v-0bf47a4c] { font-size: 15px; line-height: 1;\n}\n.tag .mdi[data-v-0bf47a4c] { font-size: 1em;\n}\n.seg[data-v-0bf47a4c] { display: flex; gap: 2px;\n}\n.divider[data-v-0bf47a4c] { width: 1px; height: 18px; background: var(--st-border); margin: 0 2px;\n}\n.spacer[data-v-0bf47a4c] { flex: 1 1 auto;\n}\n.cmenu[data-v-0bf47a4c] { display: flex; flex-direction: column; gap: 5px; min-width: 170px;\n}\n.citem[data-v-0bf47a4c] { display: flex; align-items: center; gap: 6px; text-align: left; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 5px 8px; font-size: 11px; cursor: pointer;\n}\n.citem[data-v-0bf47a4c]:hover { border-color: var(--st-accent);\n}\n.citem.on[data-v-0bf47a4c] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.crow[data-v-0bf47a4c] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.crow input[type='range'][data-v-0bf47a4c] { flex: 1; accent-color: var(--st-accent);\n}\n.crow input[type='number'][data-v-0bf47a4c] { width: 54px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.ckrow[data-v-0bf47a4c] { gap: 12px;\n}\n.cdiv[data-v-0bf47a4c] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n.cgroup[data-v-0bf47a4c] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.chint[data-v-0bf47a4c] { margin: 2px 0 0; font-size: 10px; line-height: 1.4; color: var(--st-muted);\n}\n.cic[data-v-0bf47a4c] { display: inline-flex; align-items: center; justify-content: center; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; width: 26px; height: 24px; cursor: pointer;\n}\n.cic[data-v-0bf47a4c]:hover { border-color: var(--st-accent);\n}\n.stage[data-v-0bf47a4c] {\n  position: relative; width: 100%; background: var(--st-input);\n  border: 1px solid var(--st-border); border-radius: 6px; overflow: hidden;\n  touch-action: none; user-select: none; cursor: crosshair;\n}\n.stage.dragging[data-v-0bf47a4c] { cursor: grabbing;\n}\n.stage[data-v-0bf47a4c]:focus { outline: none;\n}\n.backdrop[data-v-0bf47a4c] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\n/* no z-index: DOM order paints it above the backdrop but below the grid/boxes */\n.livelayer[data-v-0bf47a4c] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\n.livebadge[data-v-0bf47a4c] {\n  position: absolute; top: 6px; left: 6px; z-index: 2; pointer-events: none;\n  display: inline-flex; align-items: center; gap: 3px;\n  background: rgba(0,0,0,.6); color: #fff; border-radius: 4px;\n  padding: 1px 6px 1px 4px; font-size: 9px; font-weight: 700;\n  text-transform: uppercase; letter-spacing: .5px;\n}\n.livebadge .mdi[data-v-0bf47a4c] { font-size: 11px; color: #ef4444; animation: livepulse-0bf47a4c 1.2s ease-in-out infinite;\n}\n@keyframes livepulse-0bf47a4c {\n0%, 100% { opacity: 1;\n}\n50% { opacity: .25;\n}\n}\n.grid[data-v-0bf47a4c] {\n  position: absolute; inset: 0; pointer-events: none;\n  background-image: linear-gradient(to right, rgba(128,128,128,.18) 1px, transparent 1px),\n    linear-gradient(to bottom, rgba(128,128,128,.18) 1px, transparent 1px);\n  background-size: 10% 10%;\n}\n.box[data-v-0bf47a4c] { position: absolute; box-sizing: border-box; cursor: move; background: transparent; transition: background .1s;\n}\n/* border as ::after (painted after children) so the outline sits over the label */\n.box[data-v-0bf47a4c]::after { content: ''; position: absolute; inset: 0; border: 2px solid var(--c, #60a5fa); pointer-events: none;\n}\n.box[data-v-0bf47a4c]:hover { background: var(--fill);\n}\n.box.sel[data-v-0bf47a4c] { background: var(--fill); box-shadow: 0 0 0 1.5px var(--st-accent, #60a5fa); z-index: 4;\n}\n.box.primary[data-v-0bf47a4c] { box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--st-accent, #60a5fa), 0 0 10px rgba(0,0,0,.6); z-index: 5;\n}\n.box.draft[data-v-0bf47a4c] { opacity: 0.8; pointer-events: none; background: rgba(156,163,175,.12);\n}\n.box.draft[data-v-0bf47a4c]::after { border-style: dashed;\n}\n.groupframe[data-v-0bf47a4c] { position: absolute; box-sizing: border-box; border: 1px dashed var(--gc, var(--st-accent, #60a5fa)); background: transparent; z-index: 6; pointer-events: none;\n}\n.groupframe .h[data-v-0bf47a4c] { pointer-events: auto; background: var(--gc, var(--st-accent, #60a5fa)); border-color: #fff;\n}\n.marquee[data-v-0bf47a4c] { position: absolute; box-sizing: border-box; border: 1px solid var(--st-accent, #60a5fa); background: color-mix(in srgb, var(--st-accent, #60a5fa) 15%, transparent); z-index: 7; pointer-events: none;\n}\n.tag[data-v-0bf47a4c] {\n  position: absolute; top: 0; left: 0; transform: translateY(-100%);\n  display: inline-flex; align-items: center; gap: 3px;\n  font-size: 10px; line-height: 1.4; padding: 1px 5px; white-space: nowrap;\n  max-width: 240px; overflow: hidden; border-radius: 3px 3px 0 0; pointer-events: none;\n}\n.tag .tagi[data-v-0bf47a4c] { flex: none;\n}\n.tag .tagn[data-v-0bf47a4c] { flex: none; font-weight: 700; font-variant-numeric: tabular-nums;\n}\n/* text hidden by default (icon + index only); shown on hover/selection */\n.tag .tagt[data-v-0bf47a4c] { display: none; overflow: hidden; text-overflow: ellipsis; max-width: 200px;\n}\n.box:hover .tag .tagt[data-v-0bf47a4c], .box.sel .tag .tagt[data-v-0bf47a4c], .box.primary .tag .tagt[data-v-0bf47a4c] { display: inline;\n}\n.tag .tagt[data-v-0bf47a4c]::before { content: '· ';\n}\n/* per-group color tab on the label's left edge; negative margins bleed to the tag edges */\n.tag.grouped .gseg[data-v-0bf47a4c] { flex: none; align-self: stretch; width: 4px; margin: -1px 3px -1px -5px; border-radius: 3px 0 0 0; background: var(--gc, var(--st-accent));\n}\n.h[data-v-0bf47a4c] { position: absolute; width: 11px; height: 11px; background: #fff; border: 1px solid #333; border-radius: 2px; z-index: 1;\n}\n.h-nw[data-v-0bf47a4c] { top: -6px; left: -6px; cursor: nwse-resize;\n}\n.h-n[data-v-0bf47a4c]  { top: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-ne[data-v-0bf47a4c] { top: -6px; right: -6px; cursor: nesw-resize;\n}\n.h-e[data-v-0bf47a4c]  { top: 50%; right: -6px; margin-top: -5px; cursor: ew-resize;\n}\n.h-se[data-v-0bf47a4c] { bottom: -6px; right: -6px; cursor: nwse-resize;\n}\n.h-s[data-v-0bf47a4c]  { bottom: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-sw[data-v-0bf47a4c] { bottom: -6px; left: -6px; cursor: nesw-resize;\n}\n.h-w[data-v-0bf47a4c]  { top: 50%; left: -6px; margin-top: -5px; cursor: ew-resize;\n}\n\r\n/* absolute over .studio (which is position:relative) */\n.liboverlay[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 60;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 72%, transparent);\r\n  backdrop-filter: blur(4px);\r\n  display: flex; padding: 12px; box-sizing: border-box;\r\n  border-radius: 8px; /* follow the node's rounded corners */\n}\n.libpanel[data-v-5382e446] {\r\n  flex: 1; min-height: 0; display: flex; flex-direction: column;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 3px);\r\n  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5); overflow: hidden;\n}\r\n\r\n/* ── header ─────────────────────────────────────────────── */\n.libhead[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-bottom: 1px solid var(--st-border); flex-wrap: wrap;\n}\n.libhead .t[data-v-5382e446] { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; letter-spacing: .2px;\n}\n.libhead .t .mdi[data-v-5382e446] { font-size: 17px; color: var(--st-accent);\n}\n.count[data-v-5382e446] {\r\n  display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 18px;\r\n  padding: 0 6px; border-radius: 9px; background: color-mix(in srgb, var(--st-accent) 22%, transparent);\r\n  color: var(--st-accent); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;\n}\n.grow[data-v-5382e446] { flex: 1;\n}\n.search[data-v-5382e446] { display: flex; align-items: center; gap: 4px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 7px; padding: 0 6px; height: 28px; transition: border-color .12s;\n}\n.search[data-v-5382e446]:focus-within { border-color: var(--st-accent);\n}\n.search .mdi[data-v-5382e446] { font-size: 14px; color: var(--st-muted);\n}\n.search input[data-v-5382e446] { background: none; border: none; outline: none; color: var(--st-text); font-size: 11px; font-family: inherit; width: 130px; padding: 0;\n}\n.search .clr[data-v-5382e446] { display: inline-flex; background: none; border: none; color: var(--st-muted); cursor: pointer; padding: 0;\n}\n.search .clr[data-v-5382e446]:hover { color: var(--st-text);\n}\r\n\r\n/* ── body / grid ────────────────────────────────────────── */\n.libbody[data-v-5382e446] { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 11px;\n}\n.grid[data-v-5382e446] { display: grid; grid-template-columns: repeat(auto-fill, minmax(138px, 1fr)); gap: 11px;\n}\n.tile[data-v-5382e446] {\r\n  position: relative; display: flex; flex-direction: column; gap: 6px; padding: 6px;\r\n  background: var(--st-input); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 1px);\r\n  transition: border-color .12s, box-shadow .12s, transform .1s;\n}\n.tile[data-v-5382e446]:hover { border-color: var(--st-accent); box-shadow: 0 0 0 1px var(--st-accent) inset, 0 6px 16px rgba(0, 0, 0, .35); transform: translateY(-2px);\n}\n.tile.confirming[data-v-5382e446] { border-color: #ef4444; box-shadow: 0 0 0 1px #ef4444 inset;\n}\n.thumb[data-v-5382e446] {\r\n  position: relative; width: 100%; aspect-ratio: 1; border-radius: 5px; overflow: hidden;\r\n  border: none; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 60%, #000);\n}\r\n/* cover so the thumbnail fills the frame without letterbox bars */\n.thumb img[data-v-5382e446] { width: 100%; height: 100%; object-fit: cover; display: block;\n}\n.thumb .ph[data-v-5382e446] { font-size: 24px; color: var(--st-muted); opacity: .45;\n}\n.badge[data-v-5382e446] {\r\n  position: absolute; top: 5px; left: 5px; display: inline-flex; align-items: center; gap: 3px;\r\n  padding: 1px 6px; border-radius: 8px; background: rgba(0, 0, 0, .62); color: #fff;\r\n  font-size: 10px; font-weight: 600; backdrop-filter: blur(2px);\n}\n.badge .mdi[data-v-5382e446] { font-size: 11px;\n}\n.del[data-v-5382e446] {\r\n  position: absolute; top: 9px; right: 9px; z-index: 2; display: inline-flex; align-items: center; justify-content: center;\r\n  width: 24px; height: 24px; border-radius: 6px; background: rgba(0, 0, 0, .55); border: none; color: #fff;\r\n  cursor: pointer; opacity: 0; transition: opacity .12s, background .12s;\n}\n.del .mdi[data-v-5382e446] { font-size: 15px;\n}\n.tile:hover .del[data-v-5382e446] { opacity: 1;\n}\n.del[data-v-5382e446]:hover { background: #dc2626;\n}\n.name[data-v-5382e446] { font-size: 11px; color: var(--st-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px;\n}\r\n\r\n/* delete confirm overlay over the tile */\n.confirm[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px;\r\n  background: color-mix(in srgb, var(--st-panel) 88%, transparent); backdrop-filter: blur(2px);\r\n  border-radius: inherit; padding: 8px; text-align: center;\n}\n.confirm .q[data-v-5382e446] { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--st-text);\n}\n.confirm .q .mdi[data-v-5382e446] { color: #ef4444; font-size: 15px;\n}\n.cbtns[data-v-5382e446] { display: flex; gap: 6px;\n}\n.cbtns button[data-v-5382e446] { border: none; border-radius: 6px; padding: 5px 11px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: inherit;\n}\n.cbtns .yes[data-v-5382e446] { background: #dc2626; color: #fff;\n}\n.cbtns .yes[data-v-5382e446]:hover { background: #ef4444;\n}\n.cbtns .no[data-v-5382e446] { background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\n}\n.cbtns .no[data-v-5382e446]:hover { border-color: var(--st-accent);\n}\r\n\r\n/* ── empty / loading ────────────────────────────────────── */\n.empty[data-v-5382e446] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; height: 100%; min-height: 180px; color: var(--st-muted); font-size: 12px; text-align: center;\n}\n.empty .mdi[data-v-5382e446] { font-size: 17px;\n}\n.empty .big[data-v-5382e446] { font-size: 40px; opacity: .35;\n}\n.empty small[data-v-5382e446] { font-size: 11px; opacity: .8;\n}\r\n\r\n/* ── footer / save bar ──────────────────────────────────── */\n.libfoot[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-top: 1px solid var(--st-border); background: color-mix(in srgb, var(--st-bg, #1a1a1f) 35%, transparent); flex-wrap: wrap;\n}\n.libfoot .fic[data-v-5382e446] { font-size: 16px; color: var(--st-muted);\n}\n.nm[data-v-5382e446] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 7px; padding: 6px 9px; font-size: 11px; font-family: inherit; width: 150px;\n}\n.nm[data-v-5382e446]:focus { outline: none; border-color: var(--st-accent);\n}\n.thumbck[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); white-space: nowrap; cursor: pointer;\n}\n.thumbck.disabled[data-v-5382e446] { opacity: .45; cursor: not-allowed;\n}\n.flash[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--st-accent); white-space: nowrap;\n}\n.flash .mdi[data-v-5382e446] { font-size: 14px;\n}\n.flash.err[data-v-5382e446] { color: #f87171;\n}\n.flash-enter-active[data-v-5382e446], .flash-leave-active[data-v-5382e446] { transition: opacity .18s;\n}\n.flash-enter-from[data-v-5382e446], .flash-leave-to[data-v-5382e446] { opacity: 0;\n}\r\n\n.ui-card[data-v-665b913d] {\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 8px; display: flex; flex-direction: column; gap: 7px;\n}\n.ui-card-head[data-v-665b913d] { display: flex; align-items: center; justify-content: space-between; gap: 8px;\n}\n.ui-card-title[data-v-665b913d] { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\r\n\n.palette[data-v-bd1d882e] { display: flex; flex-direction: column; gap: 4px;\n}\n.swatches[data-v-bd1d882e] { display: flex; flex-wrap: wrap; gap: 6px; align-items: center;\n}\n.swatch-wrap[data-v-bd1d882e] { position: relative;\n}\n.swatch[data-v-bd1d882e] {\r\n  display: block; width: 26px; height: 26px; border-radius: 5px;\r\n  border: 1px solid var(--st-border); cursor: pointer; overflow: hidden;\n}\n.swatch input[data-v-bd1d882e] { opacity: 0; width: 100%; height: 100%; cursor: pointer;\n}\n.add[data-v-bd1d882e] {\r\n  width: 26px; height: 26px; border-radius: 5px; cursor: pointer;\r\n  border: 1px dashed var(--st-border); background: transparent;\r\n  color: var(--st-muted); font-size: 16px; line-height: 1;\n}\n.hint[data-v-bd1d882e] { font-size: 10px; color: var(--st-muted);\n}\r\n\n.combo[data-v-2f602dd0] { display: flex; gap: 4px;\n}\n.combo input[data-v-2f602dd0] { flex: 1; min-width: 0; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 6px; font-size: 12px;\n}\n.cpick[data-v-2f602dd0] { flex: none; width: 74px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 5px; cursor: pointer; font-size: 11px; padding: 0 2px;\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\r\n\n.chead[data-v-65088df0] { display: flex; align-items: center; gap: 4px;\n}\n.grow[data-v-65088df0] { flex: 1 1 auto;\n}\n.fold[data-v-65088df0] { display: inline-flex; align-items: center; background: none; border: none; cursor: pointer; color: var(--st-muted); padding: 0; margin-left: -3px;\n}\n.fold[data-v-65088df0]:hover { color: var(--st-text);\n}\n.fold .mdi[data-v-65088df0] { font-size: 16px; line-height: 1;\n}\n.lhead[data-v-65088df0] { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\n.canvasmode[data-v-65088df0] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 11px; padding: 2px 4px;\n}\n.field[data-v-65088df0] { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--st-muted);\n}\n.field textarea[data-v-65088df0] {\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit; line-height: 1.45;\n  min-height: 72px;\n}\n.field textarea[data-v-65088df0]:focus, .canvasmode[data-v-65088df0]:focus { outline: none; border-color: var(--st-accent);\n}\n.presetsck[data-v-65088df0] { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--st-muted); cursor: pointer;\n}\n\n.adds[data-v-cdf8ce90] { display: flex; gap: 4px;\n}\n.chead[data-v-cdf8ce90] { display: flex; align-items: center; gap: 4px;\n}\n.lhead[data-v-cdf8ce90] { display: inline-flex; align-items: center; gap: 1px; background: none; border: none; cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted); padding: 0;\n}\n.lhead[data-v-cdf8ce90]:hover { color: var(--st-text);\n}\n.lhead .mdi[data-v-cdf8ce90] { font-size: 15px;\n}\n.lhead .flt[data-v-cdf8ce90] { font-size: 13px; margin-right: 2px;\n}\n.lmenu[data-v-cdf8ce90] { display: flex; flex-direction: column; gap: 1px; min-width: 150px;\n}\n.litem[data-v-cdf8ce90] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 8px; border-radius: 5px; font-size: 11px; cursor: pointer;\n}\n.litem[data-v-cdf8ce90]:hover { background: var(--st-btn);\n}\n.litem.on[data-v-cdf8ce90] { color: var(--st-accent);\n}\n.litem .mdi[data-v-cdf8ce90] { font-size: 15px; color: var(--st-muted);\n}\n.litem.on .mdi[data-v-cdf8ce90] { color: var(--st-accent);\n}\nul[data-v-cdf8ce90] { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; flex: 1 1 auto; min-height: 0; overflow-y: auto;\n}\nli[data-v-cdf8ce90] {\n  position: relative;\n  display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 5px;\n  background: var(--st-input); border: 1px solid transparent; cursor: pointer; font-size: 12px; color: var(--st-text);\n  transition: opacity .12s, box-shadow .12s, background .12s;\n}\nli[data-v-cdf8ce90]:hover { border-color: var(--st-border);\n}\nli.sel[data-v-cdf8ce90] { border-color: var(--st-accent);\n}\n/* primary = the item the editor targets */\nli.primary[data-v-cdf8ce90] { border-color: var(--st-accent); background: color-mix(in srgb, var(--st-accent) 18%, var(--st-input));\n}\nli.primary .snip[data-v-cdf8ce90] { font-weight: 600;\n}\n/* per-group color sliver; absolute inside the existing padding so rows stay aligned */\nli.grouped[data-v-cdf8ce90]::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 5px 0 0 5px; background: var(--gc, var(--st-accent));\n}\nli.dragging[data-v-cdf8ce90] { opacity: .35;\n}\nli.dragover[data-v-cdf8ce90] { box-shadow: inset 0 3px 0 -1px var(--st-accent); background: color-mix(in srgb, var(--st-accent) 12%, var(--st-input));\n}\n.handle[data-v-cdf8ce90] { flex: none; color: var(--st-muted); cursor: grab; font-size: 14px; opacity: .3; margin: 0 -4px 0 -2px; transition: opacity .12s, color .12s;\n}\nli:hover .handle[data-v-cdf8ce90] { opacity: .85;\n}\n.handle[data-v-cdf8ce90]:hover { color: var(--st-accent);\n}\n.handle[data-v-cdf8ce90]:active { cursor: grabbing;\n}\n.typeicon[data-v-cdf8ce90] { flex: none; color: var(--st-muted); line-height: 1; display: inline-flex;\n}\n.typeicon .mdi[data-v-cdf8ce90] { font-size: 15px;\n}\n.idxchip[data-v-cdf8ce90] {\n  flex: none; min-width: 17px; height: 16px; padding: 0 4px; box-sizing: border-box;\n  display: inline-flex; align-items: center; justify-content: center;\n  border-radius: 4px; background: var(--st-accent); color: #fff;\n  font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\n}\n.link[data-v-cdf8ce90] { flex: none; font-size: 13px; color: var(--st-muted);\n}\n.snip[data-v-cdf8ce90] { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.more[data-v-cdf8ce90] { display: inline-flex; align-items: center; justify-content: center; flex: none; background: none; border: none; color: var(--st-muted); border-radius: 4px; width: 20px; height: 20px; cursor: pointer; padding: 0; opacity: 0; transition: opacity .12s;\n}\n.more .mdi[data-v-cdf8ce90] { font-size: 16px;\n}\nli:hover .more[data-v-cdf8ce90], li.sel .more[data-v-cdf8ce90] { opacity: 1;\n}\n.more[data-v-cdf8ce90]:hover { color: var(--st-text); background: var(--st-btn);\n}\n.empty[data-v-cdf8ce90] { font-size: 11px; color: var(--st-muted); margin: 2px 0;\n}\n\n.jctrl[data-v-d7916295] { display: flex; align-items: center; gap: 5px; flex-wrap: nowrap;\n}\n.grow[data-v-d7916295] { flex: 1 1 auto;\n}\n.jstat[data-v-d7916295] { font-size: 15px; line-height: 1; cursor: help;\n}\n.jstat.good[data-v-d7916295] { color: #34d399;\n}\n.jstat.warn[data-v-d7916295] { color: #f59e0b;\n}\n.jstat.bad[data-v-d7916295] { color: #f87171;\n}\n.jtok[data-v-d7916295] { display: inline-flex; align-items: center; min-height: 24px; box-sizing: border-box; font-size: 10px; color: var(--st-muted); font-family: ui-monospace, monospace; background: var(--st-btn); border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px); padding: 0 7px; cursor: help;\n}\r\n\n.ehead[data-v-250c5e97] { display: flex; align-items: center; gap: 6px; width: 100%; flex-wrap: wrap;\n}\n.grow[data-v-250c5e97] { flex: 1 1 auto;\n}\n/* overflow:hidden clips the absolute color input to the chip so it can't overlap the type buttons */\n.idchip[data-v-250c5e97] { position: relative; display: inline-flex; flex: none; cursor: pointer; overflow: hidden; border-radius: 5px;\n}\n.idchip .n[data-v-250c5e97] {\n  display: inline-flex; align-items: center; justify-content: center;\n  min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box;\n  border-radius: 5px; color: #fff; font-size: 11px; font-weight: 700;\n  font-variant-numeric: tabular-nums; text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\n  border: 1px solid rgba(0, 0, 0, .25);\n}\n.idchip input[data-v-250c5e97] { position: absolute; inset: 0; opacity: 0; cursor: pointer;\n}\n.seg[data-v-250c5e97] { display: flex; gap: 2px;\n}\n.filine[data-v-250c5e97] { display: flex; gap: 8px; align-items: flex-start; font-size: 11px; color: var(--st-muted);\n}\n.filine > span[data-v-250c5e97] { width: 44px; flex: none; padding-top: 5px; text-align: right;\n}\n.filine input[type='text'][data-v-250c5e97], .filine textarea[data-v-250c5e97] {\n  flex: 1; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit;\n}\n.filine[data-v-250c5e97] .palette { flex: 1;\n}\n\n.jcard[data-v-919c184b] { display: flex; flex-direction: column; gap: 6px; min-height: 0;\n}\n.json[data-v-919c184b] {\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\n  border-radius: 6px; padding: 8px; font-size: 11px; line-height: 1.5;\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\n  max-height: 240px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-word;\n}\ntextarea.json[data-v-919c184b] { width: 100%; box-sizing: border-box; resize: vertical; min-height: 140px;\n}\ntextarea.json[data-v-919c184b]:focus, textarea.json.bad[data-v-919c184b]:focus { outline: none;\n}\ntextarea.json.bad[data-v-919c184b] { border-color: #f87171;\n}\n.compiled[data-v-919c184b] { position: relative; display: flex; flex-direction: column; gap: 2px;\n}\n.clbl[data-v-919c184b] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.cbtn[data-v-919c184b] { position: absolute; right: 10px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 22px; height: 20px; cursor: pointer; font-size: 12px; line-height: 1;\n}\n.cbtn[data-v-919c184b]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.cline[data-v-919c184b] {\n  background: var(--st-input); border: 1px dashed var(--st-border); color: var(--st-muted);\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\n  max-height: 110px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-all;\n}\n.parseerr[data-v-919c184b] { display: flex; flex-direction: column; gap: 4px;\n}\n.errhead[data-v-919c184b] { display: flex; align-items: center; gap: 6px;\n}\n.errhead .msg[data-v-919c184b] { flex: 1; font-size: 11px; color: #f87171; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.ebtn[data-v-919c184b] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer;\n}\n.ebtn[data-v-919c184b]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.errframe[data-v-919c184b] {\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\n  max-height: 120px; overflow: auto; margin: 0; cursor: pointer;\n}\n.warnlist[data-v-919c184b] { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f59e0b; display: flex; flex-direction: column; gap: 2px;\n}\n\n.ctxbg[data-v-b170409c] { position: fixed; inset: 0; z-index: 10000;\n}\n.ctx[data-v-b170409c] {\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\n  --st-input: var(--comfy-input-bg, #15151a);\n  --st-btn: var(--comfy-input-bg, #2a2a30);\n  --st-text: var(--input-text, #e5e5ea);\n  --st-muted: var(--descrip-text, #9aa0aa);\n  --st-border: var(--border-color, #3a3a44);\n  --st-accent: var(--p-primary-color, #3b82f6);\n  --st-radius: var(--radius-md, 6px);\n  position: fixed; min-width: 172px; z-index: 10001;\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius);\n  padding: 4px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\n  display: flex; flex-direction: column; gap: 1px;\n}\n.ctxhead[data-v-b170409c] { display: flex; align-items: center; gap: 6px; padding: 4px 9px 6px; color: var(--st-muted);\n}\n.ctxhead .cdot[data-v-b170409c] { width: 9px; height: 9px; border-radius: 2px; flex: none;\n}\n.ctxhead .cnum[data-v-b170409c] { font-size: 11px; font-weight: 600;\n}\n.ctxhead .mdi[data-v-b170409c] { font-size: 14px; margin-left: auto;\n}\n.ctxedit[data-v-b170409c] { margin: 0 4px 4px; padding: 5px 7px; background: var(--st-input, #15151a); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 12px; font-family: inherit;\n}\n.ctxedit[data-v-b170409c]:focus { outline: none; border-color: var(--st-accent);\n}\n.ctxitem[data-v-b170409c] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 9px; border-radius: calc(var(--st-radius) - 1px); cursor: pointer; font-size: 12px;\n}\n.ctxitem[data-v-b170409c]:hover { background: var(--st-btn);\n}\n.ctxitem .mdi[data-v-b170409c] { font-size: 15px; color: var(--st-muted);\n}\n.ctxkey[data-v-b170409c] { margin-left: auto; font-size: 10px; color: var(--st-muted); opacity: .7;\n}\n.ctxitem.del[data-v-b170409c]:hover { background: #b91c1c; color: #fff;\n}\n.ctxitem.del:hover .mdi[data-v-b170409c] { color: #fff;\n}\n.ctxdiv[data-v-b170409c] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n\n/* Map ComfyUI theme vars to semantic names (dark fallbacks); inherited by children. */\n.studio[data-v-82d88978] {\n  --st-bg: var(--comfy-menu-bg, #1a1a1f);\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\n  --st-input: var(--comfy-input-bg, #15151a);\n  --st-btn: var(--comfy-input-bg, #2a2a30);\n  --st-border: var(--border-color, #3a3a44);\n  --st-text: var(--input-text, #e5e5ea);\n  --st-muted: var(--descrip-text, #9aa0aa);\n  --st-accent: var(--p-primary-color, #60a5fa);\n  --st-on-accent: var(--p-primary-button-text-color, #fff);\n  --st-radius: var(--radius-md, 6px);\n  color: var(--st-text);\n  background: var(--st-bg);\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\n  height: 100%;\n  overflow-y: auto;\n  overscroll-behavior: contain;\n}\n.main[data-v-82d88978] { display: flex; gap: 8px;\n}\n.left[data-v-82d88978] { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column;\n}\n.right[data-v-82d88978] { flex: none; width: 265px; display: flex; flex-direction: column; gap: 8px;\n}\n.drawer-backdrop[data-v-82d88978] { display: none;\n}\n.slim-controls[data-v-82d88978] { display: none;\n}\n@media (max-width: 760px) {\n.main[data-v-82d88978] { position: relative;\n}\n.right[data-v-82d88978] {\n    position: absolute; right: 0; top: 0; bottom: 0; z-index: 30;\n    background: var(--st-panel); padding: 8px; width: 260px;\n    transform: translateX(100%); transition: transform .15s;\n}\n.studio.panel-open .right[data-v-82d88978] { transform: none;\n}\n.studio.panel-open .drawer-backdrop[data-v-82d88978] { display: block; position: absolute; inset: 0; z-index: 29; background: rgba(0,0,0,.4);\n}\n.slim-controls[data-v-82d88978] { display: inline-flex;\n}\n}\n.resmenu[data-v-82d88978] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.rsec[data-v-82d88978], .rdiv[data-v-82d88978] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.rdiv[data-v-82d88978] { border-top: 1px solid var(--st-border); margin: 2px 0;\n}\n.aspects[data-v-82d88978] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;\n}\n.achip[data-v-82d88978] { display: flex; flex-direction: column; align-items: center; gap: 3px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 6px; padding: 6px 2px; cursor: pointer;\n}\n.achip.on[data-v-82d88978] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.arect[data-v-82d88978] { border: 1.5px solid currentColor; border-radius: 2px; display: block;\n}\n.albl[data-v-82d88978] { font-size: 9px; font-variant-numeric: tabular-nums;\n}\n.mprow[data-v-82d88978] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.mppresets[data-v-82d88978] { display: flex; gap: 3px;\n}\n.mpp[data-v-82d88978] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; font-size: 10px; padding: 2px 6px; cursor: pointer;\n}\n.mpp.on[data-v-82d88978] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.mprow input[type='number'][data-v-82d88978] { width: 52px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.whrow[data-v-82d88978] { display: flex; align-items: center; gap: 8px;\n}\n.whrow label[data-v-82d88978] { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); flex: 1;\n}\n.whrow input[data-v-82d88978] { width: 100%; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 4px; font-size: 12px;\n}\n.swap[data-v-82d88978] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 26px; height: 26px; cursor: pointer; flex: none;\n}\n.swap[data-v-82d88978]:hover { color: var(--st-accent); border-color: var(--st-accent);\n}\n.rfoot[data-v-82d88978] { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--st-muted);\n}\n.help[data-v-82d88978] { display: flex; flex-direction: column; gap: 6px; min-width: 240px; max-width: 300px; font-size: 11px;\n}\n.help .h[data-v-82d88978] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted); margin: 2px 0 0;\n}\n.help dl[data-v-82d88978] { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0;\n}\n.help dt[data-v-82d88978] { color: var(--st-muted); white-space: nowrap;\n}\n.help dd[data-v-82d88978] { margin: 0;\n}\n.help .tip[data-v-82d88978] { color: var(--st-muted); font-size: 10px; margin: 4px 0 0;\n}\n.help .credit[data-v-82d88978] { color: var(--st-muted); font-size: 9px; margin: 6px 0 0; border-top: 1px solid var(--st-border); padding-top: 6px;\n}\n.help .credit a[data-v-82d88978] { color: var(--st-accent);\n}\n.resetc[data-v-82d88978] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.resetc .rq[data-v-82d88978] { margin: 0; font-size: 12px; font-weight: 600;\n}\n.resetc .rh[data-v-82d88978] { margin: 0; font-size: 10px; color: var(--st-muted);\n}\n.rbtns[data-v-82d88978] { display: flex; gap: 6px; justify-content: flex-end;\n}\n.rno[data-v-82d88978], .ryes[data-v-82d88978] { border: 1px solid var(--st-border); background: var(--st-btn); color: var(--st-text); border-radius: 5px; padding: 4px 10px; font-size: 11px; cursor: pointer;\n}\n.ryes[data-v-82d88978] { background: #b91c1c; border-color: #b91c1c; color: #fff;\n}\n";document.head.appendChild(s);})();import { app } from "../../../scripts/app.js";
 import { api } from "../../../scripts/api.js";
 /**
-* @vue/shared v3.5.35
+* @vue/shared v3.5.44
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 // @__NO_SIDE_EFFECTS__
-function makeMap(str) {
+function makeMap(str2) {
   const map = /* @__PURE__ */ Object.create(null);
-  for (const key of str.split(",")) map[key] = 1;
+  for (const key of str2.split(",")) map[key] = 1;
   return (val) => val in map;
 }
 const EMPTY_OBJ = {};
@@ -52,27 +52,27 @@ const isReservedProp = /* @__PURE__ */ makeMap(
 );
 const cacheStringFunction = (fn) => {
   const cache = /* @__PURE__ */ Object.create(null);
-  return ((str) => {
-    const hit = cache[str];
-    return hit || (cache[str] = fn(str));
+  return ((str2) => {
+    const hit = cache[str2];
+    return hit || (cache[str2] = fn(str2));
   });
 };
 const camelizeRE = /-\w/g;
 const camelize = cacheStringFunction(
-  (str) => {
-    return str.replace(camelizeRE, (c) => c.slice(1).toUpperCase());
+  (str2) => {
+    return str2.replace(camelizeRE, (c) => c.slice(1).toUpperCase());
   }
 );
 const hyphenateRE = /\B([A-Z])/g;
 const hyphenate = cacheStringFunction(
-  (str) => str.replace(hyphenateRE, "-$1").toLowerCase()
+  (str2) => str2.replace(hyphenateRE, "-$1").toLowerCase()
 );
-const capitalize = cacheStringFunction((str) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+const capitalize = cacheStringFunction((str2) => {
+  return str2.charAt(0).toUpperCase() + str2.slice(1);
 });
 const toHandlerKey = cacheStringFunction(
-  (str) => {
-    const s = str ? `on${capitalize(str)}` : ``;
+  (str2) => {
+    const s = str2 ? `on${capitalize(str2)}` : ``;
     return s;
   }
 );
@@ -121,10 +121,10 @@ function normalizeStyle(value) {
 }
 const listDelimiterRE = /;(?![^(]*\))/g;
 const propertyDelimiterRE = /:([^]+)/;
-const styleCommentRE = /\/\*[^]*?\*\//g;
+const styleCommentRE = /"(?:[^"\\]|\\[^])*"|'(?:[^'\\]|\\[^])*'|\\[^]|\/\*[^]*?\*\//g;
 function parseStringStyle(cssText) {
   const ret = {};
-  cssText.replace(styleCommentRE, "").split(listDelimiterRE).forEach((item) => {
+  cssText.replace(styleCommentRE, (match) => match.startsWith("/*") ? "" : match).split(listDelimiterRE).forEach((item) => {
     if (item) {
       const tmp = item.split(propertyDelimiterRE);
       tmp.length > 1 && (ret[tmp[0].trim()] = tmp[1].trim());
@@ -152,20 +152,77 @@ function normalizeClass(value) {
   }
   return res.trim();
 }
-const specialBooleanAttrs = `itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,readonly`;
+const specialBooleanAttrs = `itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,playsinline,readonly`;
 const isSpecialBooleanAttr = /* @__PURE__ */ makeMap(specialBooleanAttrs);
 function includeBooleanAttr(value) {
   return !!value || value === "";
 }
-function looseCompareArrays(a, b) {
+function looseCompareArrays(a, b, seen) {
   if (a.length !== b.length) return false;
   let equal = true;
   for (let i = 0; equal && i < a.length; i++) {
-    equal = looseEqual(a[i], b[i]);
+    equal = looseEqual(a[i], b[i], seen);
   }
   return equal;
 }
-function looseEqual(a, b) {
+function looseCompareCollections(a, b, seen) {
+  if (a.size !== b.size) return false;
+  const candidates = Array.from(b);
+  const matched = new Uint8Array(candidates.length);
+  for (const item of a) {
+    let index = -1;
+    for (let i = 0; i < candidates.length; i++) {
+      if (!matched[i] && looseEqual(item, candidates[i], seen)) {
+        index = i;
+        break;
+      }
+    }
+    if (index < 0) return false;
+    matched[index] = 1;
+  }
+  return true;
+}
+function looseCompareObjects(a, b, seen) {
+  let aValidType = isMap(a);
+  let bValidType = isMap(b);
+  if (aValidType || bValidType) {
+    return aValidType && bValidType ? looseCompareCollections(a, b, seen) : false;
+  }
+  aValidType = isSet(a);
+  bValidType = isSet(b);
+  if (aValidType || bValidType) {
+    return aValidType && bValidType ? looseCompareCollections(a, b, seen) : false;
+  }
+  const aKeysCount = Object.keys(a).length;
+  const bKeysCount = Object.keys(b).length;
+  if (aKeysCount !== bKeysCount) {
+    return false;
+  }
+  for (const key in a) {
+    const aHasKey = a.hasOwnProperty(key);
+    const bHasKey = b.hasOwnProperty(key);
+    if (aHasKey && !bHasKey || !aHasKey && bHasKey || !looseEqual(a[key], b[key], seen)) {
+      return false;
+    }
+  }
+  return String(a) === String(b);
+}
+function looseCompareNested(a, b, seen, compare) {
+  if (!seen) {
+    seen = [/* @__PURE__ */ new Map(), /* @__PURE__ */ new Map()];
+  }
+  const [seenA, seenB] = seen;
+  if (seenA.has(a) || seenB.has(b)) {
+    return seenA.get(a) === b && seenB.get(b) === a;
+  }
+  seenA.set(a, b);
+  seenB.set(b, a);
+  const equal = compare(a, b, seen);
+  seenA.delete(a);
+  seenB.delete(b);
+  return equal;
+}
+function looseEqual(a, b, seen) {
   if (a === b) return true;
   let aValidType = isDate(a);
   let bValidType = isDate(b);
@@ -180,7 +237,7 @@ function looseEqual(a, b) {
   aValidType = isArray(a);
   bValidType = isArray(b);
   if (aValidType || bValidType) {
-    return aValidType && bValidType ? looseCompareArrays(a, b) : false;
+    return aValidType && bValidType ? looseCompareNested(a, b, seen, looseCompareArrays) : false;
   }
   aValidType = isObject(a);
   bValidType = isObject(b);
@@ -188,18 +245,7 @@ function looseEqual(a, b) {
     if (!aValidType || !bValidType) {
       return false;
     }
-    const aKeysCount = Object.keys(a).length;
-    const bKeysCount = Object.keys(b).length;
-    if (aKeysCount !== bKeysCount) {
-      return false;
-    }
-    for (const key in a) {
-      const aHasKey = a.hasOwnProperty(key);
-      const bHasKey = b.hasOwnProperty(key);
-      if (aHasKey && !bHasKey || !aHasKey && bHasKey || !looseEqual(a[key], b[key])) {
-        return false;
-      }
-    }
+    return looseCompareNested(a, b, seen, looseCompareObjects);
   }
   return String(a) === String(b);
 }
@@ -245,7 +291,7 @@ const stringifySymbol = (v, i = "") => {
   );
 };
 /**
-* @vue/reactivity v3.5.35
+* @vue/reactivity v3.5.44
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
@@ -281,8 +327,9 @@ class EffectScope {
       this._isPaused = true;
       let i, l;
       if (this.scopes) {
-        for (i = 0, l = this.scopes.length; i < l; i++) {
-          this.scopes[i].pause();
+        const scopes = this.scopes.slice();
+        for (i = 0, l = scopes.length; i < l; i++) {
+          scopes[i].pause();
         }
       }
       for (i = 0, l = this.effects.length; i < l; i++) {
@@ -299,12 +346,14 @@ class EffectScope {
         this._isPaused = false;
         let i, l;
         if (this.scopes) {
-          for (i = 0, l = this.scopes.length; i < l; i++) {
-            this.scopes[i].resume();
+          const scopes = this.scopes.slice();
+          for (i = 0, l = scopes.length; i < l; i++) {
+            scopes[i].resume();
           }
         }
-        for (i = 0, l = this.effects.length; i < l; i++) {
-          this.effects[i].resume();
+        const effects = this.effects.slice();
+        for (i = 0, l = effects.length; i < l; i++) {
+          effects[i].resume();
         }
       }
     }
@@ -364,8 +413,9 @@ class EffectScope {
       }
       this.cleanups.length = 0;
       if (this.scopes) {
-        for (i = 0, l = this.scopes.length; i < l; i++) {
-          this.scopes[i].stop(true);
+        const scopes = this.scopes.slice();
+        for (i = 0, l = scopes.length; i < l; i++) {
+          scopes[i].stop(true);
         }
         this.scopes.length = 0;
       }
@@ -845,7 +895,9 @@ function reactiveReadArray(array) {
   const raw = /* @__PURE__ */ toRaw(array);
   if (raw === array) return raw;
   track(raw, "iterate", ARRAY_ITERATE_KEY);
-  return /* @__PURE__ */ isShallow(array) ? raw : raw.map(toReactive);
+  if (/* @__PURE__ */ isShallow(array)) return raw;
+  if (!/* @__PURE__ */ isReadonly(array)) return raw.map(toReactive);
+  return /* @__PURE__ */ isReactive(array) ? raw.map((item) => toReadonly(toReactive(item))) : raw.map(toReadonly);
 }
 function shallowReadArray(arr) {
   track(arr = /* @__PURE__ */ toRaw(arr), "iterate", ARRAY_ITERATE_KEY);
@@ -972,18 +1024,40 @@ const arrayInstrumentations = {
 };
 function iterator(self2, method, wrapValue) {
   const arr = shallowReadArray(self2);
-  const iter = arr[method]();
+  const methodFn = arr[method];
+  const iter = methodFn.call(arr);
   if (arr !== self2 && !/* @__PURE__ */ isShallow(self2)) {
-    iter._next = iter.next;
-    iter.next = () => {
-      const result = iter._next();
-      if (!result.done) {
-        result.value = wrapValue(result.value);
+    if (iter[Symbol.toStringTag] === "Array Iterator") {
+      const wrapped = Object.create(Object.getPrototypeOf(iter));
+      wrapped.next = () => wrapResult(iter.next(), wrapValue);
+      if (methodFn !== arrayProto[method]) {
+        Object.defineProperties(wrapped, {
+          return: {
+            get() {
+              const fn = iter.return;
+              return typeof fn === "function" ? fn.bind(iter) : fn;
+            }
+          },
+          throw: {
+            get() {
+              const fn = iter.throw;
+              return typeof fn === "function" ? fn.bind(iter) : fn;
+            }
+          }
+        });
       }
-      return result;
-    };
+      return wrapped;
+    }
+    iter._next = iter.next;
+    iter.next = () => wrapResult(iter._next(), wrapValue);
   }
   return iter;
+}
+function wrapResult(result, wrapValue) {
+  if (!result.done) {
+    result.value = wrapValue(result.value);
+  }
+  return result;
 }
 const arrayProto = Array.prototype;
 function apply(self2, method, fn, thisArg, wrappedRetFn, args) {
@@ -1149,7 +1223,7 @@ class MutableReactiveHandler extends BaseReactiveHandler {
       value,
       /* @__PURE__ */ isRef(target) ? target : receiver
     );
-    if (target === /* @__PURE__ */ toRaw(receiver)) {
+    if (target === /* @__PURE__ */ toRaw(receiver) && result) {
       if (!hadKey) {
         trigger(target, "add", key, value);
       } else if (hasChanged(value, oldValue)) {
@@ -1374,6 +1448,8 @@ function createInstrumentationGetter(isReadonly2, shallow) {
       return !isReadonly2;
     } else if (key === "__v_isReadonly") {
       return isReadonly2;
+    } else if (key === "__v_isShallow") {
+      return shallow;
     } else if (key === "__v_raw") {
       return target;
     }
@@ -1710,8 +1786,11 @@ function watch$1(source, cb, options = EMPTY_OBJ) {
   if (once && cb) {
     const _cb = cb;
     cb = (...args) => {
-      _cb(...args);
-      watchHandle();
+      try {
+        return _cb(...args);
+      } finally {
+        watchHandle();
+      }
     };
   }
   let oldValue = isMultiSource ? new Array(source.length).fill(INITIAL_WATCHER_VALUE) : INITIAL_WATCHER_VALUE;
@@ -1721,13 +1800,14 @@ function watch$1(source, cb, options = EMPTY_OBJ) {
     }
     if (cb) {
       const newValue = effect2.run();
-      if (deep || forceTrigger || (isMultiSource ? newValue.some((v, i) => hasChanged(v, oldValue[i])) : hasChanged(newValue, oldValue))) {
-        if (cleanup) {
-          cleanup();
-        }
+      if (immediateFirstRun || deep || forceTrigger || (isMultiSource ? newValue.some((v, i) => hasChanged(v, oldValue[i])) : hasChanged(newValue, oldValue))) {
         const currentWatcher = activeWatcher;
-        activeWatcher = effect2;
+        pauseTracking();
         try {
+          if (cleanup) {
+            cleanup();
+          }
+          activeWatcher = effect2;
           const args = [
             newValue,
             // pass undefined as the old value when it's changed for the first time
@@ -1741,6 +1821,7 @@ function watch$1(source, cb, options = EMPTY_OBJ) {
           );
         } finally {
           activeWatcher = currentWatcher;
+          resetTracking();
         }
       }
     } else {
@@ -1813,7 +1894,7 @@ function traverse(value, depth = Infinity, seen) {
   return value;
 }
 /**
-* @vue/runtime-core v3.5.35
+* @vue/runtime-core v3.5.44
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
@@ -2040,19 +2121,21 @@ function queuePostFlushCb(cb) {
       cb.flags |= 1;
     }
   } else {
-    pendingPostFlushCbs.push(...cb);
+    for (let i = 0; i < cb.length; i++) {
+      pendingPostFlushCbs.push(cb[i]);
+    }
   }
   queueFlush();
 }
-function flushPreFlushCbs(instance, seen, i = flushIndex + 1) {
+function flushPreFlushCbs(instance, minUid, seen, i = flushIndex + 1) {
   for (; i < queue.length; i++) {
     const cb = queue[i];
     if (cb && cb.flags & 2) {
-      if (instance && cb.id !== instance.uid) {
+      if (instance && cb.id !== instance.uid || minUid !== void 0 && !(cb.id >= minUid)) {
         continue;
       }
       queue.splice(i, 1);
-      i--;
+      i = instance ? i - 1 : flushIndex;
       if (cb.flags & 4) {
         cb.flags &= -2;
       }
@@ -2063,14 +2146,27 @@ function flushPreFlushCbs(instance, seen, i = flushIndex + 1) {
     }
   }
 }
-function flushPostFlushCbs(seen) {
+function flushPostFlushCbs(seen, skip, minUid = 0) {
   if (pendingPostFlushCbs.length) {
-    const deduped = [...new Set(pendingPostFlushCbs)].sort(
-      (a, b) => getId(a) - getId(b)
-    );
-    pendingPostFlushCbs.length = 0;
+    let cbs = pendingPostFlushCbs;
+    let kept = 0;
+    if (skip) {
+      cbs = [];
+      for (let i = 0; i < pendingPostFlushCbs.length; i++) {
+        const cb = pendingPostFlushCbs[i];
+        if (cb.i !== void 0 ? !cb.i || cb.i.uid < minUid : skip.has(cb)) {
+          pendingPostFlushCbs[kept++] = cb;
+        } else {
+          cbs.push(cb);
+        }
+      }
+    }
+    const deduped = [...new Set(cbs)].sort((a, b) => getId(a) - getId(b));
+    pendingPostFlushCbs.length = kept;
     if (activePostFlushCbs) {
-      activePostFlushCbs.push(...deduped);
+      for (let i = 0; i < deduped.length; i++) {
+        activePostFlushCbs.push(deduped[i]);
+      }
       return;
     }
     activePostFlushCbs = deduped;
@@ -2084,6 +2180,22 @@ function flushPostFlushCbs(seen) {
     }
     activePostFlushCbs = null;
     postFlushIndex = 0;
+  }
+}
+let isFlushing = false;
+function flushOnAppMount(fn, minUid) {
+  if (isFlushing) {
+    fn();
+    return;
+  }
+  const queued = minUid === void 0 ? void 0 : new Set(pendingPostFlushCbs);
+  fn();
+  isFlushing = true;
+  try {
+    flushPreFlushCbs(void 0, minUid);
+    flushPostFlushCbs(void 0, queued, minUid);
+  } finally {
+    isFlushing = false;
   }
 }
 const getId = (job) => job.id == null ? job.flags & 2 ? -1 : Infinity : job.id;
@@ -2140,10 +2252,12 @@ function withCtx(fn, ctx = currentRenderingInstance, isNonScopedSlot) {
       setBlockTracking(-1);
     }
     const prevInstance = setCurrentRenderingInstance(ctx);
+    const prevStackSize = blockStack.length;
     let res;
     try {
       res = fn(...args);
     } finally {
+      for (let i = blockStack.length; i > prevStackSize; i--) closeBlock();
       setCurrentRenderingInstance(prevInstance);
       if (renderFnWithContext._d) {
         setBlockTracking(1);
@@ -2261,6 +2375,7 @@ function doWatch(source, cb, options = EMPTY_OBJ) {
   let isPre = false;
   if (flush === "post") {
     baseWatchOptions.scheduler = (job) => {
+      job.i = instance;
       queuePostRenderEffect(job, instance && instance.suspense);
     };
   } else if (flush !== "sync") {
@@ -2474,11 +2589,9 @@ const TeleportImpl = {
         }
       } else {
         if ((n2.props && n2.props.to) !== (n1.props && n1.props.to)) {
-          const nextTarget = n2.target = resolveTarget(
-            n2.props,
-            querySelector
-          );
+          const nextTarget = resolveTarget(n2.props, querySelector);
           if (nextTarget) {
+            n2.target = nextTarget;
             moveTeleport(
               n2,
               nextTarget,
@@ -2510,7 +2623,8 @@ const TeleportImpl = {
       target,
       props
     } = vnode;
-    const shouldRemove = doRemove || !isTeleportDisabled(props);
+    const disabled = isTeleportDisabled(props);
+    const shouldRemove = doRemove || !disabled;
     const pendingMount = pendingMounts.get(vnode);
     if (pendingMount) {
       pendingMount.flags |= 8;
@@ -2521,7 +2635,7 @@ const TeleportImpl = {
       hostRemove(targetAnchor);
     }
     doRemove && hostRemove(anchor);
-    if (!pendingMount && shapeFlag & 16) {
+    if (!pendingMount && (disabled || target) && shapeFlag & 16) {
       for (let i = 0; i < children.length; i++) {
         const child = children[i];
         unmount(
@@ -2539,7 +2653,11 @@ const TeleportImpl = {
 };
 function moveTeleport(vnode, container, parentAnchor, { o: { insert }, m: move }, moveType = 2) {
   if (moveType === 0) {
+    if (vnode.targetStart) {
+      insert(vnode.targetStart, container, parentAnchor);
+    }
     insert(vnode.targetAnchor, container, parentAnchor);
+    parentAnchor = vnode.targetAnchor;
   }
   const { el, anchor, shapeFlag, children, props } = vnode;
   const isReorder = moveType === 2;
@@ -2707,10 +2825,6 @@ const BaseTransitionPropsValidators = {
   onAfterAppear: TransitionHookValidator,
   onAppearCancelled: TransitionHookValidator
 };
-const recursiveGetSubtree = (instance) => {
-  const subTree = instance.subTree;
-  return subTree.component ? recursiveGetSubtree(subTree.component) : subTree;
-};
 const BaseTransitionImpl = {
   name: `BaseTransition`,
   props: BaseTransitionPropsValidators,
@@ -2748,7 +2862,7 @@ const BaseTransitionImpl = {
         setTransitionHooks(innerChild, enterHooks);
       }
       let oldInnerChild = instance.subTree && getInnerChild$1(instance.subTree);
-      if (oldInnerChild && oldInnerChild.type !== Comment && !isSameVNodeType(oldInnerChild, innerChild) && recursiveGetSubtree(instance).type !== Comment) {
+      if (oldInnerChild && oldInnerChild.type !== Comment && !isSameVNodeType(oldInnerChild, innerChild) && getTransitionRoot(instance.subTree)) {
         let leavingHooks = resolveTransitionHooks(
           oldInnerChild,
           rawProps,
@@ -2874,8 +2988,15 @@ function resolveTransitionHooks(vnode, props, state, instance, postClone) {
         );
       }
       const leavingVNode = leavingVNodesCache[key];
-      if (leavingVNode && isSameVNodeType(vnode, leavingVNode) && leavingVNode.el[leaveCbKey]) {
-        leavingVNode.el[leaveCbKey]();
+      if (leavingVNode && isSameVNodeType(vnode, leavingVNode)) {
+        let leavingCb = leavingVNode.el[leaveCbKey];
+        if (!leavingCb) {
+          const leavingRoot = getTransitionRoot(leavingVNode);
+          leavingCb = leavingRoot && leavingRoot.el[leaveCbKey];
+        }
+        if (leavingCb) {
+          leavingCb();
+        }
       }
       callHook2(hook, [el]);
     },
@@ -2993,12 +3114,22 @@ function getInnerChild$1(vnode) {
 function setTransitionHooks(vnode, hooks) {
   if (vnode.shapeFlag & 6 && vnode.component) {
     vnode.transition = hooks;
-    setTransitionHooks(vnode.component.subTree, hooks);
+    const subTree = vnode.component.subTree;
+    setTransitionHooks(
+      isTeleport(subTree.type) ? getInnerChild$1(subTree) || subTree : subTree,
+      hooks
+    );
   } else if (vnode.shapeFlag & 128) {
     vnode.ssContent.transition = hooks.clone(vnode.ssContent);
     vnode.ssFallback.transition = hooks.clone(vnode.ssFallback);
   } else {
     vnode.transition = hooks;
+    if (vnode.type === Fragment && isArray(vnode.children)) {
+      const child = filterSingleRoot(vnode.children, false);
+      if (child) {
+        setTransitionHooks(child, hooks);
+      }
+    }
   }
 }
 function getTransitionRawChildren(children, keepComment = false, parentKey) {
@@ -3022,6 +3153,18 @@ function getTransitionRawChildren(children, keepComment = false, parentKey) {
     }
   }
   return ret;
+}
+function getTransitionRoot(vnode) {
+  if (vnode.component) {
+    return getTransitionRoot(vnode.component.subTree);
+  }
+  if (vnode.type === Fragment) {
+    const child = isArray(vnode.children) && filterSingleRoot(vnode.children, false);
+    return child ? getTransitionRoot(child) : void 0;
+  }
+  if (vnode.type !== Comment) {
+    return vnode;
+  }
 }
 // @__NO_SIDE_EFFECTS__
 function defineComponent(options, extraOptions) {
@@ -3265,7 +3408,9 @@ function renderList(source, renderItem, cache, index) {
       );
     }
   } else if (typeof source === "number") {
-    {
+    if (!Number.isInteger(source) || source < 0) {
+      ret = [];
+    } else {
       ret = new Array(source);
       for (let i = 0; i < source; i++) {
         ret[i] = renderItem(i + 1, i, void 0, cached);
@@ -3290,14 +3435,16 @@ function renderList(source, renderItem, cache, index) {
   }
   return ret;
 }
-function renderSlot(slots, name, props = {}, fallback, noSlotted) {
+function renderSlot(slots, name, props, fallback, noSlotted, branchKey) {
+  if (props == null) props = {};
   if (currentRenderingInstance.ce || currentRenderingInstance.parent && isAsyncWrapper(currentRenderingInstance.parent) && currentRenderingInstance.parent.ce) {
-    const hasProps = Object.keys(props).length > 0;
-    if (name !== "default") props.name = name;
+    const slotProps = props;
+    const hasProps = Object.keys(slotProps).length > 0;
+    if (name !== "default") slotProps.name = name;
     return openBlock(), createBlock(
       Fragment,
       null,
-      [createVNode("slot", props, fallback)],
+      [createVNode("slot", slotProps, fallback)],
       hasProps ? -2 : 64
     );
   }
@@ -3305,22 +3452,30 @@ function renderSlot(slots, name, props = {}, fallback, noSlotted) {
   if (slot && slot._c) {
     slot._d = false;
   }
+  const prevStackSize = blockStack.length;
   openBlock();
-  const validSlotContent = slot && ensureValidVNode(slot(props));
-  const slotKey = props.key || // slot content array of a dynamic conditional slot may have a branch
-  // key attached in the `createSlots` helper, respect that
-  validSlotContent && validSlotContent.key;
-  const rendered = createBlock(
-    Fragment,
-    {
-      key: (slotKey && !isSymbol(slotKey) ? slotKey : `_${name}`) + // #7256 force differentiate fallback content from actual content
-      (!validSlotContent && fallback ? "_fb" : "")
-    },
-    validSlotContent || [],
-    validSlotContent && slots._ === 1 ? 64 : -2
-  );
-  if (slot && slot._c) {
-    slot._d = true;
+  let rendered;
+  try {
+    const validSlotContent = slot && ensureValidVNode(slot(props));
+    const slotKey = props.key || branchKey || // slot content array of a dynamic conditional slot may have a branch
+    // key attached in the `createSlots` helper, respect that
+    validSlotContent && validSlotContent.key;
+    rendered = createBlock(
+      Fragment,
+      {
+        key: (slotKey && !isSymbol(slotKey) ? slotKey : `_${name}`) + // #7256 force differentiate fallback content from actual content
+        (!validSlotContent && fallback ? "_fb" : "")
+      },
+      validSlotContent || (fallback ? fallback() : []),
+      validSlotContent && slots._ === 1 ? 64 : -2
+    );
+  } catch (err) {
+    for (let i = blockStack.length; i > prevStackSize; i--) closeBlock();
+    throw err;
+  } finally {
+    if (slot && slot._c) {
+      slot._d = true;
+    }
   }
   return rendered;
 }
@@ -3945,7 +4100,7 @@ function emit(instance, event, ...rawArgs) {
       args = rawArgs.map((a) => isString(a) ? a.trim() : a);
     }
     if (modifiers.number) {
-      args = rawArgs.map(looseToNumber);
+      args = args.map(looseToNumber);
     }
   }
   let handlerName;
@@ -4026,7 +4181,8 @@ function isEmitListener(options, key) {
   if (!options || !isOn(key)) {
     return false;
   }
-  key = key.slice(2).replace(/Once$/, "");
+  key = key.slice(2);
+  key = key === "Once" ? key : key.replace(/Once$/, "");
   return hasOwn(options, key[0].toLowerCase() + key.slice(1)) || hasOwn(options, hyphenate(key)) || hasOwn(options, key);
 }
 function markAttrsAccessed() {
@@ -4124,13 +4280,32 @@ function renderComponentRoot(instance) {
     root.dirs = root.dirs ? root.dirs.concat(vnode.dirs) : vnode.dirs;
   }
   if (vnode.transition) {
-    setTransitionHooks(root, vnode.transition);
+    const child = isTeleport(root.type) ? getInnerChild$1(root) || root : root;
+    setTransitionHooks(child, vnode.transition);
   }
   {
     result = root;
   }
   setCurrentRenderingInstance(prev);
   return result;
+}
+function filterSingleRoot(children, recurse = true) {
+  let singleRoot;
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i];
+    if (isVNode(child)) {
+      if (child.type !== Comment || child.children === "v-if") {
+        if (singleRoot) {
+          return;
+        } else {
+          singleRoot = child;
+        }
+      }
+    } else {
+      return;
+    }
+  }
+  return singleRoot;
 }
 const getFunctionalFallthrough = (attrs) => {
   let res;
@@ -4201,7 +4376,7 @@ function hasPropsChanged(prevProps, nextProps, emitsOptions) {
   }
   for (let i = 0; i < nextKeys.length; i++) {
     const key = nextKeys[i];
-    if (hasPropValueChanged(nextProps, prevProps, key) && !isEmitListener(emitsOptions, key)) {
+    if (!hasOwn(prevProps, key) || hasPropValueChanged(nextProps, prevProps, key) && !isEmitListener(emitsOptions, key)) {
       return true;
     }
   }
@@ -4635,6 +4810,12 @@ function baseCreateRenderer(options, createHydrationFns) {
       optimized = false;
       n2.dynamicChildren = null;
     }
+    if (n2.dynamicChildren && n1 && n1.dynamicChildren && n1.dynamicChildren.hasOnce) {
+      if (n2.dynamicChildren === EMPTY_ARR) {
+        n2.dynamicChildren = [];
+      }
+      n2.dynamicChildren.hasOnce = true;
+    }
     const { type, ref: ref3, shapeFlag } = n2;
     switch (type) {
       case Text:
@@ -4926,6 +5107,15 @@ function baseCreateRenderer(options, createHydrationFns) {
       invokeDirectiveHook(n2, n1, parentComponent, "beforeUpdate");
     }
     parentComponent && toggleRecurse(parentComponent, true);
+    if (
+      // #6385 the old vnode may be a user-wrapped non-isomorphic block
+      // Force full diff when block metadata is unstable.
+      dynamicChildren && (!n1.dynamicChildren || n1.dynamicChildren.length !== dynamicChildren.length)
+    ) {
+      patchFlag = 0;
+      optimized = false;
+      dynamicChildren = null;
+    }
     if (oldProps.innerHTML && newProps.innerHTML == null || oldProps.textContent && newProps.textContent == null) {
       hostSetElementText(el, "");
     }
@@ -4995,15 +5185,16 @@ function baseCreateRenderer(options, createHydrationFns) {
     for (let i = 0; i < newChildren.length; i++) {
       const oldVNode = oldChildren[i];
       const newVNode = newChildren[i];
+      const oldEl = oldVNode.el || resolveAsyncComponentPlaceholder(oldVNode);
       const container = (
         // oldVNode may be an errored async setup() component inside Suspense
         // which will not have a mounted element
-        oldVNode.el && // - In the case of a Fragment, we need to provide the actual parent
+        oldEl && // - In the case of a Fragment, we need to provide the actual parent
         // of the Fragment itself so it can move its children.
         (oldVNode.type === Fragment || // - In the case of different nodes, there is going to be a replacement
         // which also requires the correct parent container
         !isSameVNodeType(oldVNode, newVNode) || // - In the case of a component, it could contain anything.
-        oldVNode.shapeFlag & (6 | 64 | 128)) ? hostParentNode(oldVNode.el) : (
+        oldVNode.shapeFlag & (6 | 64 | 128)) ? hostParentNode(oldEl) : (
           // In other cases, the parent container is not actually used so we
           // just pass the block element here to avoid a DOM parentNode call.
           fallbackContainer
@@ -5156,7 +5347,12 @@ function baseCreateRenderer(options, createHydrationFns) {
       setupComponent(instance, false, optimized);
     }
     if (instance.asyncDep) {
-      parentSuspense && parentSuspense.registerDep(instance, setupRenderEffect, optimized);
+      parentSuspense && parentSuspense.registerDep(
+        instance,
+        setupRenderEffect,
+        optimized,
+        namespace
+      );
       if (!initialVNode.el) {
         const placeholder = instance.subTree = createVNode(Comment);
         processCommentNode(null, placeholder, container, anchor);
@@ -5178,6 +5374,8 @@ function baseCreateRenderer(options, createHydrationFns) {
     const instance = n2.component = n1.component;
     if (shouldUpdateComponent(n1, n2, optimized)) {
       if (instance.asyncDep && !instance.asyncResolved) {
+        n2.el = n1.el;
+        n2.placeholder = n1.placeholder;
         updateComponentPreRender(instance, n2, optimized);
         return;
       } else {
@@ -5186,6 +5384,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     } else {
       n2.el = n1.el;
+      n2.placeholder = n1.placeholder;
       instance.vnode = n2;
     }
   };
@@ -5687,7 +5886,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       cacheIndex,
       memo
     } = vnode;
-    if (patchFlag === -2) {
+    if (patchFlag === -2 || dynamicChildren && dynamicChildren.hasOnce) {
       optimized = false;
     }
     if (ref3 != null) {
@@ -5695,7 +5894,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       setRef(ref3, null, parentSuspense, vnode, true);
       resetTracking();
     }
-    if (cacheIndex != null) {
+    if (cacheIndex != null && (!vnode.ctx || vnode.ctx === parentComponent)) {
       parentComponent.renderCache[cacheIndex] = void 0;
     }
     if (shapeFlag & 256) {
@@ -5760,27 +5959,37 @@ function baseCreateRenderer(options, createHydrationFns) {
   };
   const remove2 = (vnode) => {
     const { type, el, anchor, transition } = vnode;
-    if (type === Fragment) {
-      {
-        removeFragment(el, anchor);
-      }
+    const isFragment = type === Fragment;
+    if (isFragment && !transition) {
+      removeFragment(el, anchor);
       return;
     }
     if (type === Static) {
       removeStaticNode(vnode);
+      if (transition && !transition.persisted && transition.afterLeave) {
+        transition.afterLeave();
+      }
       return;
     }
+    const leavingNode = isFragment ? getTransitionRoot(vnode) : vnode;
     const performRemove = () => {
-      hostRemove(el);
+      if (isFragment) {
+        if (hostParentNode(el)) {
+          removeFragment(el, anchor);
+        }
+      } else {
+        hostRemove(el);
+      }
       if (transition && !transition.persisted && transition.afterLeave) {
         transition.afterLeave();
       }
     };
-    if (vnode.shapeFlag & 1 && transition && !transition.persisted) {
+    if (leavingNode && leavingNode.shapeFlag & 1 && transition && !transition.persisted) {
       const { leave, delayLeave } = transition;
-      const performLeave = () => leave(el, performRemove);
+      const leavingEl = leavingNode.el;
+      const performLeave = () => leave(leavingEl, performRemove);
       if (delayLeave) {
-        delayLeave(vnode.el, performRemove, performLeave);
+        delayLeave(leavingEl, performRemove, performLeave);
       } else {
         performLeave();
       }
@@ -5808,6 +6017,9 @@ function baseCreateRenderer(options, createHydrationFns) {
     if (job) {
       job.flags |= 8;
       unmount(subTree, instance, parentSuspense, doRemove);
+    } else if (instance.vnode.el && subTree) {
+      subTree.transition = instance.vnode.transition;
+      unmount(subTree, instance, parentSuspense, doRemove);
     }
     if (um) {
       queuePostRenderEffect(um, parentSuspense);
@@ -5832,32 +6044,26 @@ function baseCreateRenderer(options, createHydrationFns) {
     const teleportEnd = el && el[TeleportEndKey];
     return teleportEnd ? hostNextSibling(teleportEnd) : el;
   };
-  let isFlushing = false;
   const render = (vnode, container, namespace) => {
-    let instance;
-    if (vnode == null) {
-      if (container._vnode) {
-        unmount(container._vnode, null, null, true);
-        instance = container._vnode.component;
+    const minUid = vnode && container._vnode ? void 0 : vnode && vnode.component ? vnode.component.uid : getNextUid();
+    flushOnAppMount(() => {
+      if (vnode == null) {
+        if (container._vnode) {
+          unmount(container._vnode, null, null, true);
+        }
+      } else {
+        patch(
+          container._vnode || null,
+          vnode,
+          container,
+          null,
+          null,
+          null,
+          namespace
+        );
       }
-    } else {
-      patch(
-        container._vnode || null,
-        vnode,
-        container,
-        null,
-        null,
-        null,
-        namespace
-      );
-    }
-    container._vnode = vnode;
-    if (!isFlushing) {
-      isFlushing = true;
-      flushPreFlushCbs(instance);
-      flushPostFlushCbs();
-      isFlushing = false;
-    }
+      container._vnode = vnode;
+    }, minUid);
   };
   const internals = {
     p: patch,
@@ -6221,7 +6427,8 @@ function cloneVNode(vnode, extraProps, mergeRef = false, cloneTransition = false
     el: vnode.el,
     anchor: vnode.anchor,
     ctx: vnode.ctx,
-    ce: vnode.ce
+    ce: vnode.ce,
+    cacheIndex: vnode.cacheIndex
   };
   if (transition && cloneTransition) {
     setTransitionHooks(
@@ -6287,6 +6494,10 @@ function normalizeChildren(vnode, children) {
       }
     }
   } else if (isFunction(children)) {
+    if (shapeFlag & (1 | 64)) {
+      normalizeChildren(vnode, { default: children });
+      return;
+    }
     children = { default: children, _ctx: currentRenderingInstance };
     type = 32;
   } else {
@@ -6337,6 +6548,9 @@ function invokeVNodeHook(hook, instance, vnode, prevVNode = null) {
 }
 const emptyAppContext = createAppContext();
 let uid = 0;
+function getNextUid() {
+  return uid;
+}
 function createComponentInstance(vnode, parent, suspense) {
   const type = vnode.type;
   const appContext = (parent ? parent.appContext : vnode.appContext) || emptyAppContext;
@@ -6505,7 +6719,12 @@ function setupStatefulComponent(instance, isSSR) {
       setupResult.then(unsetCurrentInstance, unsetCurrentInstance);
       if (isSSR) {
         return setupResult.then((resolvedResult) => {
-          handleSetupResult(instance, resolvedResult);
+          setInSSRSetupState(true);
+          try {
+            handleSetupResult(instance, resolvedResult, isSSR);
+          } finally {
+            setInSSRSetupState(false);
+          }
         }).catch((e) => {
           handleError(e, instance, 0);
         });
@@ -6585,7 +6804,7 @@ function getComponentPublicInstance(instance) {
   }
 }
 const classifyRE = /(?:^|[-_])\w/g;
-const classify = (str) => str.replace(classifyRE, (c) => c.toUpperCase()).replace(/[-_]/g, "");
+const classify = (str2) => str2.replace(classifyRE, (c) => c.toUpperCase()).replace(/[-_]/g, "");
 function getComponentName(Component, includeInferred = true) {
   return isFunction(Component) ? Component.displayName || Component.name : Component.name || includeInferred && Component.__name;
 }
@@ -6643,9 +6862,9 @@ function h(type, propsOrChildren, children) {
     setBlockTracking(1);
   }
 }
-const version = "3.5.35";
+const version = "3.5.44";
 /**
-* @vue/runtime-dom v3.5.35
+* @vue/runtime-dom v3.5.44
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
@@ -7076,7 +7295,9 @@ function patchStyle(el, prev, next) {
     }
   }
   if (vShowOriginalDisplay in el) {
-    el[vShowOriginalDisplay] = hasControlledDisplay ? style.display : "";
+    if (!isCssString || prev !== next) {
+      el[vShowOriginalDisplay] = hasControlledDisplay ? style.display : "";
+    }
     if (el[vShowHidden]) {
       style.display = "none";
     }
@@ -7089,7 +7310,11 @@ function setStyle(style, name, val) {
   } else {
     if (val == null) val = "";
     if (name.startsWith("--")) {
-      style.setProperty(name, val);
+      if (importantRE.test(val)) {
+        style.setProperty(name, val.replace(importantRE, ""), "important");
+      } else {
+        style.setProperty(name, val);
+      }
     } else {
       const prefixed = autoPrefix(style, name);
       if (importantRE.test(val)) {
@@ -7216,16 +7441,15 @@ function patchEvent(el, rawName, prevValue, nextValue, instance = null) {
     }
   }
 }
-const optionsModifierRE = /(?:Once|Passive|Capture)$/;
+const optionsModifierRE = /(Once|Passive|Capture)$/;
+const optionsModifierEventRE = /^on:?(?:Once|Passive|Capture)$/;
 function parseName(name) {
   let options;
-  if (optionsModifierRE.test(name)) {
-    options = {};
-    let m;
-    while (m = name.match(optionsModifierRE)) {
-      name = name.slice(0, name.length - m[0].length);
-      options[m[0].toLowerCase()] = true;
-    }
+  let m;
+  while ((m = name.match(optionsModifierRE)) && !optionsModifierEventRE.test(name)) {
+    if (!options) options = {};
+    name = name.slice(0, name.length - m[1].length);
+    options[m[1].toLowerCase()] = true;
   }
   const event = name[2] === ":" ? name.slice(3) : hyphenate(name.slice(2));
   return [event, options];
@@ -7371,6 +7595,7 @@ function onCompositionEnd(e) {
   }
 }
 const assignKey = /* @__PURE__ */ Symbol("_assign");
+const initialValueKey = /* @__PURE__ */ Symbol("_initialValue");
 function castValue(value, trim, number) {
   if (trim) value = value.trim();
   if (number) value = looseToNumber(value);
@@ -7378,6 +7603,13 @@ function castValue(value, trim, number) {
 }
 const vModelText = {
   created(el, { modifiers: { lazy, trim, number } }, vnode) {
+    if (el.parentNode) {
+      if (el.type === "text") {
+        el[initialValueKey] = el.defaultValue.replace(/[\r\n]/g, "");
+      } else if (el.type === "textarea") {
+        el[initialValueKey] = el.defaultValue.replace(/\r\n?/g, "\n");
+      }
+    }
     el[assignKey] = getModelAssigner(vnode);
     const castToNumber = number || vnode.props && vnode.props.type === "number";
     addEventListener(el, lazy ? "change" : "input", (e) => {
@@ -7396,8 +7628,15 @@ const vModelText = {
     }
   },
   // set value on mounted so it's after min/max for type="range"
-  mounted(el, { value }) {
-    el.value = value == null ? "" : value;
+  mounted(el, { value, modifiers: { trim, number } }) {
+    const newValue = value == null ? "" : value;
+    const initialValue = el[initialValueKey];
+    delete el[initialValueKey];
+    if (initialValue !== void 0 && (el.type === "text" || el.type === "textarea") && el.value !== initialValue) {
+      el[assignKey](castValue(el.value, trim, number));
+    } else {
+      el.value = newValue;
+    }
   },
   beforeUpdate(el, { value, oldValue, modifiers: { lazy, trim, number } }, vnode) {
     el[assignKey] = getModelAssigner(vnode);
@@ -7472,6 +7711,91 @@ function setChecked(el, { value, oldValue }, vnode) {
   }
   if (el.checked !== checked) {
     el.checked = checked;
+  }
+}
+const vModelSelect = {
+  // <select multiple> value need to be deep traversed
+  deep: true,
+  created(el, { value, modifiers: { number } }, vnode) {
+    el._modelValue = value;
+    addEventListener(el, "change", () => {
+      const selectedVal = Array.prototype.filter.call(el.options, (o) => o.selected).map(
+        (o) => number ? looseToNumber(getValue(o)) : getValue(o)
+      );
+      const multiple = el.multiple;
+      const assignedValue = multiple ? isSet(el._modelValue) ? new Set(selectedVal) : selectedVal : selectedVal[0];
+      const pending = el._pendingValue = [
+        multiple,
+        multiple ? isArray(assignedValue) ? selectedVal.slice() : selectedVal : assignedValue
+      ];
+      try {
+        el[assignKey](assignedValue);
+      } finally {
+        nextTick(() => {
+          if (el._pendingValue === pending) {
+            el._pendingValue = void 0;
+          }
+        });
+      }
+    });
+    el[assignKey] = getModelAssigner(vnode);
+  },
+  // set value in mounted & updated because <select> relies on its children
+  // <option>s.
+  mounted(el, { value }) {
+    setSelected(el, value);
+  },
+  beforeUpdate(el, { value }, vnode) {
+    el._modelValue = value;
+    el[assignKey] = getModelAssigner(vnode);
+  },
+  updated(el, { value }) {
+    const pending = el._pendingValue;
+    el._pendingValue = void 0;
+    if (!pending || pending[0] !== el.multiple || !isSameSelectValue(value, pending[1], pending[0])) {
+      setSelected(el, value);
+    }
+  }
+};
+function isSameSelectValue(value, assignedValue, multiple) {
+  if (!multiple) return looseEqual(value, assignedValue);
+  if (isArray(value)) return looseEqual(value, assignedValue);
+  if (isSet(value)) {
+    if (value.size !== assignedValue.length) return false;
+    for (const item of assignedValue) {
+      if (!value.has(item)) return false;
+    }
+    return true;
+  }
+  return false;
+}
+function setSelected(el, value) {
+  const isMultiple = el.multiple;
+  const isArrayValue = isArray(value);
+  if (isMultiple && !isArrayValue && !isSet(value)) {
+    return;
+  }
+  for (let i = 0, l = el.options.length; i < l; i++) {
+    const option = el.options[i];
+    const optionValue = getValue(option);
+    if (isMultiple) {
+      if (isArrayValue) {
+        const optionType = typeof optionValue;
+        if (optionType === "string" || optionType === "number") {
+          option.selected = value.some((v) => String(v) === String(optionValue));
+        } else {
+          option.selected = looseIndexOf(value, optionValue) > -1;
+        }
+      } else {
+        option.selected = value.has(optionValue);
+      }
+    } else if (looseEqual(getValue(option), value)) {
+      if (el.selectedIndex !== i) el.selectedIndex = i;
+      return;
+    }
+  }
+  if (!isMultiple && el.selectedIndex !== -1) {
+    el.selectedIndex = -1;
   }
 }
 function getValue(el) {
@@ -7576,7 +7900,7 @@ function normalizeContainer(container) {
 const liveApps = /* @__PURE__ */ new WeakMap();
 function mountWidget(node, opts) {
   const container = document.createElement("div");
-  container.dataset["ideogram"] = opts.widgetType;
+  container.dataset["moss"] = opts.widgetType;
   Object.assign(container.style, {
     width: "100%",
     height: "100%",
@@ -7601,7 +7925,7 @@ function mountWidget(node, opts) {
       vueApp.mount(container);
       liveApps.set(widget, vueApp);
     } catch (err) {
-      console.error("[IdeogramStudio] failed to mount Vue widget", opts.widgetType, err);
+      console.error("[MossLayout] failed to mount Vue widget", opts.widgetType, err);
     }
   });
   const previousOnRemove = widget.onRemove;
@@ -7613,276 +7937,201 @@ function mountWidget(node, opts) {
         liveApps.delete(widget);
       }
     } catch (err) {
-      console.error("[IdeogramStudio] error during widget unmount", err);
+      console.error("[MossLayout] error during widget unmount", err);
     }
     try {
       previousOnRemove?.call(widget);
     } catch (err) {
-      console.error("[IdeogramStudio] error in chained onRemove", err);
+      console.error("[MossLayout] error in chained onRemove", err);
     }
   };
   return { widget };
 }
-const BOX_PALETTE = [
-  "#3B82F6",
-  "#F59E0B",
-  "#10B981",
-  "#EF4444",
-  "#8B5CF6",
-  "#EC4899",
-  "#14B8A6",
-  "#F97316",
-  "#84CC16",
-  "#06B6D4"
-];
+function isRecord(value) {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+const LABELS = ["object", "character", "text"];
+const CANVAS_MODES = ["single", "multi_panel", "collage"];
+function isNumArray(v) {
+  return Array.isArray(v) && v.length === 4 && v.every((x) => typeof x === "number" && Number.isFinite(x));
+}
+function isStrArray(v) {
+  return Array.isArray(v) && v.every((s) => typeof s === "string" && s.trim() !== "");
+}
+const BOX_PALETTE = ["#60a5fa", "#f472b6", "#34d399", "#fbbf24", "#a78bfa", "#22d3ee", "#f87171", "#a3e635"];
 let _colorSeq = 0;
 function nextBoxColor() {
-  const c = BOX_PALETTE[_colorSeq % BOX_PALETTE.length];
-  _colorSeq += 1;
-  return c;
+  return BOX_PALETTE[_colorSeq++ % BOX_PALETTE.length];
 }
 function groupColor(groupId) {
   let h2 = 0;
   for (let i = 0; i < groupId.length; i++) h2 = h2 * 31 + groupId.charCodeAt(i) >>> 0;
-  return `hsl(${h2 % 360} 75% 62%)`;
-}
-function emptyUi() {
-  return { sync: true, showLabels: true, backdropOpacity: 0.5, newType: "obj", jsonOpen: false, promptOpen: true, summaryOpen: true, backgroundOpen: true, styleOpen: true, elementsOpen: true, showPresets: false, jsonSync: false, livePreview: false };
+  return `hsl(${h2 % 360} 70% 55%)`;
 }
 function emptyOverlay() {
   return { lineWidth: 3, fillAlpha: 0.18, labelSize: 16, showIndex: true, showText: true };
 }
-function emptyStyle() {
-  return {
-    enabled: true,
-    mode: "photo",
-    aesthetics: "",
-    lighting: "",
-    medium: "photograph",
-    photo: "",
-    art_style: "",
-    color_palette: []
-  };
+function emptyUi() {
+  return { sync: true, showLabels: true, backdropOpacity: 0.5, newType: "object", jsonOpen: false, summaryOpen: true, itemsOpen: true, showPresets: false, jsonSync: false, livePreview: false };
 }
 let _seq = 0;
 function newId() {
-  _seq += 1;
-  return `el_${_seq}_${_seq * 2654435761 % 1e5}`;
+  return `e${++_seq}_${Math.random().toString(36).slice(2, 7)}`;
 }
 function syncSeq(ids) {
   for (const id of ids) {
-    const m = id ? /^el_(\d+)_/.exec(id) : null;
+    const m = id && /^(?:e)(\d+)_/.exec(id);
     if (m) _seq = Math.max(_seq, parseInt(m[1], 10));
   }
 }
-function newElement(type, bbox = null) {
-  return { id: newId(), type, bbox, desc: "", text: "", color_palette: [], boxColor: nextBoxColor(), linkId: null, groupId: null, enabled: true };
+function newElement(label, bbox) {
+  return { id: newId(), label, bbox, caption: "", text: "", tags: [], palette: [], boxColor: nextBoxColor(), linkId: null, groupId: null };
 }
 function emptyState() {
   return {
-    high_level_description: "",
     width: 1024,
     height: 1024,
-    style: emptyStyle(),
-    background: "",
+    summary: { caption: "", meta: [], canvas: "single", palette: [] },
     elements: [],
     overlay: emptyOverlay(),
     ui: emptyUi()
   };
 }
-const HEX_RE = /^#[0-9A-F]{6}$/;
+const HEX_RE = /^#[0-9A-Fa-f]{6}$/;
 function normalizeHex(raw) {
-  let h2 = (raw || "").trim().toUpperCase();
-  if (!h2.startsWith("#")) h2 = "#" + h2;
-  if (h2.length === 4) h2 = "#" + h2.slice(1).split("").map((c) => c + c).join("");
-  return HEX_RE.test(h2) ? h2 : null;
+  const s = raw.trim();
+  if (HEX_RE.test(s)) return s.toUpperCase();
+  if (/^#[0-9A-Fa-f]{3}$/.test(s)) return "#" + s.slice(1).split("").map((c) => c + c).join("").toUpperCase();
+  return null;
 }
-function cleanHexList(values, limit, where, warnings) {
-  const out = [];
-  for (const raw of values || []) {
-    const h2 = normalizeHex(raw);
-    if (!h2) {
-      if (raw && raw.trim()) warnings.push(`${where}: dropped invalid hex ${raw}`);
-      continue;
-    }
-    out.push(h2);
-  }
-  if (out.length > limit) {
-    warnings.push(`${where}: ${out.length} colors exceeds max ${limit}; truncated`);
-    out.length = limit;
-  }
-  return out.length ? out : null;
+function snapDim(v) {
+  const n = Math.round(v);
+  return Math.max(16, Math.floor(n / 16) * 16);
 }
-function clampBbox(b) {
-  const c = (v) => Math.max(0, Math.min(1e3, Math.round(v)));
-  let [y0, x0, y1, x1] = b.map(c);
-  if (y0 > y1) [y0, y1] = [y1, y0];
-  if (x0 > x1) [x0, x1] = [x1, x0];
-  return [y0, x0, y1, x1];
+function clampBbox(b, w, h2) {
+  let [x1, y1, x2, y2] = b;
+  x1 = Math.max(0, Math.min(w, x1));
+  x2 = Math.max(0, Math.min(w, x2));
+  y1 = Math.max(0, Math.min(h2, y1));
+  y2 = Math.max(0, Math.min(h2, y2));
+  if (x1 > x2) [x1, x2] = [x2, x1];
+  if (y1 > y2) [y1, y2] = [y2, y1];
+  return [x1, y1, x2, y2];
 }
-function buildCaption(state) {
-  const warnings = [];
-  const out = {};
-  const hld = state.high_level_description.trim();
-  if (hld) out.high_level_description = hld;
-  else warnings.push("high_level_description is empty (strongly recommended)");
-  if (state.style.enabled) {
-    const st = state.style;
-    const isPhoto = st.mode === "photo";
-    const s = {};
-    for (const k of ["aesthetics", "lighting", "medium"]) {
-      const v = st[k].trim();
-      if (v) s[k] = v;
-      else warnings.push(`style_description.${k} is required`);
-    }
-    if (isPhoto) {
-      const v = st.photo.trim();
-      if (v) s.photo = v;
-      else warnings.push("style_description.photo is required in photo mode");
-    } else {
-      const v = st.art_style.trim();
-      if (v) s.art_style = v;
-      else warnings.push("style_description.art_style is required in art mode");
-    }
-    const palette = cleanHexList(st.color_palette, 16, "style_description.color_palette", warnings);
-    const ordered = {};
-    const order = isPhoto ? ["aesthetics", "lighting", "photo", "medium", "color_palette"] : ["aesthetics", "lighting", "medium", "art_style", "color_palette"];
-    for (const k of order) if (s[k] !== void 0) ordered[k] = s[k];
-    if (palette) ordered.color_palette = palette;
-    out.style_description = ordered;
-  }
-  const background = state.background.trim();
-  if (!background) warnings.push("compositional_deconstruction.background is required");
-  const elements = [];
-  state.elements.forEach((el, i) => {
-    if (el.enabled === false) return;
-    const e = { type: el.type };
-    if (el.bbox) e.bbox = clampBbox(el.bbox);
-    if (el.type === "text") {
-      const t = el.text.trim();
-      if (!t) warnings.push(`elements[${i}]: text element has no text to render`);
-      e.text = t;
-    }
-    const desc = el.desc.trim();
-    if (!desc) warnings.push(`elements[${i}]: desc is empty`);
-    e.desc = desc;
-    const palette = cleanHexList(el.color_palette, 5, `elements[${i}].color_palette`, warnings);
-    if (palette) e.color_palette = palette;
-    const order = el.type === "text" ? ["type", "bbox", "text", "desc", "color_palette"] : ["type", "bbox", "desc", "color_palette"];
-    const ordered = {};
-    for (const k of order) if (e[k] !== void 0) ordered[k] = e[k];
-    elements.push(ordered);
+function buildDraft(state) {
+  const width = snapDim(state.width);
+  const height = snapDim(state.height);
+  const summary = { canvas: state.summary.canvas, caption: state.summary.caption };
+  if (state.summary.meta.length) summary.meta = [...state.summary.meta];
+  if (state.summary.palette.length) summary.palette = [...state.summary.palette];
+  const items = state.elements.map((el) => {
+    const it = { label: el.label, caption: el.caption, bbox: clampBbox(el.bbox, width, height) };
+    if (el.label === "text" || el.text) it.text = el.text;
+    if (el.tags.length) it.tags = [...el.tags];
+    if (el.palette.length) it.palette = [...el.palette];
+    return it;
   });
-  out.compositional_deconstruction = { background, elements };
-  return { caption: out, warnings };
+  return { width, height, bbox_coord_space: "abs", bbox_format: "xyxy", summary, items };
+}
+function compileDraft(draft) {
+  const warnings = [];
+  const width = draft.width, height = draft.height;
+  const items = draft.items.map((it) => {
+    const [x1, y1, x2, y2] = it.bbox;
+    const box = [
+      Math.floor(y1) - (height >> 1),
+      Math.floor(x1) - (width >> 1),
+      Math.ceil(y2) - (height >> 1),
+      Math.ceil(x2) - (width >> 1)
+    ];
+    const out = { label: it.label, caption: it.caption, bbox: box };
+    if (it.text) out.text = it.text;
+    if (it.tags?.length) out.tags = it.tags;
+    if (it.palette?.length) out.palette = it.palette;
+    return out;
+  });
+  const result = { summary: draft.summary, items, bbox_coord_space: "abs_centralized", bbox_format: "yxyx" };
+  return { json: JSON.stringify(result), warnings };
 }
 function serialize(state) {
-  const { caption, warnings } = buildCaption(state);
-  return {
-    json: JSON.stringify(caption),
-    // minified
-    pretty: JSON.stringify(caption, null, 2),
-    warnings
-  };
+  const draft = buildDraft(state);
+  const compiled = compileDraft(draft);
+  return { draft, draftPretty: JSON.stringify(draft, null, 2), prompt: compiled.json, warnings: compiled.warnings };
 }
-function parseCaptionLoose(text) {
-  const raw = (text ?? "").trim();
-  if (!raw) return { ok: false, error: "empty input" };
+function parseJsonLoose(text) {
+  if (!text || !text.trim()) return { ok: false, error: "empty input" };
+  let s = text.trim();
+  if (s.startsWith("```")) {
+    s = s.replace(/^`+/, "").replace(/`+$/, "");
+    if (/^json/i.test(s.trim())) s = s.trim().slice(4);
+    s = s.trim();
+  }
+  const start = s.indexOf("{");
+  const end = s.lastIndexOf("}");
+  if (start < 0 || end <= start) return { ok: false, error: "no JSON object found" };
   try {
-    const obj = JSON.parse(raw);
-    if (obj && typeof obj === "object" && !Array.isArray(obj)) return { ok: true, obj };
-  } catch {
+    const obj = JSON.parse(s.slice(start, end + 1));
+    if (!isRecord(obj)) return { ok: false, error: "payload is not a JSON object" };
+    return { ok: true, obj };
+  } catch (e) {
+    return { ok: false, error: String(e?.message || e) };
   }
-  const blocks = [];
-  let depth = 0;
-  let start = -1;
-  let inStr = false;
-  let esc = false;
-  for (let i = 0; i < raw.length; i++) {
-    const c = raw[i];
-    if (inStr) {
-      if (esc) esc = false;
-      else if (c === "\\") esc = true;
-      else if (c === '"') inStr = false;
-      continue;
-    }
-    if (c === '"') inStr = true;
-    else if (c === "{") {
-      if (depth === 0) start = i;
-      depth++;
-    } else if (c === "}" && depth > 0) {
-      depth--;
-      if (depth === 0 && start >= 0) {
-        blocks.push(raw.slice(start, i + 1));
-        start = -1;
-      }
-    }
-  }
-  if (!blocks.length) {
-    return {
-      ok: false,
-      error: depth > 0 ? "JSON object was never closed (truncated output?)" : "no JSON object found"
+}
+function resolveToState(obj, width, height) {
+  const warnings = [];
+  if (!isRecord(obj)) return { state: {}, warnings: ["payload is not a JSON object"] };
+  let src = obj;
+  if (src.bbox_format === "yxyx" || src.bbox_coord_space === "abs_centralized") {
+    const rawItems = Array.isArray(src.items) ? src.items : [];
+    src = {
+      width,
+      height,
+      summary: src.summary ?? {},
+      items: rawItems.map((it) => {
+        if (!isRecord(it)) return it;
+        const bb = it.bbox;
+        const half_w = width >> 1, half_h = height >> 1;
+        if (isNumArray(bb)) {
+          const [y1, x1, y2, x2] = bb;
+          return { ...it, bbox: [x1 + half_w, y1 + half_h, x2 + half_w, y2 + half_h] };
+        }
+        return { ...it, bbox: [0, 0, Math.min(256, width), Math.min(256, height)] };
+      })
     };
+    warnings.push(`imported a compiled prompt; boxes mapped onto the current canvas ${width}x${height} — set the canvas to the generation size for exact coordinates`);
+  } else if (typeof src.caption === "string" && !("items" in src)) {
+    src = { width, height, summary: { caption: src.caption }, items: [] };
+    warnings.push("caption-only payload imported; add boxes to build a Layout");
   }
-  let lastErr = "";
-  for (let i = blocks.length - 1; i >= 0; i--) {
-    try {
-      const obj = JSON.parse(blocks[i]);
-      if (obj && typeof obj === "object" && !Array.isArray(obj)) return { ok: true, obj };
-    } catch (e) {
-      lastErr = String(e?.message || e);
+  const w = snapDim(typeof src.width === "number" ? src.width : 1024);
+  const h2 = snapDim(typeof src.height === "number" ? src.height : 1024);
+  const rawSummary = isRecord(src.summary) ? src.summary : {};
+  const summary = {
+    caption: typeof rawSummary.caption === "string" ? rawSummary.caption : "",
+    meta: isStrArray(rawSummary.meta) ? rawSummary.meta : [],
+    canvas: CANVAS_MODES.includes(rawSummary.canvas) ? rawSummary.canvas : "single",
+    palette: isStrArray(rawSummary.palette) ? rawSummary.palette : []
+  };
+  const elements = (Array.isArray(src.items) ? src.items : []).map((raw, i) => {
+    const it = isRecord(raw) ? raw : {};
+    const label = LABELS.includes(it.label) ? it.label : "object";
+    let bbox;
+    if (isNumArray(it.bbox)) {
+      bbox = clampBbox(it.bbox, w, h2);
+    } else {
+      bbox = [0, 0, Math.min(256, w), Math.min(256, h2)];
+      warnings.push(`items[${i}].bbox invalid; reset`);
     }
-  }
-  return { ok: false, error: lastErr || "no parseable JSON object found" };
-}
-function captionToState(obj) {
-  const hld = typeof obj?.high_level_description === "string" ? obj.high_level_description : "";
-  const style = emptyStyle();
-  const sd = obj?.style_description;
-  if (sd && typeof sd === "object") {
-    style.enabled = true;
-    style.aesthetics = typeof sd.aesthetics === "string" ? sd.aesthetics : "";
-    style.lighting = typeof sd.lighting === "string" ? sd.lighting : "";
-    style.medium = typeof sd.medium === "string" ? sd.medium : "";
-    if (typeof sd.photo === "string" && sd.photo.trim()) {
-      style.mode = "photo";
-      style.photo = sd.photo;
-    } else if (typeof sd.art_style === "string" && sd.art_style.trim()) {
-      style.mode = "art";
-      style.art_style = sd.art_style;
-    }
-    if (Array.isArray(sd.color_palette)) style.color_palette = sd.color_palette.map(String);
-  } else {
-    style.enabled = false;
-  }
-  const comp = obj?.compositional_deconstruction ?? {};
-  const background = typeof comp.background === "string" ? comp.background : "";
-  const clamp = (v) => Math.max(0, Math.min(1e3, Math.round(Number(v) || 0)));
-  const rawElements = Array.isArray(comp.elements) ? comp.elements : [];
-  const elements = rawElements.map((el) => {
-    const type = el?.type === "text" ? "text" : "obj";
-    const bbox = Array.isArray(el?.bbox) && el.bbox.length === 4 ? el.bbox.map(clamp) : null;
-    const e = newElement(type, bbox);
-    e.desc = typeof el?.desc === "string" ? el.desc : "";
-    e.text = typeof el?.text === "string" ? el.text : "";
-    if (Array.isArray(el?.color_palette)) e.color_palette = el.color_palette.map(String);
-    return e;
+    const el = newElement(label, bbox);
+    el.caption = typeof it.caption === "string" ? it.caption : "";
+    el.text = typeof it.text === "string" ? it.text : "";
+    el.tags = isStrArray(it.tags) ? it.tags : [];
+    el.palette = isStrArray(it.palette) ? it.palette : [];
+    return el;
   });
-  return { high_level_description: hld, style, background, elements };
-}
-function aspectToWH(ar, refW = 1024, refH = 1024) {
-  const m = /^\s*(\d+(?:\.\d+)?)\s*[:x/]\s*(\d+(?:\.\d+)?)\s*$/.exec(ar || "");
-  if (!m) return null;
-  const rw = parseFloat(m[1]);
-  const rh = parseFloat(m[2]);
-  if (!(rw > 0 && rh > 0)) return null;
-  const total = Math.max(1, refW * refH);
-  const scale = Math.sqrt(total / (rw * rh));
-  const snap = (v) => Math.max(16, Math.round(v / 16) * 16);
-  return { w: snap(rw * scale), h: snap(rh * scale) };
-}
-function _syncSeq(elements) {
-  syncSeq(elements.flatMap((e) => [e.id, e.linkId, e.groupId]));
+  if (!elements.length) warnings.push("items is empty; the compiled prompt requires at least one item");
+  if (!summary.caption.trim()) warnings.push("summary.caption is empty");
+  return { state: { width: w, height: h2, summary, elements }, warnings };
 }
 function _pruneLink(elements, groupId) {
   if (!groupId) return;
@@ -7895,35 +8144,20 @@ function _pruneGroup(elements, groupId) {
   if (members.length === 1) members[0].groupId = null;
 }
 function _expandGroups(elements, ids) {
-  const gids = /* @__PURE__ */ new Set();
-  for (const id of ids) {
-    const g = elements.find((e) => e.id === id)?.groupId;
-    if (g) gids.add(g);
-  }
-  if (!gids.size) return ids;
   const out = [];
-  const seen = /* @__PURE__ */ new Set();
-  const push = (id) => {
-    if (!seen.has(id)) {
-      seen.add(id);
-      out.push(id);
-    }
-  };
   for (const id of ids) {
-    push(id);
-    const g = elements.find((e) => e.id === id)?.groupId;
-    if (g) {
-      for (const e of elements) if (e.groupId === g) push(e.id);
-    }
+    const el = elements.find((e) => e.id === id);
+    if (!el) continue;
+    const members = el.groupId ? elements.filter((e) => e.groupId === el.groupId) : [el];
+    for (const m of members) if (!out.includes(m.id)) out.push(m.id);
   }
   return out;
 }
-function _flipBbox(el, axis) {
-  if (!el.bbox) return;
-  const [y0, x0, y1, x1] = el.bbox;
-  el.bbox = axis === "h" ? [y0, 1e3 - x1, y1, 1e3 - x0] : [1e3 - y1, x0, 1e3 - y0, x1];
+function _flipBbox(el, axis, w, h2) {
+  const [x1, y1, x2, y2] = el.bbox;
+  el.bbox = axis === "h" ? [w - x2, y1, w - x1, y2] : [x1, h2 - y2, x2, h2 - y1];
 }
-const KEY = Symbol("ideogram-studio");
+const KEY = Symbol("moss-studio");
 function createStudioStore() {
   const store = /* @__PURE__ */ reactive({
     state: emptyState(),
@@ -7998,12 +8232,18 @@ function createStudioStore() {
         store.selectedIds = valid;
       }
     },
-    addElement(type, bbox = null) {
+    addElement(label, bbox = null) {
       if (!bbox) {
-        const o = store.state.elements.length % 6 * 30;
-        bbox = [220 + o, 220 + o, 520 + o, 520 + o];
+        const w = store.state.width, h2 = store.state.height;
+        const o = store.state.elements.length % 6 * 32;
+        bbox = [
+          Math.round(w * 0.2) + o,
+          Math.round(h2 * 0.2) + o,
+          Math.round(w * 0.55) + o,
+          Math.round(h2 * 0.55) + o
+        ];
       }
-      const el = newElement(type, bbox);
+      const el = newElement(label, bbox);
       store.state.elements.push(el);
       store.select(el.id);
       return el;
@@ -8018,16 +8258,23 @@ function createStudioStore() {
       _pruneLink(store.state.elements, lid);
       _pruneGroup(store.state.elements, grp);
     },
+    _copyOf(src, dx) {
+      const copy = newElement(src.label, [...src.bbox]);
+      copy.caption = src.caption;
+      copy.text = src.text;
+      copy.tags = [...src.tags];
+      copy.palette = [...src.palette];
+      copy.boxColor = src.boxColor;
+      copy.bbox = copy.bbox.map((v, idx) => {
+        const max = idx % 2 === 0 ? store.state.width : store.state.height;
+        return Math.max(0, Math.min(max, v + dx));
+      });
+      return copy;
+    },
     duplicateElement(id) {
       const src = store.getElement(id);
       if (!src) return;
-      const copy = newElement(src.type, src.bbox ? [...src.bbox] : null);
-      copy.desc = src.desc;
-      copy.text = src.text;
-      copy.color_palette = [...src.color_palette];
-      if (copy.bbox) {
-        copy.bbox = copy.bbox.map((v, idx) => Math.max(0, Math.min(1e3, v + (idx < 2 ? 20 : 20))));
-      }
+      const copy = store._copyOf(src, 24);
       store.state.elements.push(copy);
       store.select(copy.id);
     },
@@ -8039,41 +8286,22 @@ function createStudioStore() {
       const gid = wasGroup ? newId() : null;
       const copyIds = [];
       for (const src of srcs) {
-        const copy = newElement(src.type, src.bbox ? [...src.bbox] : null);
-        copy.desc = src.desc;
-        copy.text = src.text;
-        copy.color_palette = [...src.color_palette];
-        copy.boxColor = src.boxColor;
+        const copy = store._copyOf(src, 24);
         copy.groupId = gid;
-        if (copy.bbox) copy.bbox = copy.bbox.map((v) => Math.max(0, Math.min(1e3, v + 20)));
         store.state.elements.push(copy);
         copyIds.push(copy.id);
       }
       store.setSelection(copyIds);
     },
-    toggleEnabled(id) {
-      const el = store.getElement(id);
-      if (!el) return;
-      const value = el.enabled === false;
-      const members = el.groupId ? store.state.elements.filter((e) => e.groupId === el.groupId) : [el];
-      for (const m of members) m.enabled = value;
-    },
     flipAll(axis) {
-      for (const el of store.state.elements) if (el.bbox) _flipBbox(el, axis);
+      for (const el of store.state.elements) _flipBbox(el, axis, store.state.width, store.state.height);
     },
     duplicateLinked(id) {
       const src = store.getElement(id);
       if (!src) return;
       if (!src.linkId) src.linkId = newId();
-      const copy = newElement(src.type, src.bbox ? [...src.bbox] : null);
-      copy.desc = src.desc;
-      copy.text = src.text;
-      copy.color_palette = [...src.color_palette];
-      copy.boxColor = src.boxColor;
+      const copy = store._copyOf(src, 32);
       copy.linkId = src.linkId;
-      if (copy.bbox) {
-        copy.bbox = copy.bbox.map((v, idx) => Math.max(0, Math.min(1e3, v + (idx < 2 ? 30 : 30))));
-      }
       store.state.elements.push(copy);
       store.select(copy.id);
     },
@@ -8120,45 +8348,46 @@ function createStudioStore() {
       if (!els.length) return;
       const grouped = els.length > 1 && !!els[0].groupId && els.every((e) => e.groupId === els[0].groupId);
       store.clipboard = els.map((e) => ({
-        type: e.type,
-        bbox: e.bbox ? [...e.bbox] : null,
-        desc: e.desc,
+        label: e.label,
+        bbox: [...e.bbox],
+        caption: e.caption,
         text: e.text,
-        color_palette: [...e.color_palette],
+        tags: [...e.tags],
+        palette: [...e.palette],
         boxColor: e.boxColor,
         grouped
       }));
     },
-    // Paste centered on (x,y) in 0..1000 coords, preserving relative layout; a copied
+    // Paste centered on (x,y) in pixel coords, preserving relative layout; a copied
     // group pastes as a new group. Falls back to stored positions if x/y are invalid.
     pasteAt(x, y) {
       const clip = store.clipboard;
       if (!clip.length) return;
+      const W = store.state.width, H = store.state.height;
       const boxed = clip.filter((c) => c.bbox);
       let dx = 0;
       let dy = 0;
       if (boxed.length && Number.isFinite(x) && Number.isFinite(y)) {
-        let y0 = Infinity, x0 = Infinity, y1 = -Infinity, x1 = -Infinity;
+        let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
         for (const c of boxed) {
-          y0 = Math.min(y0, c.bbox[0]);
-          x0 = Math.min(x0, c.bbox[1]);
-          y1 = Math.max(y1, c.bbox[2]);
-          x1 = Math.max(x1, c.bbox[3]);
+          x0 = Math.min(x0, c.bbox[0]);
+          y0 = Math.min(y0, c.bbox[1]);
+          x1 = Math.max(x1, c.bbox[2]);
+          y1 = Math.max(y1, c.bbox[3]);
         }
-        dx = Math.max(-x0, Math.min(1e3 - x1, Math.round(x - (x0 + x1) / 2)));
-        dy = Math.max(-y0, Math.min(1e3 - y1, Math.round(y - (y0 + y1) / 2)));
+        dx = Math.max(-x0, Math.min(W - x1, Math.round(x - (x0 + x1) / 2)));
+        dy = Math.max(-y0, Math.min(H - y1, Math.round(y - (y0 + y1) / 2)));
       }
       const grouped = clip.length > 1 && clip.every((c) => c.grouped);
       const gid = grouped ? newId() : null;
       const ids = [];
       for (const c of clip) {
-        const el = newElement(c.type, c.bbox ? [...c.bbox] : null);
-        el.desc = c.desc;
-        el.text = c.text;
-        el.color_palette = [...c.color_palette];
-        el.boxColor = c.boxColor;
+        const el = store._copyOf({ ...c, id: "", linkId: null, groupId: null, bbox: c.bbox ?? [0, 0, 64, 64] }, 0);
         el.groupId = gid;
-        if (el.bbox && (dx || dy)) el.bbox = [el.bbox[0] + dy, el.bbox[1] + dx, el.bbox[2] + dy, el.bbox[3] + dx];
+        if (c.bbox && (dx || dy)) {
+          const [bx1, by1, bx2, by2] = el.bbox;
+          el.bbox = [bx1 + dx, by1 + dy, bx2 + dx, by2 + dy];
+        }
         store.state.elements.push(el);
         ids.push(el.id);
       }
@@ -8168,7 +8397,7 @@ function createStudioStore() {
       const el = store.getElement(id);
       if (!el) return;
       const members = el.linkId ? store.state.elements.filter((e) => e.linkId === el.linkId) : [el];
-      for (const m of members) m[key] = value;
+      for (const m of members) Object.assign(m, { [key]: value });
     },
     moveElement(id, dir) {
       const i = store.state.elements.findIndex((e) => e.id === id);
@@ -8205,7 +8434,7 @@ function createStudioStore() {
       store.ctxMenu = null;
     },
     jsonStartEdit() {
-      store.json.draft = serialize(store.state).pretty;
+      store.json.draft = serialize(store.state).draftPretty;
       store.json.wasOpen = store.state.ui.jsonOpen;
       store.json.editing = true;
       store.state.ui.jsonOpen = true;
@@ -8215,81 +8444,82 @@ function createStudioStore() {
       store.state.ui.jsonOpen = store.json.wasOpen;
     },
     jsonTidy() {
-      const res = parseCaptionLoose(store.json.draft);
+      const res = parseJsonLoose(store.json.draft);
       if (res.ok) store.json.draft = JSON.stringify(res.obj, null, 2);
     },
     jsonApply() {
-      if (store.importCaptionJson(store.json.draft).ok) {
+      if (store.importDraftJson(store.json.draft).ok) {
         store.json.editing = false;
         store.state.ui.jsonOpen = store.json.wasOpen;
       }
     },
-    importCaptionJson(text, applyAspect = true) {
-      const res = parseCaptionLoose(text);
+    importDraftJson(text, keepDims = false) {
+      const res = parseJsonLoose(text);
       if (!res.ok) return { ok: false, error: res.error };
-      const obj = res.obj;
-      const parts = captionToState(obj);
-      store.state.high_level_description = parts.high_level_description;
-      store.state.style = parts.style;
-      store.state.background = parts.background;
-      store.state.elements = parts.elements;
-      _syncSeq(store.state.elements);
-      const ar = applyAspect && typeof obj?.aspect_ratio === "string" ? obj.aspect_ratio : "";
-      if (ar) {
-        const wh = aspectToWH(ar, store.state.width, store.state.height);
-        if (wh) {
-          store.state.width = wh.w;
-          store.state.height = wh.h;
-        }
-      }
+      const { state, warnings } = resolveToState(
+        res.obj,
+        keepDims ? store.state.width : 1024,
+        keepDims ? store.state.height : 1024
+      );
+      const curUi = store.state.ui;
+      const curOverlay = store.state.overlay;
+      store.load({ ...state, ui: curUi, overlay: curOverlay });
+      if (!keepDims && state.width) store.state.width = state.width;
+      if (!keepDims && state.height) store.state.height = state.height;
       store.select(null);
       store.snapshot();
-      return { ok: true };
+      return { ok: true, warnings };
     }
   });
   return store;
+}
+function _syncSeq(elements) {
+  syncSeq(elements.flatMap((e) => [e.id, e.linkId, e.groupId]));
 }
 function provideStudioStore(store) {
   provide(KEY, store);
 }
 function useStudioStore() {
-  const s = inject(KEY);
-  if (!s) throw new Error("StudioStore not provided");
-  return s;
+  return inject(KEY);
 }
 const refSyncImage = /* @__PURE__ */ ref(null);
-const jsonSyncCaption = /* @__PURE__ */ ref({ json: "", width: 0, height: 0, n: 0 });
+const jsonSyncCaption = /* @__PURE__ */ ref({ json: "", n: 0 });
+const events = api;
+function eventDetail(ev) {
+  if (ev instanceof CustomEvent) {
+    const d = ev.detail;
+    return typeof d === "object" && d !== null ? d : {};
+  }
+  return {};
+}
+function str(v, fallback = "") {
+  return typeof v === "string" ? v : fallback;
+}
 let inited$1 = false;
 function initRefSync() {
   if (inited$1) return;
   inited$1 = true;
   try {
-    ;
-    api.addEventListener("ideogram-studio.ref-sync", (e) => {
-      const d = e && e.detail || {};
-      if (!d.filename) return;
+    events.addEventListener("moss-layout.ref-sync", (ev) => {
+      const d = eventDetail(ev);
+      if (typeof d.filename !== "string") return;
       const p2 = new URLSearchParams({
         filename: d.filename,
-        subfolder: d.subfolder || "",
-        type: d.type || "temp"
+        subfolder: str(d.subfolder),
+        type: str(d.type, "temp")
       });
       refSyncImage.value = `/view?${p2.toString()}&r=${Date.now()}`;
     });
-    api.addEventListener("ideogram-studio.json-sync", (e) => {
-      const d = e && e.detail || {};
+    events.addEventListener("moss-layout.json-sync", (ev) => {
+      const d = eventDetail(ev);
       if (typeof d.json !== "string") return;
-      jsonSyncCaption.value = {
-        json: d.json,
-        width: Number(d.width) || 0,
-        height: Number(d.height) || 0,
-        n: jsonSyncCaption.value.n + 1
-      };
+      jsonSyncCaption.value = { json: d.json, n: jsonSyncCaption.value.n + 1 };
     });
   } catch (err) {
-    console.warn("[IdeogramStudio] sync listener failed to register", err);
+    console.warn("[MossLayoutStudio] sync listener failed to register", err);
   }
 }
-const _sfc_main$f = /* @__PURE__ */ defineComponent({
+const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "UiButton",
   props: {
     variant: { default: "default" },
@@ -8313,8 +8543,8 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const UiButton = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-e258fe27"]]);
-const _sfc_main$e = /* @__PURE__ */ defineComponent({
+const UiButton = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-37e21519"]]);
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
   __name: "UiPopover",
   props: {
     align: { default: "right" },
@@ -8370,7 +8600,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const UiPopover = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-ea543431"]]);
+const UiPopover = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-3afe332d"]]);
 const previewSyncImage = /* @__PURE__ */ ref(null);
 let watched = /* @__PURE__ */ new Set();
 let lastUrl = null;
@@ -8420,7 +8650,7 @@ function collectAncestors(graph, start, out) {
 }
 function isRefSync(n) {
   const cls = n?.type ?? n?.comfyClass ?? n?.constructor?.comfyClass;
-  return cls === "IdeogramRefSync";
+  return cls === "MossLayoutRefSync";
 }
 function rebuildWatchedIn(graph, out) {
   for (const n of getNodes(graph)) {
@@ -8459,45 +8689,45 @@ function initPreviewSync() {
       lastUrl = url;
       previewSyncImage.value = url;
     });
-    A.addEventListener("ideogram-studio.ref-sync", clearPreview);
+    A.addEventListener("moss-layout.ref-sync", clearPreview);
   } catch (err) {
-    console.warn("[IdeogramStudio] live-preview listener failed to register", err);
+    console.warn("[MossLayoutStudio] live-preview listener failed to register", err);
   }
 }
-const _hoisted_1$d = { class: "canvas-wrap" };
-const _hoisted_2$c = {
+const _hoisted_1$b = { class: "canvas-wrap" };
+const _hoisted_2$b = {
   key: 0,
   class: "divider"
 };
-const _hoisted_3$c = { class: "cmenu" };
+const _hoisted_3$b = { class: "cmenu" };
 const _hoisted_4$9 = { class: "crow" };
 const _hoisted_5$8 = {
   key: 2,
   class: "divider"
 };
-const _hoisted_6$6 = { class: "cmenu" };
-const _hoisted_7$5 = { class: "crow" };
+const _hoisted_6$7 = { class: "cmenu" };
+const _hoisted_7$6 = { class: "crow" };
 const _hoisted_8$5 = { class: "crow" };
-const _hoisted_9$5 = { class: "crow" };
-const _hoisted_10$5 = { class: "crow" };
-const _hoisted_11$4 = { class: "crow ckrow" };
-const _hoisted_12$4 = ["src"];
+const _hoisted_9$4 = { class: "crow" };
+const _hoisted_10$4 = { class: "crow" };
+const _hoisted_11$3 = { class: "crow ckrow" };
+const _hoisted_12$3 = ["src"];
 const _hoisted_13$3 = ["src"];
 const _hoisted_14$3 = {
   key: 2,
   class: "livebadge"
 };
-const _hoisted_15$2 = ["data-box"];
+const _hoisted_15$3 = ["data-box"];
 const _hoisted_16$2 = {
   key: 0,
   class: "gseg"
 };
-const _hoisted_17$2 = { class: "tagn" };
+const _hoisted_17$1 = { class: "tagn" };
 const _hoisted_18$1 = { class: "tagt" };
 const _hoisted_19 = ["data-handle"];
 const _hoisted_20 = ["data-handle"];
 const MIN_SPAN = 10;
-const _sfc_main$d = /* @__PURE__ */ defineComponent({
+const _sfc_main$b = /* @__PURE__ */ defineComponent({
   __name: "BBoxCanvas",
   props: {
     backdrop: {},
@@ -8519,8 +8749,8 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
       if (props.backdrop == null) return;
       const img = e.target;
       if (img.naturalWidth && img.naturalHeight) {
-        store.state.width = img.naturalWidth;
-        store.state.height = img.naturalHeight;
+        store.state.width = snapDim(img.naturalWidth);
+        store.state.height = snapDim(img.naturalHeight);
       }
     }
     const fileInput = /* @__PURE__ */ ref(null);
@@ -8554,21 +8784,31 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
     const draft = /* @__PURE__ */ ref(null);
     const marquee = /* @__PURE__ */ ref(null);
     const hint = /* @__PURE__ */ ref("");
-    const boxed = computed(() => store.state.elements.filter((e) => e.bbox));
+    const boxed = computed(() => store.state.elements);
+    const newTypeIcon = computed(
+      () => newType.value === "text" ? "mdi-format-text" : newType.value === "character" ? "mdi-account-outline" : "mdi-vector-square"
+    );
+    function cycleNewType() {
+      const i = LABELS.indexOf(newType.value);
+      newType.value = LABELS[(i + 1) % LABELS.length];
+    }
+    function labelIcon(label) {
+      return label === "text" ? "mdi-format-text" : label === "character" ? "mdi-account-outline" : "mdi-vector-square";
+    }
     const selectedBoxes = computed(
-      () => store.selectedIds.map((id) => store.getElement(id)).filter((e) => !!e?.bbox)
+      () => store.selectedIds.map((id) => store.getElement(id)).filter((e) => !!e)
     );
     const groupBox = computed(() => {
       if (selectedBoxes.value.length < 2) return null;
-      let y0 = Infinity, x0 = Infinity, y1 = -Infinity, x1 = -Infinity;
+      let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
       for (const e of selectedBoxes.value) {
         const [a, b, c, d] = e.bbox;
-        y0 = Math.min(y0, a);
-        x0 = Math.min(x0, b);
-        y1 = Math.max(y1, c);
-        x1 = Math.max(x1, d);
+        x0 = Math.min(x0, a);
+        y0 = Math.min(y0, b);
+        x1 = Math.max(x1, c);
+        y1 = Math.max(y1, d);
       }
-      return [y0, x0, y1, x1];
+      return [x0, y0, x1, y1];
     });
     const groupFrameColor = computed(() => {
       const els = selectedBoxes.value;
@@ -8576,20 +8816,25 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
       const gid = els[0].groupId;
       return gid && els.every((e) => e.groupId === gid) ? groupColor(gid) : "";
     });
+    function rectStyle(b) {
+      const W = store.state.width, H = store.state.height;
+      const x0 = Math.min(b[0], b[2]), x1 = Math.max(b[0], b[2]);
+      const y0 = Math.min(b[1], b[3]), y1 = Math.max(b[1], b[3]);
+      return {
+        left: `${x0 / W * 100}%`,
+        top: `${y0 / H * 100}%`,
+        width: `${(x1 - x0) / W * 100}%`,
+        height: `${(y1 - y0) / H * 100}%`
+      };
+    }
     const groupStyle = computed(() => {
       const b = groupBox.value;
       if (!b) return {};
-      const [y0, x0, y1, x1] = b;
-      const s = { left: `${x0 / 10}%`, top: `${y0 / 10}%`, width: `${(x1 - x0) / 10}%`, height: `${(y1 - y0) / 10}%` };
+      const s = rectStyle(b);
       if (groupFrameColor.value) s["--gc"] = groupFrameColor.value;
       return s;
     });
-    const marqueeStyle = computed(() => {
-      const b = marquee.value;
-      if (!b) return {};
-      const [y0, x0, y1, x1] = b;
-      return { left: `${x0 / 10}%`, top: `${y0 / 10}%`, width: `${(x1 - x0) / 10}%`, height: `${(y1 - y0) / 10}%` };
-    });
+    const marqueeStyle = computed(() => marquee.value ? rectStyle(marquee.value) : {});
     const stageStyle = computed(() => ({ aspectRatio: `${store.state.width} / ${store.state.height}` }));
     function hexToRgba(hex, a) {
       const h2 = hex.replace("#", "");
@@ -8599,35 +8844,30 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
       return `rgba(${r},${g},${b},${a})`;
     }
     function boxStyle(el) {
-      const [y0, x0, y1, x1] = el.bbox;
-      const color = el.boxColor || "#3b82f6";
+      const color = el.boxColor || "#60a5fa";
       return {
-        left: `${x0 / 10}%`,
-        top: `${y0 / 10}%`,
-        width: `${(x1 - x0) / 10}%`,
-        height: `${(y1 - y0) / 10}%`,
+        ...rectStyle(el.bbox),
         borderColor: color,
         "--c": color,
         "--fill": hexToRgba(color, 0.16)
       };
     }
     function tagStyle(el) {
-      const s = { background: hexToRgba(el.boxColor || "#3b82f6", 0.88), color: "#fff" };
+      const s = { background: hexToRgba(el.boxColor || "#60a5fa", 0.88), color: "#fff" };
       if (el.groupId) s["--gc"] = groupColor(el.groupId);
       return s;
     }
-    const clamp = (v) => Math.max(0, Math.min(1e3, Math.round(v)));
     function pointToCoords(ev) {
       const r = stage.value.getBoundingClientRect();
       return {
-        x: clamp((ev.clientX - r.left) / r.width * 1e3),
-        y: clamp((ev.clientY - r.top) / r.height * 1e3)
+        x: Math.max(0, Math.min(store.state.width, Math.round((ev.clientX - r.left) / r.width * store.state.width))),
+        y: Math.max(0, Math.min(store.state.height, Math.round((ev.clientY - r.top) / r.height * store.state.height)))
       };
     }
     let drag = null;
-    let lastPointer = { x: 500, y: 500 };
+    let lastPointer = { x: 512, y: 512 };
     function boxesUnder(p2) {
-      return store.state.elements.filter((el) => el.bbox && el.enabled !== false && p2.x >= el.bbox[1] && p2.x <= el.bbox[3] && p2.y >= el.bbox[0] && p2.y <= el.bbox[2]).map((el) => el.id);
+      return store.state.elements.filter((el) => p2.x >= el.bbox[0] && p2.x <= el.bbox[2] && p2.y >= el.bbox[1] && p2.y <= el.bbox[3]).map((el) => el.id);
     }
     function onPointerDown(ev) {
       ev.preventDefault();
@@ -8658,13 +8898,13 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
       }
       if (handle && store.selectedId && store.selectedIds.length === 1) {
         const el = store.getElement(store.selectedId);
-        if (el?.bbox) {
+        if (el) {
           drag = { kind: "resize", el, handle, start, moved: false };
           return;
         }
       }
       if (drawMod) {
-        draft.value = [start.y, start.x, start.y, start.x];
+        draft.value = [start.x, start.y, start.x, start.y];
         drag = { kind: "draw", start, moved: false, ctrlClick: true, clickedId: boxId };
         return;
       }
@@ -8676,11 +8916,11 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
         const wasPrimary = store.selectedIds.length === 1 && store.selectedId === boxId;
         const wasClickedPrimary = store.selectedId === boxId;
         if (!store.isSelected(boxId)) store.select(boxId);
-        const moveTargets = store.selectedIds.map((id) => store.getElement(id)).filter((e) => !!e?.bbox).map((e) => ({ el: e, start: [...e.bbox] }));
+        const moveTargets = store.selectedIds.map((id) => store.getElement(id)).filter((e) => !!e).map((e) => ({ el: e, start: [...e.bbox] }));
         drag = { kind: "move", start, moved: false, moveTargets, clickedId: boxId, wasPrimary, wasClickedPrimary };
         return;
       }
-      marquee.value = [start.y, start.x, start.y, start.x];
+      marquee.value = [start.x, start.y, start.x, start.y];
       drag = { kind: "marquee", start, moved: false, additive };
     }
     function onPointerMove(ev) {
@@ -8690,13 +8930,13 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
       const p2 = pointToCoords(ev);
       if (Math.abs(p2.x - drag.start.x) > 2 || Math.abs(p2.y - drag.start.y) > 2) drag.moved = true;
       if (drag.kind === "draw") {
-        draft.value = [Math.min(drag.start.y, p2.y), Math.min(drag.start.x, p2.x), Math.max(drag.start.y, p2.y), Math.max(drag.start.x, p2.x)];
+        draft.value = [Math.min(drag.start.x, p2.x), Math.min(drag.start.y, p2.y), Math.max(drag.start.x, p2.x), Math.max(drag.start.y, p2.y)];
         hint.value = bboxLabel(draft.value);
       } else if (drag.kind === "marquee") {
-        marquee.value = [Math.min(drag.start.y, p2.y), Math.min(drag.start.x, p2.x), Math.max(drag.start.y, p2.y), Math.max(drag.start.x, p2.x)];
+        marquee.value = [Math.min(drag.start.x, p2.x), Math.min(drag.start.y, p2.y), Math.max(drag.start.x, p2.x), Math.max(drag.start.y, p2.y)];
       } else if (drag.kind === "resize-group" && drag.groupStart && drag.groupTargets && drag.handle) {
-        const [oy0, ox0, oy1, ox1] = drag.groupStart;
-        let gy0 = oy0, gx0 = ox0, gy1 = oy1, gx1 = ox1;
+        const [ox0, oy0, ox1, oy1] = drag.groupStart;
+        let gx0 = ox0, gy0 = oy0, gx1 = ox1, gy1 = oy1;
         if (drag.handle.includes("n")) gy0 = Math.min(p2.y, oy1 - MIN_SPAN);
         if (drag.handle.includes("s")) gy1 = Math.max(p2.y, oy0 + MIN_SPAN);
         if (drag.handle.includes("w")) gx0 = Math.min(p2.x, ox1 - MIN_SPAN);
@@ -8704,12 +8944,12 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
         const sx = ox1 - ox0 ? (gx1 - gx0) / (ox1 - ox0) : 1;
         const sy = oy1 - oy0 ? (gy1 - gy0) / (oy1 - oy0) : 1;
         for (const t of drag.groupTargets) {
-          const [y0, x0, y1, x1] = t.start;
+          const [x0, y0, x1, y1] = t.start;
           t.el.bbox = [
-            clamp(gy0 + (y0 - oy0) * sy),
-            clamp(gx0 + (x0 - ox0) * sx),
-            clamp(gy0 + (y1 - oy0) * sy),
-            clamp(gx0 + (x1 - ox0) * sx)
+            clampCoord(gx0 + (x0 - ox0) * sx, store.state.width),
+            clampCoord(gy0 + (y0 - oy0) * sy, store.state.height),
+            clampCoord(gx1 + (x1 - ox0) * sx, store.state.width),
+            clampCoord(gy1 + (y1 - oy0) * sy, store.state.height)
           ];
         }
       } else if (drag.kind === "move" && drag.moveTargets) {
@@ -8718,26 +8958,27 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
         let dy = p2.y - drag.start.y;
         let loX = -Infinity, hiX = Infinity, loY = -Infinity, hiY = Infinity;
         for (const t of targets) {
-          const [y0, x0, y1, x1] = t.start;
+          const [x0, y0, x1, y1] = t.start;
           loX = Math.max(loX, -x0);
-          hiX = Math.min(hiX, 1e3 - x1);
+          hiX = Math.min(hiX, store.state.width - x1);
           loY = Math.max(loY, -y0);
-          hiY = Math.min(hiY, 1e3 - y1);
+          hiY = Math.min(hiY, store.state.height - y1);
         }
         dx = Math.max(loX, Math.min(hiX, dx));
         dy = Math.max(loY, Math.min(hiY, dy));
         for (const t of targets) {
-          const [y0, x0, y1, x1] = t.start;
-          t.el.bbox = [Math.round(y0 + dy), Math.round(x0 + dx), Math.round(y1 + dy), Math.round(x1 + dx)];
+          const [x0, y0, x1, y1] = t.start;
+          t.el.bbox = [Math.round(x0 + dx), Math.round(y0 + dy), Math.round(x1 + dx), Math.round(y1 + dy)];
         }
         if (targets.length === 1) hint.value = bboxLabel(targets[0].el.bbox);
-      } else if (drag.kind === "resize" && drag.el?.bbox && drag.handle) {
-        let [y0, x0, y1, x1] = drag.el.bbox;
-        if (drag.handle.includes("n")) y0 = Math.min(p2.y, y1 - 2);
-        if (drag.handle.includes("s")) y1 = Math.max(p2.y, y0 + 2);
-        if (drag.handle.includes("w")) x0 = Math.min(p2.x, x1 - 2);
-        if (drag.handle.includes("e")) x1 = Math.max(p2.x, x0 + 2);
-        drag.el.bbox = [y0, x0, y1, x1];
+      } else if (drag.kind === "resize" && drag.el && drag.handle) {
+        const [x0, y0, x1, y1] = drag.el.bbox;
+        let nx0 = x0, ny0 = y0, nx1 = x1, ny1 = y1;
+        if (drag.handle.includes("n")) ny0 = Math.min(p2.y, y1 - 2);
+        if (drag.handle.includes("s")) ny1 = Math.max(p2.y, y0 + 2);
+        if (drag.handle.includes("w")) nx0 = Math.min(p2.x, x1 - 2);
+        if (drag.handle.includes("e")) nx1 = Math.max(p2.x, x0 + 2);
+        drag.el.bbox = [nx0, ny0, nx1, ny1];
         hint.value = bboxLabel(drag.el.bbox);
       }
     }
@@ -8759,7 +9000,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
         const m = marquee.value;
         marquee.value = null;
         if (drag.moved && m) {
-          const ids = store.state.elements.filter((el) => el.bbox && el.enabled !== false && intersects(el.bbox, m)).map((el) => el.id);
+          const ids = store.state.elements.filter((el) => intersects(el.bbox, m)).map((el) => el.id);
           store.setSelection(ids, drag.additive);
         } else if (!drag.moved && !drag.additive) {
           store.select(null);
@@ -8820,33 +9061,36 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
       store.openContextMenu(ev.clientX, ev.clientY, id);
     }
     function bboxLabel(b) {
-      return `bbox [y${b[0]} x${b[1]} y${b[2]} x${b[3]}]  ·  ${b[3] - b[1]}×${b[2] - b[0]}`;
+      return `bbox [x${b[0]} y${b[1]} x${b[2]} y${b[3]}]  ·  ${b[2] - b[0]}×${b[3] - b[1]}`;
+    }
+    function clampCoord(v, max) {
+      return Math.max(0, Math.min(max, Math.round(v)));
     }
     function intersects(a, m) {
-      return a[1] < m[3] && a[3] > m[1] && a[0] < m[2] && a[2] > m[0];
+      return a[0] < m[2] && a[2] > m[0] && a[1] < m[3] && a[3] > m[1];
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$d, [
+      return openBlock(), createElementBlock("div", _hoisted_1$b, [
         createBaseVNode("div", {
           class: "toolbar",
-          onPointerdown: _cache[12] || (_cache[12] = withModifiers(() => {
+          onPointerdown: _cache[11] || (_cache[11] = withModifiers(() => {
           }, ["stop"]))
         }, [
           renderSlot(_ctx.$slots, "lead", {}, void 0),
-          _ctx.$slots.lead ? (openBlock(), createElementBlock("span", _hoisted_2$c)) : createCommentVNode("", true),
+          _ctx.$slots.lead ? (openBlock(), createElementBlock("span", _hoisted_2$b)) : createCommentVNode("", true),
           createVNode(UiButton, {
             icon: "",
-            title: "New boxes: " + (newType.value === "text" ? "text" : "object") + " — click to switch · Ctrl/⌘+drag to draw (drag on empty = box-select)",
-            onClick: _cache[0] || (_cache[0] = ($event) => newType.value = newType.value === "obj" ? "text" : "obj")
+            title: "New items: " + newType.value + " — click to cycle · Ctrl/⌘+drag to draw (drag on empty = box-select)",
+            onClick: cycleNewType
           }, {
             default: withCtx(() => [
               createBaseVNode("i", {
-                class: normalizeClass(["mdi", newType.value === "text" ? "mdi-format-text" : "mdi-shape-outline"])
+                class: normalizeClass(["mdi", newTypeIcon.value])
               }, null, 2)
             ]),
             _: 1
           }, 8, ["title"]),
-          _cache[35] || (_cache[35] = createBaseVNode("span", { class: "divider" }, null, -1)),
+          _cache[34] || (_cache[34] = createBaseVNode("span", { class: "divider" }, null, -1)),
           !__props.hideRef ? (openBlock(), createBlock(UiPopover, {
             key: 1,
             align: "left"
@@ -8857,49 +9101,49 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
                 active: !!backdropUrl.value || syncRef.value,
                 title: "Reference / trace image"
               }, {
-                default: withCtx(() => [..._cache[14] || (_cache[14] = [
+                default: withCtx(() => [..._cache[13] || (_cache[13] = [
                   createBaseVNode("i", { class: "mdi mdi-image-outline" }, null, -1)
                 ])]),
                 _: 1
               }, 8, ["active"])
             ]),
             default: withCtx(() => [
-              createBaseVNode("div", _hoisted_3$c, [
+              createBaseVNode("div", _hoisted_3$b, [
                 createBaseVNode("button", {
                   class: "citem",
                   onClick: pickImage
-                }, [..._cache[15] || (_cache[15] = [
+                }, [..._cache[14] || (_cache[14] = [
                   createBaseVNode("i", { class: "mdi mdi-folder-image" }, null, -1),
                   createTextVNode(" load image…", -1)
                 ])]),
                 createBaseVNode("button", {
                   class: normalizeClass(["citem", { on: syncRef.value }]),
-                  title: "Update from an Ideogram Studio Ref Sync node",
+                  title: "Update from a MOSS Layout Studio Ref Sync node",
                   onClick: toggleSync
                 }, [
                   createBaseVNode("i", {
                     class: normalizeClass(["mdi", syncRef.value ? "mdi-sync" : "mdi-sync-off"])
                   }, null, 2),
-                  _cache[16] || (_cache[16] = createTextVNode(" live sync", -1))
+                  _cache[15] || (_cache[15] = createTextVNode(" live sync", -1))
                 ], 2),
                 createBaseVNode("button", {
                   class: normalizeClass(["citem", { on: livePreview.value }]),
                   title: "Show the in-progress sampler preview (the sampler feeding your Ref Sync node) until the final image syncs in",
-                  onClick: _cache[1] || (_cache[1] = ($event) => livePreview.value = !livePreview.value)
+                  onClick: _cache[0] || (_cache[0] = ($event) => livePreview.value = !livePreview.value)
                 }, [
                   createBaseVNode("i", {
                     class: normalizeClass(["mdi", livePreview.value ? "mdi-television-play" : "mdi-television-off"])
                   }, null, 2),
-                  _cache[17] || (_cache[17] = createTextVNode(" live preview", -1))
+                  _cache[16] || (_cache[16] = createTextVNode(" live preview", -1))
                 ], 2),
                 createBaseVNode("label", _hoisted_4$9, [
-                  _cache[18] || (_cache[18] = createTextVNode("opacity ", -1)),
+                  _cache[17] || (_cache[17] = createTextVNode("opacity ", -1)),
                   withDirectives(createBaseVNode("input", {
                     type: "range",
                     min: "0",
                     max: "1",
                     step: "0.05",
-                    "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => backdropOpacity.value = $event)
+                    "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => backdropOpacity.value = $event)
                   }, null, 512), [
                     [
                       vModelText,
@@ -8912,8 +9156,8 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
                 backdropUrl.value ? (openBlock(), createElementBlock("button", {
                   key: 0,
                   class: "citem",
-                  onClick: _cache[3] || (_cache[3] = ($event) => backdropUrl.value = null)
-                }, [..._cache[19] || (_cache[19] = [
+                  onClick: _cache[2] || (_cache[2] = ($event) => backdropUrl.value = null)
+                }, [..._cache[18] || (_cache[18] = [
                   createBaseVNode("i", { class: "mdi mdi-close" }, null, -1),
                   createTextVNode(" remove reference", -1)
                 ])])) : createCommentVNode("", true)
@@ -8928,52 +9172,52 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
                 icon: "",
                 title: "Canvas & overlay settings"
               }, {
-                default: withCtx(() => [..._cache[20] || (_cache[20] = [
+                default: withCtx(() => [..._cache[19] || (_cache[19] = [
                   createBaseVNode("i", { class: "mdi mdi-tune-variant" }, null, -1)
                 ])]),
                 _: 1
               })
             ]),
             default: withCtx(() => [
-              createBaseVNode("div", _hoisted_6$6, [
-                _cache[30] || (_cache[30] = createBaseVNode("div", { class: "cgroup" }, "canvas", -1)),
+              createBaseVNode("div", _hoisted_6$7, [
+                _cache[29] || (_cache[29] = createBaseVNode("div", { class: "cgroup" }, "canvas", -1)),
                 createBaseVNode("button", {
                   class: normalizeClass(["citem", { on: showLabels.value }]),
-                  title: "Show element labels on the canvas",
-                  onClick: _cache[4] || (_cache[4] = ($event) => showLabels.value = !showLabels.value)
+                  title: "Show item labels on the canvas",
+                  onClick: _cache[3] || (_cache[3] = ($event) => showLabels.value = !showLabels.value)
                 }, [
                   createBaseVNode("i", {
                     class: normalizeClass(["mdi", showLabels.value ? "mdi-label" : "mdi-label-outline"])
                   }, null, 2),
-                  _cache[21] || (_cache[21] = createTextVNode(" element labels", -1))
+                  _cache[20] || (_cache[20] = createTextVNode(" item labels", -1))
                 ], 2),
-                _cache[31] || (_cache[31] = createBaseVNode("div", { class: "cdiv" }, null, -1)),
-                createBaseVNode("div", _hoisted_7$5, [
-                  _cache[24] || (_cache[24] = createTextVNode("mirror scene ", -1)),
+                _cache[30] || (_cache[30] = createBaseVNode("div", { class: "cdiv" }, null, -1)),
+                createBaseVNode("div", _hoisted_7$6, [
+                  _cache[23] || (_cache[23] = createTextVNode("mirror scene ", -1)),
                   createBaseVNode("button", {
                     class: "cic",
                     title: "Mirror horizontally",
-                    onClick: _cache[5] || (_cache[5] = ($event) => unref(store).flipAll("h"))
-                  }, [..._cache[22] || (_cache[22] = [
+                    onClick: _cache[4] || (_cache[4] = ($event) => unref(store).flipAll("h"))
+                  }, [..._cache[21] || (_cache[21] = [
                     createBaseVNode("i", { class: "mdi mdi-flip-horizontal" }, null, -1)
                   ])]),
                   createBaseVNode("button", {
                     class: "cic",
                     title: "Mirror vertically",
-                    onClick: _cache[6] || (_cache[6] = ($event) => unref(store).flipAll("v"))
-                  }, [..._cache[23] || (_cache[23] = [
+                    onClick: _cache[5] || (_cache[5] = ($event) => unref(store).flipAll("v"))
+                  }, [..._cache[22] || (_cache[22] = [
                     createBaseVNode("i", { class: "mdi mdi-flip-vertical" }, null, -1)
                   ])])
                 ]),
-                _cache[32] || (_cache[32] = createBaseVNode("div", { class: "cdiv" }, null, -1)),
-                _cache[33] || (_cache[33] = createBaseVNode("div", { class: "cgroup" }, "overlay output", -1)),
+                _cache[31] || (_cache[31] = createBaseVNode("div", { class: "cdiv" }, null, -1)),
+                _cache[32] || (_cache[32] = createBaseVNode("div", { class: "cgroup" }, "overlay output", -1)),
                 createBaseVNode("label", _hoisted_8$5, [
-                  _cache[25] || (_cache[25] = createTextVNode("line ", -1)),
+                  _cache[24] || (_cache[24] = createTextVNode("line ", -1)),
                   withDirectives(createBaseVNode("input", {
                     type: "number",
                     min: "1",
                     max: "40",
-                    "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => unref(store).state.overlay.lineWidth = $event)
+                    "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => unref(store).state.overlay.lineWidth = $event)
                   }, null, 512), [
                     [
                       vModelText,
@@ -8983,14 +9227,14 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
                     ]
                   ])
                 ]),
-                createBaseVNode("label", _hoisted_9$5, [
-                  _cache[26] || (_cache[26] = createTextVNode("fill ", -1)),
+                createBaseVNode("label", _hoisted_9$4, [
+                  _cache[25] || (_cache[25] = createTextVNode("fill ", -1)),
                   withDirectives(createBaseVNode("input", {
                     type: "range",
                     min: "0",
                     max: "1",
                     step: "0.02",
-                    "onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => unref(store).state.overlay.fillAlpha = $event)
+                    "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => unref(store).state.overlay.fillAlpha = $event)
                   }, null, 512), [
                     [
                       vModelText,
@@ -9000,13 +9244,13 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
                     ]
                   ])
                 ]),
-                createBaseVNode("label", _hoisted_10$5, [
-                  _cache[27] || (_cache[27] = createTextVNode("label size ", -1)),
+                createBaseVNode("label", _hoisted_10$4, [
+                  _cache[26] || (_cache[26] = createTextVNode("label size ", -1)),
                   withDirectives(createBaseVNode("input", {
                     type: "number",
                     min: "6",
                     max: "96",
-                    "onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => unref(store).state.overlay.labelSize = $event)
+                    "onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => unref(store).state.overlay.labelSize = $event)
                   }, null, 512), [
                     [
                       vModelText,
@@ -9016,32 +9260,32 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
                     ]
                   ])
                 ]),
-                createBaseVNode("div", _hoisted_11$4, [
+                createBaseVNode("div", _hoisted_11$3, [
                   createBaseVNode("label", null, [
                     withDirectives(createBaseVNode("input", {
                       type: "checkbox",
-                      "onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => unref(store).state.overlay.showIndex = $event)
+                      "onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => unref(store).state.overlay.showIndex = $event)
                     }, null, 512), [
                       [vModelCheckbox, unref(store).state.overlay.showIndex]
                     ]),
-                    _cache[28] || (_cache[28] = createTextVNode(" index", -1))
+                    _cache[27] || (_cache[27] = createTextVNode(" index", -1))
                   ]),
                   createBaseVNode("label", null, [
                     withDirectives(createBaseVNode("input", {
                       type: "checkbox",
-                      "onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => unref(store).state.overlay.showText = $event)
+                      "onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => unref(store).state.overlay.showText = $event)
                     }, null, 512), [
                       [vModelCheckbox, unref(store).state.overlay.showText]
                     ]),
-                    _cache[29] || (_cache[29] = createTextVNode(" text", -1))
+                    _cache[28] || (_cache[28] = createTextVNode(" text", -1))
                   ])
                 ]),
-                _cache[34] || (_cache[34] = createBaseVNode("p", { class: "chint" }, "styles the overlay output (Extras node), not the reference", -1))
+                _cache[33] || (_cache[33] = createBaseVNode("p", { class: "chint" }, "styles the overlay output (Extras node), not the reference", -1))
               ])
             ]),
             _: 1
           }),
-          _cache[36] || (_cache[36] = createBaseVNode("span", { class: "spacer" }, null, -1)),
+          _cache[35] || (_cache[35] = createBaseVNode("span", { class: "spacer" }, null, -1)),
           renderSlot(_ctx.$slots, "trail", {}, void 0),
           createBaseVNode("input", {
             ref_key: "fileInput",
@@ -9064,7 +9308,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
           onLostpointercapture: onPointerUp,
           onKeydown: onKeyDown,
           onContextmenu: withModifiers(onContextMenu, ["prevent"]),
-          onDragover: _cache[13] || (_cache[13] = withModifiers(() => {
+          onDragover: _cache[12] || (_cache[12] = withModifiers(() => {
           }, ["prevent"])),
           onDrop,
           style: normalizeStyle(stageStyle.value)
@@ -9077,7 +9321,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
             draggable: "false",
             alt: "reference",
             onLoad: onBackdropLoad
-          }, null, 44, _hoisted_12$4)) : createCommentVNode("", true),
+          }, null, 44, _hoisted_12$3)) : createCommentVNode("", true),
           livePreview.value && unref(previewSyncImage) ? (openBlock(), createElementBlock("img", {
             key: 1,
             class: "livelayer",
@@ -9085,15 +9329,15 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
             draggable: "false",
             alt: "live preview"
           }, null, 8, _hoisted_13$3)) : createCommentVNode("", true),
-          livePreview.value && unref(previewSyncImage) ? (openBlock(), createElementBlock("span", _hoisted_14$3, [..._cache[37] || (_cache[37] = [
+          livePreview.value && unref(previewSyncImage) ? (openBlock(), createElementBlock("span", _hoisted_14$3, [..._cache[36] || (_cache[36] = [
             createBaseVNode("i", { class: "mdi mdi-record" }, null, -1),
             createTextVNode(" live", -1)
           ])])) : createCommentVNode("", true),
-          _cache[38] || (_cache[38] = createBaseVNode("div", { class: "grid" }, null, -1)),
+          _cache[37] || (_cache[37] = createBaseVNode("div", { class: "grid" }, null, -1)),
           (openBlock(true), createElementBlock(Fragment, null, renderList(boxed.value, (el, i) => {
             return openBlock(), createElementBlock("div", {
               key: el.id,
-              class: normalizeClass(["box", { sel: unref(store).isSelected(el.id), primary: el.id === unref(store).selectedId, muted: el.enabled === false }]),
+              class: normalizeClass(["box", { sel: unref(store).isSelected(el.id), primary: el.id === unref(store).selectedId }]),
               style: normalizeStyle(boxStyle(el)),
               "data-box": el.id
             }, [
@@ -9104,10 +9348,10 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
               }, [
                 el.groupId ? (openBlock(), createElementBlock("span", _hoisted_16$2)) : createCommentVNode("", true),
                 createBaseVNode("i", {
-                  class: normalizeClass(["mdi tagi", el.linkId ? "mdi-link-variant" : el.type === "text" ? "mdi-format-text" : "mdi-vector-square"])
+                  class: normalizeClass(["mdi tagi", el.linkId ? "mdi-link-variant" : labelIcon(el.label)])
                 }, null, 2),
-                createBaseVNode("span", _hoisted_17$2, toDisplayString(i + 1), 1),
-                createBaseVNode("span", _hoisted_18$1, toDisplayString(el.type === "text" ? el.text || "text" : el.desc || "obj"), 1)
+                createBaseVNode("span", _hoisted_17$1, toDisplayString(i + 1), 1),
+                createBaseVNode("span", _hoisted_18$1, toDisplayString(el.label === "text" ? el.text || "text" : el.caption || el.label), 1)
               ], 6)) : createCommentVNode("", true),
               el.id === unref(store).selectedId && unref(store).selectedIds.length === 1 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, renderList(HANDLES, (hdl) => {
                 return createBaseVNode("i", {
@@ -9116,7 +9360,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
                   "data-handle": hdl
                 }, null, 10, _hoisted_19);
               }), 64)) : createCommentVNode("", true)
-            ], 14, _hoisted_15$2);
+            ], 14, _hoisted_15$3);
           }), 128)),
           groupBox.value ? (openBlock(), createElementBlock("div", {
             key: 3,
@@ -9147,13 +9391,13 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const BBoxCanvas = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-cdb13651"]]);
+const BBoxCanvas = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-0bf47a4c"]]);
 const J = { "Content-Type": "application/json" };
 function thumbUrl(dir, name, size = 256) {
-  return `/ideogramhelper/thumb?dir=${encodeURIComponent(dir)}&name=${encodeURIComponent(name)}&size=${size}`;
+  return `/mosslayout/thumb?dir=${encodeURIComponent(dir)}&name=${encodeURIComponent(name)}&size=${size}`;
 }
 async function previewJson(json, opts = {}) {
-  const r = await fetch("/ideogramhelper/preview", {
+  const r = await fetch("/mosslayout/preview", {
     method: "POST",
     headers: J,
     body: JSON.stringify({ json, width: 768, height: 768, ...opts })
@@ -9161,44 +9405,44 @@ async function previewJson(json, opts = {}) {
   return r.json();
 }
 async function listLibrary() {
-  const r = await fetch("/ideogramhelper/library");
+  const r = await fetch("/mosslayout/library");
   return r.json();
 }
 async function saveTemplate(out_dir, name, json, overwrite = false, thumb = "") {
-  const r = await fetch("/ideogramhelper/save_template", { method: "POST", headers: J, body: JSON.stringify({ out_dir, name, json, overwrite, thumb }) });
+  const r = await fetch("/mosslayout/save_template", { method: "POST", headers: J, body: JSON.stringify({ out_dir, name, json, overwrite, thumb }) });
   return r.json();
 }
 async function deleteTemplate(name) {
-  const r = await fetch("/ideogramhelper/delete_template", { method: "POST", headers: J, body: JSON.stringify({ name }) });
+  const r = await fetch("/mosslayout/delete_template", { method: "POST", headers: J, body: JSON.stringify({ name }) });
   return r.json();
 }
-const _hoisted_1$c = { class: "libpanel" };
-const _hoisted_2$b = { class: "libhead" };
-const _hoisted_3$b = {
+const _hoisted_1$a = { class: "libpanel" };
+const _hoisted_2$a = { class: "libhead" };
+const _hoisted_3$a = {
   key: 0,
   class: "count"
 };
 const _hoisted_4$8 = { class: "search" };
 const _hoisted_5$7 = { class: "libbody" };
-const _hoisted_6$5 = {
+const _hoisted_6$6 = {
   key: 0,
   class: "grid"
 };
-const _hoisted_7$4 = ["title", "onClick"];
+const _hoisted_7$5 = ["title", "onClick"];
 const _hoisted_8$4 = ["src", "alt"];
-const _hoisted_9$4 = {
+const _hoisted_9$3 = {
   key: 2,
   class: "badge"
 };
-const _hoisted_10$4 = ["onClick"];
-const _hoisted_11$3 = ["title"];
-const _hoisted_12$3 = { class: "cbtns" };
+const _hoisted_10$3 = ["onClick"];
+const _hoisted_11$2 = ["title"];
+const _hoisted_12$2 = { class: "cbtns" };
 const _hoisted_13$2 = ["onClick"];
 const _hoisted_14$2 = {
   key: 1,
   class: "empty"
 };
-const _hoisted_15$1 = {
+const _hoisted_15$2 = {
   key: 2,
   class: "empty"
 };
@@ -9206,9 +9450,9 @@ const _hoisted_16$1 = {
   key: 3,
   class: "empty"
 };
-const _hoisted_17$1 = { class: "libfoot" };
+const _hoisted_17 = { class: "libfoot" };
 const _hoisted_18 = ["disabled"];
-const _sfc_main$c = /* @__PURE__ */ defineComponent({
+const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "StudioLibrary",
   props: {
     open: { type: Boolean }
@@ -9239,8 +9483,8 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     }
     function elCount(t) {
       try {
-        const els = JSON.parse(t.caption)?.compositional_deconstruction?.elements;
-        return Array.isArray(els) ? els.length : 0;
+        const items = JSON.parse(t.caption)?.items;
+        return Array.isArray(items) ? items.length : 0;
       } catch {
         return 0;
       }
@@ -9277,7 +9521,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
       }
     );
     function load(t) {
-      const res = store.importCaptionJson(t.caption);
+      const res = store.importDraftJson(t.caption);
       if (res.ok) emit2("update:open", false);
       else flash.value = "load error: " + (res.error || "invalid template");
     }
@@ -9320,15 +9564,15 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
           const ctx = c.getContext("2d");
           if (!ctx) return resolve("");
           ctx.drawImage(img, 0, 0, w, h2);
+          const W = store.state.width, H = store.state.height;
           ctx.lineWidth = Math.max(1, Math.round(w / 220));
           for (const el of store.state.elements) {
-            if (!el.bbox || el.enabled === false) continue;
-            const [y0, x0, y1, x1] = el.bbox;
-            const rx = x0 / 1e3 * w;
-            const ry = y0 / 1e3 * h2;
-            const rw = (x1 - x0) / 1e3 * w;
-            const rh = (y1 - y0) / 1e3 * h2;
-            const color = el.boxColor || "#3b82f6";
+            const [x1, y1, x2, y2] = el.bbox;
+            const rx = x1 / W * w;
+            const ry = y1 / H * h2;
+            const rw = (x2 - x1) / W * w;
+            const rh = (y2 - y1) / H * h2;
+            const color = el.boxColor || "#60a5fa";
             ctx.fillStyle = hexA(color, 0.16);
             ctx.fillRect(rx, ry, rw, rh);
             ctx.strokeStyle = color;
@@ -9345,7 +9589,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
       });
     }
     async function saveCurrent() {
-      const json = serialize(store.state).pretty;
+      const json = serialize(store.state).draftPretty;
       const thumb = withThumb.value && store.refImage ? await makeThumb() : "";
       try {
         const r = await saveTemplate("", saveName.value.trim() || "template_001", json, false, thumb);
@@ -9368,13 +9612,13 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
         onContextmenu: _cache[8] || (_cache[8] = withModifiers(() => {
         }, ["prevent", "stop"]))
       }, [
-        createBaseVNode("div", _hoisted_1$c, [
-          createBaseVNode("header", _hoisted_2$b, [
+        createBaseVNode("div", _hoisted_1$a, [
+          createBaseVNode("header", _hoisted_2$a, [
             _cache[12] || (_cache[12] = createBaseVNode("span", { class: "t" }, [
               createBaseVNode("i", { class: "mdi mdi-bookshelf" }),
               createTextVNode(" Library")
             ], -1)),
-            templates.value.length ? (openBlock(), createElementBlock("span", _hoisted_3$b, toDisplayString(shown.value.length), 1)) : createCommentVNode("", true),
+            templates.value.length ? (openBlock(), createElementBlock("span", _hoisted_3$a, toDisplayString(shown.value.length), 1)) : createCommentVNode("", true),
             _cache[13] || (_cache[13] = createBaseVNode("span", { class: "grow" }, null, -1)),
             createBaseVNode("div", _hoisted_4$8, [
               _cache[10] || (_cache[10] = createBaseVNode("i", { class: "mdi mdi-magnify" }, null, -1)),
@@ -9418,7 +9662,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
             })
           ]),
           createBaseVNode("div", _hoisted_5$7, [
-            shown.value.length ? (openBlock(), createElementBlock("div", _hoisted_6$5, [
+            shown.value.length ? (openBlock(), createElementBlock("div", _hoisted_6$6, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(shown.value, (t) => {
                 return openBlock(), createElementBlock("div", {
                   key: t.name,
@@ -9438,22 +9682,22 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
                       key: 1,
                       class: normalizeClass(["mdi ph", loading.value ? "mdi-loading mdi-spin" : "mdi-image-outline"])
                     }, null, 2)),
-                    elCount(t) ? (openBlock(), createElementBlock("span", _hoisted_9$4, [
+                    elCount(t) ? (openBlock(), createElementBlock("span", _hoisted_9$3, [
                       _cache[14] || (_cache[14] = createBaseVNode("i", { class: "mdi mdi-shape-outline" }, null, -1)),
                       createTextVNode(" " + toDisplayString(elCount(t)), 1)
                     ])) : createCommentVNode("", true)
-                  ], 8, _hoisted_7$4),
+                  ], 8, _hoisted_7$5),
                   createBaseVNode("button", {
                     class: "del",
                     title: "Delete template",
                     onClick: withModifiers(($event) => pendingDelete.value = t.name, ["stop"])
                   }, [..._cache[15] || (_cache[15] = [
                     createBaseVNode("i", { class: "mdi mdi-trash-can-outline" }, null, -1)
-                  ])], 8, _hoisted_10$4),
+                  ])], 8, _hoisted_10$3),
                   createBaseVNode("div", {
                     class: "name",
                     title: t.stem
-                  }, toDisplayString(t.stem), 9, _hoisted_11$3),
+                  }, toDisplayString(t.stem), 9, _hoisted_11$2),
                   pendingDelete.value === t.name ? (openBlock(), createElementBlock("div", {
                     key: 0,
                     class: "confirm",
@@ -9464,7 +9708,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
                       createBaseVNode("i", { class: "mdi mdi-trash-can-outline" }),
                       createTextVNode(" Delete?")
                     ], -1)),
-                    createBaseVNode("div", _hoisted_12$3, [
+                    createBaseVNode("div", _hoisted_12$2, [
                       createBaseVNode("button", {
                         class: "yes",
                         onClick: ($event) => doDelete(t)
@@ -9480,7 +9724,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
             ])) : loading.value ? (openBlock(), createElementBlock("p", _hoisted_14$2, [..._cache[17] || (_cache[17] = [
               createBaseVNode("i", { class: "mdi mdi-loading mdi-spin" }, null, -1),
               createTextVNode(" loading…", -1)
-            ])])) : query.value ? (openBlock(), createElementBlock("p", _hoisted_15$1, [
+            ])])) : query.value ? (openBlock(), createElementBlock("p", _hoisted_15$2, [
               _cache[18] || (_cache[18] = createBaseVNode("i", { class: "mdi mdi-magnify" }, null, -1)),
               createTextVNode(" No templates match “" + toDisplayString(query.value) + "”.", 1)
             ])) : (openBlock(), createElementBlock("p", _hoisted_16$1, [..._cache[19] || (_cache[19] = [
@@ -9493,7 +9737,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
               ], -1)
             ])]))
           ]),
-          createBaseVNode("footer", _hoisted_17$1, [
+          createBaseVNode("footer", _hoisted_17, [
             _cache[22] || (_cache[22] = createBaseVNode("i", { class: "mdi mdi-content-save-outline fic" }, null, -1)),
             withDirectives(createBaseVNode("input", {
               "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => saveName.value = $event),
@@ -9548,89 +9792,8 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const StudioLibrary = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-acf62c2f"]]);
-const _hoisted_1$b = { class: "promptfields" };
-const _hoisted_2$a = ["title"];
-const _hoisted_3$a = ["title"];
-const _sfc_main$b = /* @__PURE__ */ defineComponent({
-  __name: "PromptFields",
-  setup(__props) {
-    const store = useStudioStore();
-    const vAutogrow = {
-      mounted(el) {
-        const grow = () => {
-          el.style.height = "auto";
-          el.style.height = `${el.scrollHeight}px`;
-        };
-        el._grow = grow;
-        el.addEventListener("input", grow);
-        nextTick(grow);
-      },
-      updated(el) {
-        el._grow?.();
-      },
-      unmounted(el) {
-        el.removeEventListener("input", el._grow);
-      }
-    };
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$b, [
-        createBaseVNode("div", {
-          class: normalizeClass(["minicard", { collapsed: !unref(store).state.ui.summaryOpen }]),
-          title: "high_level_description — a one or two sentence summary"
-        }, [
-          createBaseVNode("button", {
-            class: "mchead",
-            title: unref(store).state.ui.summaryOpen ? "Collapse" : "Expand",
-            onClick: _cache[0] || (_cache[0] = ($event) => unref(store).state.ui.summaryOpen = !unref(store).state.ui.summaryOpen)
-          }, [
-            createBaseVNode("i", {
-              class: normalizeClass(["mdi fc", unref(store).state.ui.summaryOpen ? "mdi-chevron-down" : "mdi-chevron-right"])
-            }, null, 2),
-            _cache[4] || (_cache[4] = createBaseVNode("i", { class: "mdi mdi-card-text-outline" }, null, -1)),
-            _cache[5] || (_cache[5] = createBaseVNode("span", null, "summary", -1))
-          ], 8, _hoisted_2$a),
-          unref(store).state.ui.summaryOpen ? withDirectives((openBlock(), createElementBlock("textarea", {
-            key: 0,
-            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => unref(store).state.high_level_description = $event),
-            rows: "2",
-            placeholder: "one or two sentences summarizing the whole image"
-          }, null, 512)), [
-            [vModelText, unref(store).state.high_level_description],
-            [vAutogrow]
-          ]) : createCommentVNode("", true)
-        ], 2),
-        createBaseVNode("div", {
-          class: normalizeClass(["minicard", { collapsed: !unref(store).state.ui.backgroundOpen }]),
-          title: "compositional_deconstruction.background"
-        }, [
-          createBaseVNode("button", {
-            class: "mchead",
-            title: unref(store).state.ui.backgroundOpen ? "Collapse" : "Expand",
-            onClick: _cache[2] || (_cache[2] = ($event) => unref(store).state.ui.backgroundOpen = !unref(store).state.ui.backgroundOpen)
-          }, [
-            createBaseVNode("i", {
-              class: normalizeClass(["mdi fc", unref(store).state.ui.backgroundOpen ? "mdi-chevron-down" : "mdi-chevron-right"])
-            }, null, 2),
-            _cache[6] || (_cache[6] = createBaseVNode("i", { class: "mdi mdi-image-filter-hdr" }, null, -1)),
-            _cache[7] || (_cache[7] = createBaseVNode("span", null, "background", -1))
-          ], 8, _hoisted_3$a),
-          unref(store).state.ui.backgroundOpen ? withDirectives((openBlock(), createElementBlock("textarea", {
-            key: 0,
-            "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => unref(store).state.background = $event),
-            rows: "2",
-            placeholder: "describe the background / environment"
-          }, null, 512)), [
-            [vModelText, unref(store).state.background],
-            [vAutogrow]
-          ]) : createCommentVNode("", true)
-        ], 2)
-      ]);
-    };
-  }
-});
-const PromptFields = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-264dfd84"]]);
-const _hoisted_1$a = { class: "ui-card" };
+const StudioLibrary = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-5382e446"]]);
+const _hoisted_1$9 = { class: "ui-card" };
 const _hoisted_2$9 = {
   key: 0,
   class: "ui-card-head"
@@ -9639,14 +9802,14 @@ const _hoisted_3$9 = {
   key: 0,
   class: "ui-card-title"
 };
-const _sfc_main$a = /* @__PURE__ */ defineComponent({
+const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "UiCard",
   props: {
     title: {}
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$a, [
+      return openBlock(), createElementBlock("div", _hoisted_1$9, [
         __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("div", _hoisted_2$9, [
           __props.title ? (openBlock(), createElementBlock("span", _hoisted_3$9, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
           renderSlot(_ctx.$slots, "header", {}, void 0)
@@ -9656,14 +9819,14 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const UiCard = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-5e9a1b5c"]]);
-const _hoisted_1$9 = { class: "palette" };
+const UiCard = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-665b913d"]]);
+const _hoisted_1$8 = { class: "palette" };
 const _hoisted_2$8 = { class: "swatches" };
 const _hoisted_3$8 = ["onContextmenu"];
 const _hoisted_4$7 = ["title"];
 const _hoisted_5$6 = ["value", "onInput"];
-const _hoisted_6$4 = { class: "hint" };
-const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+const _hoisted_6$5 = { class: "hint" };
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "PaletteEditor",
   props: {
     modelValue: {},
@@ -9689,7 +9852,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
       emit2("update:modelValue", next);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$9, [
+      return openBlock(), createElementBlock("div", _hoisted_1$8, [
         createBaseVNode("div", _hoisted_2$8, [
           (openBlock(true), createElementBlock(Fragment, null, renderList(__props.modelValue, (c, i) => {
             return openBlock(), createElementBlock("div", {
@@ -9717,16 +9880,16 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
             onClick: add
           }, "+")) : createCommentVNode("", true)
         ]),
-        createBaseVNode("div", _hoisted_6$4, toDisplayString(__props.modelValue.length) + "/" + toDisplayString(__props.max) + " " + toDisplayString(__props.label), 1)
+        createBaseVNode("div", _hoisted_6$5, toDisplayString(__props.modelValue.length) + "/" + toDisplayString(__props.max) + " " + toDisplayString(__props.label), 1)
       ]);
     };
   }
 });
-const PaletteEditor = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-a4df401c"]]);
-const _hoisted_1$8 = { class: "combo" };
+const PaletteEditor = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-bd1d882e"]]);
+const _hoisted_1$7 = { class: "combo" };
 const _hoisted_2$7 = ["value", "placeholder"];
 const _hoisted_3$7 = ["value"];
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "ComboInput",
   props: {
     modelValue: {},
@@ -9742,7 +9905,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
       sel.value = "";
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$8, [
+      return openBlock(), createElementBlock("div", _hoisted_1$7, [
         createBaseVNode("input", {
           value: __props.modelValue,
           placeholder: __props.placeholder,
@@ -9771,222 +9934,127 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ComboInput = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-500bd3f3"]]);
+const ComboInput = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-2f602dd0"]]);
 const PRESETS = {
-  camera: [
-    "35mm, f/1.8, shallow depth of field",
-    "50mm, f/1.4, natural perspective",
-    "85mm portrait, f/2, creamy bokeh",
-    "24mm wide-angle, deep focus",
-    "100mm macro, extreme close-up",
-    "200mm telephoto, compressed background",
-    "full-frame DSLR, crisp detail",
-    "phone camera, casual snapshot",
-    "cinematic, anamorphic widescreen"
-  ],
-  lighting: [
-    "golden hour, warm side light",
-    "blue hour, cool ambient",
-    "soft diffused daylight",
-    "hard midday sun, strong shadows",
-    "rim light, backlit silhouette",
-    "studio softbox, even lighting",
-    "dramatic chiaroscuro, single source",
-    "neon, colourful city glow",
-    "candlelight, warm flicker",
-    "overcast, flat soft light",
-    "low-key, moody darkness",
-    "high-key, bright and airy"
-  ],
-  aesthetics: [
-    "moody, cinematic, desaturated",
-    "vibrant, high contrast, punchy",
-    "soft, dreamy, pastel",
-    "gritty, raw, documentary",
-    "clean, minimal, modern",
-    "vintage film, grainy, faded",
-    "epic, dramatic, grand scale",
-    "cozy, warm, intimate",
-    "ethereal, glowing, surreal"
-  ],
-  medium: [
+  meta: [
     "photograph",
     "illustration",
-    "3d_render",
-    "painting",
-    "digital_art",
+    "poster",
+    "product campaign",
+    "studio photography",
+    "concept art",
     "watercolor",
-    "oil_painting",
     "anime",
-    "concept_art"
+    "3d render",
+    "comic",
+    "infographic",
+    "menu design",
+    "book cover",
+    "ui mockup",
+    "magazine layout"
   ],
-  artStyle: [
-    "watercolour painting, soft washes",
-    "oil painting, visible brushstrokes",
-    "anime, cel-shaded",
-    "comic book, bold ink",
-    "pencil sketch, cross-hatching",
-    "concept art, painterly"
+  tags: [
+    "soft lighting",
+    "warm palette",
+    "high detail",
+    "minimalist",
+    "vintage",
+    "clean composition",
+    "studio backdrop",
+    "golden hour",
+    "matte texture",
+    "glossy"
   ]
 };
-const _hoisted_1$7 = { class: "chead" };
+const _hoisted_1$6 = { class: "chead" };
 const _hoisted_2$6 = ["title"];
-const _hoisted_3$6 = { class: "lmenu" };
-const _hoisted_4$6 = { class: "litem" };
-const _hoisted_5$5 = { class: "litem" };
-const _hoisted_6$3 = ["title"];
-const _hoisted_7$3 = { class: "field" };
-const _hoisted_8$3 = { class: "field" };
-const _hoisted_9$3 = {
-  key: 0,
-  class: "field"
-};
-const _hoisted_10$3 = { class: "field" };
-const _hoisted_11$2 = {
-  key: 1,
-  class: "field"
-};
-const _hoisted_12$2 = { class: "field" };
-const _sfc_main$7 = /* @__PURE__ */ defineComponent({
-  __name: "StylePanel",
+const _hoisted_3$6 = ["value"];
+const _hoisted_4$6 = { class: "field" };
+const _hoisted_5$5 = { class: "field" };
+const _hoisted_6$4 = { class: "field" };
+const _hoisted_7$4 = { class: "presetsck" };
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+  __name: "SummaryPanel",
   setup(__props) {
     const store = useStudioStore();
-    const st = computed(() => store.state.style);
-    const showPresets = computed(() => store.state.ui.showPresets);
-    const opts = (list) => showPresets.value ? list : [];
+    const opts = computed(() => store.state.ui.showPresets ? PRESETS.meta : []);
+    const metaText = computed({
+      get: () => store.state.summary.meta.join(", "),
+      set: (v) => {
+        store.state.summary.meta = v.split(",").map((s) => s.trim()).filter(Boolean);
+      }
+    });
     return (_ctx, _cache) => {
       return openBlock(), createBlock(UiCard, null, {
         header: withCtx(() => [
-          createBaseVNode("div", _hoisted_1$7, [
+          createBaseVNode("div", _hoisted_1$6, [
             createBaseVNode("button", {
               class: "fold",
-              title: unref(store).state.ui.styleOpen ? "Collapse" : "Expand",
-              onClick: _cache[0] || (_cache[0] = ($event) => unref(store).state.ui.styleOpen = !unref(store).state.ui.styleOpen)
+              title: unref(store).state.ui.summaryOpen ? "Collapse" : "Expand",
+              onClick: _cache[0] || (_cache[0] = ($event) => unref(store).state.ui.summaryOpen = !unref(store).state.ui.summaryOpen)
             }, [
               createBaseVNode("i", {
-                class: normalizeClass(["mdi", unref(store).state.ui.styleOpen ? "mdi-chevron-down" : "mdi-chevron-right"])
+                class: normalizeClass(["mdi", unref(store).state.ui.summaryOpen ? "mdi-chevron-down" : "mdi-chevron-right"])
               }, null, 2)
             ], 8, _hoisted_2$6),
-            createVNode(UiPopover, { align: "left" }, {
-              trigger: withCtx(() => [..._cache[12] || (_cache[12] = [
-                createBaseVNode("button", {
-                  class: "lhead",
-                  title: "Style options"
-                }, [
-                  createTextVNode("style"),
-                  createBaseVNode("i", { class: "mdi mdi-menu-down" })
-                ], -1)
-              ])]),
-              default: withCtx(() => [
-                createBaseVNode("div", _hoisted_3$6, [
-                  createBaseVNode("label", _hoisted_4$6, [
-                    withDirectives(createBaseVNode("input", {
-                      type: "checkbox",
-                      "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => st.value.enabled = $event)
-                    }, null, 512), [
-                      [vModelCheckbox, st.value.enabled]
-                    ]),
-                    _cache[13] || (_cache[13] = createTextVNode(" style enabled", -1))
-                  ]),
-                  st.value.enabled ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                    _cache[17] || (_cache[17] = createBaseVNode("div", { class: "ldiv" }, null, -1)),
-                    _cache[18] || (_cache[18] = createBaseVNode("div", { class: "lgroup" }, "mode", -1)),
-                    createBaseVNode("button", {
-                      class: normalizeClass(["litem", { on: st.value.mode === "photo" }]),
-                      onClick: _cache[2] || (_cache[2] = ($event) => st.value.mode = "photo")
-                    }, [..._cache[14] || (_cache[14] = [
-                      createBaseVNode("i", { class: "mdi mdi-camera-outline" }, null, -1),
-                      createTextVNode(" photo", -1)
-                    ])], 2),
-                    createBaseVNode("button", {
-                      class: normalizeClass(["litem", { on: st.value.mode === "art" }]),
-                      onClick: _cache[3] || (_cache[3] = ($event) => st.value.mode = "art")
-                    }, [..._cache[15] || (_cache[15] = [
-                      createBaseVNode("i", { class: "mdi mdi-palette-outline" }, null, -1),
-                      createTextVNode(" art", -1)
-                    ])], 2),
-                    _cache[19] || (_cache[19] = createBaseVNode("div", { class: "ldiv" }, null, -1)),
-                    createBaseVNode("label", _hoisted_5$5, [
-                      withDirectives(createBaseVNode("input", {
-                        type: "checkbox",
-                        "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => unref(store).state.ui.showPresets = $event)
-                      }, null, 512), [
-                        [vModelCheckbox, unref(store).state.ui.showPresets]
-                      ]),
-                      _cache[16] || (_cache[16] = createTextVNode(" show presets", -1))
-                    ])
-                  ], 64)) : createCommentVNode("", true)
-                ])
-              ]),
-              _: 1
-            })
-          ]),
-          st.value.enabled ? (openBlock(), createElementBlock("button", {
-            key: 0,
-            class: "modebtn",
-            title: st.value.mode === "photo" ? "Photo mode — click to switch to art" : "Art mode — click to switch to photo",
-            onClick: _cache[5] || (_cache[5] = ($event) => st.value.mode = st.value.mode === "photo" ? "art" : "photo")
-          }, [
-            createBaseVNode("i", {
-              class: normalizeClass(["mdi", st.value.mode === "photo" ? "mdi-camera-outline" : "mdi-palette-outline"])
-            }, null, 2)
-          ], 8, _hoisted_6$3)) : createCommentVNode("", true)
+            _cache[6] || (_cache[6] = createBaseVNode("span", {
+              class: "lhead",
+              title: "summary — global image description"
+            }, "summary", -1)),
+            _cache[7] || (_cache[7] = createBaseVNode("span", { class: "grow" }, null, -1)),
+            withDirectives(createBaseVNode("select", {
+              "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => unref(store).state.summary.canvas = $event),
+              class: "canvasmode",
+              title: "summary.canvas — how the canvas is composed"
+            }, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(unref(CANVAS_MODES), (m) => {
+                return openBlock(), createElementBlock("option", {
+                  key: m,
+                  value: m
+                }, toDisplayString(m), 9, _hoisted_3$6);
+              }), 128))
+            ], 512), [
+              [vModelSelect, unref(store).state.summary.canvas]
+            ])
+          ])
         ]),
         default: withCtx(() => [
-          st.value.enabled && unref(store).state.ui.styleOpen ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-            createBaseVNode("div", _hoisted_7$3, [
-              _cache[20] || (_cache[20] = createBaseVNode("span", null, "aesthetics", -1)),
+          unref(store).state.ui.summaryOpen ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+            createBaseVNode("div", _hoisted_4$6, [
+              withDirectives(createBaseVNode("textarea", {
+                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => unref(store).state.summary.caption = $event),
+                rows: "4",
+                placeholder: "global image description — subject, setting, medium, lighting, mood; visible wording goes in text items, quoted exactly here too"
+              }, null, 512), [
+                [vModelText, unref(store).state.summary.caption]
+              ])
+            ]),
+            createBaseVNode("div", _hoisted_5$5, [
+              _cache[8] || (_cache[8] = createBaseVNode("span", null, "meta (medium / genre tags)", -1)),
               createVNode(ComboInput, {
-                modelValue: st.value.aesthetics,
-                "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => st.value.aesthetics = $event),
-                options: opts(unref(PRESETS).aesthetics),
-                placeholder: "moody, cinematic, desaturated"
+                modelValue: metaText.value,
+                "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => metaText.value = $event),
+                options: opts.value,
+                placeholder: "product campaign, studio photography"
               }, null, 8, ["modelValue", "options"])
             ]),
-            createBaseVNode("div", _hoisted_8$3, [
-              _cache[21] || (_cache[21] = createBaseVNode("span", null, "lighting", -1)),
-              createVNode(ComboInput, {
-                modelValue: st.value.lighting,
-                "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => st.value.lighting = $event),
-                options: opts(unref(PRESETS).lighting),
-                placeholder: "golden hour, rim light, soft shadows"
-              }, null, 8, ["modelValue", "options"])
-            ]),
-            st.value.mode === "photo" ? (openBlock(), createElementBlock("div", _hoisted_9$3, [
-              _cache[22] || (_cache[22] = createBaseVNode("span", null, "photo (camera / lens)", -1)),
-              createVNode(ComboInput, {
-                modelValue: st.value.photo,
-                "onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => st.value.photo = $event),
-                options: opts(unref(PRESETS).camera),
-                placeholder: "35mm, f/1.4, shallow depth of field"
-              }, null, 8, ["modelValue", "options"])
-            ])) : createCommentVNode("", true),
-            createBaseVNode("div", _hoisted_10$3, [
-              _cache[23] || (_cache[23] = createBaseVNode("span", null, "medium", -1)),
-              createVNode(ComboInput, {
-                modelValue: st.value.medium,
-                "onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => st.value.medium = $event),
-                options: opts(unref(PRESETS).medium),
-                placeholder: st.value.mode === "photo" ? "photograph" : "illustration / 3d_render / painting…"
-              }, null, 8, ["modelValue", "options", "placeholder"])
-            ]),
-            st.value.mode === "art" ? (openBlock(), createElementBlock("div", _hoisted_11$2, [
-              _cache[24] || (_cache[24] = createBaseVNode("span", null, "art_style", -1)),
-              createVNode(ComboInput, {
-                modelValue: st.value.art_style,
-                "onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => st.value.art_style = $event),
-                options: opts(unref(PRESETS).artStyle),
-                placeholder: "flat vector illustration, bold outlines"
-              }, null, 8, ["modelValue", "options"])
-            ])) : createCommentVNode("", true),
-            createBaseVNode("div", _hoisted_12$2, [
-              _cache[25] || (_cache[25] = createBaseVNode("span", null, "color palette (max 16)", -1)),
+            createBaseVNode("div", _hoisted_6$4, [
+              _cache[9] || (_cache[9] = createBaseVNode("span", null, "color palette (optional)", -1)),
               createVNode(PaletteEditor, {
-                modelValue: st.value.color_palette,
-                "onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => st.value.color_palette = $event),
+                modelValue: unref(store).state.summary.palette,
+                "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => unref(store).state.summary.palette = $event),
                 max: 16,
                 label: "image colors"
               }, null, 8, ["modelValue"])
+            ]),
+            createBaseVNode("label", _hoisted_7$4, [
+              withDirectives(createBaseVNode("input", {
+                type: "checkbox",
+                "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => unref(store).state.ui.showPresets = $event)
+              }, null, 512), [
+                [vModelCheckbox, unref(store).state.ui.showPresets]
+              ]),
+              _cache[10] || (_cache[10] = createTextVNode(" show tag suggestions", -1))
             ])
           ], 64)) : createCommentVNode("", true)
         ]),
@@ -9995,40 +10063,44 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const StylePanel = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-f8a1af21"]]);
-const _hoisted_1$6 = { class: "chead" };
+const SummaryPanel = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-65088df0"]]);
+const _hoisted_1$5 = { class: "chead" };
 const _hoisted_2$5 = {
   class: "lhead",
-  title: "Filter elements"
+  title: "Filter items"
 };
 const _hoisted_3$5 = { class: "lmenu" };
 const _hoisted_4$5 = ["onClick"];
 const _hoisted_5$4 = ["onClick"];
-const _hoisted_6$2 = ["onClick"];
-const _hoisted_7$2 = { class: "adds" };
-const _hoisted_8$2 = ["draggable", "onClick", "onContextmenu", "onDragstart", "onDragover", "onDrop"];
-const _hoisted_9$2 = ["title", "onClick"];
-const _hoisted_10$2 = ["title"];
-const _hoisted_11$1 = { class: "snip" };
-const _hoisted_12$1 = ["onClick"];
-const _hoisted_13$1 = {
+const _hoisted_6$3 = ["onClick"];
+const _hoisted_7$3 = ["onClick"];
+const _hoisted_8$3 = { class: "adds" };
+const _hoisted_9$2 = ["draggable", "onClick", "onContextmenu", "onDragstart", "onDragover", "onDrop"];
+const _hoisted_10$2 = { class: "typeicon" };
+const _hoisted_11$1 = ["title"];
+const _hoisted_12$1 = { class: "snip" };
+const _hoisted_13$1 = ["onClick"];
+const _hoisted_14$1 = {
   key: 1,
   class: "empty"
 };
-const _hoisted_14$1 = {
+const _hoisted_15$1 = {
   key: 2,
   class: "empty"
 };
-const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "ElementList",
   setup(__props) {
     const store = useStudioStore();
     const filter = /* @__PURE__ */ ref("all");
     const filterIcon = computed(
-      () => filter.value === "obj" ? "mdi-shape-outline" : filter.value === "text" ? "mdi-format-text" : "mdi-format-list-bulleted"
+      () => filter.value === "object" ? "mdi-vector-square" : filter.value === "character" ? "mdi-account-outline" : filter.value === "text" ? "mdi-format-text" : "mdi-format-list-bulleted"
     );
+    function labelIcon(label) {
+      return label === "text" ? "mdi-format-text" : label === "character" ? "mdi-account-outline" : "mdi-vector-square";
+    }
     const rows = computed(
-      () => store.state.elements.map((el, i) => ({ el, i })).filter(({ el }) => filter.value === "all" || el.type === filter.value)
+      () => store.state.elements.map((el, i) => ({ el, i })).filter(({ el }) => filter.value === "all" || el.label === filter.value)
     );
     const dragArmed = /* @__PURE__ */ ref(false);
     const dragId = /* @__PURE__ */ ref(null);
@@ -10069,15 +10141,15 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     return (_ctx, _cache) => {
       return openBlock(), createBlock(UiCard, { style: { "flex": "1 1 0", "min-height": "200px" } }, {
         header: withCtx(() => [
-          createBaseVNode("div", _hoisted_1$6, [
+          createBaseVNode("div", _hoisted_1$5, [
             createVNode(UiPopover, { align: "left" }, {
               trigger: withCtx(() => [
                 createBaseVNode("button", _hoisted_2$5, [
                   createBaseVNode("i", {
                     class: normalizeClass(["mdi flt", filterIcon.value])
                   }, null, 2),
-                  createTextVNode(" elements (" + toDisplayString(rows.value.length) + ")", 1),
-                  _cache[5] || (_cache[5] = createBaseVNode("i", { class: "mdi mdi-menu-down" }, null, -1))
+                  createTextVNode(" items (" + toDisplayString(rows.value.length) + ")", 1),
+                  _cache[6] || (_cache[6] = createBaseVNode("i", { class: "mdi mdi-menu-down" }, null, -1))
                 ])
               ]),
               default: withCtx(({ close }) => [
@@ -10088,51 +10160,71 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                       filter.value = "all";
                       close();
                     }
-                  }, [..._cache[6] || (_cache[6] = [
+                  }, [..._cache[7] || (_cache[7] = [
                     createBaseVNode("i", { class: "mdi mdi-format-list-bulleted" }, null, -1),
-                    createTextVNode(" all elements", -1)
+                    createTextVNode(" all items", -1)
                   ])], 10, _hoisted_4$5),
                   createBaseVNode("button", {
-                    class: normalizeClass(["litem", { on: filter.value === "obj" }]),
+                    class: normalizeClass(["litem", { on: filter.value === "object" }]),
                     onClick: ($event) => {
-                      filter.value = "obj";
+                      filter.value = "object";
                       close();
                     }
-                  }, [..._cache[7] || (_cache[7] = [
-                    createBaseVNode("i", { class: "mdi mdi-shape-outline" }, null, -1),
-                    createTextVNode(" objects only", -1)
+                  }, [..._cache[8] || (_cache[8] = [
+                    createBaseVNode("i", { class: "mdi mdi-vector-square" }, null, -1),
+                    createTextVNode(" objects", -1)
                   ])], 10, _hoisted_5$4),
+                  createBaseVNode("button", {
+                    class: normalizeClass(["litem", { on: filter.value === "character" }]),
+                    onClick: ($event) => {
+                      filter.value = "character";
+                      close();
+                    }
+                  }, [..._cache[9] || (_cache[9] = [
+                    createBaseVNode("i", { class: "mdi mdi-account-outline" }, null, -1),
+                    createTextVNode(" characters", -1)
+                  ])], 10, _hoisted_6$3),
                   createBaseVNode("button", {
                     class: normalizeClass(["litem", { on: filter.value === "text" }]),
                     onClick: ($event) => {
                       filter.value = "text";
                       close();
                     }
-                  }, [..._cache[8] || (_cache[8] = [
+                  }, [..._cache[10] || (_cache[10] = [
                     createBaseVNode("i", { class: "mdi mdi-format-text" }, null, -1),
-                    createTextVNode(" text only", -1)
-                  ])], 10, _hoisted_6$2)
+                    createTextVNode(" text", -1)
+                  ])], 10, _hoisted_7$3)
                 ])
               ]),
               _: 1
             })
           ]),
-          createBaseVNode("div", _hoisted_7$2, [
+          createBaseVNode("div", _hoisted_8$3, [
             createVNode(UiButton, {
               title: "Add an object box",
-              onClick: _cache[0] || (_cache[0] = ($event) => unref(store).addElement("obj"))
+              onClick: _cache[0] || (_cache[0] = ($event) => unref(store).addElement("object"))
             }, {
-              default: withCtx(() => [..._cache[9] || (_cache[9] = [
+              default: withCtx(() => [..._cache[11] || (_cache[11] = [
                 createBaseVNode("i", { class: "mdi mdi-plus" }, null, -1),
                 createTextVNode(" obj", -1)
               ])]),
               _: 1
             }),
             createVNode(UiButton, {
-              title: "Add a text box",
-              onClick: _cache[1] || (_cache[1] = ($event) => unref(store).addElement("text"))
+              title: "Add a character box",
+              onClick: _cache[1] || (_cache[1] = ($event) => unref(store).addElement("character"))
             }, {
-              default: withCtx(() => [..._cache[10] || (_cache[10] = [
+              default: withCtx(() => [..._cache[12] || (_cache[12] = [
+                createBaseVNode("i", { class: "mdi mdi-plus" }, null, -1),
+                createTextVNode(" char", -1)
+              ])]),
+              _: 1
+            }),
+            createVNode(UiButton, {
+              title: "Add a text box",
+              onClick: _cache[2] || (_cache[2] = ($event) => unref(store).addElement("text"))
+            }, {
+              default: withCtx(() => [..._cache[13] || (_cache[13] = [
                 createBaseVNode("i", { class: "mdi mdi-plus" }, null, -1),
                 createTextVNode(" text", -1)
               ])]),
@@ -10144,13 +10236,13 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
           rows.value.length ? (openBlock(), createElementBlock("ul", {
             key: 0,
             class: "ellist",
-            onPointerup: _cache[4] || (_cache[4] = ($event) => dragArmed.value = false)
+            onPointerup: _cache[5] || (_cache[5] = ($event) => dragArmed.value = false)
           }, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(rows.value, ({ el, i }) => {
               return openBlock(), createElementBlock("li", {
                 key: el.id,
                 draggable: dragArmed.value,
-                class: normalizeClass({ sel: unref(store).isSelected(el.id), primary: el.id === unref(store).selectedId, grouped: !!el.groupId, muted: el.enabled === false, dragover: overIdx.value === i && dragId.value && dragId.value !== el.id, dragging: dragId.value === el.id }),
+                class: normalizeClass({ sel: unref(store).isSelected(el.id), primary: el.id === unref(store).selectedId, grouped: !!el.groupId, dragover: overIdx.value === i && dragId.value && dragId.value !== el.id, dragging: dragId.value === el.id }),
                 style: normalizeStyle(el.groupId ? { "--gc": unref(groupColor)(el.groupId) } : {}),
                 onClick: ($event) => rowClick($event, el.id),
                 onContextmenu: withModifiers(($event) => openMenu($event, el.id), ["prevent"]),
@@ -10163,19 +10255,15 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                   key: 0,
                   class: "mdi mdi-drag-vertical handle",
                   title: "Drag to reorder",
-                  onPointerdown: _cache[2] || (_cache[2] = ($event) => dragArmed.value = true),
-                  onClick: _cache[3] || (_cache[3] = withModifiers(() => {
+                  onPointerdown: _cache[3] || (_cache[3] = ($event) => dragArmed.value = true),
+                  onClick: _cache[4] || (_cache[4] = withModifiers(() => {
                   }, ["stop"]))
                 }, null, 32)) : createCommentVNode("", true),
-                createBaseVNode("button", {
-                  class: normalizeClass(["typebtn", { off: el.enabled === false }]),
-                  title: el.enabled === false ? "Muted — click to unmute" : "Click to mute (kept in the editor, excluded from output)",
-                  onClick: withModifiers(($event) => unref(store).toggleEnabled(el.id), ["stop"])
-                }, [
+                createBaseVNode("span", _hoisted_10$2, [
                   createBaseVNode("i", {
-                    class: normalizeClass(["mdi", el.enabled === false ? "mdi-eye-off-outline" : el.type === "text" ? "mdi-format-text" : "mdi-shape-outline"])
+                    class: normalizeClass(["mdi", labelIcon(el.label)])
                   }, null, 2)
-                ], 10, _hoisted_9$2),
+                ]),
                 createBaseVNode("span", {
                   class: "idxchip",
                   style: normalizeStyle({ background: el.boxColor })
@@ -10184,34 +10272,34 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                   key: 1,
                   class: "mdi mdi-link-variant link",
                   title: "Linked ×" + unref(store).linkGroupSize(el.id)
-                }, null, 8, _hoisted_10$2)) : createCommentVNode("", true),
-                createBaseVNode("span", _hoisted_11$1, toDisplayString(el.type === "text" ? "“" + (el.text || "…") + "”" : el.desc || "object…"), 1),
+                }, null, 8, _hoisted_11$1)) : createCommentVNode("", true),
+                createBaseVNode("span", _hoisted_12$1, toDisplayString(el.label === "text" ? "“" + (el.text || "…") + "”" : el.caption || el.label + "…"), 1),
                 createBaseVNode("button", {
                   class: "more",
                   title: "Actions (or right-click the row)",
                   onClick: withModifiers(($event) => openMenu($event, el.id), ["stop"])
-                }, [..._cache[11] || (_cache[11] = [
+                }, [..._cache[14] || (_cache[14] = [
                   createBaseVNode("i", { class: "mdi mdi-dots-horizontal" }, null, -1)
-                ])], 8, _hoisted_12$1)
-              ], 46, _hoisted_8$2);
+                ])], 8, _hoisted_13$1)
+              ], 46, _hoisted_9$2);
             }), 128))
-          ], 32)) : unref(store).state.elements.length ? (openBlock(), createElementBlock("p", _hoisted_13$1, "no " + toDisplayString(filter.value) + " elements", 1)) : (openBlock(), createElementBlock("p", _hoisted_14$1, "No elements yet — draw a box on the canvas, or use + obj / + text."))
+          ], 32)) : unref(store).state.elements.length ? (openBlock(), createElementBlock("p", _hoisted_14$1, "no " + toDisplayString(filter.value) + " items", 1)) : (openBlock(), createElementBlock("p", _hoisted_15$1, "No items yet — draw a box on the canvas, or use + obj / + char / + text."))
         ]),
         _: 1
       });
     };
   }
 });
-const ElementList = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-c5b6f8e4"]]);
-const _hoisted_1$5 = { class: "jctrl" };
+const ElementList = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-cdf8ce90"]]);
+const _hoisted_1$4 = { class: "jctrl" };
 const _hoisted_2$4 = ["title"];
 const _hoisted_3$4 = ["title"];
 const _hoisted_4$4 = {
   key: 2,
   class: "jtok",
-  title: "Estimated token count (rough)"
+  title: "Compiled prompt token estimate (rough)"
 };
-const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "JsonControls",
   setup(__props) {
     const store = useStudioStore();
@@ -10219,10 +10307,10 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     const copied = /* @__PURE__ */ ref(false);
     const result = computed(() => serialize(store.state));
     const warnings = computed(() => result.value.warnings);
-    const tokens = computed(() => Math.round(result.value.json.length / 4));
+    const tokens = computed(() => Math.round(result.value.prompt.length / 4));
     const parseError = computed(() => {
       if (!j.editing || !j.draft.trim()) return "";
-      const res = parseCaptionLoose(j.draft);
+      const res = parseJsonLoose(j.draft);
       return res.ok ? "" : res.error;
     });
     const statusClass = computed(() => {
@@ -10232,7 +10320,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     const statusTitle = computed(() => {
       if (j.editing) return parseError.value ? "Invalid JSON" : "Parses OK";
       return warnings.value.length ? `${warnings.value.length} warning${warnings.value.length > 1 ? "s" : ""}:
-${warnings.value.join("\n")}` : "Valid caption";
+${warnings.value.join("\n")}` : "Valid draft";
     });
     function toggleSync() {
       store.state.ui.jsonSync = !store.state.ui.jsonSync;
@@ -10240,14 +10328,14 @@ ${warnings.value.join("\n")}` : "Valid caption";
     }
     async function copy() {
       try {
-        await navigator.clipboard.writeText(serialize(store.state).pretty);
+        await navigator.clipboard.writeText(serialize(store.state).draftPretty);
         copied.value = true;
         setTimeout(() => copied.value = false, 1200);
       } catch {
       }
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$5, [
+      return openBlock(), createElementBlock("div", _hoisted_1$4, [
         createBaseVNode("i", {
           class: normalizeClass(["jstat mdi", statusClass.value]),
           title: statusTitle.value
@@ -10261,7 +10349,7 @@ ${warnings.value.join("\n")}` : "Valid caption";
           key: 1,
           icon: "",
           active: unref(store).state.ui.jsonSync,
-          title: "Live-import caption + resolution from an Ideogram Studio Sync node",
+          title: "Live-import draft JSON from a MOSS Studio JSON Sync node",
           onClick: toggleSync
         }, {
           default: withCtx(() => [..._cache[5] || (_cache[5] = [
@@ -10275,7 +10363,7 @@ ${warnings.value.join("\n")}` : "Valid caption";
           unref(store).state.ui.jsonOpen ? (openBlock(), createBlock(UiButton, {
             key: 0,
             icon: "",
-            title: copied.value ? "Copied" : "Copy JSON",
+            title: copied.value ? "Copied" : "Copy draft JSON",
             onClick: copy
           }, {
             default: withCtx(() => [
@@ -10340,21 +10428,21 @@ ${warnings.value.join("\n")}` : "Valid caption";
     };
   }
 });
-const JsonControls = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-411cdf33"]]);
-const _hoisted_1$4 = { class: "ehead" };
+const JsonControls = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-d7916295"]]);
+const _hoisted_1$3 = { class: "ehead" };
 const _hoisted_2$3 = ["title"];
 const _hoisted_3$3 = ["value"];
 const _hoisted_4$3 = { class: "seg" };
-const _hoisted_5$3 = ["title"];
-const _hoisted_6$1 = {
+const _hoisted_5$3 = {
   key: 0,
   class: "filine"
 };
-const _hoisted_7$1 = ["value"];
-const _hoisted_8$1 = { class: "filine" };
-const _hoisted_9$1 = ["value", "placeholder"];
+const _hoisted_6$2 = ["value"];
+const _hoisted_7$2 = { class: "filine" };
+const _hoisted_8$2 = ["value", "placeholder"];
+const _hoisted_9$1 = { class: "filine" };
 const _hoisted_10$1 = { class: "filine" };
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "ElementEditor",
   setup(__props) {
     const store = useStudioStore();
@@ -10362,20 +10450,23 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     const index = computed(() => store.state.elements.findIndex((e) => e.id === store.selectedId));
     const linked = computed(() => !!el.value?.linkId);
     const groupSize = computed(() => el.value ? store.linkGroupSize(el.value.id) : 1);
+    const opts = computed(() => store.state.ui.showPresets ? PRESETS.tags : []);
+    const sharedTags = computed({
+      get: () => el.value ? el.value.tags.join(", ") : "",
+      set: (v) => {
+        if (el.value) store.setShared(el.value.id, "tags", v.split(",").map((s) => s.trim()).filter(Boolean));
+      }
+    });
     function setShared(key, value) {
       if (el.value) store.setShared(el.value.id, key, value);
-    }
-    function toggleBbox() {
-      if (!el.value) return;
-      el.value.bbox = el.value.bbox ? null : [300, 300, 700, 700];
     }
     return (_ctx, _cache) => {
       return el.value ? (openBlock(), createBlock(UiCard, { key: 0 }, {
         header: withCtx(() => [
-          createBaseVNode("div", _hoisted_1$4, [
+          createBaseVNode("div", _hoisted_1$3, [
             createBaseVNode("label", {
               class: "idchip",
-              title: "Element " + (index.value + 1) + (linked.value ? " · linked ×" + groupSize.value : "") + " — click to recolour"
+              title: "Item " + (index.value + 1) + (linked.value ? " · linked ×" + groupSize.value : "") + " — click to recolour"
             }, [
               createBaseVNode("span", {
                 class: "n",
@@ -10390,47 +10481,45 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
             createBaseVNode("div", _hoisted_4$3, [
               createVNode(UiButton, {
                 icon: "",
-                active: el.value.type === "obj",
+                active: el.value.label === "object",
                 title: "Object",
-                onClick: _cache[1] || (_cache[1] = ($event) => setShared("type", "obj"))
+                onClick: _cache[1] || (_cache[1] = ($event) => setShared("label", "object"))
               }, {
-                default: withCtx(() => [..._cache[9] || (_cache[9] = [
-                  createBaseVNode("i", { class: "mdi mdi-shape-outline" }, null, -1)
+                default: withCtx(() => [..._cache[10] || (_cache[10] = [
+                  createBaseVNode("i", { class: "mdi mdi-vector-square" }, null, -1)
                 ])]),
                 _: 1
               }, 8, ["active"]),
               createVNode(UiButton, {
                 icon: "",
-                active: el.value.type === "text",
-                title: "Text",
-                onClick: _cache[2] || (_cache[2] = ($event) => setShared("type", "text"))
+                active: el.value.label === "character",
+                title: "Character",
+                onClick: _cache[2] || (_cache[2] = ($event) => setShared("label", "character"))
               }, {
-                default: withCtx(() => [..._cache[10] || (_cache[10] = [
+                default: withCtx(() => [..._cache[11] || (_cache[11] = [
+                  createBaseVNode("i", { class: "mdi mdi-account-outline" }, null, -1)
+                ])]),
+                _: 1
+              }, 8, ["active"]),
+              createVNode(UiButton, {
+                icon: "",
+                active: el.value.label === "text",
+                title: "Text",
+                onClick: _cache[3] || (_cache[3] = ($event) => setShared("label", "text"))
+              }, {
+                default: withCtx(() => [..._cache[12] || (_cache[12] = [
                   createBaseVNode("i", { class: "mdi mdi-format-text" }, null, -1)
                 ])]),
                 _: 1
               }, 8, ["active"])
             ]),
+            _cache[15] || (_cache[15] = createBaseVNode("span", { class: "grow" }, null, -1)),
             createVNode(UiButton, {
               icon: "",
-              active: !!el.value.bbox,
-              title: el.value.bbox ? "Has a box — position it by dragging on the canvas. Click to let the model auto-place instead." : "Auto-placed by the model. Click to add a box you can position.",
-              onClick: toggleBbox
+              title: "Linked copy — shares content, keeps its own position",
+              onClick: _cache[4] || (_cache[4] = ($event) => unref(store).duplicateLinked(el.value.id))
             }, {
-              default: withCtx(() => [
-                createBaseVNode("i", {
-                  class: normalizeClass(["mdi", el.value.bbox ? "mdi-vector-square" : "mdi-map-marker-question-outline"])
-                }, null, 2)
-              ]),
-              _: 1
-            }, 8, ["active", "title"]),
-            _cache[13] || (_cache[13] = createBaseVNode("span", { class: "grow" }, null, -1)),
-            createVNode(UiButton, {
-              icon: "",
-              title: "Linked copy — shares prompt, keeps its own position",
-              onClick: _cache[3] || (_cache[3] = ($event) => unref(store).duplicateLinked(el.value.id))
-            }, {
-              default: withCtx(() => [..._cache[11] || (_cache[11] = [
+              default: withCtx(() => [..._cache[13] || (_cache[13] = [
                 createBaseVNode("i", { class: "mdi mdi-link-variant-plus" }, null, -1)
               ])]),
               _: 1
@@ -10439,50 +10528,50 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
               key: 0,
               icon: "",
               title: "Unlink from group (×" + groupSize.value + ")",
-              onClick: _cache[4] || (_cache[4] = ($event) => unref(store).unlink(el.value.id))
+              onClick: _cache[5] || (_cache[5] = ($event) => unref(store).unlink(el.value.id))
             }, {
-              default: withCtx(() => [..._cache[12] || (_cache[12] = [
+              default: withCtx(() => [..._cache[14] || (_cache[14] = [
                 createBaseVNode("i", { class: "mdi mdi-link-variant-off" }, null, -1)
               ])]),
               _: 1
-            }, 8, ["title"])) : createCommentVNode("", true),
-            createBaseVNode("button", {
-              class: normalizeClass(["mute", { off: el.value.enabled === false }]),
-              title: el.value.enabled === false ? "Muted — excluded from output. Click to enable." : "Mute (keep but exclude from output)",
-              onClick: _cache[5] || (_cache[5] = ($event) => unref(store).toggleEnabled(el.value.id))
-            }, [
-              createBaseVNode("i", {
-                class: normalizeClass(["mdi", el.value.enabled === false ? "mdi-eye-off-outline" : "mdi-eye-outline"])
-              }, null, 2)
-            ], 10, _hoisted_5$3)
+            }, 8, ["title"])) : createCommentVNode("", true)
           ])
         ]),
         default: withCtx(() => [
-          el.value.type === "text" ? (openBlock(), createElementBlock("label", _hoisted_6$1, [
-            _cache[14] || (_cache[14] = createBaseVNode("span", null, "text", -1)),
+          el.value.label === "text" ? (openBlock(), createElementBlock("label", _hoisted_5$3, [
+            _cache[16] || (_cache[16] = createBaseVNode("span", null, "text", -1)),
             createBaseVNode("input", {
               value: el.value.text,
               type: "text",
-              placeholder: "literal text the model should draw",
+              placeholder: "exact visible characters (line breaks via \\n)",
               onInput: _cache[6] || (_cache[6] = ($event) => setShared("text", $event.target.value))
-            }, null, 40, _hoisted_7$1)
+            }, null, 40, _hoisted_6$2)
           ])) : createCommentVNode("", true),
-          createBaseVNode("label", _hoisted_8$1, [
-            _cache[15] || (_cache[15] = createBaseVNode("span", null, "desc", -1)),
+          createBaseVNode("label", _hoisted_7$2, [
+            _cache[17] || (_cache[17] = createBaseVNode("span", null, "caption", -1)),
             createBaseVNode("textarea", {
-              value: el.value.desc,
+              value: el.value.caption,
               rows: "2",
-              placeholder: el.value.type === "text" ? "how the text looks (font, colour, placement)" : "detailed description of this object",
-              onInput: _cache[7] || (_cache[7] = ($event) => setShared("desc", $event.target.value))
-            }, null, 40, _hoisted_9$1)
+              placeholder: el.value.label === "text" ? "typography and surface treatment of this text" : "visible appearance of this " + el.value.label,
+              onInput: _cache[7] || (_cache[7] = ($event) => setShared("caption", $event.target.value))
+            }, null, 40, _hoisted_8$2)
+          ]),
+          createBaseVNode("div", _hoisted_9$1, [
+            _cache[18] || (_cache[18] = createBaseVNode("span", null, "tags", -1)),
+            createVNode(ComboInput, {
+              modelValue: sharedTags.value,
+              "onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => sharedTags.value = $event),
+              options: opts.value,
+              placeholder: "optional visual tags, comma-separated"
+            }, null, 8, ["modelValue", "options"])
           ]),
           createBaseVNode("div", _hoisted_10$1, [
-            _cache[16] || (_cache[16] = createBaseVNode("span", null, "colours", -1)),
+            _cache[19] || (_cache[19] = createBaseVNode("span", null, "colours", -1)),
             createVNode(PaletteEditor, {
-              modelValue: el.value.color_palette,
-              max: 5,
-              label: "element colours",
-              "onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => setShared("color_palette", $event))
+              modelValue: el.value.palette,
+              max: 8,
+              label: "item colours",
+              "onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => setShared("palette", $event))
             }, null, 8, ["modelValue"])
           ])
         ]),
@@ -10491,34 +10580,42 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ElementEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-543ee4ee"]]);
-const _hoisted_1$3 = {
+const ElementEditor = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-250c5e97"]]);
+const _hoisted_1$2 = {
   key: 1,
   class: "json"
 };
 const _hoisted_2$2 = {
   key: 2,
-  class: "parseerr"
+  class: "compiled"
 };
-const _hoisted_3$2 = { class: "errhead" };
-const _hoisted_4$2 = { class: "msg" };
+const _hoisted_3$2 = ["title"];
+const _hoisted_4$2 = { class: "cline" };
 const _hoisted_5$2 = {
   key: 3,
+  class: "parseerr"
+};
+const _hoisted_6$1 = { class: "errhead" };
+const _hoisted_7$1 = { class: "msg" };
+const _hoisted_8$1 = {
+  key: 4,
   class: "warnlist"
 };
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "JsonPreview",
   setup(__props) {
     const store = useStudioStore();
     const j = store.json;
     const taEl = /* @__PURE__ */ ref(null);
     const copiedErr = /* @__PURE__ */ ref(false);
+    const copiedPrompt = /* @__PURE__ */ ref(false);
     const result = computed(() => serialize(store.state));
-    const pretty = computed(() => result.value.pretty);
+    const pretty = computed(() => result.value.draftPretty);
+    const prompt = computed(() => result.value.prompt);
     const warnings = computed(() => result.value.warnings);
     const parseInfo = computed(() => {
       if (!j.editing || !j.draft.trim()) return { error: "", line: null, col: null };
-      if (parseCaptionLoose(j.draft).ok) return { error: "", line: null, col: null };
+      if (parseJsonLoose(j.draft).ok) return { error: "", line: null, col: null };
       try {
         JSON.parse(j.draft);
         return { error: "", line: null, col: null };
@@ -10583,6 +10680,14 @@ ${parseFrame.value}` : parseMsg.value;
       } catch {
       }
     }
+    async function copyPrompt() {
+      try {
+        await navigator.clipboard.writeText(prompt.value);
+        copiedPrompt.value = true;
+        setTimeout(() => copiedPrompt.value = false, 1200);
+      } catch {
+      }
+    }
     return (_ctx, _cache) => {
       return unref(store).state.ui.jsonOpen ? (openBlock(), createBlock(UiCard, {
         key: 0,
@@ -10596,13 +10701,25 @@ ${parseFrame.value}` : parseMsg.value;
             "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => unref(j).draft = $event),
             class: normalizeClass(["json edit", { bad: !!parseError.value }]),
             spellcheck: "false",
-            placeholder: "Paste an Ideogram JSON caption here, then Apply to load it into the studio."
+            placeholder: "Paste a whole MOSS draft JSON (or a compiled prompt) here, then Apply to load it into the studio."
           }, null, 2)), [
             [vModelText, unref(j).draft]
-          ]) : (openBlock(), createElementBlock("pre", _hoisted_1$3, toDisplayString(pretty.value), 1)),
-          unref(j).editing && parseError.value ? (openBlock(), createElementBlock("div", _hoisted_2$2, [
-            createBaseVNode("div", _hoisted_3$2, [
-              createBaseVNode("span", _hoisted_4$2, "⚠ " + toDisplayString(parseMsg.value), 1),
+          ]) : (openBlock(), createElementBlock("pre", _hoisted_1$2, toDisplayString(pretty.value), 1)),
+          !unref(j).editing ? (openBlock(), createElementBlock("div", _hoisted_2$2, [
+            _cache[1] || (_cache[1] = createBaseVNode("span", {
+              class: "clbl",
+              title: "The compiled model prompt — what the prompt output sends to the sampler"
+            }, "compiled prompt", -1)),
+            createBaseVNode("button", {
+              class: "cbtn",
+              title: copiedPrompt.value ? "Copied" : "Copy the compiled prompt",
+              onClick: copyPrompt
+            }, toDisplayString(copiedPrompt.value ? "✓" : "⧉"), 9, _hoisted_3$2),
+            createBaseVNode("pre", _hoisted_4$2, toDisplayString(prompt.value), 1)
+          ])) : createCommentVNode("", true),
+          unref(j).editing && parseError.value ? (openBlock(), createElementBlock("div", _hoisted_5$2, [
+            createBaseVNode("div", _hoisted_6$1, [
+              createBaseVNode("span", _hoisted_7$1, "⚠ " + toDisplayString(parseMsg.value), 1),
               parseInfo.value.line ? (openBlock(), createElementBlock("button", {
                 key: 0,
                 class: "ebtn",
@@ -10622,7 +10739,7 @@ ${parseFrame.value}` : parseMsg.value;
               onClick: jumpToError
             }, toDisplayString(parseFrame.value), 1)) : createCommentVNode("", true)
           ])) : createCommentVNode("", true),
-          !unref(j).editing && warnings.value.length ? (openBlock(), createElementBlock("ul", _hoisted_5$2, [
+          !unref(j).editing && warnings.value.length ? (openBlock(), createElementBlock("ul", _hoisted_8$1, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(warnings.value, (w, i) => {
               return openBlock(), createElementBlock("li", { key: i }, toDisplayString(w), 1);
             }), 128))
@@ -10633,13 +10750,13 @@ ${parseFrame.value}` : parseMsg.value;
     };
   }
 });
-const JsonPreview = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-47a534e6"]]);
-const _hoisted_1$2 = { class: "ctxhead" };
+const JsonPreview = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-919c184b"]]);
+const _hoisted_1$1 = { class: "ctxhead" };
 const _hoisted_2$1 = { class: "cnum" };
 const _hoisted_3$1 = { class: "ctxhead" };
 const _hoisted_4$1 = { class: "cnum" };
 const _hoisted_5$1 = ["value", "placeholder"];
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ElementContextMenu",
   setup(__props) {
     const store = useStudioStore();
@@ -10656,18 +10773,14 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       if (!g || !ids.every((id) => store.getElement(id)?.groupId === g)) return false;
       return store.groupSize(ids[0]) === ids.length;
     });
-    function toggleMuteBulk() {
-      const anyEnabled = store.selectedIds.some((id) => store.getElement(id)?.enabled !== false);
-      for (const id of store.selectedIds) {
-        const e = store.getElement(id);
-        if (e) e.enabled = !anyEnabled;
-      }
+    function labelIcon(label) {
+      return label === "text" ? "mdi-format-text" : label === "character" ? "mdi-account-outline" : "mdi-vector-square";
     }
     function ungroupBulk() {
       for (const id of [...store.selectedIds]) store.ungroup(id);
     }
     function onEdit(v) {
-      if (el.value) store.setShared(el.value.id, el.value.type === "text" ? "text" : "desc", v);
+      if (el.value) store.setShared(el.value.id, el.value.label === "text" ? "text" : "caption", v);
     }
     function close() {
       store.closeContextMenu();
@@ -10709,13 +10822,13 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           createBaseVNode("div", {
             class: "ctx",
             style: normalizeStyle(style.value),
-            onPointerdown: _cache[16] || (_cache[16] = withModifiers(() => {
+            onPointerdown: _cache[14] || (_cache[14] = withModifiers(() => {
             }, ["stop"])),
-            onContextmenu: _cache[17] || (_cache[17] = withModifiers(() => {
+            onContextmenu: _cache[15] || (_cache[15] = withModifiers(() => {
             }, ["prevent", "stop"]))
           }, [
             bulk.value ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-              createBaseVNode("div", _hoisted_1$2, [
+              createBaseVNode("div", _hoisted_1$1, [
                 createBaseVNode("i", {
                   class: normalizeClass(["mdi", isOneGroup.value ? "mdi-group" : "mdi-checkbox-multiple-marked-outline"])
                 }, null, 2),
@@ -10725,7 +10838,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                 key: 0,
                 class: "ctxitem",
                 onClick: _cache[0] || (_cache[0] = ($event) => run(() => unref(store).group(unref(store).selectedIds)))
-              }, [..._cache[18] || (_cache[18] = [
+              }, [..._cache[16] || (_cache[16] = [
                 createBaseVNode("i", { class: "mdi mdi-group" }, null, -1),
                 createTextVNode(" group", -1)
               ])])) : createCommentVNode("", true),
@@ -10733,38 +10846,31 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                 key: 1,
                 class: "ctxitem",
                 onClick: _cache[1] || (_cache[1] = ($event) => run(ungroupBulk))
-              }, [..._cache[19] || (_cache[19] = [
+              }, [..._cache[17] || (_cache[17] = [
                 createBaseVNode("i", { class: "mdi mdi-ungroup" }, null, -1),
                 createTextVNode(" ungroup", -1)
               ])])) : createCommentVNode("", true),
               createBaseVNode("button", {
                 class: "ctxitem",
-                onClick: _cache[2] || (_cache[2] = ($event) => run(toggleMuteBulk))
-              }, [..._cache[20] || (_cache[20] = [
-                createBaseVNode("i", { class: "mdi mdi-eye-off-outline" }, null, -1),
-                createTextVNode(" toggle mute", -1)
-              ])]),
-              createBaseVNode("button", {
-                class: "ctxitem",
-                onClick: _cache[3] || (_cache[3] = ($event) => run(() => unref(store).duplicateMany(unref(store).selectedIds)))
+                onClick: _cache[2] || (_cache[2] = ($event) => run(() => unref(store).duplicateMany(unref(store).selectedIds)))
               }, [
-                _cache[21] || (_cache[21] = createBaseVNode("i", { class: "mdi mdi-content-copy" }, null, -1)),
+                _cache[18] || (_cache[18] = createBaseVNode("i", { class: "mdi mdi-content-copy" }, null, -1)),
                 createTextVNode(" duplicate" + toDisplayString(isOneGroup.value ? " group" : ""), 1)
               ]),
               createBaseVNode("button", {
                 class: "ctxitem",
-                onClick: _cache[4] || (_cache[4] = ($event) => run(unref(store).copySelection))
-              }, [..._cache[22] || (_cache[22] = [
+                onClick: _cache[3] || (_cache[3] = ($event) => run(unref(store).copySelection))
+              }, [..._cache[19] || (_cache[19] = [
                 createBaseVNode("i", { class: "mdi mdi-content-duplicate" }, null, -1),
                 createTextVNode(" copy ", -1),
                 createBaseVNode("span", { class: "ctxkey" }, "⌘C", -1)
               ])]),
-              _cache[24] || (_cache[24] = createBaseVNode("div", { class: "ctxdiv" }, null, -1)),
+              _cache[21] || (_cache[21] = createBaseVNode("div", { class: "ctxdiv" }, null, -1)),
               createBaseVNode("button", {
                 class: "ctxitem del",
-                onClick: _cache[5] || (_cache[5] = ($event) => runBulk((id) => unref(store).removeElement(id)))
+                onClick: _cache[4] || (_cache[4] = ($event) => runBulk((id) => unref(store).removeElement(id)))
               }, [
-                _cache[23] || (_cache[23] = createBaseVNode("i", { class: "mdi mdi-delete-outline" }, null, -1)),
+                _cache[20] || (_cache[20] = createBaseVNode("i", { class: "mdi mdi-delete-outline" }, null, -1)),
                 createTextVNode(" delete " + toDisplayString(unref(store).selectedIds.length), 1)
               ])
             ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
@@ -10775,46 +10881,37 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                 }, null, 4),
                 createBaseVNode("span", _hoisted_4$1, "#" + toDisplayString(index.value + 1), 1),
                 createBaseVNode("i", {
-                  class: normalizeClass(["mdi", el.value.type === "text" ? "mdi-format-text" : "mdi-shape-outline"])
+                  class: normalizeClass(["mdi", labelIcon(el.value.label)])
                 }, null, 2)
               ]),
               createBaseVNode("input", {
                 ref_key: "editEl",
                 ref: editEl,
                 class: "ctxedit",
-                value: el.value.type === "text" ? el.value.text : el.value.desc,
-                placeholder: el.value.type === "text" ? "text to render…" : "description…",
-                onInput: _cache[6] || (_cache[6] = ($event) => onEdit($event.target.value)),
-                onKeydown: _cache[7] || (_cache[7] = withModifiers(() => {
+                value: el.value.label === "text" ? el.value.text : el.value.caption,
+                placeholder: el.value.label === "text" ? "text to render…" : "caption…",
+                onInput: _cache[5] || (_cache[5] = ($event) => onEdit($event.target.value)),
+                onKeydown: _cache[6] || (_cache[6] = withModifiers(() => {
                 }, ["stop"]))
               }, null, 40, _hoisted_5$1),
               createBaseVNode("button", {
                 class: "ctxitem",
-                onClick: _cache[8] || (_cache[8] = ($event) => run(() => unref(store).toggleEnabled(m.value.id)))
-              }, [
-                createBaseVNode("i", {
-                  class: normalizeClass(["mdi", el.value.enabled === false ? "mdi-eye-outline" : "mdi-eye-off-outline"])
-                }, null, 2),
-                createTextVNode(" " + toDisplayString(el.value.enabled === false ? "unmute" : "mute"), 1)
-              ]),
-              createBaseVNode("button", {
-                class: "ctxitem",
-                onClick: _cache[9] || (_cache[9] = ($event) => run(() => unref(store).duplicateLinked(m.value.id)))
-              }, [..._cache[25] || (_cache[25] = [
+                onClick: _cache[7] || (_cache[7] = ($event) => run(() => unref(store).duplicateLinked(m.value.id)))
+              }, [..._cache[22] || (_cache[22] = [
                 createBaseVNode("i", { class: "mdi mdi-link-variant-plus" }, null, -1),
                 createTextVNode(" linked copy", -1)
               ])]),
               createBaseVNode("button", {
                 class: "ctxitem",
-                onClick: _cache[10] || (_cache[10] = ($event) => run(() => unref(store).duplicateElement(m.value.id)))
-              }, [..._cache[26] || (_cache[26] = [
+                onClick: _cache[8] || (_cache[8] = ($event) => run(() => unref(store).duplicateElement(m.value.id)))
+              }, [..._cache[23] || (_cache[23] = [
                 createBaseVNode("i", { class: "mdi mdi-content-copy" }, null, -1),
                 createTextVNode(" duplicate", -1)
               ])]),
               createBaseVNode("button", {
                 class: "ctxitem",
-                onClick: _cache[11] || (_cache[11] = ($event) => run(unref(store).copySelection))
-              }, [..._cache[27] || (_cache[27] = [
+                onClick: _cache[9] || (_cache[9] = ($event) => run(unref(store).copySelection))
+              }, [..._cache[24] || (_cache[24] = [
                 createBaseVNode("i", { class: "mdi mdi-content-duplicate" }, null, -1),
                 createTextVNode(" copy ", -1),
                 createBaseVNode("span", { class: "ctxkey" }, "⌘C", -1)
@@ -10822,31 +10919,31 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
               el.value.linkId ? (openBlock(), createElementBlock("button", {
                 key: 0,
                 class: "ctxitem",
-                onClick: _cache[12] || (_cache[12] = ($event) => run(() => unref(store).unlink(m.value.id)))
-              }, [..._cache[28] || (_cache[28] = [
+                onClick: _cache[10] || (_cache[10] = ($event) => run(() => unref(store).unlink(m.value.id)))
+              }, [..._cache[25] || (_cache[25] = [
                 createBaseVNode("i", { class: "mdi mdi-link-variant-off" }, null, -1),
                 createTextVNode(" unlink", -1)
               ])])) : createCommentVNode("", true),
-              _cache[32] || (_cache[32] = createBaseVNode("div", { class: "ctxdiv" }, null, -1)),
+              _cache[29] || (_cache[29] = createBaseVNode("div", { class: "ctxdiv" }, null, -1)),
               createBaseVNode("button", {
                 class: "ctxitem",
-                onClick: _cache[13] || (_cache[13] = ($event) => run(() => unref(store).moveElement(m.value.id, -1)))
-              }, [..._cache[29] || (_cache[29] = [
+                onClick: _cache[11] || (_cache[11] = ($event) => run(() => unref(store).moveElement(m.value.id, -1)))
+              }, [..._cache[26] || (_cache[26] = [
                 createBaseVNode("i", { class: "mdi mdi-arrow-up" }, null, -1),
                 createTextVNode(" move up", -1)
               ])]),
               createBaseVNode("button", {
                 class: "ctxitem",
-                onClick: _cache[14] || (_cache[14] = ($event) => run(() => unref(store).moveElement(m.value.id, 1)))
-              }, [..._cache[30] || (_cache[30] = [
+                onClick: _cache[12] || (_cache[12] = ($event) => run(() => unref(store).moveElement(m.value.id, 1)))
+              }, [..._cache[27] || (_cache[27] = [
                 createBaseVNode("i", { class: "mdi mdi-arrow-down" }, null, -1),
                 createTextVNode(" move down", -1)
               ])]),
-              _cache[33] || (_cache[33] = createBaseVNode("div", { class: "ctxdiv" }, null, -1)),
+              _cache[30] || (_cache[30] = createBaseVNode("div", { class: "ctxdiv" }, null, -1)),
               createBaseVNode("button", {
                 class: "ctxitem del",
-                onClick: _cache[15] || (_cache[15] = ($event) => run(() => unref(store).removeElement(m.value.id)))
-              }, [..._cache[31] || (_cache[31] = [
+                onClick: _cache[13] || (_cache[13] = ($event) => run(() => unref(store).removeElement(m.value.id)))
+              }, [..._cache[28] || (_cache[28] = [
                 createBaseVNode("i", { class: "mdi mdi-delete-outline" }, null, -1),
                 createTextVNode(" delete", -1)
               ])])
@@ -10857,8 +10954,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ElementContextMenu = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-a8577e35"]]);
-const _hoisted_1$1 = { class: "main" };
+const ElementContextMenu = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-b170409c"]]);
+const _hoisted_1 = { class: "main" };
 const _hoisted_2 = { class: "resmenu" };
 const _hoisted_3 = { class: "aspects" };
 const _hoisted_4 = ["title", "onClick"];
@@ -10869,14 +10966,13 @@ const _hoisted_8 = ["onClick"];
 const _hoisted_9 = { class: "whrow" };
 const _hoisted_10 = { class: "rfoot" };
 const _hoisted_11 = { class: "rmp" };
-const _hoisted_12 = ["onClick"];
-const _hoisted_13 = { class: "resetc" };
-const _hoisted_14 = { class: "rbtns" };
+const _hoisted_12 = { class: "resetc" };
+const _hoisted_13 = { class: "rbtns" };
+const _hoisted_14 = ["onClick"];
 const _hoisted_15 = ["onClick"];
-const _hoisted_16 = ["onClick"];
-const _hoisted_17 = { class: "slim-controls" };
-const _sfc_main$1 = /* @__PURE__ */ defineComponent({
-  __name: "IdeogramStudio",
+const _hoisted_16 = { class: "slim-controls" };
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "MossLayoutStudio",
   props: {
     widget: {},
     node: {}
@@ -10911,13 +11007,11 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       () => jsonSyncCaption.value.n,
       () => {
         if (!store.state.ui.jsonSync) return;
-        const { json, width, height } = jsonSyncCaption.value;
+        const { json } = jsonSyncCaption.value;
         if (json && json.trim()) {
-          const res = store.importCaptionJson(json, false);
+          const res = store.importDraftJson(json, true);
           store.json.syncError = res.ok ? "" : `JSON sync: ${res.error || "invalid JSON"}`;
         }
-        if (width > 0) store.state.width = Math.max(16, Math.min(8192, Math.round(width)));
-        if (height > 0) store.state.height = Math.max(16, Math.min(8192, Math.round(height)));
       }
     );
     const CORE_ASPECTS = [
@@ -10953,26 +11047,17 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       seedRes();
     }
     function onWH() {
-      store.state.width = snapRes(store.state.width);
-      store.state.height = snapRes(store.state.height);
+      store.state.width = snap16(store.state.width);
+      store.state.height = snap16(store.state.height);
       seedRes();
     }
-    const SNAP_OPTIONS = [8, 16, 32, 64];
-    const snapDiv = /* @__PURE__ */ ref(store.state.ui.snapDiv || 16);
-    watch(snapDiv, (v) => {
-      store.state.ui.snapDiv = v;
-      applyRes();
-    });
-    const snapRes = (v) => {
-      const d = snapDiv.value || 1;
-      return Math.max(d, Math.round(v / d) * d);
-    };
+    const snap16 = (v) => Math.max(16, Math.round(v / 16) * 16);
     function applyRes() {
       const a = CORE_ASPECTS.find((x) => x.label === aspect.value) || CORE_ASPECTS[0];
       const total = Math.max(0.1, mp.value || 1) * 1024 * 1024;
       const scale = Math.sqrt(total / (a.w * a.h));
-      store.state.width = snapRes(a.w * scale);
-      store.state.height = snapRes(a.h * scale);
+      store.state.width = snap16(a.w * scale);
+      store.state.height = snap16(a.h * scale);
     }
     function seedRes() {
       const w = store.state.width;
@@ -10997,22 +11082,45 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       clearTimeout(snapTimer);
       snapTimer = setTimeout(() => store.snapshot(), 350);
     }
+    function deriveDraft(state) {
+      return JSON.stringify(serialize(state).draft);
+    }
     onMounted(() => {
       const v = props.widget?.value;
-      if (v && typeof v === "object" && v.studio) {
-        store.load(v.studio);
+      if (isRecord(v) && isRecord(v.studio)) {
+        const fromStudio = deriveDraft(v.studio);
+        const savedDraft = typeof v.draft === "string" ? v.draft : JSON.stringify(v.draft ?? {});
+        if (fromStudio === savedDraft) {
+          store.load(v.studio);
+        } else {
+          const parsed = parseJsonLoose(savedDraft);
+          if (parsed.ok) {
+            const { state } = resolveToState(parsed.obj, v.studio.width || 1024, v.studio.height || 1024);
+            const ui = v.studio.ui;
+            const overlay = v.studio.overlay;
+            store.load({ ...state, ui, overlay });
+          } else {
+            store.load(v.studio);
+          }
+        }
+      } else if (isRecord(v) && (v.draft || v.caption)) {
+        const parsed = parseJsonLoose(typeof v.draft === "string" ? v.draft : JSON.stringify(v.draft));
+        if (parsed.ok) {
+          const { state } = resolveToState(parsed.obj, 1024, 1024);
+          store.load(state);
+        }
       }
       seedRes();
       store.resetHistory();
       props.widget.serializeValue = async () => {
-        const { caption } = buildCaption(store.state);
-        return { caption, studio: plainState() };
+        const { draft } = serialize(store.state);
+        return { draft, studio: plainState() };
       };
       watch(
         () => store.state,
         () => {
-          const { caption } = buildCaption(store.state);
-          props.widget.value = { caption, studio: plainState() };
+          const { draft } = serialize(store.state);
+          props.widget.value = { draft, studio: plainState() };
           if (!store.restoring) scheduleSnapshot();
         },
         { deep: true, immediate: true }
@@ -11026,7 +11134,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         onContextmenu: _cache[9] || (_cache[9] = withModifiers(() => {
         }, ["prevent", "stop"]))
       }, [
-        createBaseVNode("div", _hoisted_1$1, [
+        createBaseVNode("div", _hoisted_1, [
           createBaseVNode("div", {
             class: "left",
             ref_key: "leftEl",
@@ -11056,7 +11164,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   ])]),
                   _: 1
                 }, 8, ["disabled"]),
-                _cache[20] || (_cache[20] = createBaseVNode("span", { class: "divider" }, null, -1)),
+                _cache[18] || (_cache[18] = createBaseVNode("span", { class: "divider" }, null, -1)),
                 createVNode(UiPopover, { align: "left" }, {
                   trigger: withCtx(() => [
                     createVNode(UiButton, { title: "Resolution — aspect ratio × megapixels" }, {
@@ -11068,7 +11176,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   ]),
                   default: withCtx(() => [
                     createBaseVNode("div", _hoisted_2, [
-                      _cache[18] || (_cache[18] = createBaseVNode("div", { class: "rsec" }, "aspect ratio", -1)),
+                      _cache[16] || (_cache[16] = createBaseVNode("div", { class: "rsec" }, "aspect ratio", -1)),
                       createBaseVNode("div", _hoisted_3, [
                         (openBlock(), createElementBlock(Fragment, null, renderList(CORE_ASPECTS, (a) => {
                           return createBaseVNode("button", {
@@ -11085,7 +11193,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                           ], 10, _hoisted_4);
                         }), 64))
                       ]),
-                      _cache[19] || (_cache[19] = createBaseVNode("div", { class: "rdiv" }, null, -1)),
+                      _cache[17] || (_cache[17] = createBaseVNode("div", { class: "rdiv" }, null, -1)),
                       createBaseVNode("div", _hoisted_6, [
                         _cache[12] || (_cache[12] = createBaseVNode("span", null, "megapixels", -1)),
                         createBaseVNode("div", _hoisted_7, [
@@ -11159,19 +11267,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                         ])
                       ]),
                       createBaseVNode("div", _hoisted_10, [
-                        createBaseVNode("span", _hoisted_11, "≈ " + toDisplayString(mpActual.value) + " MP", 1),
-                        _cache[16] || (_cache[16] = createBaseVNode("span", { class: "grow" }, null, -1)),
-                        _cache[17] || (_cache[17] = createBaseVNode("span", {
-                          class: "snaplbl",
-                          title: "Round width & height to a multiple of this (your model/VAE's requirement); lower = closer to the exact MP"
-                        }, "snap ÷", -1)),
-                        (openBlock(), createElementBlock(Fragment, null, renderList(SNAP_OPTIONS, (d) => {
-                          return createBaseVNode("button", {
-                            key: d,
-                            class: normalizeClass(["snapchip", { on: snapDiv.value === d }]),
-                            onClick: ($event) => snapDiv.value = d
-                          }, toDisplayString(d), 11, _hoisted_12);
-                        }), 64))
+                        createBaseVNode("span", _hoisted_11, "≈ " + toDisplayString(mpActual.value) + " MP", 1)
                       ])
                     ])
                   ]),
@@ -11181,10 +11277,10 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
               trail: withCtx(() => [
                 createVNode(UiButton, {
                   icon: "",
-                  title: "Library — save / load bbox templates",
+                  title: "Library — save / load layout templates",
                   onClick: _cache[5] || (_cache[5] = ($event) => libraryOpen.value = true)
                 }, {
-                  default: withCtx(() => [..._cache[21] || (_cache[21] = [
+                  default: withCtx(() => [..._cache[19] || (_cache[19] = [
                     createBaseVNode("i", { class: "mdi mdi-bookshelf" }, null, -1)
                   ])]),
                   _: 1
@@ -11195,14 +11291,14 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                       icon: "",
                       title: "Help"
                     }, {
-                      default: withCtx(() => [..._cache[22] || (_cache[22] = [
+                      default: withCtx(() => [..._cache[20] || (_cache[20] = [
                         createBaseVNode("i", { class: "mdi mdi-help-circle-outline" }, null, -1)
                       ])]),
                       _: 1
                     })
                   ]),
                   default: withCtx(() => [
-                    _cache[23] || (_cache[23] = createBaseVNode("div", { class: "help" }, [
+                    _cache[21] || (_cache[21] = createBaseVNode("div", { class: "help" }, [
                       createBaseVNode("p", { class: "h" }, "Canvas"),
                       createBaseVNode("dl", null, [
                         createBaseVNode("dt", null, "drag empty space"),
@@ -11229,23 +11325,12 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                         createBaseVNode("dt", null, "Delete / Backspace"),
                         createBaseVNode("dd", null, "remove the selected box(es)")
                       ]),
-                      createBaseVNode("p", { class: "h" }, "Boxes"),
+                      createBaseVNode("p", { class: "h" }, "Items"),
                       createBaseVNode("dl", null, [
-                        createBaseVNode("dt", null, [
-                          createBaseVNode("i", { class: "mdi mdi-eye-outline" }),
-                          createTextVNode(" mute")
-                        ]),
-                        createBaseVNode("dd", null, "keep a box but exclude it from the output"),
-                        createBaseVNode("dt", null, [
-                          createBaseVNode("i", { class: "mdi mdi-link-variant-plus" }),
-                          createTextVNode(" linked copy")
-                        ]),
-                        createBaseVNode("dd", null, "shares the prompt across copies; each keeps its own position"),
-                        createBaseVNode("dt", null, [
-                          createBaseVNode("i", { class: "mdi mdi-group" }),
-                          createTextVNode(" grouped")
-                        ]),
-                        createBaseVNode("dd", null, "members select, move & resize together")
+                        createBaseVNode("dt", null, "object / character / text"),
+                        createBaseVNode("dd", null, "the MOSS item label — cycle with the toolbar button"),
+                        createBaseVNode("dt", null, "text items"),
+                        createBaseVNode("dd", null, "carry the exact visible characters")
                       ]),
                       createBaseVNode("p", { class: "h" }, "Reference"),
                       createBaseVNode("dl", null, [
@@ -11259,8 +11344,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                           createTextVNode(" sync")
                         ]),
                         createBaseVNode("dd", null, [
-                          createTextVNode("auto-update the reference from an "),
-                          createBaseVNode("b", null, "Ideogram Studio Ref Sync"),
+                          createTextVNode("auto-update the reference from a "),
+                          createBaseVNode("b", null, "MOSS Layout Studio Ref Sync"),
                           createTextVNode(" node")
                         ]),
                         createBaseVNode("dt", null, [
@@ -11275,26 +11360,28 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                       ]),
                       createBaseVNode("p", { class: "h" }, "Outputs"),
                       createBaseVNode("dl", null, [
-                        createBaseVNode("dt", null, "caption"),
-                        createBaseVNode("dd", null, "JSON prompt → your Ideogram sampler"),
+                        createBaseVNode("dt", null, "prompt"),
+                        createBaseVNode("dd", null, "compiled MOSS-Image JSON (center-origin yxyx) → your sampler's positive prompt"),
+                        createBaseVNode("dt", null, "draft"),
+                        createBaseVNode("dd", null, "the editable draft JSON — feed it back, save it, or edit it by script"),
                         createBaseVNode("dt", null, "extras"),
                         createBaseVNode("dd", null, [
                           createTextVNode("→ "),
-                          createBaseVNode("b", null, "Studio Extras"),
+                          createBaseVNode("b", null, "MOSS Layout Studio Extras"),
                           createTextVNode(" node for overlay / alpha / width / height")
                         ])
                       ]),
-                      createBaseVNode("p", { class: "tip" }, "Tip: open the JSON card and paste a caption to import it."),
+                      createBaseVNode("p", { class: "tip" }, "Tip: open the JSON card and paste a draft (or a compiled prompt) to import it."),
                       createBaseVNode("p", { class: "credit" }, [
-                        createTextVNode(" made by "),
-                        createBaseVNode("b", null, "nynxz"),
-                        createTextVNode(" · ideas & inspiration from the community"),
+                        createTextVNode(" MOSS edition of "),
+                        createBaseVNode("b", null, "ComfyUI-IdeogramHelper"),
+                        createTextVNode(" by nynxz (GPLv3)"),
                         createBaseVNode("br"),
                         createBaseVNode("a", {
-                          href: "https://github.com/nynxz/ComfyUI-IdeogramHelper/issues",
+                          href: "https://github.com/OpenMOSS/MOSS-Image",
                           target: "_blank",
                           rel: "noopener noreferrer"
-                        }, "report a bug / suggest a feature ↗")
+                        }, "MOSS-Image prompt spec ↗")
                       ])
                     ], -1))
                   ]),
@@ -11306,46 +11393,46 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                       icon: "",
                       title: "Clear everything"
                     }, {
-                      default: withCtx(() => [..._cache[24] || (_cache[24] = [
+                      default: withCtx(() => [..._cache[22] || (_cache[22] = [
                         createBaseVNode("i", { class: "mdi mdi-broom" }, null, -1)
                       ])]),
                       _: 1
                     })
                   ]),
                   default: withCtx(({ close }) => [
-                    createBaseVNode("div", _hoisted_13, [
-                      _cache[26] || (_cache[26] = createBaseVNode("p", { class: "rq" }, [
+                    createBaseVNode("div", _hoisted_12, [
+                      _cache[24] || (_cache[24] = createBaseVNode("p", { class: "rq" }, [
                         createBaseVNode("i", { class: "mdi mdi-alert-outline" }),
                         createTextVNode(" Clear the whole studio?")
                       ], -1)),
-                      _cache[27] || (_cache[27] = createBaseVNode("p", { class: "rh" }, "Removes every element and resets the prompt — can't be undone past here.", -1)),
-                      createBaseVNode("div", _hoisted_14, [
+                      _cache[25] || (_cache[25] = createBaseVNode("p", { class: "rh" }, "Removes every item and resets the summary — can't be undone past here.", -1)),
+                      createBaseVNode("div", _hoisted_13, [
                         createBaseVNode("button", {
                           class: "rno",
                           onClick: ($event) => close()
-                        }, "Cancel", 8, _hoisted_15),
+                        }, "Cancel", 8, _hoisted_14),
                         createBaseVNode("button", {
                           class: "ryes",
                           onClick: ($event) => {
                             resetAll();
                             close();
                           }
-                        }, [..._cache[25] || (_cache[25] = [
+                        }, [..._cache[23] || (_cache[23] = [
                           createBaseVNode("i", { class: "mdi mdi-broom" }, null, -1),
                           createTextVNode(" Clear all", -1)
-                        ])], 8, _hoisted_16)
+                        ])], 8, _hoisted_15)
                       ])
                     ])
                   ]),
                   _: 1
                 }),
-                createBaseVNode("span", _hoisted_17, [
+                createBaseVNode("span", _hoisted_16, [
                   createVNode(UiButton, {
                     icon: "",
                     title: panelOpen.value ? "Hide controls" : "Show controls",
                     onClick: _cache[6] || (_cache[6] = ($event) => panelOpen.value = !panelOpen.value)
                   }, {
-                    default: withCtx(() => [..._cache[28] || (_cache[28] = [
+                    default: withCtx(() => [..._cache[26] || (_cache[26] = [
                       createBaseVNode("i", { class: "mdi mdi-dock-right" }, null, -1)
                     ])]),
                     _: 1
@@ -11360,8 +11447,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             ref_key: "rightEl",
             ref: rightEl
           }, [
-            createVNode(PromptFields),
-            createVNode(StylePanel),
+            createVNode(SummaryPanel),
             createVNode(ElementList),
             createVNode(JsonControls)
           ], 512),
@@ -11381,42 +11467,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const IdeogramStudio = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-54179a6d"]]);
-const _hoisted_1 = { class: "palnode" };
-const _sfc_main = /* @__PURE__ */ defineComponent({
-  __name: "PaletteNode",
-  props: {
-    widget: {},
-    node: {}
-  },
-  setup(__props) {
-    const props = __props;
-    const colors = /* @__PURE__ */ ref([]);
-    onMounted(() => {
-      const v = props.widget?.value;
-      if (Array.isArray(v)) colors.value = v.map(String);
-      props.widget.serializeValue = async () => colors.value.slice();
-      watch(
-        colors,
-        () => {
-          props.widget.value = colors.value.slice();
-        },
-        { deep: true, immediate: true }
-      );
-    });
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1, [
-        createVNode(PaletteEditor, {
-          modelValue: colors.value,
-          max: 16,
-          label: "palette colours",
-          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => colors.value = $event)
-        }, null, 8, ["modelValue"])
-      ]);
-    };
-  }
-});
-const PaletteNode = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-3a6f20dc"]]);
+const MossLayoutStudio = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-82d88978"]]);
 const SEL = "[data-ideogram]";
 function inWidget(e) {
   const t = e.target;
@@ -11488,35 +11539,24 @@ app.registerExtension({
   }
 });
 const extension = {
-  name: "nynxz.ideogram-studio",
+  name: "mosslayout.studio",
   getCustomWidgets() {
     return {
       // Low minHeight (ComfyUI's hard floor) so the node can be shrunk.
-      IDEOGRAM_STUDIO(node) {
+      MOSS_LAYOUT_STUDIO(node) {
         return mountWidget(node, {
           widgetName: "studio",
-          widgetType: "IDEOGRAM_STUDIO",
-          component: IdeogramStudio,
+          widgetType: "MOSS_LAYOUT_STUDIO",
+          component: MossLayoutStudio,
           minHeight: 200,
           defaultValue: null
-        });
-      },
-      IDEOGRAM_PALETTE(node) {
-        return mountWidget(node, {
-          widgetName: "palette",
-          widgetType: "IDEOGRAM_PALETTE",
-          component: PaletteNode,
-          minHeight: 44,
-          defaultValue: []
         });
       }
     };
   },
   nodeCreated(node) {
     const lg = node;
-    const cls = lg.constructor?.comfyClass;
-    if (cls === "IdeogramStudio") lg.setSize([Math.max(lg.size[0], 560), Math.max(lg.size[1], 760)]);
-    else if (cls === "IdeogramPalette") lg.setSize([Math.max(lg.size[0], 220), Math.max(lg.size[1], 90)]);
+    if (lg.constructor?.comfyClass === "MossLayoutStudio") lg.setSize([Math.max(lg.size[0], 560), Math.max(lg.size[1], 760)]);
   }
 };
 app.registerExtension(extension);

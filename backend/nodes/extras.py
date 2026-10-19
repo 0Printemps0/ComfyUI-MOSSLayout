@@ -1,21 +1,21 @@
-"""Ideogram Studio Extras — break out the studio's 'extras' bundle into overlay/alpha/width/height/bboxes."""
+"""MOSS Layout Studio Extras — break out the studio's 'extras' bundle into overlay/alpha/width/height/bboxes."""
 
 from __future__ import annotations
 
 from comfy_api.latest import io
 
-from ..io_types import IdeogramExtrasType
+from ..io_types import MossLayoutExtrasType
 
 
-class IdeogramExtras(io.ComfyNode):
+class MossLayoutExtras(io.ComfyNode):
     @classmethod
     def define_schema(cls) -> io.Schema:
         return io.Schema(
-            node_id="IdeogramExtras",
-            display_name="Ideogram Studio Extras",
-            category="Ideogram",
-            description="Break out the Ideogram Studio 'extras' output into overlay (IMAGE), alpha (MASK), width, height, and the elements as native BOUNDING_BOX data.",
-            inputs=[IdeogramExtrasType.Input("extras")],
+            node_id="MossLayoutExtras",
+            display_name="MOSS Layout Studio Extras",
+            category="MOSS",
+            description="Break out the MOSS Layout Studio 'extras' output into overlay (IMAGE), alpha (MASK), width, height, and the items as native BOUNDING_BOX data.",
+            inputs=[MossLayoutExtrasType.Input("extras")],
             outputs=[
                 io.Image.Output(display_name="overlay"),
                 io.Mask.Output(display_name="alpha"),

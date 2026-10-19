@@ -1,120 +1,99 @@
 import { reactive, inject, provide, type InjectionKey } from 'vue'
-import { emptyState, emptyUi, newElement, newId, syncSeq, serialize, captionToState, parseCaptionLoose, aspectToWH, type CaptionElement, type CaptionState, type ElementType } from './caption'
-
-// Bump the id sequence past existing ids so fresh ids can't collide after a load.
-function _syncSeq(elements: CaptionElement[]) {
-  syncSeq(elements.flatMap((e) => [e.id, e.linkId, e.groupId]))
-}
+import { emptyState, emptyUi, newElement, newId, syncSeq, serialize, resolveToState, parseJsonLoose, type MossElement, type MossState, type Label } from './moss'
 
 // Fields linked elements share; bbox excluded so each copy keeps its position.
-export const SHARED_KEYS = ['type', 'desc', 'text', 'color_palette', 'boxColor'] as const
+export const SHARED_KEYS = ['label', 'caption', 'text', 'tags', 'palette', 'boxColor'] as const
+type SharedKey = (typeof SHARED_KEYS)[number]
 
 // Clear linkId on a now-lone link member.
-function _pruneLink(elements: CaptionElement[], groupId: string | null) {
+function _pruneLink(elements: MossElement[], groupId: string | null) {
   if (!groupId) return
   const members = elements.filter((e) => e.linkId === groupId)
   if (members.length === 1) members[0].linkId = null
 }
 
 // Clear groupId on a now-lone group member.
-function _pruneGroup(elements: CaptionElement[], groupId: string | null) {
+function _pruneGroup(elements: MossElement[], groupId: string | null) {
   if (!groupId) return
   const members = elements.filter((e) => e.groupId === groupId)
   if (members.length === 1) members[0].groupId = null
 }
 
 // Expand ids to include every co-member of any group they touch (deduped, ordered).
-function _expandGroups(elements: CaptionElement[], ids: string[]): string[] {
-  const gids = new Set<string>()
-  for (const id of ids) {
-    const g = elements.find((e) => e.id === id)?.groupId
-    if (g) gids.add(g)
-  }
-  if (!gids.size) return ids
+function _expandGroups(elements: MossElement[], ids: string[]): string[] {
   const out: string[] = []
-  const seen = new Set<string>()
-  const push = (id: string) => {
-    if (!seen.has(id)) { seen.add(id); out.push(id) }
-  }
   for (const id of ids) {
-    push(id)
-    const g = elements.find((e) => e.id === id)?.groupId
-    if (g) for (const e of elements) if (e.groupId === g) push(e.id)
+    const el = elements.find((e) => e.id === id)
+    if (!el) continue
+    const members = el.groupId ? elements.filter((e) => e.groupId === el.groupId) : [el]
+    for (const m of members) if (!out.includes(m.id)) out.push(m.id)
   }
   return out
 }
 
-function _flipBbox(el: CaptionElement, axis: 'h' | 'v') {
-  if (!el.bbox) return
-  const [y0, x0, y1, x1] = el.bbox
-  el.bbox = axis === 'h' ? [y0, 1000 - x1, y1, 1000 - x0] : [1000 - y1, x0, 1000 - y0, x1]
+function _flipBbox(el: MossElement, axis: 'h' | 'v', w: number, h: number) {
+  const [x1, y1, x2, y2] = el.bbox
+  el.bbox = axis === 'h' ? [w - x2, y1, w - x1, y2] : [x1, h - y2, x2, h - y1]
 }
 
 // Clipboard entry; transient, not serialized.
 export interface ClipItem {
-  type: ElementType
+  label: Label
   bbox: [number, number, number, number] | null
-  desc: string
+  caption: string
   text: string
-  color_palette: string[]
+  tags: string[]
+  palette: string[]
   boxColor: string
   grouped: boolean
 }
 
 export interface StudioStore {
-  state: CaptionState
+  state: MossState
   selectedIds: string[]
-  selectedId: string | null // primary (last-selected); what the editor edits
+  readonly selectedId: string | null
   isSelected(id: string): boolean
+  canUndo: boolean
+  canRedo: boolean
+  snapshot(): void
+  undo(): void
+  redo(): void
+  resetHistory(): void
   select(id: string | null, additive?: boolean): void
   setSelection(ids: string[], additive?: boolean): void
-  addElement(type: ElementType, bbox?: CaptionElement['bbox']): CaptionElement
+  addElement(label: Label, bbox?: MossElement['bbox'] | null): MossElement
   removeElement(id: string): void
   duplicateElement(id: string): void
-  toggleEnabled(id: string): void
-  flipAll(axis: 'h' | 'v'): void
+  duplicateMany(ids: string[]): void
   duplicateLinked(id: string): void
   unlink(id: string): void
   linkGroupSize(id: string): number
   group(ids: string[]): void
   ungroup(id: string): void
-  groupMembers(id: string): CaptionElement[]
+  groupMembers(id: string): MossElement[]
   groupSize(id: string): number
-  duplicateMany(ids: string[]): void
   copySelection(): void
   pasteAt(x: number, y: number): void
-  clipboard: ClipItem[]
-  setShared(id: string, key: (typeof SHARED_KEYS)[number], value: unknown): void
+  setShared(id: string, key: SharedKey, value: unknown): void
   moveElement(id: string, dir: -1 | 1): void
   moveElementTo(id: string, index: number): void
-  getElement(id: string | null): CaptionElement | undefined
-  load(s: Partial<CaptionState>): void
-  // JSON editor scratch (transient); open/collapsed state lives in state.ui.jsonOpen
+  getElement(id: string | null): MossElement | undefined
+  load(s: Partial<MossState>): void
   json: { editing: boolean; draft: string; syncError: string; wasOpen: boolean }
+  refImage: string
+  clipboard: ClipItem[]
+  ctxMenu: { x: number; y: number; id: string } | null
+  openContextMenu(x: number, y: number, id: string): void
+  closeContextMenu(): void
   jsonStartEdit(): void
   jsonCancel(): void
   jsonTidy(): void
   jsonApply(): void
-  importCaptionJson(text: string, applyAspect?: boolean): { ok: boolean; error?: string }
-  // current reference/backdrop image (transient, not serialized)
-  refImage: string
-  ctxMenu: { x: number; y: number; id: string } | null
-  openContextMenu(x: number, y: number, id: string): void
-  closeContextMenu(): void
-  // history
-  _hist: string[]
-  _hi: number
+  importDraftJson(text: string, keepDims?: boolean): { ok: boolean; error?: string; warnings?: string[] }
   restoring: boolean
-  canUndo: boolean
-  canRedo: boolean
-  snapshot(): void
-  _restore(snap: string): void
-  undo(): void
-  redo(): void
-  resetHistory(): void
 }
 
-const KEY: InjectionKey<StudioStore> = Symbol('ideogram-studio')
+const KEY: InjectionKey<StudioStore> = Symbol('moss-studio')
 
 export function createStudioStore(): StudioStore {
   const store = reactive({
@@ -147,7 +126,7 @@ export function createStudioStore(): StudioStore {
     },
     _restore(snap: string) {
       store.restoring = true
-      const parsed = JSON.parse(snap) as CaptionState
+      const parsed = JSON.parse(snap) as MossState
       Object.assign(store.state, emptyState(), parsed)
       _syncSeq(store.state.elements)
       store.selectedIds = store.selectedIds.filter((id) => store.getElement(id))
@@ -194,13 +173,17 @@ export function createStudioStore(): StudioStore {
         store.selectedIds = valid
       }
     },
-    addElement(type: ElementType, bbox: CaptionElement['bbox'] = null) {
-      // Default to a centered box, staggered so repeats don't stack.
+    addElement(label: Label, bbox: MossElement['bbox'] | null = null) {
+      // Default to a centered quarter-canvas box, staggered so repeats don't stack.
       if (!bbox) {
-        const o = (store.state.elements.length % 6) * 30
-        bbox = [220 + o, 220 + o, 520 + o, 520 + o]
+        const w = store.state.width, h = store.state.height
+        const o = (store.state.elements.length % 6) * 32
+        bbox = [
+          Math.round(w * 0.2) + o, Math.round(h * 0.2) + o,
+          Math.round(w * 0.55) + o, Math.round(h * 0.55) + o,
+        ]
       }
-      const el = newElement(type, bbox)
+      const el = newElement(label, bbox)
       store.state.elements.push(el)
       store.select(el.id)
       return el
@@ -215,64 +198,50 @@ export function createStudioStore(): StudioStore {
       _pruneLink(store.state.elements, lid)
       _pruneGroup(store.state.elements, grp)
     },
+    _copyOf(src: MossElement, dx: number): MossElement {
+      const copy = newElement(src.label, [...src.bbox] as [number, number, number, number])
+      copy.caption = src.caption
+      copy.text = src.text
+      copy.tags = [...src.tags]
+      copy.palette = [...src.palette]
+      copy.boxColor = src.boxColor
+      copy.bbox = copy.bbox.map((v, idx) => {
+        const max = idx % 2 === 0 ? store.state.width : store.state.height
+        return Math.max(0, Math.min(max, v + dx))
+      }) as [number, number, number, number]
+      return copy
+    },
     duplicateElement(id: string) {
       const src = store.getElement(id)
       if (!src) return
-      const copy = newElement(src.type, src.bbox ? ([...src.bbox] as any) : null)
-      copy.desc = src.desc
-      copy.text = src.text
-      copy.color_palette = [...src.color_palette]
-      if (copy.bbox) {
-        // nudge so the duplicate is visible
-        copy.bbox = copy.bbox.map((v, idx) => Math.max(0, Math.min(1000, v + (idx < 2 ? 20 : 20)))) as any
-      }
+      const copy = store._copyOf(src, 24)
       store.state.elements.push(copy)
       store.select(copy.id)
     },
     // Copies of a single group form a new group.
     duplicateMany(ids: string[]) {
-      const srcs = ids.map((id) => store.getElement(id)).filter((e): e is CaptionElement => !!e)
+      const srcs = ids.map((id) => store.getElement(id)).filter((e): e is MossElement => !!e)
       if (!srcs.length) return
       const wasGroup = srcs.length > 1 && !!srcs[0].groupId && srcs.every((e) => e.groupId === srcs[0].groupId)
       const gid = wasGroup ? newId() : null
       const copyIds: string[] = []
       for (const src of srcs) {
-        const copy = newElement(src.type, src.bbox ? ([...src.bbox] as any) : null)
-        copy.desc = src.desc
-        copy.text = src.text
-        copy.color_palette = [...src.color_palette]
-        copy.boxColor = src.boxColor
+        const copy = store._copyOf(src, 24)
         copy.groupId = gid
-        if (copy.bbox) copy.bbox = copy.bbox.map((v) => Math.max(0, Math.min(1000, v + 20))) as any
         store.state.elements.push(copy)
         copyIds.push(copy.id)
       }
       store.setSelection(copyIds)
     },
-    toggleEnabled(id: string) {
-      const el = store.getElement(id)
-      if (!el) return
-      const value = el.enabled === false
-      // Grouped elements hide/show together.
-      const members = el.groupId ? store.state.elements.filter((e) => e.groupId === el.groupId) : [el]
-      for (const m of members) m.enabled = value
-    },
     flipAll(axis: 'h' | 'v') {
-      for (const el of store.state.elements) if (el.bbox) _flipBbox(el, axis)
+      for (const el of store.state.elements) _flipBbox(el, axis, store.state.width, store.state.height)
     },
     duplicateLinked(id: string) {
       const src = store.getElement(id)
       if (!src) return
       if (!src.linkId) src.linkId = newId()
-      const copy = newElement(src.type, src.bbox ? ([...src.bbox] as any) : null)
-      copy.desc = src.desc
-      copy.text = src.text
-      copy.color_palette = [...src.color_palette]
-      copy.boxColor = src.boxColor
+      const copy = store._copyOf(src, 32)
       copy.linkId = src.linkId
-      if (copy.bbox) {
-        copy.bbox = copy.bbox.map((v, idx) => Math.max(0, Math.min(1000, v + (idx < 2 ? 30 : 30)))) as any
-      }
       store.state.elements.push(copy)
       store.select(copy.id)
     },
@@ -315,59 +284,58 @@ export function createStudioStore(): StudioStore {
       return store.state.elements.filter((e) => e.groupId === el.groupId).length
     },
     copySelection() {
-      const els = store.selectedIds.map((id) => store.getElement(id)).filter((e): e is CaptionElement => !!e)
+      const els = store.selectedIds.map((id) => store.getElement(id)).filter((e): e is MossElement => !!e)
       if (!els.length) return
       const grouped = els.length > 1 && !!els[0].groupId && els.every((e) => e.groupId === els[0].groupId)
       store.clipboard = els.map((e) => ({
-        type: e.type,
-        bbox: e.bbox ? ([...e.bbox] as [number, number, number, number]) : null,
-        desc: e.desc,
+        label: e.label,
+        bbox: [...e.bbox] as [number, number, number, number],
+        caption: e.caption,
         text: e.text,
-        color_palette: [...e.color_palette],
+        tags: [...e.tags],
+        palette: [...e.palette],
         boxColor: e.boxColor,
         grouped,
       }))
     },
-    // Paste centered on (x,y) in 0..1000 coords, preserving relative layout; a copied
+    // Paste centered on (x,y) in pixel coords, preserving relative layout; a copied
     // group pastes as a new group. Falls back to stored positions if x/y are invalid.
     pasteAt(x: number, y: number) {
       const clip = store.clipboard
       if (!clip.length) return
+      const W = store.state.width, H = store.state.height
       // rigid offset landing the bbox center at the cursor, clamped on-canvas.
-      const boxed = clip.filter((c) => c.bbox) as Array<{ bbox: [number, number, number, number] }>
+      const boxed = clip.filter((c) => c.bbox)
       let dx = 0
       let dy = 0
       if (boxed.length && Number.isFinite(x) && Number.isFinite(y)) {
-        let y0 = Infinity, x0 = Infinity, y1 = -Infinity, x1 = -Infinity
+        let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity
         for (const c of boxed) {
-          y0 = Math.min(y0, c.bbox[0]); x0 = Math.min(x0, c.bbox[1]); y1 = Math.max(y1, c.bbox[2]); x1 = Math.max(x1, c.bbox[3])
+          x0 = Math.min(x0, c.bbox![0]); y0 = Math.min(y0, c.bbox![1]); x1 = Math.max(x1, c.bbox![2]); y1 = Math.max(y1, c.bbox![3])
         }
-        dx = Math.max(-x0, Math.min(1000 - x1, Math.round(x - (x0 + x1) / 2)))
-        dy = Math.max(-y0, Math.min(1000 - y1, Math.round(y - (y0 + y1) / 2)))
+        dx = Math.max(-x0, Math.min(W - x1, Math.round(x - (x0 + x1) / 2)))
+        dy = Math.max(-y0, Math.min(H - y1, Math.round(y - (y0 + y1) / 2)))
       }
       const grouped = clip.length > 1 && clip.every((c) => c.grouped)
       const gid = grouped ? newId() : null
       const ids: string[] = []
       for (const c of clip) {
-        const el = newElement(c.type, c.bbox ? ([...c.bbox] as any) : null)
-        el.desc = c.desc
-        el.text = c.text
-        el.color_palette = [...c.color_palette]
-        el.boxColor = c.boxColor
+        const el = store._copyOf({ ...c, id: '', linkId: null, groupId: null, bbox: c.bbox ?? [0, 0, 64, 64] } as MossElement, 0)
         el.groupId = gid
-        if (el.bbox && (dx || dy)) el.bbox = [el.bbox[0] + dy, el.bbox[1] + dx, el.bbox[2] + dy, el.bbox[3] + dx]
+        if (c.bbox && (dx || dy)) {
+          const [bx1, by1, bx2, by2] = el.bbox
+          el.bbox = [bx1 + dx, by1 + dy, bx2 + dx, by2 + dy]
+        }
         store.state.elements.push(el)
         ids.push(el.id)
       }
       store.setSelection(ids)
     },
-    setShared(id: string, key: (typeof SHARED_KEYS)[number], value: unknown) {
+    setShared(id: string, key: SharedKey, value: unknown) {
       const el = store.getElement(id)
       if (!el) return
-      const members = el.linkId
-        ? store.state.elements.filter((e) => e.linkId === el.linkId)
-        : [el]
-      for (const m of members) (m as any)[key] = value
+      const members = el.linkId ? store.state.elements.filter((e) => e.linkId === el.linkId) : [el]
+      for (const m of members) Object.assign(m, { [key]: value })
     },
     moveElement(id: string, dir: -1 | 1) {
       const i = store.state.elements.findIndex((e) => e.id === id)
@@ -388,9 +356,9 @@ export function createStudioStore(): StudioStore {
     getElement(id: string | null) {
       return store.state.elements.find((e) => e.id === id)
     },
-    load(s: Partial<CaptionState>) {
+    load(s: Partial<MossState>) {
       Object.assign(store.state, emptyState(), s)
-      // deep-merge ui so older saves (missing newer keys) get defaults
+      // deep-merge ui/overlay so older saves (missing newer keys) get defaults
       store.state.ui = { ...emptyUi(), ...(s.ui || {}) }
       _syncSeq(store.state.elements)
     },
@@ -407,7 +375,7 @@ export function createStudioStore(): StudioStore {
       store.ctxMenu = null
     },
     jsonStartEdit() {
-      store.json.draft = serialize(store.state).pretty
+      store.json.draft = serialize(store.state).draftPretty
       store.json.wasOpen = store.state.ui.jsonOpen
       store.json.editing = true
       store.state.ui.jsonOpen = true
@@ -418,42 +386,39 @@ export function createStudioStore(): StudioStore {
     },
     jsonTidy() {
       // Tolerant: unwraps code fences / strips preamble while pretty-printing.
-      const res = parseCaptionLoose(store.json.draft)
+      const res = parseJsonLoose(store.json.draft)
       if (res.ok) store.json.draft = JSON.stringify(res.obj, null, 2)
     },
     jsonApply() {
-      if (store.importCaptionJson(store.json.draft).ok) {
+      if (store.importDraftJson(store.json.draft).ok) {
         store.json.editing = false
         store.state.ui.jsonOpen = store.json.wasOpen
       }
     },
-    importCaptionJson(text: string, applyAspect = true) {
-      // Tolerant of code fences, prose/preamble, and a leading aspect-ratio echo.
-      const res = parseCaptionLoose(text)
+    importDraftJson(text: string, keepDims = false) {
+      // Tolerant of code fences and prose; accepts draft or compiled-prompt JSON.
+      const res = parseJsonLoose(text)
       if (!res.ok) return { ok: false, error: res.error }
-      const obj = res.obj
-      const parts = captionToState(obj)
-      store.state.high_level_description = parts.high_level_description
-      store.state.style = parts.style
-      store.state.background = parts.background
-      store.state.elements = parts.elements
-      _syncSeq(store.state.elements)
-      // If the caption carries an aspect_ratio, match the canvas to it (keeping
-      // megapixels). Skipped for sync so it can't clobber the current resolution.
-      const ar = applyAspect && typeof obj?.aspect_ratio === 'string' ? obj.aspect_ratio : ''
-      if (ar) {
-        const wh = aspectToWH(ar, store.state.width, store.state.height)
-        if (wh) {
-          store.state.width = wh.w
-          store.state.height = wh.h
-        }
-      }
+      const { state, warnings } = resolveToState(
+        res.obj,
+        keepDims ? store.state.width : 1024,
+        keepDims ? store.state.height : 1024,
+      )
+      const curUi = store.state.ui
+      const curOverlay = store.state.overlay
+      store.load({ ...state, ui: curUi, overlay: curOverlay })
+      if (!keepDims && state.width) store.state.width = state.width
+      if (!keepDims && state.height) store.state.height = state.height
       store.select(null)
       store.snapshot()
-      return { ok: true }
+      return { ok: true, warnings }
     },
   }) as StudioStore
   return store
+}
+
+function _syncSeq(elements: MossElement[]) {
+  syncSeq(elements.flatMap((e) => [e.id, e.linkId, e.groupId]))
 }
 
 export function provideStudioStore(store: StudioStore) {
@@ -461,7 +426,5 @@ export function provideStudioStore(store: StudioStore) {
 }
 
 export function useStudioStore(): StudioStore {
-  const s = inject(KEY)
-  if (!s) throw new Error('StudioStore not provided')
-  return s
+  return inject(KEY) as StudioStore
 }

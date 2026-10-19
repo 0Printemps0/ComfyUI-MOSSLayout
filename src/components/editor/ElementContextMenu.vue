@@ -9,7 +9,6 @@
           </div>
           <button v-if="!isOneGroup" class="ctxitem" @click="run(() => store.group(store.selectedIds))"><i class="mdi mdi-group"></i> group</button>
           <button v-if="anyGrouped" class="ctxitem" @click="run(ungroupBulk)"><i class="mdi mdi-ungroup"></i> ungroup</button>
-          <button class="ctxitem" @click="run(toggleMuteBulk)"><i class="mdi mdi-eye-off-outline"></i> toggle mute</button>
           <button class="ctxitem" @click="run(() => store.duplicateMany(store.selectedIds))"><i class="mdi mdi-content-copy"></i> duplicate{{ isOneGroup ? ' group' : '' }}</button>
           <button class="ctxitem" @click="run(store.copySelection)"><i class="mdi mdi-content-duplicate"></i> copy <span class="ctxkey">⌘C</span></button>
           <div class="ctxdiv"></div>
@@ -20,20 +19,16 @@
           <div class="ctxhead">
             <span class="cdot" :style="{ background: el.boxColor }"></span>
             <span class="cnum">#{{ index + 1 }}</span>
-            <i class="mdi" :class="el.type === 'text' ? 'mdi-format-text' : 'mdi-shape-outline'"></i>
+            <i class="mdi" :class="labelIcon(el.label)"></i>
           </div>
           <input
             ref="editEl"
             class="ctxedit"
-            :value="el.type === 'text' ? el.text : el.desc"
-            :placeholder="el.type === 'text' ? 'text to render…' : 'description…'"
+            :value="el.label === 'text' ? el.text : el.caption"
+            :placeholder="el.label === 'text' ? 'text to render…' : 'caption…'"
             @input="onEdit(($event.target as HTMLInputElement).value)"
             @keydown.stop
           />
-          <button class="ctxitem" @click="run(() => store.toggleEnabled(m!.id))">
-            <i class="mdi" :class="el.enabled === false ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"></i>
-            {{ el.enabled === false ? 'unmute' : 'mute' }}
-          </button>
           <button class="ctxitem" @click="run(() => store.duplicateLinked(m!.id))"><i class="mdi mdi-link-variant-plus"></i> linked copy</button>
           <button class="ctxitem" @click="run(() => store.duplicateElement(m!.id))"><i class="mdi mdi-content-copy"></i> duplicate</button>
           <button class="ctxitem" @click="run(store.copySelection)"><i class="mdi mdi-content-duplicate"></i> copy <span class="ctxkey">⌘C</span></button>
@@ -52,13 +47,14 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
 import { useStudioStore } from '@/lib/store'
+import type { Label } from '@/lib/moss'
 
 const store = useStudioStore()
 const m = computed(() => store.ctxMenu)
 const el = computed(() => store.getElement(m.value?.id ?? null))
 const index = computed(() => store.state.elements.findIndex((e) => e.id === m.value?.id))
 const editEl = ref<HTMLInputElement | null>(null)
-// bulk mode: the right-clicked element is part of a multi-selection
+// bulk mode: the right-clicked item is part of a multi-selection
 const bulk = computed(() => !!m.value && store.selectedIds.length > 1 && store.selectedIds.includes(m.value.id))
 const anyGrouped = computed(() => store.selectedIds.some((id) => store.getElement(id)?.groupId))
 // selection is exactly one whole group → nothing new to group
@@ -70,21 +66,17 @@ const isOneGroup = computed(() => {
   return store.groupSize(ids[0]) === ids.length
 })
 
-// set every selected to one state directly; looping toggleEnabled would double-toggle group members
-function toggleMuteBulk() {
-  const anyEnabled = store.selectedIds.some((id) => store.getElement(id)?.enabled !== false)
-  for (const id of store.selectedIds) {
-    const e = store.getElement(id)
-    if (e) e.enabled = !anyEnabled
-  }
+function labelIcon(label: Label): string {
+  return label === 'text' ? 'mdi-format-text' : label === 'character' ? 'mdi-account-outline' : 'mdi-vector-square'
 }
+
 function ungroupBulk() {
   for (const id of [...store.selectedIds]) store.ungroup(id)
 }
 
-// writes the element's primary content (respects link groups)
+// writes the item's primary content (respects link groups)
 function onEdit(v: string) {
-  if (el.value) store.setShared(el.value.id, el.value.type === 'text' ? 'text' : 'desc', v)
+  if (el.value) store.setShared(el.value.id, el.value.label === 'text' ? 'text' : 'caption', v)
 }
 
 function close() {

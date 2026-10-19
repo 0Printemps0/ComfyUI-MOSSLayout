@@ -7,9 +7,15 @@
       class="json edit"
       :class="{ bad: !!parseError }"
       spellcheck="false"
-      placeholder="Paste an Ideogram JSON caption here, then Apply to load it into the studio."
+      placeholder="Paste a whole MOSS draft JSON (or a compiled prompt) here, then Apply to load it into the studio."
     ></textarea>
     <pre v-else class="json">{{ pretty }}</pre>
+
+    <div v-if="!j.editing" class="compiled">
+      <span class="clbl" title="The compiled model prompt — what the prompt output sends to the sampler">compiled prompt</span>
+      <button class="cbtn" :title="copiedPrompt ? 'Copied' : 'Copy the compiled prompt'" @click="copyPrompt">{{ copiedPrompt ? '✓' : '⧉' }}</button>
+      <pre class="cline">{{ prompt }}</pre>
+    </div>
 
     <div v-if="j.editing && parseError" class="parseerr">
       <div class="errhead">
@@ -28,28 +34,30 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useStudioStore } from '@/lib/store'
-import { serialize, parseCaptionLoose } from '@/lib/caption'
+import { serialize, parseJsonLoose } from '@/lib/moss'
 import UiCard from '../ui/UiCard.vue'
 
 const store = useStudioStore()
 const j = store.json
 const taEl = ref<HTMLTextAreaElement | null>(null)
 const copiedErr = ref(false)
+const copiedPrompt = ref(false)
 
 const result = computed(() => serialize(store.state))
-const pretty = computed(() => result.value.pretty)
+const pretty = computed(() => result.value.draftPretty)
+const prompt = computed(() => result.value.prompt)
 const warnings = computed(() => result.value.warnings)
 
 // On parse failure pin down line/column (V8 reports "position", Firefox "line/column").
 const parseInfo = computed<{ error: string; line: number | null; col: number | null }>(() => {
   if (!j.editing || !j.draft.trim()) return { error: '', line: null, col: null }
-  // accept anything parseCaptionLoose can recover; only report a position when nothing parses
-  if (parseCaptionLoose(j.draft).ok) return { error: '', line: null, col: null }
+  // accept anything parseJsonLoose can recover; only report a position when nothing parses
+  if (parseJsonLoose(j.draft).ok) return { error: '', line: null, col: null }
   try {
     JSON.parse(j.draft)
     return { error: '', line: null, col: null }
-  } catch (e: any) {
-    const msg = String(e?.message || e)
+  } catch (e: unknown) {
+    const msg = String((e as Error)?.message || e)
     let line: number | null = null
     let col: number | null = null
     const pos = msg.match(/position (\d+)/)
@@ -114,21 +122,48 @@ async function copyError() {
     /* clipboard unavailable */
   }
 }
+async function copyPrompt() {
+  try {
+    await navigator.clipboard.writeText(prompt.value)
+    copiedPrompt.value = true
+    setTimeout(() => (copiedPrompt.value = false), 1200)
+  } catch {
+    /* clipboard unavailable */
+  }
+}
 </script>
 
 <style scoped>
+.jcard { display: flex; flex-direction: column; gap: 6px; min-height: 0; }
 .json {
-  margin: 0; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 6px; padding: 8px;
-  font-size: 11px; line-height: 1.4; max-height: 320px; overflow: auto; color: var(--st-text);
-  white-space: pre; font-family: ui-monospace, monospace;
+  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);
+  border-radius: 6px; padding: 8px; font-size: 11px; line-height: 1.5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  max-height: 240px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-word;
 }
-.json.edit { width: 100%; box-sizing: border-box; min-height: 160px; max-height: 360px; resize: vertical; white-space: pre; }
-.json.edit.bad { border-color: #f87171; }
-.errhead { display: flex; align-items: center; gap: 8px; font-size: 10px; color: #f87171; font-family: ui-monospace, monospace; }
-.errhead .msg { flex: 1; }
-.ebtn { flex: none; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 3px; font-size: 10px; padding: 1px 6px; cursor: pointer; }
+textarea.json { width: 100%; box-sizing: border-box; resize: vertical; min-height: 140px; }
+textarea.json:focus, textarea.json.bad:focus { outline: none; }
+textarea.json.bad { border-color: #f87171; }
+.compiled { position: relative; display: flex; flex-direction: column; gap: 2px; }
+.clbl { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted); }
+.cbtn { position: absolute; right: 10px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 22px; height: 20px; cursor: pointer; font-size: 12px; line-height: 1; }
+.cbtn:hover { color: var(--st-text); border-color: var(--st-accent); }
+.cline {
+  background: var(--st-input); border: 1px dashed var(--st-border); color: var(--st-muted);
+  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  max-height: 110px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-all;
+}
+.parseerr { display: flex; flex-direction: column; gap: 4px; }
+.errhead { display: flex; align-items: center; gap: 6px; }
+.errhead .msg { flex: 1; font-size: 11px; color: #f87171; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ebtn { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer; }
 .ebtn:hover { color: var(--st-text); border-color: var(--st-accent); }
-.errframe { margin: 4px 0 0; padding: 6px 8px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 4px; font: 11px/1.5 ui-monospace, monospace; color: var(--st-text); white-space: pre; overflow-x: auto; cursor: pointer; }
-.errframe:hover { border-color: var(--st-accent); }
-.warnlist { margin: 0; padding-left: 16px; font-size: 10px; color: #f59e0b; max-height: 90px; overflow: auto; }
+.errframe {
+  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);
+  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  max-height: 120px; overflow: auto; margin: 0; cursor: pointer;
+}
+.warnlist { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f59e0b; display: flex; flex-direction: column; gap: 2px; }
 </style>

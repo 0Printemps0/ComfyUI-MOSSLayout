@@ -1,4 +1,5 @@
-"""Ideogram Studio node: turns the Vue editor's caption payload into the canonical wire string + an overlay IMAGE/MASK."""
+"""MOSS Layout Studio node: the Vue editor's draft payload -> compiled model prompt +
+overlay IMAGE/MASK + the editable draft JSON."""
 
 from __future__ import annotations
 
@@ -6,58 +7,9 @@ import json
 
 from comfy_api.latest import io
 
-from ..utils.caption import serialize_caption
-from ..io_types import IdeogramExtrasType, IdeogramOverrideType, IdeogramStudioType
-from ..utils.overlay import render_overlay, hex_to_rgb, bboxes_from_items, OBJ_COLOR, TEXT_COLOR
-from ..utils.overrides import apply_override
-
-
-def _draw_items(studio_state, caption_data):
-    """Build colored draw-items: geometry/color from studio state, text/desc/palette from the (overridden) caption. Enabled boxes walk in lock-step with the caption's output-order elements."""
-    comp = (caption_data or {}).get("compositional_deconstruction", {}) or {}
-    cap_els = comp.get("elements") or []
-
-    if isinstance(studio_state, dict) and isinstance(studio_state.get("elements"), list):
-        items = []
-        ci = 0  # index into the override-applied caption elements
-        for el in studio_state["elements"]:
-            if el.get("enabled", True) is False:
-                continue  # muted: in the editor, excluded from the overlay
-            cap = cap_els[ci] if ci < len(cap_els) else {}
-            ci += 1
-            etype = cap.get("type") or el.get("type", "obj")
-            default = TEXT_COLOR if etype == "text" else OBJ_COLOR
-            items.append({
-                "bbox": el.get("bbox"),
-                "type": etype,
-                "text": cap.get("text", el.get("text", "")),
-                "desc": cap.get("desc", el.get("desc", "")),
-                "color": hex_to_rgb(el.get("boxColor"), default),
-                "palette": cap.get("color_palette") or el.get("color_palette") or [],
-            })
-        # appended-via-override elements: in the caption but with no studio box —
-        # draw them straight from the caption (own bbox + default colour)
-        for cap in cap_els[ci:]:
-            if not isinstance(cap, dict) or not cap.get("bbox"):
-                continue
-            etype = cap.get("type", "obj")
-            items.append({
-                "bbox": cap.get("bbox"),
-                "type": etype,
-                "text": cap.get("text", ""),
-                "desc": cap.get("desc", ""),
-                "color": TEXT_COLOR if etype == "text" else OBJ_COLOR,
-                "palette": cap.get("color_palette") or [],
-            })
-        return items
-    comp = (caption_data or {}).get("compositional_deconstruction", {}) or {}
-    return [
-        {"bbox": el.get("bbox"), "type": el.get("type", "obj"),
-         "text": el.get("text", ""), "desc": el.get("desc", ""),
-         "color": TEXT_COLOR if el.get("type") == "text" else OBJ_COLOR,
-         "palette": el.get("color_palette") or []}
-        for el in (comp.get("elements") or [])
-    ]
+from ..io_types import MossLayoutStudioType, MossLayoutExtrasType
+from ..utils.moss import compile_prompt, normalize_draft, parse_json_loose, resolve_payload
+from ..utils.overlay import render_overlay, items_from_draft, bboxes_from_items, hex_to_rgb
 
 
 def _int(v, default, lo, hi):
@@ -74,26 +26,30 @@ def _float(v, default, lo, hi):
         return default
 
 
-class IdeogramStudio(io.ComfyNode):
+class MossLayoutStudio(io.ComfyNode):
     @classmethod
     def define_schema(cls) -> io.Schema:
         return io.Schema(
-            node_id="IdeogramStudio",
-            display_name="Ideogram Studio",
-            category="Ideogram",
-            description="Visually compose an Ideogram 4 JSON caption. The 'extras' output breaks out (via Ideogram Studio Extras) into overlay / alpha / width / height — keeps the node compact.",
+            node_id="MossLayoutStudio",
+            display_name="MOSS Layout Studio",
+            category="MOSS",
+            description="Visually compose a MOSS-Image Layout JSON. Draw boxes on the canvas, edit their captions, "
+                        "and get the compiled model prompt (center-origin yxyx) plus the editable draft JSON. "
+                        "A non-empty 'draft' input overrides the editor content.",
             inputs=[
-                IdeogramStudioType.Input("studio"),
-                IdeogramOverrideType.Input("overrides", optional=True),
+                MossLayoutStudioType.Input("studio"),
+                io.String.Input("draft", multiline=True, default="", optional=True,
+                                tooltip="Whole-segment MOSS draft (or compiled prompt) JSON — overrides the editor when non-empty"),
             ],
             outputs=[
-                io.String.Output(display_name="caption"),
-                IdeogramExtrasType.Output(display_name="extras"),
+                io.String.Output(display_name="prompt"),
+                io.String.Output(display_name="draft"),
+                MossLayoutExtrasType.Output(display_name="extras"),
             ],
         )
 
     @classmethod
-    def execute(cls, studio, overrides=None) -> io.NodeOutput:
+    def execute(cls, studio, draft=None) -> io.NodeOutput:
         payload = studio
         if isinstance(payload, str):
             try:
@@ -103,32 +59,33 @@ class IdeogramStudio(io.ComfyNode):
         if not isinstance(payload, dict):
             payload = {}
 
-        data = payload.get("caption", payload)
-        if not isinstance(data, dict):
-            data = {}
+        editor_draft = payload.get("draft") if isinstance(payload.get("draft"), dict) else {}
         studio_state = payload.get("studio") if isinstance(payload.get("studio"), dict) else {}
+        warnings: list[str] = []
 
-        ovr = overrides if isinstance(overrides, dict) else {}
-        if ovr:
-            data = apply_override(data, ovr)
+        if isinstance(draft, str) and draft.strip():
+            data = resolve_payload(parse_json_loose(draft),
+                                   _int(editor_draft.get("width"), 1024, 16, 8192),
+                                   _int(editor_draft.get("height"), 1024, 16, 8192), warnings)
+        else:
+            data = normalize_draft(editor_draft, warnings)
 
-        caption_str, warnings = serialize_caption(data)
+        try:
+            prompt_str, compile_warnings = compile_prompt(data)
+        except ValueError as e:
+            raise ValueError(f"MOSS Layout Studio: {e}") from e
+        warnings += compile_warnings
         for w in warnings:
-            print(f"[IdeogramStudio] warning: {w}")
+            print(f"[MossLayoutStudio] warning: {w}")
 
-        width = _int(studio_state.get("width"), 1024, 16, 8192)
-        height = _int(studio_state.get("height"), 1024, 16, 8192)
-        if ovr.get("width"):
-            width = _int(ovr.get("width"), width, 16, 8192)
-        if ovr.get("height"):
-            height = _int(ovr.get("height"), height, 16, 8192)
+        width = _int(data.get("width"), 1024, 16, 8192)
+        height = _int(data.get("height"), 1024, 16, 8192)
         ov = studio_state.get("overlay") if isinstance(studio_state.get("overlay"), dict) else {}
+        muted = [i for i in (studio_state.get("muted") or []) if isinstance(i, int)]
+        box_colors = {i: hex_to_rgb(c, None) for i, c in (studio_state.get("boxColors") or {}).items()
+                      if isinstance(i, int)}
 
-        # Image-wide palette: drawn in the overlay's bottom-left corner.
-        sd = data.get("style_description")
-        global_palette = sd.get("color_palette") if isinstance(sd, dict) and isinstance(sd.get("color_palette"), list) else []
-
-        items = _draw_items(studio_state, data)
+        items = items_from_draft(data, muted=muted, box_colors=box_colors)
         overlay, alpha = render_overlay(
             items, width, height,
             line_width=_int(ov.get("lineWidth"), 3, 1, 40),
@@ -136,11 +93,11 @@ class IdeogramStudio(io.ComfyNode):
             label_size=_int(ov.get("labelSize"), 16, 6, 96),
             show_index=bool(ov.get("showIndex", True)),
             show_text=bool(ov.get("showText", True)),
-            global_palette=global_palette,
         )
 
         extras = {
             "overlay": overlay, "alpha": alpha, "width": width, "height": height,
             "bboxes": bboxes_from_items(items, width, height),
         }
-        return io.NodeOutput(caption_str, extras)
+        draft_str = json.dumps(data, ensure_ascii=False, indent=2)
+        return io.NodeOutput(prompt_str, draft_str, extras)

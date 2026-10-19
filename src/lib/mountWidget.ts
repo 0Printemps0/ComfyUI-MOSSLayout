@@ -42,7 +42,7 @@ const liveApps = new WeakMap<DOMWidget, VueApp>()
 
 export function mountWidget(node: NodeLike, opts: MountOptions): { widget: DOMWidget } {
   const container = document.createElement('div')
-  container.dataset['ideogram'] = opts.widgetType
+  container.dataset['moss'] = opts.widgetType
   Object.assign(container.style, {
     width: '100%',
     height: '100%',
@@ -73,7 +73,7 @@ export function mountWidget(node: NodeLike, opts: MountOptions): { widget: DOMWi
       vueApp.mount(container)
       liveApps.set(widget, vueApp)
     } catch (err) {
-      console.error('[IdeogramStudio] failed to mount Vue widget', opts.widgetType, err)
+      console.error('[MossLayout] failed to mount Vue widget', opts.widgetType, err)
     }
   })
 
@@ -86,13 +86,13 @@ export function mountWidget(node: NodeLike, opts: MountOptions): { widget: DOMWi
         liveApps.delete(widget)
       }
     } catch (err) {
-      console.error('[IdeogramStudio] error during widget unmount', err)
+      console.error('[MossLayout] error during widget unmount', err)
     }
     // Bind to the widget — base onRemove does `unregisterWidget(this.id)`.
     try {
       previousOnRemove?.call(widget)
     } catch (err) {
-      console.error('[IdeogramStudio] error in chained onRemove', err)
+      console.error('[MossLayout] error in chained onRemove', err)
     }
   }
 

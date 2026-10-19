@@ -11,7 +11,7 @@ const COMFY_RUNTIME_MODULES: Record<string, string> = {
 // ComfyUI loads .js but ignores sibling .css, so fold the CSS into main.js.
 function inlineCssPlugin(): Plugin {
   return {
-    name: "ideogram-inline-css",
+    name: "moss-inline-css",
     apply: "build",
     enforce: "post",
     generateBundle(_options, bundle) {
@@ -26,7 +26,7 @@ function inlineCssPlugin(): Plugin {
       if (!css || main?.type !== "chunk") return;
       main.code =
         `(function(){var s=document.createElement('style');` +
-        `s.setAttribute('data-extension','comfyui-ideogramhelper');` +
+        `s.setAttribute('data-extension','comfyui-mosslayout');` +
         `s.textContent=${JSON.stringify(css)};document.head.appendChild(s);})();` +
         main.code;
     },

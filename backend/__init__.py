@@ -1,4 +1,4 @@
-"""V3 node registry."""
+"""MOSS Helper node registry."""
 
 from __future__ import annotations
 
@@ -10,40 +10,26 @@ from . import io_types  # noqa: F401
 try:
     from .server import api  # noqa: F401
 except Exception as _api_err:  # pragma: no cover
-    print(f"[IdeogramHelper] API routes failed to load: {_api_err}")
+    print(f"[MossLayout] API routes failed to load: {_api_err}")
 
-from .nodes.bbox_select import IdeogramBBoxSelect
-from .nodes.caption_preview import IdeogramCaptionPreview
-from .nodes.element_append import IdeogramElementAppend
-from .nodes.element_override import IdeogramElementOverride
-from .nodes.extras import IdeogramExtras
-from .nodes.json_sync import IdeogramJsonSync
-from .nodes.override import IdeogramOverride
-from .nodes.override_list import IdeogramOverrideList
-from .nodes.palette import IdeogramPalette
-from .nodes.ref_sync import IdeogramRefSync
-from .nodes.studio import IdeogramStudio
+from .nodes.extras import MossLayoutExtras
+from .nodes.json_sync import MossLayoutJsonSync
+from .nodes.ref_sync import MossLayoutRefSync
+from .nodes.studio import MossLayoutStudio
 
 
-class IdeogramHelperExtension(ComfyExtension):
+class MossLayoutExtension(ComfyExtension):
     async def get_node_list(self) -> list[type[io.ComfyNode]]:
         return [
-            IdeogramStudio,
-            IdeogramCaptionPreview,
-            IdeogramRefSync,
-            IdeogramJsonSync,
-            IdeogramOverride,
-            IdeogramElementOverride,
-            IdeogramElementAppend,
-            IdeogramOverrideList,
-            IdeogramPalette,
-            IdeogramExtras,
-            IdeogramBBoxSelect,
+            MossLayoutStudio,
+            MossLayoutExtras,
+            MossLayoutRefSync,
+            MossLayoutJsonSync,
         ]
 
 
-async def comfy_entrypoint() -> IdeogramHelperExtension:
-    return IdeogramHelperExtension()
+async def comfy_entrypoint() -> MossLayoutExtension:
+    return MossLayoutExtension()
 
 
-__all__ = ["IdeogramHelperExtension", "comfy_entrypoint"]
+__all__ = ["MossLayoutExtension", "comfy_entrypoint"]

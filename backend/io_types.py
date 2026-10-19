@@ -1,4 +1,4 @@
-"""Custom IO types for the V3 nodes. io_type strings match the legacy V1 names so saved workflows keep resolving."""
+"""Custom IO types for the V3 nodes."""
 
 from __future__ import annotations
 
@@ -38,21 +38,12 @@ def _make_widget_input(socketless: bool = True):
     return _WidgetInput
 
 
-@io.comfytype(io_type="IDEOGRAM_STUDIO")
-class IdeogramStudioType:
-    """Studio editor widget value (serialized caption payload)."""
+@io.comfytype(io_type="MOSS_LAYOUT_STUDIO")
+class MossLayoutStudioType:
+    """Studio editor widget value ({draft: canonical draft JSON, studio: editor prefs})."""
 
     Type = dict
     Input = _make_widget_input()
 
 
-@io.comfytype(io_type="IDEOGRAM_PALETTE")
-class IdeogramPaletteType:
-    """Palette widget value (list of #RRGGBB swatches)."""
-
-    Type = list
-    Input = _make_widget_input()
-
-
-IdeogramOverrideType = io.Custom("IDEOGRAM_OVERRIDE")
-IdeogramExtrasType = io.Custom("IDEOGRAM_EXTRAS")
+MossLayoutExtrasType = io.Custom("MOSS_LAYOUT_EXTRAS")

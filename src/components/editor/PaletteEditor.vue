@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { normalizeHex } from '@/lib/caption'
+import { normalizeHex } from '@/lib/moss'
 
 const props = withDefaults(
   defineProps<{ modelValue: string[]; max?: number; label?: string }>(),

@@ -73,7 +73,7 @@ function collectAncestors(graph: any, start: any, out: Set<string>) {
 
 function isRefSync(n: any): boolean {
   const cls = n?.type ?? n?.comfyClass ?? n?.constructor?.comfyClass
-  return cls === 'IdeogramRefSync'
+  return cls === 'MossLayoutRefSync'
 }
 
 // Walk a graph and recurse into every subgraph, collecting ancestors of each enabled
@@ -126,8 +126,8 @@ export function initPreviewSync() {
     })
 
     // Drop the live frame once Ref Sync broadcasts the final image.
-    A.addEventListener('ideogram-studio.ref-sync', clearPreview)
+    A.addEventListener('moss-layout.ref-sync', clearPreview)
   } catch (err) {
-    console.warn('[IdeogramStudio] live-preview listener failed to register', err)
+    console.warn('[MossLayoutStudio] live-preview listener failed to register', err)
   }
 }

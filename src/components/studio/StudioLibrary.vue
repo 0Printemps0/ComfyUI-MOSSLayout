@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue'
 import { useStudioStore } from '@/lib/store'
-import { serialize } from '@/lib/caption'
+import { serialize } from '@/lib/moss'
 import { listLibrary, saveTemplate, deleteTemplate, previewJson, thumbUrl } from '@/lib/api'
 import UiButton from '../ui/UiButton.vue'
 
@@ -94,8 +94,8 @@ function nextName(stem: string): string {
 
 function elCount(t: LibItem): number {
   try {
-    const els = (JSON.parse(t.caption)?.compositional_deconstruction?.elements)
-    return Array.isArray(els) ? els.length : 0
+    const items = (JSON.parse(t.caption)?.items)
+    return Array.isArray(items) ? items.length : 0
   } catch {
     return 0
   }
@@ -137,7 +137,7 @@ watch(
 )
 
 function load(t: LibItem) {
-  const res = store.importCaptionJson(t.caption)
+  const res = store.importDraftJson(t.caption)
   if (res.ok) emit('update:open', false)
   else flash.value = 'load error: ' + (res.error || 'invalid template')
 }
@@ -184,16 +184,16 @@ async function makeThumb(): Promise<string> {
       const ctx = c.getContext('2d')
       if (!ctx) return resolve('')
       ctx.drawImage(img, 0, 0, w, h)
-      // bbox coords are 0..1000 normalized
+      // draft bboxes are pixel [x1, y1, x2, y2] on the W×H canvas
+      const W = store.state.width, H = store.state.height
       ctx.lineWidth = Math.max(1, Math.round(w / 220))
       for (const el of store.state.elements) {
-        if (!el.bbox || el.enabled === false) continue
-        const [y0, x0, y1, x1] = el.bbox
-        const rx = (x0 / 1000) * w
-        const ry = (y0 / 1000) * h
-        const rw = ((x1 - x0) / 1000) * w
-        const rh = ((y1 - y0) / 1000) * h
-        const color = el.boxColor || '#3b82f6'
+        const [x1, y1, x2, y2] = el.bbox
+        const rx = (x1 / W) * w
+        const ry = (y1 / H) * h
+        const rw = ((x2 - x1) / W) * w
+        const rh = ((y2 - y1) / H) * h
+        const color = el.boxColor || '#60a5fa'
         ctx.fillStyle = hexA(color, 0.16)
         ctx.fillRect(rx, ry, rw, rh)
         ctx.strokeStyle = color
@@ -211,7 +211,7 @@ async function makeThumb(): Promise<string> {
 }
 
 async function saveCurrent() {
-  const json = serialize(store.state).pretty
+  const json = serialize(store.state).draftPretty
   const thumb = withThumb.value && store.refImage ? await makeThumb() : ''
   try {
     const r = await saveTemplate('', saveName.value.trim() || 'template_001', json, false, thumb)

@@ -5,10 +5,10 @@
       <span v-if="$slots.lead" class="divider"></span>
       <UiButton
         icon
-        :title="'New boxes: ' + (newType === 'text' ? 'text' : 'object') + ' — click to switch · Ctrl/⌘+drag to draw (drag on empty = box-select)'"
-        @click="newType = newType === 'obj' ? 'text' : 'obj'"
+        :title="'New items: ' + newType + ' — click to cycle · Ctrl/⌘+drag to draw (drag on empty = box-select)'"
+        @click="cycleNewType"
       >
-        <i class="mdi" :class="newType === 'text' ? 'mdi-format-text' : 'mdi-shape-outline'"></i>
+        <i class="mdi" :class="newTypeIcon"></i>
       </UiButton>
 
       <span class="divider"></span>
@@ -17,7 +17,7 @@
         <template #trigger><UiButton icon :active="!!backdropUrl || syncRef" title="Reference / trace image"><i class="mdi mdi-image-outline"></i></UiButton></template>
         <div class="cmenu">
           <button class="citem" @click="pickImage"><i class="mdi mdi-folder-image"></i> load image…</button>
-          <button class="citem" :class="{ on: syncRef }" title="Update from an Ideogram Studio Ref Sync node" @click="toggleSync"><i class="mdi" :class="syncRef ? 'mdi-sync' : 'mdi-sync-off'"></i> live sync</button>
+          <button class="citem" :class="{ on: syncRef }" title="Update from a MOSS Layout Studio Ref Sync node" @click="toggleSync"><i class="mdi" :class="syncRef ? 'mdi-sync' : 'mdi-sync-off'"></i> live sync</button>
           <button class="citem" :class="{ on: livePreview }" title="Show the in-progress sampler preview (the sampler feeding your Ref Sync node) until the final image syncs in" @click="livePreview = !livePreview"><i class="mdi" :class="livePreview ? 'mdi-television-play' : 'mdi-television-off'"></i> live preview</button>
           <label class="crow">opacity <input type="range" min="0" max="1" step="0.05" v-model.number="backdropOpacity" /></label>
           <button v-if="backdropUrl" class="citem" @click="backdropUrl = null"><i class="mdi mdi-close"></i> remove reference</button>
@@ -30,7 +30,7 @@
         <template #trigger><UiButton icon title="Canvas &amp; overlay settings"><i class="mdi mdi-tune-variant"></i></UiButton></template>
         <div class="cmenu">
           <div class="cgroup">canvas</div>
-          <button class="citem" :class="{ on: showLabels }" title="Show element labels on the canvas" @click="showLabels = !showLabels"><i class="mdi" :class="showLabels ? 'mdi-label' : 'mdi-label-outline'"></i> element labels</button>
+          <button class="citem" :class="{ on: showLabels }" title="Show item labels on the canvas" @click="showLabels = !showLabels"><i class="mdi" :class="showLabels ? 'mdi-label' : 'mdi-label-outline'"></i> item labels</button>
           <div class="cdiv"></div>
           <div class="crow">mirror scene
             <button class="cic" title="Mirror horizontally" @click="store.flipAll('h')"><i class="mdi mdi-flip-horizontal"></i></button>
@@ -79,15 +79,15 @@
         v-for="(el, i) in boxed"
         :key="el.id"
         class="box"
-        :class="{ sel: store.isSelected(el.id), primary: el.id === store.selectedId, muted: el.enabled === false }"
+        :class="{ sel: store.isSelected(el.id), primary: el.id === store.selectedId }"
         :style="boxStyle(el)"
         :data-box="el.id"
       >
         <span v-if="showLabels" class="tag" :class="{ grouped: !!el.groupId }" :style="tagStyle(el)">
           <span v-if="el.groupId" class="gseg"></span>
-          <i class="mdi tagi" :class="el.linkId ? 'mdi-link-variant' : (el.type === 'text' ? 'mdi-format-text' : 'mdi-vector-square')"></i>
+          <i class="mdi tagi" :class="el.linkId ? 'mdi-link-variant' : labelIcon(el.label)"></i>
           <span class="tagn">{{ i + 1 }}</span>
-          <span class="tagt">{{ el.type === 'text' ? (el.text || 'text') : (el.desc || 'obj') }}</span>
+          <span class="tagt">{{ el.label === 'text' ? (el.text || 'text') : (el.caption || el.label) }}</span>
         </span>
         <template v-if="el.id === store.selectedId && store.selectedIds.length === 1">
           <i v-for="hdl in HANDLES" :key="hdl" :class="['h', 'h-' + hdl]" :data-handle="hdl"></i>
@@ -113,7 +113,7 @@ import { refSyncImage, initRefSync } from '@/lib/refSync'
 import { previewSyncImage, initPreviewSync } from '@/lib/previewSync'
 import UiButton from '../ui/UiButton.vue'
 import UiPopover from '../ui/UiPopover.vue'
-import { groupColor, type CaptionElement } from '@/lib/caption'
+import { groupColor, LABELS, snapDim, type MossElement, type Label } from '@/lib/moss'
 
 const store = useStudioStore()
 
@@ -122,6 +122,7 @@ const props = defineProps<{ backdrop?: string | null; hideRef?: boolean }>()
 
 const HANDLES = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'] as const
 type Handle = (typeof HANDLES)[number]
+// pixel [x1, y1, x2, y2], top-left origin — the draft's own coordinate space
 type Bbox = [number, number, number, number]
 
 // persisted in store.state.ui so toggles survive a reload
@@ -135,13 +136,13 @@ const backdropUrl = ref<string | null>(null)
 const effectiveBackdrop = computed(() => props.backdrop ?? backdropUrl.value)
 watch(effectiveBackdrop, (v) => (store.refImage = v || ''), { immediate: true })
 
-// match canvas aspect to the prop-driven image so % bboxes line up (no letterbox drift)
+// match canvas aspect to the prop-driven image so bboxes line up (no letterbox drift)
 function onBackdropLoad(e: Event) {
   if (props.backdrop == null) return
   const img = e.target as HTMLImageElement
   if (img.naturalWidth && img.naturalHeight) {
-    store.state.width = img.naturalWidth
-    store.state.height = img.naturalHeight
+    store.state.width = snapDim(img.naturalWidth)
+    store.state.height = snapDim(img.naturalHeight)
   }
 }
 const fileInput = ref<HTMLInputElement | null>(null)
@@ -176,21 +177,32 @@ const draft = ref<Bbox | null>(null)
 const marquee = ref<Bbox | null>(null)
 const hint = ref('') // live bbox readout during a drag
 
-const MIN_SPAN = 10 // smallest group dimension when resizing the selection
+const MIN_SPAN = 10 // smallest box dimension when resizing, in pixels
 
-const boxed = computed(() => store.state.elements.filter((e) => e.bbox))
+const boxed = computed(() => store.state.elements)
+
+const newTypeIcon = computed(() =>
+  newType.value === 'text' ? 'mdi-format-text' : newType.value === 'character' ? 'mdi-account-outline' : 'mdi-vector-square',
+)
+function cycleNewType() {
+  const i = LABELS.indexOf(newType.value)
+  newType.value = LABELS[(i + 1) % LABELS.length]
+}
+function labelIcon(label: Label): string {
+  return label === 'text' ? 'mdi-format-text' : label === 'character' ? 'mdi-account-outline' : 'mdi-vector-square'
+}
 
 const selectedBoxes = computed(() =>
-  store.selectedIds.map((id) => store.getElement(id)).filter((e): e is CaptionElement => !!e?.bbox),
+  store.selectedIds.map((id) => store.getElement(id)).filter((e): e is MossElement => !!e),
 )
 const groupBox = computed<Bbox | null>(() => {
   if (selectedBoxes.value.length < 2) return null
-  let y0 = Infinity, x0 = Infinity, y1 = -Infinity, x1 = -Infinity
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity
   for (const e of selectedBoxes.value) {
-    const [a, b, c, d] = e.bbox!
-    y0 = Math.min(y0, a); x0 = Math.min(x0, b); y1 = Math.max(y1, c); x1 = Math.max(x1, d)
+    const [a, b, c, d] = e.bbox
+    x0 = Math.min(x0, a); y0 = Math.min(y0, b); x1 = Math.max(x1, c); y1 = Math.max(y1, d)
   }
-  return [y0, x0, y1, x1]
+  return [x0, y0, x1, y1]
 })
 // one whole group → tint the frame with the group color; ad-hoc selection → accent
 const groupFrameColor = computed(() => {
@@ -199,20 +211,26 @@ const groupFrameColor = computed(() => {
   const gid = els[0].groupId
   return gid && els.every((e) => e.groupId === gid) ? groupColor(gid) : ''
 })
+
+function rectStyle(b: Bbox): Record<string, string> {
+  const W = store.state.width, H = store.state.height
+  const x0 = Math.min(b[0], b[2]), x1 = Math.max(b[0], b[2])
+  const y0 = Math.min(b[1], b[3]), y1 = Math.max(b[1], b[3])
+  return {
+    left: `${(x0 / W) * 100}%`,
+    top: `${(y0 / H) * 100}%`,
+    width: `${((x1 - x0) / W) * 100}%`,
+    height: `${((y1 - y0) / H) * 100}%`,
+  }
+}
 const groupStyle = computed(() => {
   const b = groupBox.value
   if (!b) return {}
-  const [y0, x0, y1, x1] = b
-  const s: Record<string, string> = { left: `${x0 / 10}%`, top: `${y0 / 10}%`, width: `${(x1 - x0) / 10}%`, height: `${(y1 - y0) / 10}%` }
+  const s = rectStyle(b)
   if (groupFrameColor.value) s['--gc'] = groupFrameColor.value
   return s
 })
-const marqueeStyle = computed(() => {
-  const b = marquee.value
-  if (!b) return {}
-  const [y0, x0, y1, x1] = b
-  return { left: `${x0 / 10}%`, top: `${y0 / 10}%`, width: `${(x1 - x0) / 10}%`, height: `${(y1 - y0) / 10}%` }
-})
+const marqueeStyle = computed(() => (marquee.value ? rectStyle(marquee.value) : {}))
 
 const stageStyle = computed(() => ({ aspectRatio: `${store.state.width} / ${store.state.height}` }))
 
@@ -224,57 +242,52 @@ function hexToRgba(hex: string, a: number): string {
   return `rgba(${r},${g},${b},${a})`
 }
 
-// bbox = [y0, x0, y1, x1] in 0..1000
+// bbox = pixel [x1, y1, x2, y2]
 function boxStyle(el: { bbox: Bbox; boxColor?: string }) {
-  const [y0, x0, y1, x1] = el.bbox
-  const color = el.boxColor || '#3b82f6'
+  const color = el.boxColor || '#60a5fa'
   return {
-    left: `${x0 / 10}%`,
-    top: `${y0 / 10}%`,
-    width: `${(x1 - x0) / 10}%`,
-    height: `${(y1 - y0) / 10}%`,
+    ...rectStyle(el.bbox),
     borderColor: color,
     '--c': color,
     '--fill': hexToRgba(color, 0.16),
   }
 }
 function tagStyle(el: { boxColor?: string; groupId?: string | null }) {
-  const s: Record<string, string> = { background: hexToRgba(el.boxColor || '#3b82f6', 0.88), color: '#fff' }
+  const s: Record<string, string> = { background: hexToRgba(el.boxColor || '#60a5fa', 0.88), color: '#fff' }
   if (el.groupId) s['--gc'] = groupColor(el.groupId)
   return s
 }
 
-const clamp = (v: number) => Math.max(0, Math.min(1000, Math.round(v)))
 function pointToCoords(ev: PointerEvent): { x: number; y: number } {
   const r = stage.value!.getBoundingClientRect()
   return {
-    x: clamp(((ev.clientX - r.left) / r.width) * 1000),
-    y: clamp(((ev.clientY - r.top) / r.height) * 1000),
+    x: Math.max(0, Math.min(store.state.width, Math.round(((ev.clientX - r.left) / r.width) * store.state.width))),
+    y: Math.max(0, Math.min(store.state.height, Math.round(((ev.clientY - r.top) / r.height) * store.state.height))),
   }
 }
 
 interface DragSession {
   kind: 'draw' | 'move' | 'resize' | 'resize-group' | 'marquee'
-  el?: CaptionElement
+  el?: MossElement
   handle?: Handle
   start: { x: number; y: number }
   moved: boolean
-  moveTargets?: { el: CaptionElement; start: Bbox }[]
+  moveTargets?: { el: MossElement; start: Bbox }[]
   clickedId?: string
   wasPrimary?: boolean // clicked box was the sole selection → cycle on click
   wasClickedPrimary?: boolean // clicked box was the primary at press → deselect on click
   ctrlClick?: boolean // ctrl/⌘ held on a draw session; no-drag → toggle select
   additive?: boolean // shift held; marquee adds to the selection
   groupStart?: Bbox // selection union bbox at the start of a group resize
-  groupTargets?: { el: CaptionElement; start: Bbox }[]
+  groupTargets?: { el: MossElement; start: Bbox }[]
 }
 let drag: DragSession | null = null
-let lastPointer = { x: 500, y: 500 } // last cursor pos (0..1000), for paste-at-cursor
+let lastPointer = { x: 512, y: 512 } // last cursor pos (pixels), for paste-at-cursor
 
-// enabled boxes containing the point, in paint order; for cycling stacked boxes
+// items containing the point, in paint order; for cycling stacked boxes
 function boxesUnder(p: { x: number; y: number }) {
   return store.state.elements
-    .filter((el) => el.bbox && el.enabled !== false && p.x >= el.bbox[1] && p.x <= el.bbox[3] && p.y >= el.bbox[0] && p.y <= el.bbox[2])
+    .filter((el) => p.x >= el.bbox[0] && p.x <= el.bbox[2] && p.y >= el.bbox[1] && p.y <= el.bbox[3])
     .map((el) => el.id)
 }
 
@@ -305,20 +318,20 @@ function onPointerDown(ev: PointerEvent) {
       start,
       moved: false,
       groupStart: [...groupBox.value] as Bbox,
-      groupTargets: selectedBoxes.value.map((e) => ({ el: e, start: [...e.bbox!] as Bbox })),
+      groupTargets: selectedBoxes.value.map((e) => ({ el: e, start: [...e.bbox] as Bbox })),
     }
     return
   }
   if (handle && store.selectedId && store.selectedIds.length === 1) {
     const el = store.getElement(store.selectedId)
-    if (el?.bbox) {
+    if (el) {
       drag = { kind: 'resize', el, handle, start, moved: false }
       return
     }
   }
   // Ctrl/⌘+drag draws a new box anywhere; ctrl-click with no drag toggles the box under it
   if (drawMod) {
-    draft.value = [start.y, start.x, start.y, start.x]
+    draft.value = [start.x, start.y, start.x, start.y]
     drag = { kind: 'draw', start, moved: false, ctrlClick: true, clickedId: boxId }
     return
   }
@@ -334,13 +347,13 @@ function onPointerDown(ev: PointerEvent) {
     if (!store.isSelected(boxId)) store.select(boxId)
     const moveTargets = store.selectedIds
       .map((id) => store.getElement(id))
-      .filter((e): e is CaptionElement => !!e?.bbox)
-      .map((e) => ({ el: e, start: [...e.bbox!] as Bbox }))
+      .filter((e): e is MossElement => !!e)
+      .map((e) => ({ el: e, start: [...e.bbox] as Bbox }))
     drag = { kind: 'move', start, moved: false, moveTargets, clickedId: boxId, wasPrimary, wasClickedPrimary }
     return
   }
   // empty space → marquee box-select; shift adds to the selection
-  marquee.value = [start.y, start.x, start.y, start.x]
+  marquee.value = [start.x, start.y, start.x, start.y]
   drag = { kind: 'marquee', start, moved: false, additive }
 }
 
@@ -352,14 +365,14 @@ function onPointerMove(ev: PointerEvent) {
   if (Math.abs(p.x - drag.start.x) > 2 || Math.abs(p.y - drag.start.y) > 2) drag.moved = true
 
   if (drag.kind === 'draw') {
-    draft.value = [Math.min(drag.start.y, p.y), Math.min(drag.start.x, p.x), Math.max(drag.start.y, p.y), Math.max(drag.start.x, p.x)]
+    draft.value = [Math.min(drag.start.x, p.x), Math.min(drag.start.y, p.y), Math.max(drag.start.x, p.x), Math.max(drag.start.y, p.y)]
     hint.value = bboxLabel(draft.value)
   } else if (drag.kind === 'marquee') {
-    marquee.value = [Math.min(drag.start.y, p.y), Math.min(drag.start.x, p.x), Math.max(drag.start.y, p.y), Math.max(drag.start.x, p.x)]
+    marquee.value = [Math.min(drag.start.x, p.x), Math.min(drag.start.y, p.y), Math.max(drag.start.x, p.x), Math.max(drag.start.y, p.y)]
   } else if (drag.kind === 'resize-group' && drag.groupStart && drag.groupTargets && drag.handle) {
     // resize the union bbox, then map each member linearly from old to new bounds
-    const [oy0, ox0, oy1, ox1] = drag.groupStart
-    let gy0 = oy0, gx0 = ox0, gy1 = oy1, gx1 = ox1
+    const [ox0, oy0, ox1, oy1] = drag.groupStart
+    let gx0 = ox0, gy0 = oy0, gx1 = ox1, gy1 = oy1
     if (drag.handle.includes('n')) gy0 = Math.min(p.y, oy1 - MIN_SPAN)
     if (drag.handle.includes('s')) gy1 = Math.max(p.y, oy0 + MIN_SPAN)
     if (drag.handle.includes('w')) gx0 = Math.min(p.x, ox1 - MIN_SPAN)
@@ -367,12 +380,12 @@ function onPointerMove(ev: PointerEvent) {
     const sx = ox1 - ox0 ? (gx1 - gx0) / (ox1 - ox0) : 1
     const sy = oy1 - oy0 ? (gy1 - gy0) / (oy1 - oy0) : 1
     for (const t of drag.groupTargets) {
-      const [y0, x0, y1, x1] = t.start
+      const [x0, y0, x1, y1] = t.start
       t.el.bbox = [
-        clamp(gy0 + (y0 - oy0) * sy),
-        clamp(gx0 + (x0 - ox0) * sx),
-        clamp(gy0 + (y1 - oy0) * sy),
-        clamp(gx0 + (x1 - ox0) * sx),
+        clampCoord(gx0 + (x0 - ox0) * sx, store.state.width),
+        clampCoord(gy0 + (y0 - oy0) * sy, store.state.height),
+        clampCoord(gx1 + (x1 - ox0) * sx, store.state.width),
+        clampCoord(gy1 + (y1 - oy0) * sy, store.state.height),
       ]
     }
   } else if (drag.kind === 'move' && drag.moveTargets) {
@@ -382,24 +395,25 @@ function onPointerMove(ev: PointerEvent) {
     let dy = p.y - drag.start.y
     let loX = -Infinity, hiX = Infinity, loY = -Infinity, hiY = Infinity
     for (const t of targets) {
-      const [y0, x0, y1, x1] = t.start
-      loX = Math.max(loX, -x0); hiX = Math.min(hiX, 1000 - x1)
-      loY = Math.max(loY, -y0); hiY = Math.min(hiY, 1000 - y1)
+      const [x0, y0, x1, y1] = t.start
+      loX = Math.max(loX, -x0); hiX = Math.min(hiX, store.state.width - x1)
+      loY = Math.max(loY, -y0); hiY = Math.min(hiY, store.state.height - y1)
     }
     dx = Math.max(loX, Math.min(hiX, dx))
     dy = Math.max(loY, Math.min(hiY, dy))
     for (const t of targets) {
-      const [y0, x0, y1, x1] = t.start
-      t.el.bbox = [Math.round(y0 + dy), Math.round(x0 + dx), Math.round(y1 + dy), Math.round(x1 + dx)]
+      const [x0, y0, x1, y1] = t.start
+      t.el.bbox = [Math.round(x0 + dx), Math.round(y0 + dy), Math.round(x1 + dx), Math.round(y1 + dy)]
     }
-    if (targets.length === 1) hint.value = bboxLabel(targets[0].el.bbox!)
-  } else if (drag.kind === 'resize' && drag.el?.bbox && drag.handle) {
-    let [y0, x0, y1, x1] = drag.el.bbox
-    if (drag.handle.includes('n')) y0 = Math.min(p.y, y1 - 2)
-    if (drag.handle.includes('s')) y1 = Math.max(p.y, y0 + 2)
-    if (drag.handle.includes('w')) x0 = Math.min(p.x, x1 - 2)
-    if (drag.handle.includes('e')) x1 = Math.max(p.x, x0 + 2)
-    drag.el.bbox = [y0, x0, y1, x1]
+    if (targets.length === 1) hint.value = bboxLabel(targets[0].el.bbox)
+  } else if (drag.kind === 'resize' && drag.el && drag.handle) {
+    const [x0, y0, x1, y1] = drag.el.bbox
+    let nx0 = x0, ny0 = y0, nx1 = x1, ny1 = y1
+    if (drag.handle.includes('n')) ny0 = Math.min(p.y, y1 - 2)
+    if (drag.handle.includes('s')) ny1 = Math.max(p.y, y0 + 2)
+    if (drag.handle.includes('w')) nx0 = Math.min(p.x, x1 - 2)
+    if (drag.handle.includes('e')) nx1 = Math.max(p.x, x0 + 2)
+    drag.el.bbox = [nx0, ny0, nx1, ny1]
     hint.value = bboxLabel(drag.el.bbox)
   }
 }
@@ -423,9 +437,7 @@ function onPointerUp(ev: PointerEvent) {
     const m = marquee.value
     marquee.value = null
     if (drag.moved && m) {
-      const ids = store.state.elements
-        .filter((el) => el.bbox && el.enabled !== false && intersects(el.bbox, m))
-        .map((el) => el.id)
+      const ids = store.state.elements.filter((el) => intersects(el.bbox, m)).map((el) => el.id)
       store.setSelection(ids, drag.additive)
     } else if (!drag.moved && !drag.additive) {
       store.select(null)
@@ -493,12 +505,16 @@ function onContextMenu(ev: MouseEvent) {
 }
 
 function bboxLabel(b: Bbox) {
-  return `bbox [y${b[0]} x${b[1]} y${b[2]} x${b[3]}]  ·  ${b[3] - b[1]}×${b[2] - b[0]}`
+  return `bbox [x${b[0]} y${b[1]} x${b[2]} y${b[3]}]  ·  ${b[2] - b[0]}×${b[3] - b[1]}`
+}
+
+function clampCoord(v: number, max: number) {
+  return Math.max(0, Math.min(max, Math.round(v)))
 }
 
 // marquee hit-test: do two bboxes overlap?
 function intersects(a: Bbox, m: Bbox) {
-  return a[1] < m[3] && a[3] > m[1] && a[0] < m[2] && a[2] > m[0]
+  return a[0] < m[2] && a[2] > m[0] && a[1] < m[3] && a[3] > m[1]
 }
 </script>
 
@@ -508,14 +524,6 @@ function intersects(a: Bbox, m: Bbox) {
 .mdi { font-size: 15px; line-height: 1; }
 .tag .mdi { font-size: 1em; }
 .seg { display: flex; gap: 2px; }
-.ic {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 26px; height: 24px; padding: 0 6px; box-sizing: border-box;
-  background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);
-  border-radius: 5px; font-size: 12px; line-height: 1; cursor: pointer;
-}
-.ic:hover { border-color: var(--st-accent); }
-.ic.on { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff); }
 .divider { width: 1px; height: 18px; background: var(--st-border); margin: 0 2px; }
 .spacer { flex: 1 1 auto; }
 .cmenu { display: flex; flex-direction: column; gap: 5px; min-width: 170px; }
@@ -559,18 +567,15 @@ function intersects(a: Bbox, m: Bbox) {
 }
 .box { position: absolute; box-sizing: border-box; cursor: move; background: transparent; transition: background .1s; }
 /* border as ::after (painted after children) so the outline sits over the label */
-.box::after { content: ''; position: absolute; inset: 0; border: 2px solid var(--c, #3b82f6); pointer-events: none; }
+.box::after { content: ''; position: absolute; inset: 0; border: 2px solid var(--c, #60a5fa); pointer-events: none; }
 .box:hover { background: var(--fill); }
-.box.sel { background: var(--fill); box-shadow: 0 0 0 1.5px var(--st-accent, #3b82f6); z-index: 4; }
-.box.primary { box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--st-accent, #3b82f6), 0 0 10px rgba(0,0,0,.6); z-index: 5; }
-.box.muted { opacity: 0.32; background: transparent !important; }
-.box.muted::after { border-style: dashed; }
-.box.muted .tag { opacity: 0.6; }
+.box.sel { background: var(--fill); box-shadow: 0 0 0 1.5px var(--st-accent, #60a5fa); z-index: 4; }
+.box.primary { box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--st-accent, #60a5fa), 0 0 10px rgba(0,0,0,.6); z-index: 5; }
 .box.draft { opacity: 0.8; pointer-events: none; background: rgba(156,163,175,.12); }
 .box.draft::after { border-style: dashed; }
-.groupframe { position: absolute; box-sizing: border-box; border: 1px dashed var(--gc, var(--st-accent, #3b82f6)); background: transparent; z-index: 6; pointer-events: none; }
-.groupframe .h { pointer-events: auto; background: var(--gc, var(--st-accent, #3b82f6)); border-color: #fff; }
-.marquee { position: absolute; box-sizing: border-box; border: 1px solid var(--st-accent, #3b82f6); background: color-mix(in srgb, var(--st-accent, #3b82f6) 15%, transparent); z-index: 7; pointer-events: none; }
+.groupframe { position: absolute; box-sizing: border-box; border: 1px dashed var(--gc, var(--st-accent, #60a5fa)); background: transparent; z-index: 6; pointer-events: none; }
+.groupframe .h { pointer-events: auto; background: var(--gc, var(--st-accent, #60a5fa)); border-color: #fff; }
+.marquee { position: absolute; box-sizing: border-box; border: 1px solid var(--st-accent, #60a5fa); background: color-mix(in srgb, var(--st-accent, #60a5fa) 15%, transparent); z-index: 7; pointer-events: none; }
 .tag {
   position: absolute; top: 0; left: 0; transform: translateY(-100%);
   display: inline-flex; align-items: center; gap: 3px;

@@ -1,39 +1,55 @@
-"""Render an Ideogram caption's bounding boxes + text into an overlay image."""
+"""Render a MOSS-Image Layout draft's bounding boxes + text into an overlay image."""
 
 from __future__ import annotations
+
+import os
 
 import numpy as np
 import torch
 from PIL import Image, ImageDraw, ImageFont
 
-# Defaults used when an element carries no explicit color.
-OBJ_COLOR = (59, 130, 246)   # blue
-TEXT_COLOR = (245, 158, 11)  # amber
+# Per-box colors, cycled by item index so every box reads distinctly
+# (mirrors the editor's BOX_PALETTE).
+BOX_PALETTE = [
+    (96, 165, 250), (244, 114, 182), (52, 211, 153), (251, 191, 36),
+    (167, 139, 250), (34, 211, 238), (248, 113, 113), (163, 230, 53),
+]
 
 
-def items_from_caption(data) -> list:
-    """Build render_overlay draw-items from a parsed caption dict."""
-    comp = (data or {}).get("compositional_deconstruction", {}) or {}
+def items_from_draft(data, muted=None, box_colors=None) -> list:
+    """Draw-items for render_overlay from a canonical draft dict.
+
+    Draft bboxes are absolute pixel [x1,y1,x2,y2] (top-left origin); the
+    renderer consumes normalized 0..1000 [y0,x0,y1,x1]. `muted` = indices
+    excluded from the prompt but still drawn; `box_colors` = editor colors.
+    """
+    draft = data or {}
+    w = float(draft.get("width") or 1)
+    h = float(draft.get("height") or 1)
+    muted = set(muted or [])
     items = []
-    for el in comp.get("elements") or []:
-        etype = el.get("type", "obj")
+    for i, it in enumerate(draft.get("items") or []):
+        bb = it.get("bbox")
+        if not (isinstance(bb, (list, tuple)) and len(bb) == 4):
+            continue
+        try:
+            x1, y1, x2, y2 = (float(v) for v in bb)
+        except (TypeError, ValueError):
+            continue
+        x1, x2 = sorted((x1, x2))
+        y1, y2 = sorted((y1, y2))
+        label = it.get("label", "object")
+        color = (box_colors or {}).get(i) or BOX_PALETTE[i % len(BOX_PALETTE)]
         items.append({
-            "bbox": el.get("bbox"),
-            "type": etype,
-            "text": el.get("text", ""),
-            "desc": el.get("desc", ""),
-            "color": TEXT_COLOR if etype == "text" else OBJ_COLOR,
-            "palette": el.get("color_palette") or [],
+            "bbox": [y1 / h * 1000, x1 / w * 1000, y2 / h * 1000, x2 / w * 1000],
+            "type": label,
+            "text": it.get("text", ""),
+            "desc": it.get("caption", ""),
+            "muted": i in muted,
+            "color": color,
+            "palette": it.get("palette") or [],
         })
     return items
-
-
-def global_palette(data) -> list:
-    """The image-wide palette (style_description.color_palette)."""
-    sd = (data or {}).get("style_description")
-    if isinstance(sd, dict) and isinstance(sd.get("color_palette"), list):
-        return sd["color_palette"]
-    return []
 
 
 def bboxes_from_items(items, width: int, height: int) -> list:
@@ -53,7 +69,7 @@ def bboxes_from_items(items, width: int, height: int) -> list:
             continue
         x0, x1 = sorted((x0, x1))
         y0, y1 = sorted((y0, y1))
-        label = (it.get("desc") or it.get("text") or "").strip() or f"element {i + 1}"
+        label = (it.get("desc") or it.get("text") or "").strip() or f"item {i + 1}"
         out.append({
             "x": round(x0 / 1000 * width),
             "y": round(y0 / 1000 * height),
@@ -85,9 +101,40 @@ def _luminance(rgb):
     return 0.299 * r + 0.587 * g + 0.114 * b
 
 
+_CJK_FONT_CANDIDATES = [
+    # (regular, bold) — first loadable pair wins; covers zh/ja/ko system fonts.
+    ("C:/Windows/Fonts/msyh.ttc", "C:/Windows/Fonts/msyhbd.ttc"),
+    ("C:/Windows/Fonts/simhei.ttf", "C:/Windows/Fonts/simhei.ttf"),
+    ("C:/Windows/Fonts/simsun.ttc", "C:/Windows/Fonts/simsun.ttc"),
+    ("/System/Library/Fonts/PingFang.ttc", "/System/Library/Fonts/PingFang.ttc"),
+    ("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc", "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"),
+    ("/usr/share/fonts/truetype/wqy/wqy-microhei.ttc", "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc"),
+]
+_CJK_FONT_PATHS: dict = {}
+
+
+def _cjk_font_path(bold: bool):
+    """System CJK-capable font path so item captions/text render instead of tofu."""
+    if not _CJK_FONT_PATHS:
+        for regular, bold_path in _CJK_FONT_CANDIDATES:
+            if os.path.isfile(regular):
+                _CJK_FONT_PATHS["regular"] = regular
+                _CJK_FONT_PATHS["bold"] = bold_path if os.path.isfile(bold_path) else regular
+                break
+        else:
+            _CJK_FONT_PATHS["regular"] = _CJK_FONT_PATHS["bold"] = None
+    return _CJK_FONT_PATHS.get("bold" if bold else "regular")
+
+
 def _load_font(size: int, bold: bool = False):
-    # Pillow's bundled default — scalable on >= 10.1, works on every OS, no font
-    # files/paths. `bold` is accepted for call-site compat but the default has no bold.
+    # Prefer a CJK-capable system font (Pillow's default has no CJK glyphs);
+    # `bold` picks the bold face when available, else the same regular face.
+    path = _cjk_font_path(bold)
+    if path:
+        try:
+            return ImageFont.truetype(path, size)
+        except OSError:
+            pass
     try:
         return ImageFont.load_default(size)
     except TypeError:
@@ -136,11 +183,10 @@ def render_overlay_rgba(
     label_size: int = 16,
     show_index: bool = True,
     show_text: bool = True,
-    global_palette=None,
 ) -> "Image.Image":
     """Render draw-items into a transparent RGBA PIL image (boxes/text/palettes).
 
-    Each item: {"bbox": [y0,x0,y1,x1] (0..1000), "type": "obj"|"text",
+    Each item: {"bbox": [y0,x0,y1,x1] (0..1000), "type": label,
                 "text": str, "desc": str, "color": (r,g,b)}.
     """
     width = max(1, int(width))
@@ -165,8 +211,8 @@ def render_overlay_rgba(
             px0, px1 = px1, px0
         if py1 < py0:
             py0, py1 = py1, py0
-        etype = el.get("type", "obj")
-        color = el.get("color") or (TEXT_COLOR if etype == "text" else OBJ_COLOR)
+        etype = el.get("type", "object")
+        color = el.get("color") or BOX_PALETTE[i % len(BOX_PALETTE)]
         specs.append({"i": i, "el": el, "etype": etype, "color": tuple(color),
                       "rect": [px0, py0, px1, py1], "bw": px1 - px0, "bh": py1 - py0})
 
@@ -211,14 +257,14 @@ def render_overlay_rgba(
             draw.text((px0 + 4, py0 + 3 - nb[1]), num, font=label_font, fill=label_fg)
             header_h = nh + 5
 
-        # description body; literal text first for text-elements
+        # body; literal text first for text items
         if show_text and inner_w > 12:
             parts = []
             if etype == "text":
                 lit = (el.get("text") or "").strip()
                 if lit:
                     parts.append("“" + lit + "”")
-            desc = (el.get("desc") or "").strip()
+            desc = (el.get("desc") or "").strip() if not el.get("muted") else ""
             if desc:
                 parts.append(desc)
             lines = []
@@ -232,7 +278,7 @@ def render_overlay_rgba(
                 if y + body_lh > bottom:
                     break
                 draw.text((px0 + pad, y), ln, font=body_font, fill=(255, 255, 255, 255),
-                          stroke_width=2, stroke_fill=(0, 0, 0, 210))
+                          stroke_width=3, stroke_fill=(0, 0, 0, 235))
                 y += body_lh
 
         # palette swatches along the bottom
@@ -244,21 +290,6 @@ def render_overlay_rgba(
                     break
                 draw.rectangle([sx, sy, sx + sw_size, sy + sw_size], fill=col + (255,), outline=(255, 255, 255, 220))
                 sx += sw_size + 2
-
-    # Global palette, bottom-left corner.
-    gcols = [hex_to_rgb(h, None) for h in (global_palette or [])]
-    gcols = [c for c in gcols if c][:16]
-    if gcols:
-        gsw = max(12, min(30, width // 36))
-        ggap = max(2, gsw // 6)
-        gpad = max(8, line_width * 2)
-        gx = gpad
-        gy = height - gpad - gsw
-        for c in gcols:
-            if gx + gsw > width - gpad:
-                break
-            draw.rectangle([gx, gy, gx + gsw, gy + gsw], fill=c + (255,), outline=(255, 255, 255, 235), width=2)
-            gx += gsw + ggap
 
     return img
 
@@ -272,13 +303,11 @@ def render_overlay(
     label_size: int = 16,
     show_index: bool = True,
     show_text: bool = True,
-    global_palette=None,
 ):
     """Render draw-items into (IMAGE [1,H,W,3], MASK [1,H,W]), both float 0..1."""
     img = render_overlay_rgba(
         items, width, height, line_width=line_width, fill_alpha=fill_alpha,
         label_size=label_size, show_index=show_index, show_text=show_text,
-        global_palette=global_palette,
     )
     arr = np.asarray(img).astype(np.float32) / 255.0  # H, W, 4
     rgb = np.ascontiguousarray(arr[..., :3])

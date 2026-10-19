@@ -1,4 +1,4 @@
-"""HTTP routes (under /ideogramhelper/) backing the Browser frontend."""
+"""HTTP routes (under /mosslayout/) backing the browser frontend."""
 
 from __future__ import annotations
 
@@ -17,10 +17,10 @@ try:
 except Exception as e:  # pragma: no cover
     PromptServer = None
     _routes = None
-    print(f"[IdeogramHelper] studio routes unavailable: {e}")
+    print(f"[MossLayout] studio routes unavailable: {e}")
 
-from ..utils.caption import validate_caption
-from ..utils.overlay import global_palette, items_from_caption, render_overlay_rgba
+from ..utils.moss import compile_prompt, normalize_draft, resolve_payload
+from ..utils.overlay import items_from_draft, render_overlay_rgba
 
 _IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tiff", ".tif", ".avif"}
 _PREVIEW_SIZE = 384
@@ -28,89 +28,74 @@ _PREVIEW_SIZE = 384
 
 def _safe_path(dirpath: str, name: str) -> str:
     """Resolve name within dirpath, rejecting path traversal."""
-    base = os.path.realpath(dirpath)
-    full = os.path.realpath(os.path.join(base, name))
-    if full != base and not full.startswith(base + os.sep):
-        raise ValueError("path escapes directory")
+    if not dirpath:
+        raise ValueError("no dir")
+    full = os.path.abspath(os.path.join(dirpath, os.path.basename(name)))
+    if os.path.commonpath([os.path.abspath(dirpath), full]) != os.path.abspath(dirpath):
+        raise ValueError("outside dir")
     return full
 
 
 def _list_images(dirpath: str) -> list[str]:
     if not dirpath or not os.path.isdir(dirpath):
         return []
-    names = [
-        f for f in os.listdir(dirpath)
-        if os.path.splitext(f)[1].lower() in _IMAGE_EXTS
-        and os.path.isfile(os.path.join(dirpath, f))
-    ]
+    names = []
+    for f in os.scandir(dirpath):
+        if f.is_file() and os.path.splitext(f.name)[1].lower() in _IMAGE_EXTS:
+            names.append(f.name)
     return sorted(names)
 
 
 def _composite_preview(path: str, data: dict, size: int = _PREVIEW_SIZE) -> str:
     """Render bboxes over a resized copy of the image as a JPEG data-uri."""
-    img = PILImage.open(path).convert("RGBA")
+    img = PILImage.open(path).convert("RGB")
     w, h = img.size
-    longest = max(w, h)
-    if size > 0 and longest > size:
-        scale = size / longest
-        img = img.resize((max(1, int(w * scale)), max(1, int(h * scale))), PILImage.LANCZOS)
-    W, H = img.size
-    overlay = render_overlay_rgba(items_from_caption(data), W, H, global_palette=global_palette(data))
-    comp = PILImage.alpha_composite(img, overlay).convert("RGB")
+    scale = size / max(w, h)
+    img = img.resize((max(1, int(w * scale)), max(1, int(h * scale))), PILImage.LANCZOS)
+    overlay = render_overlay_rgba(items_from_draft(data), img.size[0], img.size[1])
+    img = PILImage.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
     buf = _io.BytesIO()
-    comp.save(buf, format="JPEG", quality=85)
+    img.save(buf, format="JPEG", quality=85)
     return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode("utf-8")
 
 
 def _preview_from_json(data: dict, width: int = 768, height: int = 768) -> str:
     """Render bboxes over a dark backdrop (no source image) as a data-uri."""
-    width, height = max(1, int(width)), max(1, int(height))
-    bg = PILImage.new("RGBA", (width, height), (18, 18, 22, 255))
-    overlay = render_overlay_rgba(items_from_caption(data), width, height, global_palette=global_palette(data))
-    comp = PILImage.alpha_composite(bg, overlay).convert("RGB")
+    img = PILImage.new("RGBA", (width, height), (18, 18, 22, 255))
+    overlay = render_overlay_rgba(items_from_draft(data), width, height)
+    img = PILImage.alpha_composite(img, overlay).convert("RGB")
     buf = _io.BytesIO()
-    comp.save(buf, format="JPEG", quality=85)
+    img.save(buf, format="JPEG", quality=85)
     return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode("utf-8")
 
 
 def _library_dir() -> str:
-    """Managed library folder for saved bbox templates; created on use."""
-    base = None
+    """Managed library folder for saved draft templates; created on use."""
     try:
         import folder_paths
-        for getter in ("get_user_directory", "get_output_directory"):
-            fn = getattr(folder_paths, getter, None)
-            if callable(fn):
-                base = fn()
-                break
-        if base is None:
-            base = getattr(folder_paths, "base_path", None)
+        d = os.path.join(folder_paths.get_user_directory(), "default", "MOSSHelper", "library")
     except Exception:
-        base = None
-    if not base:
-        base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    d = os.path.join(base, "ideogram_library")
+        d = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "user", "default", "MOSSHelper", "library")
     os.makedirs(d, exist_ok=True)
     return d
 
 
 def _list_json(dirpath: str) -> list[str]:
-    """Standalone .json files with no matching image (bbox templates)."""
+    """Standalone .json files with no matching image (draft templates)."""
     if not dirpath or not os.path.isdir(dirpath):
         return []
-    img_stems = {os.path.splitext(f)[0] for f in _list_images(dirpath)}
+    images = {os.path.splitext(n)[0] for n in _list_images(dirpath)}
     out = []
-    for f in os.listdir(dirpath):
-        if f.lower().endswith(".json") and os.path.isfile(os.path.join(dirpath, f)):
-            if os.path.splitext(f)[0] not in img_stems:
-                out.append(f)
+    for f in os.scandir(dirpath):
+        if f.is_file() and f.name.lower().endswith(".json") and os.path.splitext(f.name)[0] not in images:
+            out.append(f.name)
     return sorted(out)
 
 
 if _routes is not None:
 
-    @_routes.get("/ideogramhelper/thumb")
-    async def idg_thumb(request):
+    @_routes.get("/mosslayout/thumb")
+    async def moss_thumb(request):
         d = request.rel_url.query.get("dir", "").strip()
         name = request.rel_url.query.get("name", "").strip()
         try:
@@ -137,9 +122,9 @@ if _routes is not None:
         except Exception as e:
             return web.Response(status=500, text=str(e))
 
-    @_routes.post("/ideogramhelper/preview")
-    async def idg_preview(request):
-        """Render bbox preview for a JSON caption plus validity."""
+    @_routes.post("/mosslayout/preview")
+    async def moss_preview(request):
+        """Render a bbox preview for a draft (or compiled) JSON plus validity."""
         try:
             body = await request.json()
         except json.JSONDecodeError:
@@ -150,11 +135,20 @@ if _routes is not None:
         d = (body.get("dir") or "").strip()
         name = (body.get("name") or "").strip()
         try:
-            data = json.loads(text) if text.strip() else {}
+            raw = json.loads(text) if text.strip() else {}
         except json.JSONDecodeError as e:
-            return web.json_response({"error": f"caption is not valid JSON — {e}"}, status=400)
-        errors, warnings = validate_caption(data) if isinstance(data, dict) else (["not a JSON object"], [])
-        safe = isinstance(data, dict)
+            return web.json_response({"error": f"draft is not valid JSON — {e}"}, status=400)
+        errors: list[str] = []
+        warnings: list[str] = []
+        data: dict = {}
+        if not isinstance(raw, dict):
+            errors.append("not a JSON object")
+        else:
+            try:
+                data = resolve_payload(raw, width, height, warnings)
+                compile_prompt(data)  # validation only
+            except ValueError as e:
+                errors.append(str(e))
         preview = ""
         try:
             # Composite over the source image when known, else a dark backdrop.
@@ -166,14 +160,17 @@ if _routes is not None:
                         img_path = p
                 except ValueError:
                     img_path = None
-            preview = _composite_preview(img_path, data if safe else {}) if img_path else _preview_from_json(data if safe else {}, width, height)
+            if img_path:
+                preview = _composite_preview(img_path, data)
+            elif data:
+                preview = _preview_from_json(data, data.get("width", width), data.get("height", height))
         except Exception as e:
-            print(f"[IdeogramHelper] preview failed: {e}")
+            print(f"[MossLayout] preview failed: {e}")
         return web.json_response({"preview": preview, "valid": not errors, "errors": errors, "warnings": warnings})
 
-    @_routes.post("/ideogramhelper/save_template")
-    async def idg_save_template(request):
-        """Write a single caption to {out_dir}/{name}.json."""
+    @_routes.post("/mosslayout/save_template")
+    async def moss_save_template(request):
+        """Write a single draft to {out_dir}/{name}.json."""
         try:
             body = await request.json()
         except json.JSONDecodeError:
@@ -188,7 +185,7 @@ if _routes is not None:
         try:
             data = json.loads(text)
         except json.JSONDecodeError as e:
-            return web.json_response({"error": f"caption is not valid JSON — {e}"}, status=400)
+            return web.json_response({"error": f"draft is not valid JSON — {e}"}, status=400)
         stem = os.path.splitext(name)[0]
         if os.path.basename(stem) != stem:
             return web.json_response({"error": "name must not contain path separators"}, status=400)
@@ -222,8 +219,8 @@ if _routes is not None:
             return web.json_response({"error": str(e)}, status=500)
         return web.json_response({"ok": True, "path": path, "name": stem})
 
-    @_routes.post("/ideogramhelper/delete_template")
-    async def idg_delete_template(request):
+    @_routes.post("/mosslayout/delete_template")
+    async def moss_delete_template(request):
         """Delete a library template ({stem}.json + optional {stem}.thumb.jpg)."""
         try:
             body = await request.json()
@@ -246,21 +243,21 @@ if _routes is not None:
             return web.json_response({"error": "not found"}, status=404)
         return web.json_response({"ok": True, "removed": removed})
 
-    @_routes.get("/ideogramhelper/library")
-    async def idg_library(request):
-        """List saved bbox templates from the default managed library folder."""
+    @_routes.get("/mosslayout/library")
+    async def moss_library(request):
+        """List saved draft templates from the default managed library folder."""
         d = _library_dir()
         templates = []
         for name in _list_json(d):
             stem = os.path.splitext(name)[0]
-            caption = ""
+            draft = ""
             try:
                 with open(os.path.join(d, name), encoding="utf-8") as f:
-                    caption = f.read()
+                    draft = f.read()
             except Exception:
-                caption = ""
+                draft = ""
             has_thumb = os.path.isfile(os.path.join(d, stem + ".thumb.jpg"))
-            templates.append({"name": name, "stem": stem, "caption": caption, "thumb": has_thumb})
+            templates.append({"name": name, "stem": stem, "caption": draft, "thumb": has_thumb})
         return web.json_response({"dir": d, "templates": templates})
 
-    print("[IdeogramHelper] studio routes registered under /ideogramhelper/")
+    print("[MossLayout] studio routes registered under /mosslayout/")

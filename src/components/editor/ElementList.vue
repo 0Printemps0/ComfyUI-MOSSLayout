@@ -4,19 +4,21 @@
       <div class="chead">
         <UiPopover align="left">
           <template #trigger>
-            <button class="lhead" title="Filter elements"><i class="mdi flt" :class="filterIcon"></i> elements ({{ rows.length }})<i class="mdi mdi-menu-down"></i></button>
+            <button class="lhead" title="Filter items"><i class="mdi flt" :class="filterIcon"></i> items ({{ rows.length }})<i class="mdi mdi-menu-down"></i></button>
           </template>
           <template #default="{ close }">
             <div class="lmenu">
-              <button class="litem" :class="{ on: filter === 'all' }" @click="filter = 'all'; close()"><i class="mdi mdi-format-list-bulleted"></i> all elements</button>
-              <button class="litem" :class="{ on: filter === 'obj' }" @click="filter = 'obj'; close()"><i class="mdi mdi-shape-outline"></i> objects only</button>
-              <button class="litem" :class="{ on: filter === 'text' }" @click="filter = 'text'; close()"><i class="mdi mdi-format-text"></i> text only</button>
+              <button class="litem" :class="{ on: filter === 'all' }" @click="filter = 'all'; close()"><i class="mdi mdi-format-list-bulleted"></i> all items</button>
+              <button class="litem" :class="{ on: filter === 'object' }" @click="filter = 'object'; close()"><i class="mdi mdi-vector-square"></i> objects</button>
+              <button class="litem" :class="{ on: filter === 'character' }" @click="filter = 'character'; close()"><i class="mdi mdi-account-outline"></i> characters</button>
+              <button class="litem" :class="{ on: filter === 'text' }" @click="filter = 'text'; close()"><i class="mdi mdi-format-text"></i> text</button>
             </div>
           </template>
         </UiPopover>
       </div>
       <div class="adds">
-        <UiButton title="Add an object box" @click="store.addElement('obj')"><i class="mdi mdi-plus"></i> obj</UiButton>
+        <UiButton title="Add an object box" @click="store.addElement('object')"><i class="mdi mdi-plus"></i> obj</UiButton>
+        <UiButton title="Add a character box" @click="store.addElement('character')"><i class="mdi mdi-plus"></i> char</UiButton>
         <UiButton title="Add a text box" @click="store.addElement('text')"><i class="mdi mdi-plus"></i> text</UiButton>
       </div>
     </template>
@@ -26,7 +28,7 @@
         v-for="{ el, i } in rows"
         :key="el.id"
         :draggable="dragArmed"
-        :class="{ sel: store.isSelected(el.id), primary: el.id === store.selectedId, grouped: !!el.groupId, muted: el.enabled === false, dragover: overIdx === i && dragId && dragId !== el.id, dragging: dragId === el.id }"
+        :class="{ sel: store.isSelected(el.id), primary: el.id === store.selectedId, grouped: !!el.groupId, dragover: overIdx === i && dragId && dragId !== el.id, dragging: dragId === el.id }"
         :style="el.groupId ? { '--gc': groupColor(el.groupId) } : {}"
         @click="rowClick($event, el.id)"
         @contextmenu.prevent="openMenu($event, el.id)"
@@ -36,45 +38,40 @@
         @dragend="onDragEnd"
       >
         <i v-if="filter === 'all'" class="mdi mdi-drag-vertical handle" title="Drag to reorder" @pointerdown="dragArmed = true" @click.stop></i>
-        <!-- type icon doubles as the mute toggle -->
-        <button
-          class="typebtn"
-          :class="{ off: el.enabled === false }"
-          :title="el.enabled === false ? 'Muted — click to unmute' : 'Click to mute (kept in the editor, excluded from output)'"
-          @click.stop="store.toggleEnabled(el.id)"
-        >
-          <i class="mdi" :class="el.enabled === false ? 'mdi-eye-off-outline' : (el.type === 'text' ? 'mdi-format-text' : 'mdi-shape-outline')"></i>
-        </button>
+        <span class="typeicon"><i class="mdi" :class="labelIcon(el.label)"></i></span>
         <span class="idxchip" :style="{ background: el.boxColor }">{{ i + 1 }}</span>
         <i v-if="el.linkId" class="mdi mdi-link-variant link" :title="'Linked ×' + store.linkGroupSize(el.id)"></i>
-        <span class="snip">{{ el.type === 'text' ? '“' + (el.text || '…') + '”' : (el.desc || 'object…') }}</span>
+        <span class="snip">{{ el.label === 'text' ? '“' + (el.text || '…') + '”' : (el.caption || el.label + '…') }}</span>
         <button class="more" title="Actions (or right-click the row)" @click.stop="openMenu($event, el.id)"><i class="mdi mdi-dots-horizontal"></i></button>
       </li>
     </ul>
-    <p v-else-if="store.state.elements.length" class="empty">no {{ filter }} elements</p>
-    <p v-else class="empty">No elements yet — draw a box on the canvas, or use + obj / + text.</p>
+    <p v-else-if="store.state.elements.length" class="empty">no {{ filter }} items</p>
+    <p v-else class="empty">No items yet — draw a box on the canvas, or use + obj / + char / + text.</p>
   </UiCard>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useStudioStore } from '@/lib/store'
-import { groupColor } from '@/lib/caption'
+import { groupColor, type Label } from '@/lib/moss'
 import UiCard from '../ui/UiCard.vue'
 import UiButton from '../ui/UiButton.vue'
 import UiPopover from '../ui/UiPopover.vue'
 const store = useStudioStore()
 
-const filter = ref<'all' | 'obj' | 'text'>('all')
+const filter = ref<'all' | Label>('all')
 // changing icon (not word) so the header width doesn't shift
 const filterIcon = computed(() =>
-  filter.value === 'obj' ? 'mdi-shape-outline' : filter.value === 'text' ? 'mdi-format-text' : 'mdi-format-list-bulleted',
+  filter.value === 'object' ? 'mdi-vector-square' : filter.value === 'character' ? 'mdi-account-outline' : filter.value === 'text' ? 'mdi-format-text' : 'mdi-format-list-bulleted',
 )
-// map index before filtering to preserve each element's real index for #N / ops
+function labelIcon(label: Label): string {
+  return label === 'text' ? 'mdi-format-text' : label === 'character' ? 'mdi-account-outline' : 'mdi-vector-square'
+}
+// map index before filtering to preserve each item's real index for #N / ops
 const rows = computed(() =>
   store.state.elements
     .map((el, i) => ({ el, i }))
-    .filter(({ el }) => filter.value === 'all' || el.type === filter.value),
+    .filter(({ el }) => filter.value === 'all' || el.label === filter.value),
 )
 
 // drag-to-reorder, only armed via the handle so plain clicks/buttons still work
@@ -123,9 +120,6 @@ function rowClick(e: MouseEvent, id: string) {
 <style scoped>
 .adds { display: flex; gap: 4px; }
 .chead { display: flex; align-items: center; gap: 4px; }
-.fold { display: inline-flex; align-items: center; background: none; border: none; cursor: pointer; color: var(--st-muted); padding: 0; margin-left: -3px; }
-.fold:hover { color: var(--st-text); }
-.fold .mdi { font-size: 16px; line-height: 1; }
 .lhead { display: inline-flex; align-items: center; gap: 1px; background: none; border: none; cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted); padding: 0; }
 .lhead:hover { color: var(--st-text); }
 .lhead .mdi { font-size: 15px; }
@@ -145,7 +139,7 @@ li {
 }
 li:hover { border-color: var(--st-border); }
 li.sel { border-color: var(--st-accent); }
-/* primary = the element the editor targets */
+/* primary = the item the editor targets */
 li.primary { border-color: var(--st-accent); background: color-mix(in srgb, var(--st-accent) 18%, var(--st-input)); }
 li.primary .snip { font-weight: 600; }
 /* per-group color sliver; absolute inside the existing padding so rows stay aligned */
@@ -156,11 +150,8 @@ li.dragover { box-shadow: inset 0 3px 0 -1px var(--st-accent); background: color
 li:hover .handle { opacity: .85; }
 .handle:hover { color: var(--st-accent); }
 .handle:active { cursor: grabbing; }
-li.muted .snip { opacity: .45; text-decoration: line-through; }
-.typebtn { background: none; border: none; cursor: pointer; padding: 0; color: var(--st-muted); flex: none; line-height: 1; display: inline-flex; }
-.typebtn:hover { color: var(--st-accent); }
-.typebtn.off { opacity: .5; }
-.typebtn .mdi { font-size: 15px; }
+.typeicon { flex: none; color: var(--st-muted); line-height: 1; display: inline-flex; }
+.typeicon .mdi { font-size: 15px; }
 .idxchip {
   flex: none; min-width: 17px; height: 16px; padding: 0 4px; box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center;
