@@ -8,6 +8,13 @@ Forked from [ComfyUI-IdeogramHelper](https://github.com/nynxz/ComfyUI-IdeogramHe
 by nynxz (GPLv3); the data model was rebuilt for MOSS-Image's official
 [prompt-enhancer spec](https://github.com/OpenMOSS/MOSS-Image/tree/main/skills/moss-image-prompt-enhancer).
 
+![MOSS Layout Studio - a coffee-shop poster built from four boxes, with the bbox overlay stamped onto the generation](.github/assets/result.jpg)
+
+*A real run of the bundled example: natural-language request → four bbox items
+(coffee cup · headline · date line · OPEN badge) → MOSS-Image generation.
+The annotated copy stamps the boxes onto the result so you can see placement
+drift at a glance.*
+
 ## Install
 
 ```bash
@@ -41,6 +48,9 @@ never the other way around.
 The editor: resolution (aspect × megapixels, snapped to /16), drag/resize/marquee
 boxes, object/character/text items, summary caption + meta tags + canvas mode +
 palette, undo/redo, groups, linked copies, reference backdrop, live preview.
+
+![MOSS Layout Studio node - canvas, summary, item list, draft JSON](.github/assets/studio.png)
+
 Outputs:
 
 | port | type | content |
@@ -83,6 +93,8 @@ VAE → SaveImage**, plus **Ref Sync** (feeds the result back as the studio's
 trace backdrop) and **ImageCompositeMasked**, which stamps the bbox overlay
 onto a second annotated copy of the output — placement check included, no
 separate overlay image needed.
+
+![The bundled workflow - Layout Studio, Model Loaders, Prompt Encoding, Layout Sampling, Overlay & Output groups](.github/assets/workflow.jpg)
 Set your resolution in the studio (the chip in the canvas toolbar) and it
 propagates automatically: **Extras `width`/`height` are wired into the latent
 inputs**, so the bbox pixel space and the generation canvas can never drift
@@ -92,12 +104,21 @@ on the overlay via system fonts (msyh / PingFang / Noto CJK).
 ## Scripted / agent access
 
 The whole draft lives in the workflow file and is editable without opening the
-UI — see [`skills/moss-layout-prompt/SKILL.md`](skills/moss-layout-prompt/SKILL.md):
+UI, and a draft can be generated headlessly — see
+[`skills/moss-layout-prompt/SKILL.md`](skills/moss-layout-prompt/SKILL.md)
+(a complete playbook: write draft → validate → compile → deliver):
 
 ```bash
+# read / rewrite the draft inside a saved workflow
 python3 skills/moss-layout-prompt/scripts/layout_tool.py get  my_workflow.json --out draft.json
 python3 skills/moss-layout-prompt/scripts/layout_tool.py set  my_workflow.json draft.json
-python3 skills/moss-layout-prompt/scripts/layout_tool.py compile draft.json   # model prompt
+
+# validate + compile to the one-line model prompt
+python3 skills/moss-layout-prompt/scripts/layout_tool.py validate draft.json
+python3 skills/moss-layout-prompt/scripts/layout_tool.py compile  draft.json
+
+# headless generation: inject the draft, queue, print output files
+python3 skills/moss-layout-prompt/scripts/submit.py draft.json --server http://127.0.0.1:7860
 ```
 
 Programmatic surfaces: the workflow `draft` object, the node's `draft` input
