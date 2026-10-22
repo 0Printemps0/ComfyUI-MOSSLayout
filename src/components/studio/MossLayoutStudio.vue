@@ -169,12 +169,22 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onUndoKey, true))
 watch(
   () => jsonSyncCaption.value.n,
   () => {
-    if (!store.state.ui.jsonSync) return
-    const { json } = jsonSyncCaption.value
-    if (json && json.trim()) {
-      const res = store.importDraftJson(json, true) // keep resolution
-      store.json.syncError = res.ok ? '' : `JSON sync: ${res.error || 'invalid JSON'}`
+    const ev = jsonSyncCaption.value
+    const forced = ev.global || ev.force
+    // Per-studio toggle stays the default; global/force is an explicit override.
+    if (!forced && !store.state.ui.jsonSync) return
+    if (!ev.json || !ev.json.trim()) return
+    const label = ev.global ? 'Global import' : ev.force ? 'Forced JSON sync' : 'JSON sync'
+    const res = store.importDraftJson(ev.json, { keepDims: true, strict: true })
+    store.json.syncWarnings = [...new Set([...(ev.warnings || []), ...(res.warnings || [])])]
+    if (!res.ok) {
+      store.json.syncError = `${label}: ${res.error || 'invalid JSON'}`
+      store.json.syncNote = ''
+      return
     }
+    store.json.syncError = ''
+    const count = store.state.elements.length
+    store.json.syncNote = `${label} applied · ${count} item${count === 1 ? '' : 's'} · ${store.state.width}×${store.state.height}`
   },
 )
 

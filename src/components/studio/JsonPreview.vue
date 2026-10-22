@@ -25,6 +25,22 @@
       </div>
       <pre v-if="parseFrame" class="errframe" title="Jump to this line" @click="jumpToError">{{ parseFrame }}</pre>
     </div>
+    <div v-if="j.editing && j.applyErrors.length" class="applyerr">
+      <div class="errhead"><span class="msg">⚠ Import rejected — nothing was applied</span></div>
+      <ul class="errlist">
+        <li v-for="(e, i) in j.applyErrors" :key="i">{{ e }}</li>
+      </ul>
+    </div>
+    <ul v-if="j.editing && j.applyWarnings.length" class="warnlist">
+      <li v-for="(w, i) in j.applyWarnings" :key="i">{{ w }}</li>
+    </ul>
+    <div v-if="!j.editing && (j.syncError || j.syncWarnings.length || j.syncNote)" class="syncbox" :class="{ bad: !!j.syncError }">
+      <div v-if="j.syncError" class="syncbad">sync: {{ j.syncError }}</div>
+      <div v-if="j.syncNote" class="syncnote">{{ j.syncNote }}</div>
+      <ul v-if="j.syncWarnings.length" class="warnlist">
+        <li v-for="(w, i) in j.syncWarnings" :key="i">sync: {{ w }}</li>
+      </ul>
+    </div>
     <ul v-if="!j.editing && warnings.length" class="warnlist">
       <li v-for="(w, i) in warnings" :key="i">{{ w }}</li>
     </ul>
@@ -166,4 +182,9 @@ textarea.json.bad { border-color: #f87171; }
   max-height: 120px; overflow: auto; margin: 0; cursor: pointer;
 }
 .warnlist { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f59e0b; display: flex; flex-direction: column; gap: 2px; }
+.errlist { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f87171; display: flex; flex-direction: column; gap: 2px; }
+.applyerr { display: flex; flex-direction: column; gap: 4px; }
+.syncbox { border-top: 1px solid var(--st-border); padding-top: 6px; display: flex; flex-direction: column; gap: 3px; }
+.syncbad { font-size: 10px; color: #f87171; overflow-wrap: anywhere; }
+.syncnote { font-size: 10px; color: #34d399; overflow-wrap: anywhere; }
 </style>

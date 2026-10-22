@@ -19,11 +19,44 @@ except Exception as e:  # pragma: no cover
     _routes = None
     print(f"[MossLayout] studio routes unavailable: {e}")
 
-from ..utils.moss import compile_prompt, normalize_draft, resolve_payload
+from ..utils.moss import IMPORTER_NAME, IMPORTER_VERSION, import_payload, parse_json_loose
 from ..utils.overlay import items_from_draft, render_overlay_rgba
 
 _IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tiff", ".tif", ".avif"}
 _PREVIEW_SIZE = 384
+_JSON_SYNC_EVENT = "moss-layout.json-sync"
+
+
+def _importer_info(source: str = "http-import") -> dict:
+    return {
+        "importer": f"{IMPORTER_NAME}/{IMPORTER_VERSION}",
+        "importer_version": IMPORTER_VERSION,
+        "source": source,
+    }
+
+
+def _broadcast_json_sync(payload: dict) -> tuple[bool, str]:
+    """Send the JSON Sync event; return (sent, warning)."""
+    if PromptServer is None:
+        return False, "PromptServer unavailable; the import was normalized but not broadcast"
+    try:
+        PromptServer.instance.send_sync(_JSON_SYNC_EVENT, payload)
+        return True, ""
+    except Exception as e:  # pragma: no cover - depends on the live server
+        return False, f"broadcast failed: {e}"
+
+
+def _json_sync_payload(result: dict, *, global_flag: bool, force: bool, source: str) -> dict:
+    return {
+        "json": result["draft_json"],
+        "global": bool(global_flag),
+        "force": bool(force),
+        "source": source,
+        "importer": result["importer"],
+        "warnings": list(result["warnings"]),
+        "item_count": result["item_count"],
+        "canvas": result["canvas"],
+    }
 
 
 def _safe_path(dirpath: str, name: str) -> str:
@@ -127,28 +160,43 @@ if _routes is not None:
         """Render a bbox preview for a draft (or compiled) JSON plus validity."""
         try:
             body = await request.json()
-        except json.JSONDecodeError:
-            return web.json_response({"error": "invalid json"}, status=400)
+        except Exception:
+            return web.json_response({"error": "invalid json body"}, status=400)
+        if not isinstance(body, dict):
+            return web.json_response({"error": "body must be a JSON object"}, status=400)
         text = body.get("json") or ""
-        width = int(body.get("width") or 768)
-        height = int(body.get("height") or 768)
+        try:
+            width = int(body.get("width") or 768)
+            height = int(body.get("height") or 768)
+        except (TypeError, ValueError):
+            width, height = 768, 768
         d = (body.get("dir") or "").strip()
         name = (body.get("name") or "").strip()
-        try:
-            raw = json.loads(text) if text.strip() else {}
-        except json.JSONDecodeError as e:
-            return web.json_response({"error": f"draft is not valid JSON — {e}"}, status=400)
         errors: list[str] = []
         warnings: list[str] = []
         data: dict = {}
-        if not isinstance(raw, dict):
-            errors.append("not a JSON object")
-        else:
-            try:
-                data = resolve_payload(raw, width, height, warnings)
-                compile_prompt(data)  # validation only
-            except ValueError as e:
-                errors.append(str(e))
+        source_format = "invalid"
+        item_count = 0
+        compilable = False
+        try:
+            if isinstance(text, str):
+                raw = parse_json_loose(text) if text.strip() else {}
+            elif isinstance(text, dict):
+                raw = text
+            else:
+                raise ValueError("json must be a JSON string or object")
+            result = import_payload(
+                raw, target_width=width, target_height=height,
+                bbox_mode="reject", source="preview",
+            )
+            data = result["draft"] or {}
+            errors = result["errors"]
+            warnings = result["warnings"]
+            source_format = result["source_format"]
+            item_count = result["item_count"]
+            compilable = result["compilable"]
+        except ValueError as e:
+            errors.append(str(e))
         preview = ""
         try:
             # Composite over the source image when known, else a dark backdrop.
@@ -166,7 +214,108 @@ if _routes is not None:
                 preview = _preview_from_json(data, data.get("width", width), data.get("height", height))
         except Exception as e:
             print(f"[MossLayout] preview failed: {e}")
-        return web.json_response({"preview": preview, "valid": not errors, "errors": errors, "warnings": warnings})
+        return web.json_response({
+            "preview": preview,
+            "valid": not errors,
+            "errors": errors,
+            "warnings": warnings,
+            "source_format": source_format,
+            "item_count": item_count,
+            "compilable": compilable,
+            **_importer_info("preview"),
+        })
+
+    @_routes.post("/mosslayout/import")
+    async def moss_import(request):
+        """Normalize and globally import an external MOSS Layout JSON.
+
+        Body: {json | object, width?, height?, broadcast?=true, global?=true,
+               force?=true, bbox_mode?='reject'|'clamp'}
+
+        Returns the canonical abs/xyxy draft, warnings, errors, item counts and
+        importer version. With broadcast=true (default) the same canonical JSON
+        is pushed as moss-layout.json-sync with global/force flags.
+        """
+        base = {
+            **_importer_info("http-import"),
+            "ok": False,
+            "source_format": "invalid",
+            "bbox_mode": None,
+            "canvas": None,
+            "draft": None,
+            "draft_json": None,
+            "compiled": None,
+            "compilable": False,
+            "compile_error": None,
+            "warnings": [],
+            "errors": [],
+            "input_item_count": 0,
+            "output_item_count": 0,
+            "item_count": 0,
+            "broadcast": False,
+            "event": _JSON_SYNC_EVENT,
+        }
+        try:
+            body = await request.json()
+        except Exception as e:
+            base["errors"] = [f"invalid JSON body — {e}"]
+            return web.json_response(base, status=400)
+        if not isinstance(body, dict):
+            base["errors"] = ["body must be a JSON object"]
+            return web.json_response(base, status=400)
+
+        raw_json = body.get("json")
+        if isinstance(raw_json, str):
+            try:
+                raw = parse_json_loose(raw_json)
+            except ValueError as e:
+                base["errors"] = [str(e)]
+                return web.json_response(base, status=400)
+        elif isinstance(raw_json, dict):
+            raw = raw_json
+        else:
+            base["errors"] = ["json must be a JSON string or object"]
+            return web.json_response(base, status=400)
+
+        extra_warnings: list[str] = []
+        broadcast = body.get("broadcast", True)
+        global_flag = body.get("global", True)
+        force = body.get("force", True)
+        for key, value in (("broadcast", broadcast), ("global", global_flag), ("force", force)):
+            if not isinstance(value, bool):
+                extra_warnings.append(f"{key} must be a boolean; defaulted to true")
+        if not isinstance(broadcast, bool):
+            broadcast = True
+        if not isinstance(global_flag, bool):
+            global_flag = True
+        if not isinstance(force, bool):
+            force = True
+
+        result = import_payload(
+            raw,
+            target_width=body.get("width"),
+            target_height=body.get("height"),
+            bbox_mode=body.get("bbox_mode", "reject"),
+            source="http-import",
+        )
+        result["warnings"] = extra_warnings + result["warnings"]
+        result["event"] = _JSON_SYNC_EVENT
+        result["global"] = global_flag
+        result["force"] = force
+        result["broadcast"] = False
+        result["ok"] = not result["errors"]
+        if result["errors"]:
+            return web.json_response(result, status=400 if result["errors"] else 200)
+
+        if broadcast:
+            payload = _json_sync_payload(
+                result, global_flag=global_flag, force=force, source="http-import"
+            )
+            sent, warning = _broadcast_json_sync(payload)
+            result["broadcast"] = sent
+            if warning:
+                result["warnings"].append(warning)
+        return web.json_response(result)
 
     @_routes.post("/mosslayout/save_template")
     async def moss_save_template(request):

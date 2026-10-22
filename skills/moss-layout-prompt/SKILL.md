@@ -138,7 +138,16 @@ int8-convrot weights; pass `--workflow` to use your own API prompt.
   the editor at execution), `prompt` (compiled) and `draft` (pretty) outputs,
   `extras` bundle (`overlay`, `alpha`, `width`, `height`, `bboxes`).
 - `MOSS Layout Studio JSON Sync` node / `moss-layout.json-sync` UI event:
-  live-import into open editors.
+  live-import into open editors. `global` ignores the per-studio toggle;
+  `force` overrides it. Compiled JSON without dims needs the node's
+  `width`/`height`.
+- HTTP global import: `POST /mosslayout/import` with
+  `{"json": ..., "width": 1536, "height": 1024}`. Returns the canonical
+  `abs`/`xyxy` draft, `warnings`, `errors`, item counts and importer version;
+  broadcasts to every open Studio by default (`broadcast`, `global`, `force`
+  default true). Use `"bbox_mode": "clamp"` to accept out-of-canvas boxes.
+  Schema errors return HTTP 400 and `draft: null`. Unknown `bbox_format` /
+  `bbox_coord_space` are rejected, not reinterpreted.
 - HTTP: `GET /mosslayout/library`, `POST /mosslayout/save_template`,
   `POST /mosslayout/preview` (validate + render), plus ComfyUI's `/prompt`,
   `/history`, `/view`.

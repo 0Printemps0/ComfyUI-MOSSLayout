@@ -2,8 +2,10 @@
   <div class="jctrl">
     <i class="jstat mdi" :class="statusClass" :title="statusTitle"></i>
     <i v-if="j.syncError" class="jstat mdi mdi-sync-alert bad" :title="j.syncError"></i>
+    <i v-else-if="j.syncWarnings.length" class="jstat mdi mdi-sync-alert warn" :title="syncWarningTitle"></i>
+    <span v-if="j.syncNote" class="jnote" :title="j.syncNote">{{ j.syncNote }}</span>
     <!-- sync (live-import) is always reachable; token count only when the JSON is open -->
-    <UiButton v-if="!j.editing" icon :active="store.state.ui.jsonSync" title="Live-import draft JSON from a MOSS Studio JSON Sync node" @click="toggleSync"><i class="mdi mdi-sync"></i></UiButton>
+    <UiButton v-if="!j.editing" icon :active="store.state.ui.jsonSync" title="Live-import draft JSON from a MOSS Studio JSON Sync node (global/forced imports always apply)" @click="toggleSync"><i class="mdi mdi-sync"></i></UiButton>
     <span v-if="store.state.ui.jsonOpen && !j.editing" class="jtok" title="Compiled prompt token estimate (rough)">~{{ tokens }} tok</span>
     <span class="grow"></span>
     <template v-if="!j.editing">
@@ -48,6 +50,10 @@ const statusTitle = computed(() => {
     ? `${warnings.value.length} warning${warnings.value.length > 1 ? 's' : ''}:\n${warnings.value.join('\n')}`
     : 'Valid draft'
 })
+const syncWarningTitle = computed(() => {
+  const n = j.syncWarnings.length
+  return `${n} import warning${n === 1 ? '' : 's'}:\n${j.syncWarnings.join('\n')}`
+})
 function toggleSync() {
   store.state.ui.jsonSync = !store.state.ui.jsonSync
   if (!store.state.ui.jsonSync) j.syncError = ''
@@ -70,5 +76,11 @@ async function copy() {
 .jstat.good { color: #34d399; }
 .jstat.warn { color: #f59e0b; }
 .jstat.bad { color: #f87171; }
+.jnote {
+  max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 10px; color: var(--st-muted); background: var(--st-btn);
+  border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px);
+  padding: 2px 6px; cursor: help;
+}
 .jtok { display: inline-flex; align-items: center; min-height: 24px; box-sizing: border-box; font-size: 10px; color: var(--st-muted); font-family: ui-monospace, monospace; background: var(--st-btn); border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px); padding: 0 7px; cursor: help; }
 </style>

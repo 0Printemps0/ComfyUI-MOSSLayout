@@ -1,4 +1,4 @@
-(function(){var s=document.createElement('style');s.setAttribute('data-extension','comfyui-mosslayout');s.textContent="\n.ui-btn[data-v-37e21519] {\r\n  display: inline-flex; align-items: center; justify-content: center; gap: 4px;\r\n  min-height: 24px; padding: 3px 9px; box-sizing: border-box;\r\n  background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\r\n  border-radius: var(--radius-sm, 5px); font-size: 11px; line-height: 1; cursor: pointer; font-family: inherit;\r\n  white-space: nowrap; transition: border-color .1s, background .1s;\n}\n.ui-btn.icon[data-v-37e21519] { min-width: 26px; padding: 0 6px; font-size: 12px;\n}\n.ui-btn[data-v-37e21519] .mdi { font-size: 15px; line-height: 1;\n}\n.ui-btn[data-v-37e21519]:hover { border-color: var(--st-accent);\n}\n.ui-btn[data-v-37e21519]:disabled { opacity: .4; cursor: default;\n}\n.ui-btn[data-v-37e21519]:disabled:hover { border-color: var(--st-border);\n}\n.ui-btn.on[data-v-37e21519],\r\n.ui-btn.primary[data-v-37e21519] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.ui-btn.primary[data-v-37e21519]:hover { filter: brightness(1.08);\n}\r\n\n.ui-pop[data-v-3afe332d] { position: relative; display: inline-flex;\n}\n.ui-pop-panel[data-v-3afe332d] {\r\n  position: absolute; top: calc(100% + 5px); z-index: 50;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 10px 12px; min-width: 240px; max-width: 320px; max-height: 360px; overflow-y: auto;\r\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\r\n  font-size: 11px; line-height: 1.5; color: var(--st-text); cursor: default;\n}\n.ui-pop-panel.right[data-v-3afe332d] { right: 0;\n}\n.ui-pop-panel.left[data-v-3afe332d] { left: 0;\n}\n.ui-pop-panel.up[data-v-3afe332d] { top: auto; bottom: calc(100% + 5px);\n}\r\n\n.canvas-wrap[data-v-0bf47a4c] { display: flex; flex-direction: column; gap: 6px;\n}\n.toolbar[data-v-0bf47a4c] { display: flex; flex-wrap: wrap; gap: 5px; align-items: center;\n}\n.mdi[data-v-0bf47a4c] { font-size: 15px; line-height: 1;\n}\n.tag .mdi[data-v-0bf47a4c] { font-size: 1em;\n}\n.seg[data-v-0bf47a4c] { display: flex; gap: 2px;\n}\n.divider[data-v-0bf47a4c] { width: 1px; height: 18px; background: var(--st-border); margin: 0 2px;\n}\n.spacer[data-v-0bf47a4c] { flex: 1 1 auto;\n}\n.cmenu[data-v-0bf47a4c] { display: flex; flex-direction: column; gap: 5px; min-width: 170px;\n}\n.citem[data-v-0bf47a4c] { display: flex; align-items: center; gap: 6px; text-align: left; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 5px 8px; font-size: 11px; cursor: pointer;\n}\n.citem[data-v-0bf47a4c]:hover { border-color: var(--st-accent);\n}\n.citem.on[data-v-0bf47a4c] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.crow[data-v-0bf47a4c] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.crow input[type='range'][data-v-0bf47a4c] { flex: 1; accent-color: var(--st-accent);\n}\n.crow input[type='number'][data-v-0bf47a4c] { width: 54px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.ckrow[data-v-0bf47a4c] { gap: 12px;\n}\n.cdiv[data-v-0bf47a4c] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n.cgroup[data-v-0bf47a4c] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.chint[data-v-0bf47a4c] { margin: 2px 0 0; font-size: 10px; line-height: 1.4; color: var(--st-muted);\n}\n.cic[data-v-0bf47a4c] { display: inline-flex; align-items: center; justify-content: center; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; width: 26px; height: 24px; cursor: pointer;\n}\n.cic[data-v-0bf47a4c]:hover { border-color: var(--st-accent);\n}\n.stage[data-v-0bf47a4c] {\n  position: relative; width: 100%; background: var(--st-input);\n  border: 1px solid var(--st-border); border-radius: 6px; overflow: hidden;\n  touch-action: none; user-select: none; cursor: crosshair;\n}\n.stage.dragging[data-v-0bf47a4c] { cursor: grabbing;\n}\n.stage[data-v-0bf47a4c]:focus { outline: none;\n}\n.backdrop[data-v-0bf47a4c] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\n/* no z-index: DOM order paints it above the backdrop but below the grid/boxes */\n.livelayer[data-v-0bf47a4c] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\n.livebadge[data-v-0bf47a4c] {\n  position: absolute; top: 6px; left: 6px; z-index: 2; pointer-events: none;\n  display: inline-flex; align-items: center; gap: 3px;\n  background: rgba(0,0,0,.6); color: #fff; border-radius: 4px;\n  padding: 1px 6px 1px 4px; font-size: 9px; font-weight: 700;\n  text-transform: uppercase; letter-spacing: .5px;\n}\n.livebadge .mdi[data-v-0bf47a4c] { font-size: 11px; color: #ef4444; animation: livepulse-0bf47a4c 1.2s ease-in-out infinite;\n}\n@keyframes livepulse-0bf47a4c {\n0%, 100% { opacity: 1;\n}\n50% { opacity: .25;\n}\n}\n.grid[data-v-0bf47a4c] {\n  position: absolute; inset: 0; pointer-events: none;\n  background-image: linear-gradient(to right, rgba(128,128,128,.18) 1px, transparent 1px),\n    linear-gradient(to bottom, rgba(128,128,128,.18) 1px, transparent 1px);\n  background-size: 10% 10%;\n}\n.box[data-v-0bf47a4c] { position: absolute; box-sizing: border-box; cursor: move; background: transparent; transition: background .1s;\n}\n/* border as ::after (painted after children) so the outline sits over the label */\n.box[data-v-0bf47a4c]::after { content: ''; position: absolute; inset: 0; border: 2px solid var(--c, #60a5fa); pointer-events: none;\n}\n.box[data-v-0bf47a4c]:hover { background: var(--fill);\n}\n.box.sel[data-v-0bf47a4c] { background: var(--fill); box-shadow: 0 0 0 1.5px var(--st-accent, #60a5fa); z-index: 4;\n}\n.box.primary[data-v-0bf47a4c] { box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--st-accent, #60a5fa), 0 0 10px rgba(0,0,0,.6); z-index: 5;\n}\n.box.draft[data-v-0bf47a4c] { opacity: 0.8; pointer-events: none; background: rgba(156,163,175,.12);\n}\n.box.draft[data-v-0bf47a4c]::after { border-style: dashed;\n}\n.groupframe[data-v-0bf47a4c] { position: absolute; box-sizing: border-box; border: 1px dashed var(--gc, var(--st-accent, #60a5fa)); background: transparent; z-index: 6; pointer-events: none;\n}\n.groupframe .h[data-v-0bf47a4c] { pointer-events: auto; background: var(--gc, var(--st-accent, #60a5fa)); border-color: #fff;\n}\n.marquee[data-v-0bf47a4c] { position: absolute; box-sizing: border-box; border: 1px solid var(--st-accent, #60a5fa); background: color-mix(in srgb, var(--st-accent, #60a5fa) 15%, transparent); z-index: 7; pointer-events: none;\n}\n.tag[data-v-0bf47a4c] {\n  position: absolute; top: 0; left: 0; transform: translateY(-100%);\n  display: inline-flex; align-items: center; gap: 3px;\n  font-size: 10px; line-height: 1.4; padding: 1px 5px; white-space: nowrap;\n  max-width: 240px; overflow: hidden; border-radius: 3px 3px 0 0; pointer-events: none;\n}\n.tag .tagi[data-v-0bf47a4c] { flex: none;\n}\n.tag .tagn[data-v-0bf47a4c] { flex: none; font-weight: 700; font-variant-numeric: tabular-nums;\n}\n/* text hidden by default (icon + index only); shown on hover/selection */\n.tag .tagt[data-v-0bf47a4c] { display: none; overflow: hidden; text-overflow: ellipsis; max-width: 200px;\n}\n.box:hover .tag .tagt[data-v-0bf47a4c], .box.sel .tag .tagt[data-v-0bf47a4c], .box.primary .tag .tagt[data-v-0bf47a4c] { display: inline;\n}\n.tag .tagt[data-v-0bf47a4c]::before { content: '· ';\n}\n/* per-group color tab on the label's left edge; negative margins bleed to the tag edges */\n.tag.grouped .gseg[data-v-0bf47a4c] { flex: none; align-self: stretch; width: 4px; margin: -1px 3px -1px -5px; border-radius: 3px 0 0 0; background: var(--gc, var(--st-accent));\n}\n.h[data-v-0bf47a4c] { position: absolute; width: 11px; height: 11px; background: #fff; border: 1px solid #333; border-radius: 2px; z-index: 1;\n}\n.h-nw[data-v-0bf47a4c] { top: -6px; left: -6px; cursor: nwse-resize;\n}\n.h-n[data-v-0bf47a4c]  { top: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-ne[data-v-0bf47a4c] { top: -6px; right: -6px; cursor: nesw-resize;\n}\n.h-e[data-v-0bf47a4c]  { top: 50%; right: -6px; margin-top: -5px; cursor: ew-resize;\n}\n.h-se[data-v-0bf47a4c] { bottom: -6px; right: -6px; cursor: nwse-resize;\n}\n.h-s[data-v-0bf47a4c]  { bottom: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-sw[data-v-0bf47a4c] { bottom: -6px; left: -6px; cursor: nesw-resize;\n}\n.h-w[data-v-0bf47a4c]  { top: 50%; left: -6px; margin-top: -5px; cursor: ew-resize;\n}\n\r\n/* absolute over .studio (which is position:relative) */\n.liboverlay[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 60;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 72%, transparent);\r\n  backdrop-filter: blur(4px);\r\n  display: flex; padding: 12px; box-sizing: border-box;\r\n  border-radius: 8px; /* follow the node's rounded corners */\n}\n.libpanel[data-v-5382e446] {\r\n  flex: 1; min-height: 0; display: flex; flex-direction: column;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 3px);\r\n  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5); overflow: hidden;\n}\r\n\r\n/* ── header ─────────────────────────────────────────────── */\n.libhead[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-bottom: 1px solid var(--st-border); flex-wrap: wrap;\n}\n.libhead .t[data-v-5382e446] { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; letter-spacing: .2px;\n}\n.libhead .t .mdi[data-v-5382e446] { font-size: 17px; color: var(--st-accent);\n}\n.count[data-v-5382e446] {\r\n  display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 18px;\r\n  padding: 0 6px; border-radius: 9px; background: color-mix(in srgb, var(--st-accent) 22%, transparent);\r\n  color: var(--st-accent); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;\n}\n.grow[data-v-5382e446] { flex: 1;\n}\n.search[data-v-5382e446] { display: flex; align-items: center; gap: 4px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 7px; padding: 0 6px; height: 28px; transition: border-color .12s;\n}\n.search[data-v-5382e446]:focus-within { border-color: var(--st-accent);\n}\n.search .mdi[data-v-5382e446] { font-size: 14px; color: var(--st-muted);\n}\n.search input[data-v-5382e446] { background: none; border: none; outline: none; color: var(--st-text); font-size: 11px; font-family: inherit; width: 130px; padding: 0;\n}\n.search .clr[data-v-5382e446] { display: inline-flex; background: none; border: none; color: var(--st-muted); cursor: pointer; padding: 0;\n}\n.search .clr[data-v-5382e446]:hover { color: var(--st-text);\n}\r\n\r\n/* ── body / grid ────────────────────────────────────────── */\n.libbody[data-v-5382e446] { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 11px;\n}\n.grid[data-v-5382e446] { display: grid; grid-template-columns: repeat(auto-fill, minmax(138px, 1fr)); gap: 11px;\n}\n.tile[data-v-5382e446] {\r\n  position: relative; display: flex; flex-direction: column; gap: 6px; padding: 6px;\r\n  background: var(--st-input); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 1px);\r\n  transition: border-color .12s, box-shadow .12s, transform .1s;\n}\n.tile[data-v-5382e446]:hover { border-color: var(--st-accent); box-shadow: 0 0 0 1px var(--st-accent) inset, 0 6px 16px rgba(0, 0, 0, .35); transform: translateY(-2px);\n}\n.tile.confirming[data-v-5382e446] { border-color: #ef4444; box-shadow: 0 0 0 1px #ef4444 inset;\n}\n.thumb[data-v-5382e446] {\r\n  position: relative; width: 100%; aspect-ratio: 1; border-radius: 5px; overflow: hidden;\r\n  border: none; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 60%, #000);\n}\r\n/* cover so the thumbnail fills the frame without letterbox bars */\n.thumb img[data-v-5382e446] { width: 100%; height: 100%; object-fit: cover; display: block;\n}\n.thumb .ph[data-v-5382e446] { font-size: 24px; color: var(--st-muted); opacity: .45;\n}\n.badge[data-v-5382e446] {\r\n  position: absolute; top: 5px; left: 5px; display: inline-flex; align-items: center; gap: 3px;\r\n  padding: 1px 6px; border-radius: 8px; background: rgba(0, 0, 0, .62); color: #fff;\r\n  font-size: 10px; font-weight: 600; backdrop-filter: blur(2px);\n}\n.badge .mdi[data-v-5382e446] { font-size: 11px;\n}\n.del[data-v-5382e446] {\r\n  position: absolute; top: 9px; right: 9px; z-index: 2; display: inline-flex; align-items: center; justify-content: center;\r\n  width: 24px; height: 24px; border-radius: 6px; background: rgba(0, 0, 0, .55); border: none; color: #fff;\r\n  cursor: pointer; opacity: 0; transition: opacity .12s, background .12s;\n}\n.del .mdi[data-v-5382e446] { font-size: 15px;\n}\n.tile:hover .del[data-v-5382e446] { opacity: 1;\n}\n.del[data-v-5382e446]:hover { background: #dc2626;\n}\n.name[data-v-5382e446] { font-size: 11px; color: var(--st-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px;\n}\r\n\r\n/* delete confirm overlay over the tile */\n.confirm[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px;\r\n  background: color-mix(in srgb, var(--st-panel) 88%, transparent); backdrop-filter: blur(2px);\r\n  border-radius: inherit; padding: 8px; text-align: center;\n}\n.confirm .q[data-v-5382e446] { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--st-text);\n}\n.confirm .q .mdi[data-v-5382e446] { color: #ef4444; font-size: 15px;\n}\n.cbtns[data-v-5382e446] { display: flex; gap: 6px;\n}\n.cbtns button[data-v-5382e446] { border: none; border-radius: 6px; padding: 5px 11px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: inherit;\n}\n.cbtns .yes[data-v-5382e446] { background: #dc2626; color: #fff;\n}\n.cbtns .yes[data-v-5382e446]:hover { background: #ef4444;\n}\n.cbtns .no[data-v-5382e446] { background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\n}\n.cbtns .no[data-v-5382e446]:hover { border-color: var(--st-accent);\n}\r\n\r\n/* ── empty / loading ────────────────────────────────────── */\n.empty[data-v-5382e446] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; height: 100%; min-height: 180px; color: var(--st-muted); font-size: 12px; text-align: center;\n}\n.empty .mdi[data-v-5382e446] { font-size: 17px;\n}\n.empty .big[data-v-5382e446] { font-size: 40px; opacity: .35;\n}\n.empty small[data-v-5382e446] { font-size: 11px; opacity: .8;\n}\r\n\r\n/* ── footer / save bar ──────────────────────────────────── */\n.libfoot[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-top: 1px solid var(--st-border); background: color-mix(in srgb, var(--st-bg, #1a1a1f) 35%, transparent); flex-wrap: wrap;\n}\n.libfoot .fic[data-v-5382e446] { font-size: 16px; color: var(--st-muted);\n}\n.nm[data-v-5382e446] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 7px; padding: 6px 9px; font-size: 11px; font-family: inherit; width: 150px;\n}\n.nm[data-v-5382e446]:focus { outline: none; border-color: var(--st-accent);\n}\n.thumbck[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); white-space: nowrap; cursor: pointer;\n}\n.thumbck.disabled[data-v-5382e446] { opacity: .45; cursor: not-allowed;\n}\n.flash[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--st-accent); white-space: nowrap;\n}\n.flash .mdi[data-v-5382e446] { font-size: 14px;\n}\n.flash.err[data-v-5382e446] { color: #f87171;\n}\n.flash-enter-active[data-v-5382e446], .flash-leave-active[data-v-5382e446] { transition: opacity .18s;\n}\n.flash-enter-from[data-v-5382e446], .flash-leave-to[data-v-5382e446] { opacity: 0;\n}\r\n\n.ui-card[data-v-665b913d] {\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 8px; display: flex; flex-direction: column; gap: 7px;\n}\n.ui-card-head[data-v-665b913d] { display: flex; align-items: center; justify-content: space-between; gap: 8px;\n}\n.ui-card-title[data-v-665b913d] { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\r\n\n.palette[data-v-bd1d882e] { display: flex; flex-direction: column; gap: 4px;\n}\n.swatches[data-v-bd1d882e] { display: flex; flex-wrap: wrap; gap: 6px; align-items: center;\n}\n.swatch-wrap[data-v-bd1d882e] { position: relative;\n}\n.swatch[data-v-bd1d882e] {\r\n  display: block; width: 26px; height: 26px; border-radius: 5px;\r\n  border: 1px solid var(--st-border); cursor: pointer; overflow: hidden;\n}\n.swatch input[data-v-bd1d882e] { opacity: 0; width: 100%; height: 100%; cursor: pointer;\n}\n.add[data-v-bd1d882e] {\r\n  width: 26px; height: 26px; border-radius: 5px; cursor: pointer;\r\n  border: 1px dashed var(--st-border); background: transparent;\r\n  color: var(--st-muted); font-size: 16px; line-height: 1;\n}\n.hint[data-v-bd1d882e] { font-size: 10px; color: var(--st-muted);\n}\r\n\n.combo[data-v-2f602dd0] { display: flex; gap: 4px;\n}\n.combo input[data-v-2f602dd0] { flex: 1; min-width: 0; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 6px; font-size: 12px;\n}\n.cpick[data-v-2f602dd0] { flex: none; width: 74px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 5px; cursor: pointer; font-size: 11px; padding: 0 2px;\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\r\n\n.chead[data-v-65088df0] { display: flex; align-items: center; gap: 4px;\n}\n.grow[data-v-65088df0] { flex: 1 1 auto;\n}\n.fold[data-v-65088df0] { display: inline-flex; align-items: center; background: none; border: none; cursor: pointer; color: var(--st-muted); padding: 0; margin-left: -3px;\n}\n.fold[data-v-65088df0]:hover { color: var(--st-text);\n}\n.fold .mdi[data-v-65088df0] { font-size: 16px; line-height: 1;\n}\n.lhead[data-v-65088df0] { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\n.canvasmode[data-v-65088df0] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 11px; padding: 2px 4px;\n}\n.field[data-v-65088df0] { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--st-muted);\n}\n.field textarea[data-v-65088df0] {\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit; line-height: 1.45;\n  min-height: 72px;\n}\n.field textarea[data-v-65088df0]:focus, .canvasmode[data-v-65088df0]:focus { outline: none; border-color: var(--st-accent);\n}\n.presetsck[data-v-65088df0] { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--st-muted); cursor: pointer;\n}\n\n.adds[data-v-cdf8ce90] { display: flex; gap: 4px;\n}\n.chead[data-v-cdf8ce90] { display: flex; align-items: center; gap: 4px;\n}\n.lhead[data-v-cdf8ce90] { display: inline-flex; align-items: center; gap: 1px; background: none; border: none; cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted); padding: 0;\n}\n.lhead[data-v-cdf8ce90]:hover { color: var(--st-text);\n}\n.lhead .mdi[data-v-cdf8ce90] { font-size: 15px;\n}\n.lhead .flt[data-v-cdf8ce90] { font-size: 13px; margin-right: 2px;\n}\n.lmenu[data-v-cdf8ce90] { display: flex; flex-direction: column; gap: 1px; min-width: 150px;\n}\n.litem[data-v-cdf8ce90] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 8px; border-radius: 5px; font-size: 11px; cursor: pointer;\n}\n.litem[data-v-cdf8ce90]:hover { background: var(--st-btn);\n}\n.litem.on[data-v-cdf8ce90] { color: var(--st-accent);\n}\n.litem .mdi[data-v-cdf8ce90] { font-size: 15px; color: var(--st-muted);\n}\n.litem.on .mdi[data-v-cdf8ce90] { color: var(--st-accent);\n}\nul[data-v-cdf8ce90] { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; flex: 1 1 auto; min-height: 0; overflow-y: auto;\n}\nli[data-v-cdf8ce90] {\n  position: relative;\n  display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 5px;\n  background: var(--st-input); border: 1px solid transparent; cursor: pointer; font-size: 12px; color: var(--st-text);\n  transition: opacity .12s, box-shadow .12s, background .12s;\n}\nli[data-v-cdf8ce90]:hover { border-color: var(--st-border);\n}\nli.sel[data-v-cdf8ce90] { border-color: var(--st-accent);\n}\n/* primary = the item the editor targets */\nli.primary[data-v-cdf8ce90] { border-color: var(--st-accent); background: color-mix(in srgb, var(--st-accent) 18%, var(--st-input));\n}\nli.primary .snip[data-v-cdf8ce90] { font-weight: 600;\n}\n/* per-group color sliver; absolute inside the existing padding so rows stay aligned */\nli.grouped[data-v-cdf8ce90]::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 5px 0 0 5px; background: var(--gc, var(--st-accent));\n}\nli.dragging[data-v-cdf8ce90] { opacity: .35;\n}\nli.dragover[data-v-cdf8ce90] { box-shadow: inset 0 3px 0 -1px var(--st-accent); background: color-mix(in srgb, var(--st-accent) 12%, var(--st-input));\n}\n.handle[data-v-cdf8ce90] { flex: none; color: var(--st-muted); cursor: grab; font-size: 14px; opacity: .3; margin: 0 -4px 0 -2px; transition: opacity .12s, color .12s;\n}\nli:hover .handle[data-v-cdf8ce90] { opacity: .85;\n}\n.handle[data-v-cdf8ce90]:hover { color: var(--st-accent);\n}\n.handle[data-v-cdf8ce90]:active { cursor: grabbing;\n}\n.typeicon[data-v-cdf8ce90] { flex: none; color: var(--st-muted); line-height: 1; display: inline-flex;\n}\n.typeicon .mdi[data-v-cdf8ce90] { font-size: 15px;\n}\n.idxchip[data-v-cdf8ce90] {\n  flex: none; min-width: 17px; height: 16px; padding: 0 4px; box-sizing: border-box;\n  display: inline-flex; align-items: center; justify-content: center;\n  border-radius: 4px; background: var(--st-accent); color: #fff;\n  font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums;\n  text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\n}\n.link[data-v-cdf8ce90] { flex: none; font-size: 13px; color: var(--st-muted);\n}\n.snip[data-v-cdf8ce90] { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.more[data-v-cdf8ce90] { display: inline-flex; align-items: center; justify-content: center; flex: none; background: none; border: none; color: var(--st-muted); border-radius: 4px; width: 20px; height: 20px; cursor: pointer; padding: 0; opacity: 0; transition: opacity .12s;\n}\n.more .mdi[data-v-cdf8ce90] { font-size: 16px;\n}\nli:hover .more[data-v-cdf8ce90], li.sel .more[data-v-cdf8ce90] { opacity: 1;\n}\n.more[data-v-cdf8ce90]:hover { color: var(--st-text); background: var(--st-btn);\n}\n.empty[data-v-cdf8ce90] { font-size: 11px; color: var(--st-muted); margin: 2px 0;\n}\n\n.jctrl[data-v-d7916295] { display: flex; align-items: center; gap: 5px; flex-wrap: nowrap;\n}\n.grow[data-v-d7916295] { flex: 1 1 auto;\n}\n.jstat[data-v-d7916295] { font-size: 15px; line-height: 1; cursor: help;\n}\n.jstat.good[data-v-d7916295] { color: #34d399;\n}\n.jstat.warn[data-v-d7916295] { color: #f59e0b;\n}\n.jstat.bad[data-v-d7916295] { color: #f87171;\n}\n.jtok[data-v-d7916295] { display: inline-flex; align-items: center; min-height: 24px; box-sizing: border-box; font-size: 10px; color: var(--st-muted); font-family: ui-monospace, monospace; background: var(--st-btn); border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px); padding: 0 7px; cursor: help;\n}\r\n\n.ehead[data-v-250c5e97] { display: flex; align-items: center; gap: 6px; width: 100%; flex-wrap: wrap;\n}\n.grow[data-v-250c5e97] { flex: 1 1 auto;\n}\n/* overflow:hidden clips the absolute color input to the chip so it can't overlap the type buttons */\n.idchip[data-v-250c5e97] { position: relative; display: inline-flex; flex: none; cursor: pointer; overflow: hidden; border-radius: 5px;\n}\n.idchip .n[data-v-250c5e97] {\n  display: inline-flex; align-items: center; justify-content: center;\n  min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box;\n  border-radius: 5px; color: #fff; font-size: 11px; font-weight: 700;\n  font-variant-numeric: tabular-nums; text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\n  border: 1px solid rgba(0, 0, 0, .25);\n}\n.idchip input[data-v-250c5e97] { position: absolute; inset: 0; opacity: 0; cursor: pointer;\n}\n.seg[data-v-250c5e97] { display: flex; gap: 2px;\n}\n.filine[data-v-250c5e97] { display: flex; gap: 8px; align-items: flex-start; font-size: 11px; color: var(--st-muted);\n}\n.filine > span[data-v-250c5e97] { width: 44px; flex: none; padding-top: 5px; text-align: right;\n}\n.filine input[type='text'][data-v-250c5e97], .filine textarea[data-v-250c5e97] {\n  flex: 1; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit;\n}\n.filine[data-v-250c5e97] .palette { flex: 1;\n}\n\n.jcard[data-v-919c184b] { display: flex; flex-direction: column; gap: 6px; min-height: 0;\n}\n.json[data-v-919c184b] {\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\n  border-radius: 6px; padding: 8px; font-size: 11px; line-height: 1.5;\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\n  max-height: 240px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-word;\n}\ntextarea.json[data-v-919c184b] { width: 100%; box-sizing: border-box; resize: vertical; min-height: 140px;\n}\ntextarea.json[data-v-919c184b]:focus, textarea.json.bad[data-v-919c184b]:focus { outline: none;\n}\ntextarea.json.bad[data-v-919c184b] { border-color: #f87171;\n}\n.compiled[data-v-919c184b] { position: relative; display: flex; flex-direction: column; gap: 2px;\n}\n.clbl[data-v-919c184b] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.cbtn[data-v-919c184b] { position: absolute; right: 10px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 22px; height: 20px; cursor: pointer; font-size: 12px; line-height: 1;\n}\n.cbtn[data-v-919c184b]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.cline[data-v-919c184b] {\n  background: var(--st-input); border: 1px dashed var(--st-border); color: var(--st-muted);\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\n  max-height: 110px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-all;\n}\n.parseerr[data-v-919c184b] { display: flex; flex-direction: column; gap: 4px;\n}\n.errhead[data-v-919c184b] { display: flex; align-items: center; gap: 6px;\n}\n.errhead .msg[data-v-919c184b] { flex: 1; font-size: 11px; color: #f87171; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.ebtn[data-v-919c184b] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer;\n}\n.ebtn[data-v-919c184b]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.errframe[data-v-919c184b] {\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\n  max-height: 120px; overflow: auto; margin: 0; cursor: pointer;\n}\n.warnlist[data-v-919c184b] { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f59e0b; display: flex; flex-direction: column; gap: 2px;\n}\n\n.ctxbg[data-v-b170409c] { position: fixed; inset: 0; z-index: 10000;\n}\n.ctx[data-v-b170409c] {\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\n  --st-input: var(--comfy-input-bg, #15151a);\n  --st-btn: var(--comfy-input-bg, #2a2a30);\n  --st-text: var(--input-text, #e5e5ea);\n  --st-muted: var(--descrip-text, #9aa0aa);\n  --st-border: var(--border-color, #3a3a44);\n  --st-accent: var(--p-primary-color, #3b82f6);\n  --st-radius: var(--radius-md, 6px);\n  position: fixed; min-width: 172px; z-index: 10001;\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius);\n  padding: 4px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\n  display: flex; flex-direction: column; gap: 1px;\n}\n.ctxhead[data-v-b170409c] { display: flex; align-items: center; gap: 6px; padding: 4px 9px 6px; color: var(--st-muted);\n}\n.ctxhead .cdot[data-v-b170409c] { width: 9px; height: 9px; border-radius: 2px; flex: none;\n}\n.ctxhead .cnum[data-v-b170409c] { font-size: 11px; font-weight: 600;\n}\n.ctxhead .mdi[data-v-b170409c] { font-size: 14px; margin-left: auto;\n}\n.ctxedit[data-v-b170409c] { margin: 0 4px 4px; padding: 5px 7px; background: var(--st-input, #15151a); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 12px; font-family: inherit;\n}\n.ctxedit[data-v-b170409c]:focus { outline: none; border-color: var(--st-accent);\n}\n.ctxitem[data-v-b170409c] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 9px; border-radius: calc(var(--st-radius) - 1px); cursor: pointer; font-size: 12px;\n}\n.ctxitem[data-v-b170409c]:hover { background: var(--st-btn);\n}\n.ctxitem .mdi[data-v-b170409c] { font-size: 15px; color: var(--st-muted);\n}\n.ctxkey[data-v-b170409c] { margin-left: auto; font-size: 10px; color: var(--st-muted); opacity: .7;\n}\n.ctxitem.del[data-v-b170409c]:hover { background: #b91c1c; color: #fff;\n}\n.ctxitem.del:hover .mdi[data-v-b170409c] { color: #fff;\n}\n.ctxdiv[data-v-b170409c] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n\n/* Map ComfyUI theme vars to semantic names (dark fallbacks); inherited by children. */\n.studio[data-v-82d88978] {\n  --st-bg: var(--comfy-menu-bg, #1a1a1f);\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\n  --st-input: var(--comfy-input-bg, #15151a);\n  --st-btn: var(--comfy-input-bg, #2a2a30);\n  --st-border: var(--border-color, #3a3a44);\n  --st-text: var(--input-text, #e5e5ea);\n  --st-muted: var(--descrip-text, #9aa0aa);\n  --st-accent: var(--p-primary-color, #60a5fa);\n  --st-on-accent: var(--p-primary-button-text-color, #fff);\n  --st-radius: var(--radius-md, 6px);\n  color: var(--st-text);\n  background: var(--st-bg);\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\n  height: 100%;\n  overflow-y: auto;\n  overscroll-behavior: contain;\n}\n.main[data-v-82d88978] { display: flex; gap: 8px;\n}\n.left[data-v-82d88978] { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column;\n}\n.right[data-v-82d88978] { flex: none; width: 265px; display: flex; flex-direction: column; gap: 8px;\n}\n.drawer-backdrop[data-v-82d88978] { display: none;\n}\n.slim-controls[data-v-82d88978] { display: none;\n}\n@media (max-width: 760px) {\n.main[data-v-82d88978] { position: relative;\n}\n.right[data-v-82d88978] {\n    position: absolute; right: 0; top: 0; bottom: 0; z-index: 30;\n    background: var(--st-panel); padding: 8px; width: 260px;\n    transform: translateX(100%); transition: transform .15s;\n}\n.studio.panel-open .right[data-v-82d88978] { transform: none;\n}\n.studio.panel-open .drawer-backdrop[data-v-82d88978] { display: block; position: absolute; inset: 0; z-index: 29; background: rgba(0,0,0,.4);\n}\n.slim-controls[data-v-82d88978] { display: inline-flex;\n}\n}\n.resmenu[data-v-82d88978] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.rsec[data-v-82d88978], .rdiv[data-v-82d88978] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.rdiv[data-v-82d88978] { border-top: 1px solid var(--st-border); margin: 2px 0;\n}\n.aspects[data-v-82d88978] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;\n}\n.achip[data-v-82d88978] { display: flex; flex-direction: column; align-items: center; gap: 3px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 6px; padding: 6px 2px; cursor: pointer;\n}\n.achip.on[data-v-82d88978] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.arect[data-v-82d88978] { border: 1.5px solid currentColor; border-radius: 2px; display: block;\n}\n.albl[data-v-82d88978] { font-size: 9px; font-variant-numeric: tabular-nums;\n}\n.mprow[data-v-82d88978] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.mppresets[data-v-82d88978] { display: flex; gap: 3px;\n}\n.mpp[data-v-82d88978] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; font-size: 10px; padding: 2px 6px; cursor: pointer;\n}\n.mpp.on[data-v-82d88978] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.mprow input[type='number'][data-v-82d88978] { width: 52px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.whrow[data-v-82d88978] { display: flex; align-items: center; gap: 8px;\n}\n.whrow label[data-v-82d88978] { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); flex: 1;\n}\n.whrow input[data-v-82d88978] { width: 100%; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 4px; font-size: 12px;\n}\n.swap[data-v-82d88978] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 26px; height: 26px; cursor: pointer; flex: none;\n}\n.swap[data-v-82d88978]:hover { color: var(--st-accent); border-color: var(--st-accent);\n}\n.rfoot[data-v-82d88978] { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--st-muted);\n}\n.help[data-v-82d88978] { display: flex; flex-direction: column; gap: 6px; min-width: 240px; max-width: 300px; font-size: 11px;\n}\n.help .h[data-v-82d88978] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted); margin: 2px 0 0;\n}\n.help dl[data-v-82d88978] { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0;\n}\n.help dt[data-v-82d88978] { color: var(--st-muted); white-space: nowrap;\n}\n.help dd[data-v-82d88978] { margin: 0;\n}\n.help .tip[data-v-82d88978] { color: var(--st-muted); font-size: 10px; margin: 4px 0 0;\n}\n.help .credit[data-v-82d88978] { color: var(--st-muted); font-size: 9px; margin: 6px 0 0; border-top: 1px solid var(--st-border); padding-top: 6px;\n}\n.help .credit a[data-v-82d88978] { color: var(--st-accent);\n}\n.resetc[data-v-82d88978] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.resetc .rq[data-v-82d88978] { margin: 0; font-size: 12px; font-weight: 600;\n}\n.resetc .rh[data-v-82d88978] { margin: 0; font-size: 10px; color: var(--st-muted);\n}\n.rbtns[data-v-82d88978] { display: flex; gap: 6px; justify-content: flex-end;\n}\n.rno[data-v-82d88978], .ryes[data-v-82d88978] { border: 1px solid var(--st-border); background: var(--st-btn); color: var(--st-text); border-radius: 5px; padding: 4px 10px; font-size: 11px; cursor: pointer;\n}\n.ryes[data-v-82d88978] { background: #b91c1c; border-color: #b91c1c; color: #fff;\n}\n";document.head.appendChild(s);})();import { app } from "../../../scripts/app.js";
+(function(){var s=document.createElement('style');s.setAttribute('data-extension','comfyui-mosslayout');s.textContent="\n.ui-btn[data-v-37e21519] {\r\n  display: inline-flex; align-items: center; justify-content: center; gap: 4px;\r\n  min-height: 24px; padding: 3px 9px; box-sizing: border-box;\r\n  background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\r\n  border-radius: var(--radius-sm, 5px); font-size: 11px; line-height: 1; cursor: pointer; font-family: inherit;\r\n  white-space: nowrap; transition: border-color .1s, background .1s;\n}\n.ui-btn.icon[data-v-37e21519] { min-width: 26px; padding: 0 6px; font-size: 12px;\n}\n.ui-btn[data-v-37e21519] .mdi { font-size: 15px; line-height: 1;\n}\n.ui-btn[data-v-37e21519]:hover { border-color: var(--st-accent);\n}\n.ui-btn[data-v-37e21519]:disabled { opacity: .4; cursor: default;\n}\n.ui-btn[data-v-37e21519]:disabled:hover { border-color: var(--st-border);\n}\n.ui-btn.on[data-v-37e21519],\r\n.ui-btn.primary[data-v-37e21519] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.ui-btn.primary[data-v-37e21519]:hover { filter: brightness(1.08);\n}\r\n\n.ui-pop[data-v-3afe332d] { position: relative; display: inline-flex;\n}\n.ui-pop-panel[data-v-3afe332d] {\r\n  position: absolute; top: calc(100% + 5px); z-index: 50;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 10px 12px; min-width: 240px; max-width: 320px; max-height: 360px; overflow-y: auto;\r\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\r\n  font-size: 11px; line-height: 1.5; color: var(--st-text); cursor: default;\n}\n.ui-pop-panel.right[data-v-3afe332d] { right: 0;\n}\n.ui-pop-panel.left[data-v-3afe332d] { left: 0;\n}\n.ui-pop-panel.up[data-v-3afe332d] { top: auto; bottom: calc(100% + 5px);\n}\r\n\n.canvas-wrap[data-v-25c3fb06] { display: flex; flex-direction: column; gap: 6px;\n}\n.toolbar[data-v-25c3fb06] { display: flex; flex-wrap: wrap; gap: 5px; align-items: center;\n}\n.mdi[data-v-25c3fb06] { font-size: 15px; line-height: 1;\n}\n.tag .mdi[data-v-25c3fb06] { font-size: 1em;\n}\n.seg[data-v-25c3fb06] { display: flex; gap: 2px;\n}\n.divider[data-v-25c3fb06] { width: 1px; height: 18px; background: var(--st-border); margin: 0 2px;\n}\n.spacer[data-v-25c3fb06] { flex: 1 1 auto;\n}\n.cmenu[data-v-25c3fb06] { display: flex; flex-direction: column; gap: 5px; min-width: 170px;\n}\n.citem[data-v-25c3fb06] { display: flex; align-items: center; gap: 6px; text-align: left; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 5px 8px; font-size: 11px; cursor: pointer;\n}\n.citem[data-v-25c3fb06]:hover { border-color: var(--st-accent);\n}\n.citem.on[data-v-25c3fb06] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.crow[data-v-25c3fb06] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.crow input[type='range'][data-v-25c3fb06] { flex: 1; accent-color: var(--st-accent);\n}\n.crow input[type='number'][data-v-25c3fb06] { width: 54px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.ckrow[data-v-25c3fb06] { gap: 12px;\n}\n.cdiv[data-v-25c3fb06] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n.cgroup[data-v-25c3fb06] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.chint[data-v-25c3fb06] { margin: 2px 0 0; font-size: 10px; line-height: 1.4; color: var(--st-muted);\n}\n.cic[data-v-25c3fb06] { display: inline-flex; align-items: center; justify-content: center; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; width: 26px; height: 24px; cursor: pointer;\n}\n.cic[data-v-25c3fb06]:hover { border-color: var(--st-accent);\n}\n.stage[data-v-25c3fb06] {\r\n  position: relative; width: 100%; background: var(--st-input);\r\n  border: 1px solid var(--st-border); border-radius: 6px; overflow: hidden;\r\n  touch-action: none; user-select: none; cursor: crosshair;\n}\n.stage.dragging[data-v-25c3fb06] { cursor: grabbing;\n}\n.stage[data-v-25c3fb06]:focus { outline: none;\n}\n.backdrop[data-v-25c3fb06] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\r\n/* no z-index: DOM order paints it above the backdrop but below the grid/boxes */\n.livelayer[data-v-25c3fb06] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\n.livebadge[data-v-25c3fb06] {\r\n  position: absolute; top: 6px; left: 6px; z-index: 2; pointer-events: none;\r\n  display: inline-flex; align-items: center; gap: 3px;\r\n  background: rgba(0,0,0,.6); color: #fff; border-radius: 4px;\r\n  padding: 1px 6px 1px 4px; font-size: 9px; font-weight: 700;\r\n  text-transform: uppercase; letter-spacing: .5px;\n}\n.livebadge .mdi[data-v-25c3fb06] { font-size: 11px; color: #ef4444; animation: livepulse-25c3fb06 1.2s ease-in-out infinite;\n}\n@keyframes livepulse-25c3fb06 {\n0%, 100% { opacity: 1;\n}\n50% { opacity: .25;\n}\n}\n.grid[data-v-25c3fb06] {\r\n  position: absolute; inset: 0; pointer-events: none;\r\n  background-image: linear-gradient(to right, rgba(128,128,128,.18) 1px, transparent 1px),\r\n    linear-gradient(to bottom, rgba(128,128,128,.18) 1px, transparent 1px);\r\n  background-size: 10% 10%;\n}\n.box[data-v-25c3fb06] { position: absolute; box-sizing: border-box; cursor: move; background: transparent; transition: background .1s;\n}\r\n/* border as ::after (painted after children) so the outline sits over the label */\n.box[data-v-25c3fb06]::after { content: ''; position: absolute; inset: 0; border: 2px solid var(--c, #60a5fa); pointer-events: none;\n}\n.box[data-v-25c3fb06]:hover { background: var(--fill);\n}\n.box.sel[data-v-25c3fb06] { background: var(--fill); box-shadow: 0 0 0 1.5px var(--st-accent, #60a5fa); z-index: 4;\n}\n.box.primary[data-v-25c3fb06] { box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--st-accent, #60a5fa), 0 0 10px rgba(0,0,0,.6); z-index: 5;\n}\n.box.draft[data-v-25c3fb06] { opacity: 0.8; pointer-events: none; background: rgba(156,163,175,.12);\n}\n.box.draft[data-v-25c3fb06]::after { border-style: dashed;\n}\n.groupframe[data-v-25c3fb06] { position: absolute; box-sizing: border-box; border: 1px dashed var(--gc, var(--st-accent, #60a5fa)); background: transparent; z-index: 6; pointer-events: none;\n}\n.groupframe .h[data-v-25c3fb06] { pointer-events: auto; background: var(--gc, var(--st-accent, #60a5fa)); border-color: #fff;\n}\n.marquee[data-v-25c3fb06] { position: absolute; box-sizing: border-box; border: 1px solid var(--st-accent, #60a5fa); background: color-mix(in srgb, var(--st-accent, #60a5fa) 15%, transparent); z-index: 7; pointer-events: none;\n}\n.tag[data-v-25c3fb06] {\r\n  position: absolute; top: 0; left: 0; transform: translateY(-100%);\r\n  display: inline-flex; align-items: center; gap: 3px;\r\n  font-size: 10px; line-height: 1.4; padding: 1px 5px; white-space: nowrap;\r\n  max-width: 240px; overflow: hidden; border-radius: 3px 3px 0 0; pointer-events: none;\n}\n.tag .tagi[data-v-25c3fb06] { flex: none;\n}\n.tag .tagn[data-v-25c3fb06] { flex: none; font-weight: 700; font-variant-numeric: tabular-nums;\n}\r\n/* text hidden by default (icon + index only); shown on hover/selection */\n.tag .tagt[data-v-25c3fb06] { display: none; overflow: hidden; text-overflow: ellipsis; max-width: 200px;\n}\n.box:hover .tag .tagt[data-v-25c3fb06], .box.sel .tag .tagt[data-v-25c3fb06], .box.primary .tag .tagt[data-v-25c3fb06] { display: inline;\n}\n.tag .tagt[data-v-25c3fb06]::before { content: '· ';\n}\r\n/* per-group color tab on the label's left edge; negative margins bleed to the tag edges */\n.tag.grouped .gseg[data-v-25c3fb06] { flex: none; align-self: stretch; width: 4px; margin: -1px 3px -1px -5px; border-radius: 3px 0 0 0; background: var(--gc, var(--st-accent));\n}\n.h[data-v-25c3fb06] { position: absolute; width: 11px; height: 11px; background: #fff; border: 1px solid #333; border-radius: 2px; z-index: 1;\n}\n.h-nw[data-v-25c3fb06] { top: -6px; left: -6px; cursor: nwse-resize;\n}\n.h-n[data-v-25c3fb06]  { top: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-ne[data-v-25c3fb06] { top: -6px; right: -6px; cursor: nesw-resize;\n}\n.h-e[data-v-25c3fb06]  { top: 50%; right: -6px; margin-top: -5px; cursor: ew-resize;\n}\n.h-se[data-v-25c3fb06] { bottom: -6px; right: -6px; cursor: nwse-resize;\n}\n.h-s[data-v-25c3fb06]  { bottom: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-sw[data-v-25c3fb06] { bottom: -6px; left: -6px; cursor: nesw-resize;\n}\n.h-w[data-v-25c3fb06]  { top: 50%; left: -6px; margin-top: -5px; cursor: ew-resize;\n}\r\n\r\n/* absolute over .studio (which is position:relative) */\n.liboverlay[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 60;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 72%, transparent);\r\n  backdrop-filter: blur(4px);\r\n  display: flex; padding: 12px; box-sizing: border-box;\r\n  border-radius: 8px; /* follow the node's rounded corners */\n}\n.libpanel[data-v-5382e446] {\r\n  flex: 1; min-height: 0; display: flex; flex-direction: column;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 3px);\r\n  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5); overflow: hidden;\n}\r\n\r\n/* ── header ─────────────────────────────────────────────── */\n.libhead[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-bottom: 1px solid var(--st-border); flex-wrap: wrap;\n}\n.libhead .t[data-v-5382e446] { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; letter-spacing: .2px;\n}\n.libhead .t .mdi[data-v-5382e446] { font-size: 17px; color: var(--st-accent);\n}\n.count[data-v-5382e446] {\r\n  display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 18px;\r\n  padding: 0 6px; border-radius: 9px; background: color-mix(in srgb, var(--st-accent) 22%, transparent);\r\n  color: var(--st-accent); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;\n}\n.grow[data-v-5382e446] { flex: 1;\n}\n.search[data-v-5382e446] { display: flex; align-items: center; gap: 4px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 7px; padding: 0 6px; height: 28px; transition: border-color .12s;\n}\n.search[data-v-5382e446]:focus-within { border-color: var(--st-accent);\n}\n.search .mdi[data-v-5382e446] { font-size: 14px; color: var(--st-muted);\n}\n.search input[data-v-5382e446] { background: none; border: none; outline: none; color: var(--st-text); font-size: 11px; font-family: inherit; width: 130px; padding: 0;\n}\n.search .clr[data-v-5382e446] { display: inline-flex; background: none; border: none; color: var(--st-muted); cursor: pointer; padding: 0;\n}\n.search .clr[data-v-5382e446]:hover { color: var(--st-text);\n}\r\n\r\n/* ── body / grid ────────────────────────────────────────── */\n.libbody[data-v-5382e446] { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 11px;\n}\n.grid[data-v-5382e446] { display: grid; grid-template-columns: repeat(auto-fill, minmax(138px, 1fr)); gap: 11px;\n}\n.tile[data-v-5382e446] {\r\n  position: relative; display: flex; flex-direction: column; gap: 6px; padding: 6px;\r\n  background: var(--st-input); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 1px);\r\n  transition: border-color .12s, box-shadow .12s, transform .1s;\n}\n.tile[data-v-5382e446]:hover { border-color: var(--st-accent); box-shadow: 0 0 0 1px var(--st-accent) inset, 0 6px 16px rgba(0, 0, 0, .35); transform: translateY(-2px);\n}\n.tile.confirming[data-v-5382e446] { border-color: #ef4444; box-shadow: 0 0 0 1px #ef4444 inset;\n}\n.thumb[data-v-5382e446] {\r\n  position: relative; width: 100%; aspect-ratio: 1; border-radius: 5px; overflow: hidden;\r\n  border: none; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 60%, #000);\n}\r\n/* cover so the thumbnail fills the frame without letterbox bars */\n.thumb img[data-v-5382e446] { width: 100%; height: 100%; object-fit: cover; display: block;\n}\n.thumb .ph[data-v-5382e446] { font-size: 24px; color: var(--st-muted); opacity: .45;\n}\n.badge[data-v-5382e446] {\r\n  position: absolute; top: 5px; left: 5px; display: inline-flex; align-items: center; gap: 3px;\r\n  padding: 1px 6px; border-radius: 8px; background: rgba(0, 0, 0, .62); color: #fff;\r\n  font-size: 10px; font-weight: 600; backdrop-filter: blur(2px);\n}\n.badge .mdi[data-v-5382e446] { font-size: 11px;\n}\n.del[data-v-5382e446] {\r\n  position: absolute; top: 9px; right: 9px; z-index: 2; display: inline-flex; align-items: center; justify-content: center;\r\n  width: 24px; height: 24px; border-radius: 6px; background: rgba(0, 0, 0, .55); border: none; color: #fff;\r\n  cursor: pointer; opacity: 0; transition: opacity .12s, background .12s;\n}\n.del .mdi[data-v-5382e446] { font-size: 15px;\n}\n.tile:hover .del[data-v-5382e446] { opacity: 1;\n}\n.del[data-v-5382e446]:hover { background: #dc2626;\n}\n.name[data-v-5382e446] { font-size: 11px; color: var(--st-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px;\n}\r\n\r\n/* delete confirm overlay over the tile */\n.confirm[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px;\r\n  background: color-mix(in srgb, var(--st-panel) 88%, transparent); backdrop-filter: blur(2px);\r\n  border-radius: inherit; padding: 8px; text-align: center;\n}\n.confirm .q[data-v-5382e446] { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--st-text);\n}\n.confirm .q .mdi[data-v-5382e446] { color: #ef4444; font-size: 15px;\n}\n.cbtns[data-v-5382e446] { display: flex; gap: 6px;\n}\n.cbtns button[data-v-5382e446] { border: none; border-radius: 6px; padding: 5px 11px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: inherit;\n}\n.cbtns .yes[data-v-5382e446] { background: #dc2626; color: #fff;\n}\n.cbtns .yes[data-v-5382e446]:hover { background: #ef4444;\n}\n.cbtns .no[data-v-5382e446] { background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\n}\n.cbtns .no[data-v-5382e446]:hover { border-color: var(--st-accent);\n}\r\n\r\n/* ── empty / loading ────────────────────────────────────── */\n.empty[data-v-5382e446] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; height: 100%; min-height: 180px; color: var(--st-muted); font-size: 12px; text-align: center;\n}\n.empty .mdi[data-v-5382e446] { font-size: 17px;\n}\n.empty .big[data-v-5382e446] { font-size: 40px; opacity: .35;\n}\n.empty small[data-v-5382e446] { font-size: 11px; opacity: .8;\n}\r\n\r\n/* ── footer / save bar ──────────────────────────────────── */\n.libfoot[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-top: 1px solid var(--st-border); background: color-mix(in srgb, var(--st-bg, #1a1a1f) 35%, transparent); flex-wrap: wrap;\n}\n.libfoot .fic[data-v-5382e446] { font-size: 16px; color: var(--st-muted);\n}\n.nm[data-v-5382e446] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 7px; padding: 6px 9px; font-size: 11px; font-family: inherit; width: 150px;\n}\n.nm[data-v-5382e446]:focus { outline: none; border-color: var(--st-accent);\n}\n.thumbck[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); white-space: nowrap; cursor: pointer;\n}\n.thumbck.disabled[data-v-5382e446] { opacity: .45; cursor: not-allowed;\n}\n.flash[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--st-accent); white-space: nowrap;\n}\n.flash .mdi[data-v-5382e446] { font-size: 14px;\n}\n.flash.err[data-v-5382e446] { color: #f87171;\n}\n.flash-enter-active[data-v-5382e446], .flash-leave-active[data-v-5382e446] { transition: opacity .18s;\n}\n.flash-enter-from[data-v-5382e446], .flash-leave-to[data-v-5382e446] { opacity: 0;\n}\r\n\n.ui-card[data-v-665b913d] {\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 8px; display: flex; flex-direction: column; gap: 7px;\n}\n.ui-card-head[data-v-665b913d] { display: flex; align-items: center; justify-content: space-between; gap: 8px;\n}\n.ui-card-title[data-v-665b913d] { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\r\n\n.palette[data-v-bd1d882e] { display: flex; flex-direction: column; gap: 4px;\n}\n.swatches[data-v-bd1d882e] { display: flex; flex-wrap: wrap; gap: 6px; align-items: center;\n}\n.swatch-wrap[data-v-bd1d882e] { position: relative;\n}\n.swatch[data-v-bd1d882e] {\r\n  display: block; width: 26px; height: 26px; border-radius: 5px;\r\n  border: 1px solid var(--st-border); cursor: pointer; overflow: hidden;\n}\n.swatch input[data-v-bd1d882e] { opacity: 0; width: 100%; height: 100%; cursor: pointer;\n}\n.add[data-v-bd1d882e] {\r\n  width: 26px; height: 26px; border-radius: 5px; cursor: pointer;\r\n  border: 1px dashed var(--st-border); background: transparent;\r\n  color: var(--st-muted); font-size: 16px; line-height: 1;\n}\n.hint[data-v-bd1d882e] { font-size: 10px; color: var(--st-muted);\n}\r\n\n.combo[data-v-2f602dd0] { display: flex; gap: 4px;\n}\n.combo input[data-v-2f602dd0] { flex: 1; min-width: 0; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 6px; font-size: 12px;\n}\n.cpick[data-v-2f602dd0] { flex: none; width: 74px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 5px; cursor: pointer; font-size: 11px; padding: 0 2px;\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\r\n\n.chead[data-v-a3f6dc63] { display: flex; align-items: center; gap: 4px;\n}\n.grow[data-v-a3f6dc63] { flex: 1 1 auto;\n}\n.fold[data-v-a3f6dc63] { display: inline-flex; align-items: center; background: none; border: none; cursor: pointer; color: var(--st-muted); padding: 0; margin-left: -3px;\n}\n.fold[data-v-a3f6dc63]:hover { color: var(--st-text);\n}\n.fold .mdi[data-v-a3f6dc63] { font-size: 16px; line-height: 1;\n}\n.lhead[data-v-a3f6dc63] { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\n.canvasmode[data-v-a3f6dc63] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 11px; padding: 2px 4px;\n}\n.field[data-v-a3f6dc63] { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--st-muted);\n}\n.field textarea[data-v-a3f6dc63] {\r\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit; line-height: 1.45;\r\n  min-height: 72px;\n}\n.field textarea[data-v-a3f6dc63]:focus, .canvasmode[data-v-a3f6dc63]:focus { outline: none; border-color: var(--st-accent);\n}\n.presetsck[data-v-a3f6dc63] { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--st-muted); cursor: pointer;\n}\r\n\n.adds[data-v-198d4871] { display: flex; gap: 4px;\n}\n.chead[data-v-198d4871] { display: flex; align-items: center; gap: 4px;\n}\n.lhead[data-v-198d4871] { display: inline-flex; align-items: center; gap: 1px; background: none; border: none; cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted); padding: 0;\n}\n.lhead[data-v-198d4871]:hover { color: var(--st-text);\n}\n.lhead .mdi[data-v-198d4871] { font-size: 15px;\n}\n.lhead .flt[data-v-198d4871] { font-size: 13px; margin-right: 2px;\n}\n.lmenu[data-v-198d4871] { display: flex; flex-direction: column; gap: 1px; min-width: 150px;\n}\n.litem[data-v-198d4871] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 8px; border-radius: 5px; font-size: 11px; cursor: pointer;\n}\n.litem[data-v-198d4871]:hover { background: var(--st-btn);\n}\n.litem.on[data-v-198d4871] { color: var(--st-accent);\n}\n.litem .mdi[data-v-198d4871] { font-size: 15px; color: var(--st-muted);\n}\n.litem.on .mdi[data-v-198d4871] { color: var(--st-accent);\n}\nul[data-v-198d4871] { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; flex: 1 1 auto; min-height: 0; overflow-y: auto;\n}\nli[data-v-198d4871] {\r\n  position: relative;\r\n  display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 5px;\r\n  background: var(--st-input); border: 1px solid transparent; cursor: pointer; font-size: 12px; color: var(--st-text);\r\n  transition: opacity .12s, box-shadow .12s, background .12s;\n}\nli[data-v-198d4871]:hover { border-color: var(--st-border);\n}\nli.sel[data-v-198d4871] { border-color: var(--st-accent);\n}\r\n/* primary = the item the editor targets */\nli.primary[data-v-198d4871] { border-color: var(--st-accent); background: color-mix(in srgb, var(--st-accent) 18%, var(--st-input));\n}\nli.primary .snip[data-v-198d4871] { font-weight: 600;\n}\r\n/* per-group color sliver; absolute inside the existing padding so rows stay aligned */\nli.grouped[data-v-198d4871]::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 5px 0 0 5px; background: var(--gc, var(--st-accent));\n}\nli.dragging[data-v-198d4871] { opacity: .35;\n}\nli.dragover[data-v-198d4871] { box-shadow: inset 0 3px 0 -1px var(--st-accent); background: color-mix(in srgb, var(--st-accent) 12%, var(--st-input));\n}\n.handle[data-v-198d4871] { flex: none; color: var(--st-muted); cursor: grab; font-size: 14px; opacity: .3; margin: 0 -4px 0 -2px; transition: opacity .12s, color .12s;\n}\nli:hover .handle[data-v-198d4871] { opacity: .85;\n}\n.handle[data-v-198d4871]:hover { color: var(--st-accent);\n}\n.handle[data-v-198d4871]:active { cursor: grabbing;\n}\n.typeicon[data-v-198d4871] { flex: none; color: var(--st-muted); line-height: 1; display: inline-flex;\n}\n.typeicon .mdi[data-v-198d4871] { font-size: 15px;\n}\n.idxchip[data-v-198d4871] {\r\n  flex: none; min-width: 17px; height: 16px; padding: 0 4px; box-sizing: border-box;\r\n  display: inline-flex; align-items: center; justify-content: center;\r\n  border-radius: 4px; background: var(--st-accent); color: #fff;\r\n  font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums;\r\n  text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\n}\n.link[data-v-198d4871] { flex: none; font-size: 13px; color: var(--st-muted);\n}\n.snip[data-v-198d4871] { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.more[data-v-198d4871] { display: inline-flex; align-items: center; justify-content: center; flex: none; background: none; border: none; color: var(--st-muted); border-radius: 4px; width: 20px; height: 20px; cursor: pointer; padding: 0; opacity: 0; transition: opacity .12s;\n}\n.more .mdi[data-v-198d4871] { font-size: 16px;\n}\nli:hover .more[data-v-198d4871], li.sel .more[data-v-198d4871] { opacity: 1;\n}\n.more[data-v-198d4871]:hover { color: var(--st-text); background: var(--st-btn);\n}\n.empty[data-v-198d4871] { font-size: 11px; color: var(--st-muted); margin: 2px 0;\n}\r\n\n.jctrl[data-v-7e90c0f0] { display: flex; align-items: center; gap: 5px; flex-wrap: nowrap;\n}\n.grow[data-v-7e90c0f0] { flex: 1 1 auto;\n}\n.jstat[data-v-7e90c0f0] { font-size: 15px; line-height: 1; cursor: help;\n}\n.jstat.good[data-v-7e90c0f0] { color: #34d399;\n}\n.jstat.warn[data-v-7e90c0f0] { color: #f59e0b;\n}\n.jstat.bad[data-v-7e90c0f0] { color: #f87171;\n}\n.jnote[data-v-7e90c0f0] {\r\n  max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\r\n  font-size: 10px; color: var(--st-muted); background: var(--st-btn);\r\n  border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px);\r\n  padding: 2px 6px; cursor: help;\n}\n.jtok[data-v-7e90c0f0] { display: inline-flex; align-items: center; min-height: 24px; box-sizing: border-box; font-size: 10px; color: var(--st-muted); font-family: ui-monospace, monospace; background: var(--st-btn); border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px); padding: 0 7px; cursor: help;\n}\r\n\n.ehead[data-v-e27a795e] { display: flex; align-items: center; gap: 6px; width: 100%; flex-wrap: wrap;\n}\n.grow[data-v-e27a795e] { flex: 1 1 auto;\n}\r\n/* overflow:hidden clips the absolute color input to the chip so it can't overlap the type buttons */\n.idchip[data-v-e27a795e] { position: relative; display: inline-flex; flex: none; cursor: pointer; overflow: hidden; border-radius: 5px;\n}\n.idchip .n[data-v-e27a795e] {\r\n  display: inline-flex; align-items: center; justify-content: center;\r\n  min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box;\r\n  border-radius: 5px; color: #fff; font-size: 11px; font-weight: 700;\r\n  font-variant-numeric: tabular-nums; text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\r\n  border: 1px solid rgba(0, 0, 0, .25);\n}\n.idchip input[data-v-e27a795e] { position: absolute; inset: 0; opacity: 0; cursor: pointer;\n}\n.seg[data-v-e27a795e] { display: flex; gap: 2px;\n}\n.filine[data-v-e27a795e] { display: flex; gap: 8px; align-items: flex-start; font-size: 11px; color: var(--st-muted);\n}\n.filine > span[data-v-e27a795e] { width: 44px; flex: none; padding-top: 5px; text-align: right;\n}\n.filine input[type='text'][data-v-e27a795e], .filine textarea[data-v-e27a795e] {\r\n  flex: 1; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit;\n}\n.filine[data-v-e27a795e] .palette { flex: 1;\n}\r\n\n.jcard[data-v-582fb67a] { display: flex; flex-direction: column; gap: 6px; min-height: 0;\n}\n.json[data-v-582fb67a] {\r\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 6px; padding: 8px; font-size: 11px; line-height: 1.5;\r\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\r\n  max-height: 240px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-word;\n}\ntextarea.json[data-v-582fb67a] { width: 100%; box-sizing: border-box; resize: vertical; min-height: 140px;\n}\ntextarea.json[data-v-582fb67a]:focus, textarea.json.bad[data-v-582fb67a]:focus { outline: none;\n}\ntextarea.json.bad[data-v-582fb67a] { border-color: #f87171;\n}\n.compiled[data-v-582fb67a] { position: relative; display: flex; flex-direction: column; gap: 2px;\n}\n.clbl[data-v-582fb67a] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.cbtn[data-v-582fb67a] { position: absolute; right: 10px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 22px; height: 20px; cursor: pointer; font-size: 12px; line-height: 1;\n}\n.cbtn[data-v-582fb67a]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.cline[data-v-582fb67a] {\r\n  background: var(--st-input); border: 1px dashed var(--st-border); color: var(--st-muted);\r\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\r\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\r\n  max-height: 110px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-all;\n}\n.parseerr[data-v-582fb67a] { display: flex; flex-direction: column; gap: 4px;\n}\n.errhead[data-v-582fb67a] { display: flex; align-items: center; gap: 6px;\n}\n.errhead .msg[data-v-582fb67a] { flex: 1; font-size: 11px; color: #f87171; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.ebtn[data-v-582fb67a] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer;\n}\n.ebtn[data-v-582fb67a]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.errframe[data-v-582fb67a] {\r\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\r\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\r\n  max-height: 120px; overflow: auto; margin: 0; cursor: pointer;\n}\n.warnlist[data-v-582fb67a] { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f59e0b; display: flex; flex-direction: column; gap: 2px;\n}\n.errlist[data-v-582fb67a] { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f87171; display: flex; flex-direction: column; gap: 2px;\n}\n.applyerr[data-v-582fb67a] { display: flex; flex-direction: column; gap: 4px;\n}\n.syncbox[data-v-582fb67a] { border-top: 1px solid var(--st-border); padding-top: 6px; display: flex; flex-direction: column; gap: 3px;\n}\n.syncbad[data-v-582fb67a] { font-size: 10px; color: #f87171; overflow-wrap: anywhere;\n}\n.syncnote[data-v-582fb67a] { font-size: 10px; color: #34d399; overflow-wrap: anywhere;\n}\r\n\n.ctxbg[data-v-1a876ded] { position: fixed; inset: 0; z-index: 10000;\n}\n.ctx[data-v-1a876ded] {\r\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\r\n  --st-input: var(--comfy-input-bg, #15151a);\r\n  --st-btn: var(--comfy-input-bg, #2a2a30);\r\n  --st-text: var(--input-text, #e5e5ea);\r\n  --st-muted: var(--descrip-text, #9aa0aa);\r\n  --st-border: var(--border-color, #3a3a44);\r\n  --st-accent: var(--p-primary-color, #3b82f6);\r\n  --st-radius: var(--radius-md, 6px);\r\n  position: fixed; min-width: 172px; z-index: 10001;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius);\r\n  padding: 4px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\r\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\r\n  display: flex; flex-direction: column; gap: 1px;\n}\n.ctxhead[data-v-1a876ded] { display: flex; align-items: center; gap: 6px; padding: 4px 9px 6px; color: var(--st-muted);\n}\n.ctxhead .cdot[data-v-1a876ded] { width: 9px; height: 9px; border-radius: 2px; flex: none;\n}\n.ctxhead .cnum[data-v-1a876ded] { font-size: 11px; font-weight: 600;\n}\n.ctxhead .mdi[data-v-1a876ded] { font-size: 14px; margin-left: auto;\n}\n.ctxedit[data-v-1a876ded] { margin: 0 4px 4px; padding: 5px 7px; background: var(--st-input, #15151a); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 12px; font-family: inherit;\n}\n.ctxedit[data-v-1a876ded]:focus { outline: none; border-color: var(--st-accent);\n}\n.ctxitem[data-v-1a876ded] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 9px; border-radius: calc(var(--st-radius) - 1px); cursor: pointer; font-size: 12px;\n}\n.ctxitem[data-v-1a876ded]:hover { background: var(--st-btn);\n}\n.ctxitem .mdi[data-v-1a876ded] { font-size: 15px; color: var(--st-muted);\n}\n.ctxkey[data-v-1a876ded] { margin-left: auto; font-size: 10px; color: var(--st-muted); opacity: .7;\n}\n.ctxitem.del[data-v-1a876ded]:hover { background: #b91c1c; color: #fff;\n}\n.ctxitem.del:hover .mdi[data-v-1a876ded] { color: #fff;\n}\n.ctxdiv[data-v-1a876ded] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\r\n\r\n/* Map ComfyUI theme vars to semantic names (dark fallbacks); inherited by children. */\n.studio[data-v-5dc6e0fa] {\r\n  --st-bg: var(--comfy-menu-bg, #1a1a1f);\r\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\r\n  --st-input: var(--comfy-input-bg, #15151a);\r\n  --st-btn: var(--comfy-input-bg, #2a2a30);\r\n  --st-border: var(--border-color, #3a3a44);\r\n  --st-text: var(--input-text, #e5e5ea);\r\n  --st-muted: var(--descrip-text, #9aa0aa);\r\n  --st-accent: var(--p-primary-color, #60a5fa);\r\n  --st-on-accent: var(--p-primary-button-text-color, #fff);\r\n  --st-radius: var(--radius-md, 6px);\r\n  color: var(--st-text);\r\n  background: var(--st-bg);\r\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\r\n  height: 100%;\r\n  overflow-y: auto;\r\n  overscroll-behavior: contain;\n}\n.main[data-v-5dc6e0fa] { display: flex; gap: 8px;\n}\n.left[data-v-5dc6e0fa] { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column;\n}\n.right[data-v-5dc6e0fa] { flex: none; width: 265px; display: flex; flex-direction: column; gap: 8px;\n}\n.drawer-backdrop[data-v-5dc6e0fa] { display: none;\n}\n.slim-controls[data-v-5dc6e0fa] { display: none;\n}\n@media (max-width: 760px) {\n.main[data-v-5dc6e0fa] { position: relative;\n}\n.right[data-v-5dc6e0fa] {\r\n    position: absolute; right: 0; top: 0; bottom: 0; z-index: 30;\r\n    background: var(--st-panel); padding: 8px; width: 260px;\r\n    transform: translateX(100%); transition: transform .15s;\n}\n.studio.panel-open .right[data-v-5dc6e0fa] { transform: none;\n}\n.studio.panel-open .drawer-backdrop[data-v-5dc6e0fa] { display: block; position: absolute; inset: 0; z-index: 29; background: rgba(0,0,0,.4);\n}\n.slim-controls[data-v-5dc6e0fa] { display: inline-flex;\n}\n}\n.resmenu[data-v-5dc6e0fa] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.rsec[data-v-5dc6e0fa], .rdiv[data-v-5dc6e0fa] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.rdiv[data-v-5dc6e0fa] { border-top: 1px solid var(--st-border); margin: 2px 0;\n}\n.aspects[data-v-5dc6e0fa] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;\n}\n.achip[data-v-5dc6e0fa] { display: flex; flex-direction: column; align-items: center; gap: 3px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 6px; padding: 6px 2px; cursor: pointer;\n}\n.achip.on[data-v-5dc6e0fa] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.arect[data-v-5dc6e0fa] { border: 1.5px solid currentColor; border-radius: 2px; display: block;\n}\n.albl[data-v-5dc6e0fa] { font-size: 9px; font-variant-numeric: tabular-nums;\n}\n.mprow[data-v-5dc6e0fa] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.mppresets[data-v-5dc6e0fa] { display: flex; gap: 3px;\n}\n.mpp[data-v-5dc6e0fa] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; font-size: 10px; padding: 2px 6px; cursor: pointer;\n}\n.mpp.on[data-v-5dc6e0fa] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.mprow input[type='number'][data-v-5dc6e0fa] { width: 52px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.whrow[data-v-5dc6e0fa] { display: flex; align-items: center; gap: 8px;\n}\n.whrow label[data-v-5dc6e0fa] { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); flex: 1;\n}\n.whrow input[data-v-5dc6e0fa] { width: 100%; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 4px; font-size: 12px;\n}\n.swap[data-v-5dc6e0fa] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 26px; height: 26px; cursor: pointer; flex: none;\n}\n.swap[data-v-5dc6e0fa]:hover { color: var(--st-accent); border-color: var(--st-accent);\n}\n.rfoot[data-v-5dc6e0fa] { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--st-muted);\n}\n.help[data-v-5dc6e0fa] { display: flex; flex-direction: column; gap: 6px; min-width: 240px; max-width: 300px; font-size: 11px;\n}\n.help .h[data-v-5dc6e0fa] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted); margin: 2px 0 0;\n}\n.help dl[data-v-5dc6e0fa] { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0;\n}\n.help dt[data-v-5dc6e0fa] { color: var(--st-muted); white-space: nowrap;\n}\n.help dd[data-v-5dc6e0fa] { margin: 0;\n}\n.help .tip[data-v-5dc6e0fa] { color: var(--st-muted); font-size: 10px; margin: 4px 0 0;\n}\n.help .credit[data-v-5dc6e0fa] { color: var(--st-muted); font-size: 9px; margin: 6px 0 0; border-top: 1px solid var(--st-border); padding-top: 6px;\n}\n.help .credit a[data-v-5dc6e0fa] { color: var(--st-accent);\n}\n.resetc[data-v-5dc6e0fa] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.resetc .rq[data-v-5dc6e0fa] { margin: 0; font-size: 12px; font-weight: 600;\n}\n.resetc .rh[data-v-5dc6e0fa] { margin: 0; font-size: 10px; color: var(--st-muted);\n}\n.rbtns[data-v-5dc6e0fa] { display: flex; gap: 6px; justify-content: flex-end;\n}\n.rno[data-v-5dc6e0fa], .ryes[data-v-5dc6e0fa] { border: 1px solid var(--st-border); background: var(--st-btn); color: var(--st-text); border-radius: 5px; padding: 4px 10px; font-size: 11px; cursor: pointer;\n}\n.ryes[data-v-5dc6e0fa] { background: #b91c1c; border-color: #b91c1c; color: #fff;\n}\r\n";document.head.appendChild(s);})();import { app } from "../../../scripts/app.js";
 import { api } from "../../../scripts/api.js";
 /**
 * @vue/shared v3.5.44
@@ -7955,9 +7955,6 @@ const CANVAS_MODES = ["single", "multi_panel", "collage"];
 function isNumArray(v) {
   return Array.isArray(v) && v.length === 4 && v.every((x) => typeof x === "number" && Number.isFinite(x));
 }
-function isStrArray(v) {
-  return Array.isArray(v) && v.every((s) => typeof s === "string" && s.trim() !== "");
-}
 const BOX_PALETTE = ["#60a5fa", "#f472b6", "#34d399", "#fbbf24", "#a78bfa", "#22d3ee", "#f87171", "#a3e635"];
 let _colorSeq = 0;
 function nextBoxColor() {
@@ -8077,61 +8074,280 @@ function parseJsonLoose(text) {
     return { ok: false, error: String(e?.message || e) };
   }
 }
-function resolveToState(obj, width, height) {
-  const warnings = [];
-  if (!isRecord(obj)) return { state: {}, warnings: ["payload is not a JSON object"] };
-  let src = obj;
-  if (src.bbox_format === "yxyx" || src.bbox_coord_space === "abs_centralized") {
-    const rawItems = Array.isArray(src.items) ? src.items : [];
-    src = {
-      width,
-      height,
-      summary: src.summary ?? {},
-      items: rawItems.map((it) => {
-        if (!isRecord(it)) return it;
-        const bb = it.bbox;
-        const half_w = width >> 1, half_h = height >> 1;
-        if (isNumArray(bb)) {
-          const [y1, x1, y2, x2] = bb;
-          return { ...it, bbox: [x1 + half_w, y1 + half_h, x2 + half_w, y2 + half_h] };
-        }
-        return { ...it, bbox: [0, 0, Math.min(256, width), Math.min(256, height)] };
-      })
-    };
-    warnings.push(`imported a compiled prompt; boxes mapped onto the current canvas ${width}x${height} — set the canvas to the generation size for exact coordinates`);
-  } else if (typeof src.caption === "string" && !("items" in src)) {
-    src = { width, height, summary: { caption: src.caption }, items: [] };
-    warnings.push("caption-only payload imported; add boxes to build a Layout");
+function _issue(strict, message, warnings, errors) {
+  if (strict) errors.push(message);
+  else warnings.push(message);
+}
+function _readDim(value, where, strict, warnings, errors) {
+  if (typeof value !== "number" || !Number.isFinite(value) || value <= 0) {
+    _issue(strict, `${where} must be a positive integer multiple of 16; got ${String(value)}`, warnings, errors);
+    return null;
   }
-  const w = snapDim(typeof src.width === "number" ? src.width : 1024);
-  const h2 = snapDim(typeof src.height === "number" ? src.height : 1024);
-  const rawSummary = isRecord(src.summary) ? src.summary : {};
-  const summary = {
-    caption: typeof rawSummary.caption === "string" ? rawSummary.caption : "",
-    meta: isStrArray(rawSummary.meta) ? rawSummary.meta : [],
-    canvas: CANVAS_MODES.includes(rawSummary.canvas) ? rawSummary.canvas : "single",
-    palette: isStrArray(rawSummary.palette) ? rawSummary.palette : []
-  };
-  const elements = (Array.isArray(src.items) ? src.items : []).map((raw, i) => {
-    const it = isRecord(raw) ? raw : {};
-    const label = LABELS.includes(it.label) ? it.label : "object";
-    let bbox;
-    if (isNumArray(it.bbox)) {
-      bbox = clampBbox(it.bbox, w, h2);
+  if (strict) {
+    if (!Number.isInteger(value) || value % 16 !== 0) {
+      _issue(strict, `${where} must be a positive integer multiple of 16; got ${value}`, warnings, errors);
+      return null;
+    }
+    return value;
+  }
+  const snapped = snapDim(value);
+  if (!Number.isInteger(value) || value % 16 !== 0) {
+    warnings.push(`${where} ${value} is not a multiple of 16; snapped to ${snapped}`);
+  }
+  return snapped;
+}
+function _stringList(value, where, strict, warnings, errors) {
+  if (value === void 0 || value === null) return [];
+  if (!Array.isArray(value)) {
+    _issue(strict, `${where}: expected an array of strings`, warnings, errors);
+    return [];
+  }
+  const out = [];
+  value.forEach((entry, j) => {
+    if (typeof entry === "string") out.push(entry);
+    else warnings.push(`${where}[${j}]: non-string entry dropped`);
+  });
+  return out;
+}
+function _fallbackBox(w, h2) {
+  return [0, 0, Math.min(64, Math.max(16, w)), Math.min(64, Math.max(16, h2))];
+}
+function _fmtBox(box) {
+  return Array.isArray(box) ? `[${box.map((v) => typeof v === "number" ? Number(v.toFixed(3)) : v).join(", ")}]` : String(box);
+}
+function resolveToState(obj, width, height, opts = {}) {
+  const strict = opts.strict ?? false;
+  const bboxMode = opts.bboxMode ?? (strict ? "reject" : "clamp");
+  const warnings = [];
+  const errors = [];
+  if (!isRecord(obj)) {
+    _issue(strict, "payload is not a JSON object", warnings, errors);
+    return { state: {}, warnings, errors };
+  }
+  const hasCoord = "bbox_coord_space" in obj;
+  const hasFmt = "bbox_format" in obj;
+  let compiled = false;
+  let editor = false;
+  if (hasCoord) {
+    const coord = obj.bbox_coord_space;
+    if (typeof coord !== "string") {
+      _issue(strict, "bbox_coord_space must be a string", warnings, errors);
+    } else if (coord !== "abs" && coord !== "abs_centralized") {
+      _issue(strict, `unsupported bbox_coord_space '${coord}'; expected 'abs' or 'abs_centralized'`, warnings, errors);
+    } else if (coord === "abs_centralized") {
+      compiled = true;
     } else {
-      bbox = [0, 0, Math.min(256, w), Math.min(256, h2)];
-      warnings.push(`items[${i}].bbox invalid; reset`);
+      editor = true;
+    }
+  }
+  if (hasFmt) {
+    const fmt = obj.bbox_format;
+    if (typeof fmt !== "string") {
+      _issue(strict, "bbox_format must be a string", warnings, errors);
+    } else if (fmt !== "xyxy" && fmt !== "yxyx") {
+      _issue(strict, `unsupported bbox_format '${fmt}'; expected 'xyxy' or 'yxyx'`, warnings, errors);
+    } else if (fmt === "yxyx") {
+      compiled = true;
+    } else {
+      editor = true;
+    }
+  }
+  if (compiled && editor) {
+    _issue(
+      strict,
+      "conflicting bbox_coord_space/bbox_format: compiled coordinates (abs_centralized/yxyx) cannot be combined with editor coordinates (abs/xyxy)",
+      warnings,
+      errors
+    );
+  }
+  let kind = compiled ? "compiled_prompt" : "editor_draft";
+  if (!compiled && !editor && !hasCoord && !hasFmt) {
+    const summary2 = isRecord(obj.summary) ? obj.summary : {};
+    if (!("items" in obj) && (typeof obj.caption === "string" || typeof summary2.caption === "string")) {
+      kind = "caption_only";
+    } else {
+      warnings.push(
+        "bbox_coord_space/bbox_format missing; assuming an editor draft (abs/xyxy). Compiled payloads must declare abs_centralized/yxyx."
+      );
+    }
+  }
+  const hasW = "width" in obj;
+  const hasH = "height" in obj;
+  if (hasW !== hasH) _issue(strict, "width and height must both be provided", warnings, errors);
+  const pw = hasW ? _readDim(obj.width, "width", strict, warnings, errors) : null;
+  const ph = hasH ? _readDim(obj.height, "height", strict, warnings, errors) : null;
+  const tw = _readDim(width, "target width", strict, warnings, errors);
+  const th = _readDim(height, "target height", strict, warnings, errors);
+  let w;
+  let h2;
+  if (pw && ph) {
+    w = pw;
+    h2 = ph;
+    if (tw && th && (tw !== pw || th !== ph)) {
+      warnings.push(
+        `target canvas ${tw}x${th} ignored: payload declares ${pw}x${ph} (external width/height take priority)`
+      );
+    }
+    if (kind === "compiled_prompt") {
+      warnings.push(`compiled prompt de-centered onto its declared canvas ${pw}x${ph}`);
+    }
+  } else if (kind === "compiled_prompt") {
+    if (!hasW && !hasH) {
+      _issue(
+        strict,
+        "compiled prompt has no width/height; pass target width/height (the canvas cannot be inferred from center-origin boxes)",
+        warnings,
+        errors
+      );
+    }
+    w = tw ?? snapDim(width);
+    h2 = th ?? snapDim(height);
+    if (tw && th) warnings.push(`compiled prompt has no width/height; de-centered onto target canvas ${tw}x${th}`);
+  } else if (tw && th) {
+    w = tw;
+    h2 = th;
+    if (!(hasW && hasH)) warnings.push(`width/height missing; using target canvas ${tw}x${th}`);
+  } else {
+    w = snapDim(width);
+    h2 = snapDim(height);
+    warnings.push("width/height missing; defaulted to 1024x1024");
+  }
+  let rawSummary = {};
+  if (obj.summary !== void 0) {
+    if (isRecord(obj.summary)) rawSummary = obj.summary;
+    else _issue(strict, "summary must be an object", warnings, errors);
+  }
+  let caption = "";
+  if (kind === "caption_only" && "caption" in obj) {
+    if (typeof obj.caption === "string") {
+      caption = obj.caption;
+      if (typeof rawSummary.caption === "string" && rawSummary.caption && rawSummary.caption !== caption) {
+        warnings.push("caption-only payload: root caption overrides summary.caption");
+      }
+    } else {
+      _issue(strict, "caption must be a string", warnings, errors);
+    }
+  } else if ("caption" in rawSummary) {
+    if (typeof rawSummary.caption === "string") caption = rawSummary.caption;
+    else _issue(strict, "summary.caption must be a string", warnings, errors);
+  }
+  if (!caption.trim()) warnings.push("summary.caption is empty; the compiled prompt requires caption text");
+  const meta = _stringList(rawSummary.meta, "summary.meta", strict, warnings, errors);
+  const palette = _stringList(rawSummary.palette, "summary.palette", strict, warnings, errors);
+  const canvasRaw = rawSummary.canvas ?? "single";
+  const canvas = CANVAS_MODES.includes(canvasRaw) ? canvasRaw : (() => {
+    _issue(strict, `summary.canvas '${String(canvasRaw)}' invalid; expected single, multi_panel or collage`, warnings, errors);
+    return "single";
+  })();
+  for (const key of Object.keys(rawSummary)) {
+    if (!["meta", "canvas", "caption", "palette"].includes(key)) {
+      warnings.push(`summary.${key}: not an official summary field; dropped`);
+    }
+  }
+  const summary = { caption, meta, canvas, palette };
+  let rawItems = [];
+  if (obj.items === void 0) {
+    if (kind !== "caption_only") warnings.push("items is missing; imported an empty layout");
+  } else if (!Array.isArray(obj.items)) {
+    _issue(strict, "items must be an array", warnings, errors);
+  } else {
+    rawItems = obj.items;
+  }
+  const halfW = w >> 1;
+  const halfH = h2 >> 1;
+  const elements = [];
+  rawItems.forEach((raw, i) => {
+    const where = `items[${i}]`;
+    if (!isRecord(raw)) {
+      _issue(strict, `${where} is not an object; the item was not imported`, warnings, errors);
+      elements.push(newElement("object", _fallbackBox(w, h2)));
+      return;
+    }
+    for (const key of Object.keys(raw)) {
+      if (!["label", "caption", "bbox", "text", "tags", "palette"].includes(key)) {
+        warnings.push(`${where}.${key}: not an official item field; dropped`);
+      }
+    }
+    let label = "object";
+    if (raw.label !== "object" && raw.label !== "character" && raw.label !== "text") {
+      _issue(strict, `${where}.label '${String(raw.label)}' invalid; expected object, character or text`, warnings, errors);
+    } else {
+      label = raw.label;
+    }
+    let itemCaption = "";
+    if (typeof raw.caption === "string") {
+      itemCaption = raw.caption;
+      if (!itemCaption.trim()) warnings.push(`${where}.caption is empty; the compiled prompt requires caption text`);
+    } else if (raw.caption !== void 0) {
+      _issue(strict, `${where}.caption must be a string`, warnings, errors);
+    }
+    let bbox;
+    if (!isNumArray(raw.bbox)) {
+      _issue(strict, `${where}.bbox must be four finite numbers`, warnings, errors);
+      bbox = _fallbackBox(w, h2);
+    } else {
+      const box = kind === "compiled_prompt" ? [
+        raw.bbox[1] + halfW,
+        raw.bbox[0] + halfH,
+        raw.bbox[3] + halfW,
+        raw.bbox[2] + halfH
+      ] : [...raw.bbox];
+      if (!(box[0] < box[2] && box[1] < box[3])) {
+        _issue(strict, `${where}.bbox must have positive width and height; got ${_fmtBox(box)}`, warnings, errors);
+        bbox = _fallbackBox(w, h2);
+      } else if (!(0 <= box[0] && box[2] <= w && 0 <= box[1] && box[3] <= h2)) {
+        if (bboxMode === "clamp") {
+          const clamped = clampBbox(box, w, h2);
+          if (!(clamped[0] < clamped[2] && clamped[1] < clamped[3])) {
+            _issue(
+              strict,
+              `${where}.bbox ${_fmtBox(box)} collapses to zero area when clamped to ${w}x${h2}`,
+              warnings,
+              errors
+            );
+            bbox = _fallbackBox(w, h2);
+          } else {
+            warnings.push(`${where}.bbox ${_fmtBox(box)} exceeded canvas ${w}x${h2}; clamped to ${_fmtBox(clamped)}`);
+            bbox = clamped;
+          }
+        } else {
+          _issue(
+            strict,
+            `${where}.bbox ${_fmtBox(box)} exceeds canvas ${w}x${h2} (bbox_mode='reject'; use 'clamp' to accept a clamped box)`,
+            warnings,
+            errors
+          );
+          bbox = clampBbox(box, w, h2);
+          if (!(bbox[0] < bbox[2] && bbox[1] < bbox[3])) bbox = _fallbackBox(w, h2);
+        }
+      } else {
+        bbox = box;
+      }
     }
     const el = newElement(label, bbox);
-    el.caption = typeof it.caption === "string" ? it.caption : "";
-    el.text = typeof it.text === "string" ? it.text : "";
-    el.tags = isStrArray(it.tags) ? it.tags : [];
-    el.palette = isStrArray(it.palette) ? it.palette : [];
-    return el;
+    el.caption = itemCaption;
+    if (raw.text !== void 0) {
+      if (typeof raw.text === "string") {
+        if (label === "text" && !raw.text.trim()) {
+          _issue(strict, `${where}: text items require a non-empty literal 'text'`, warnings, errors);
+        } else if (label !== "text" && !raw.text.trim()) {
+          warnings.push(`${where}.text is empty; omitted from the canonical draft`);
+        }
+        el.text = raw.text;
+      } else if (label === "text") {
+        _issue(strict, `${where}: text items require a non-empty literal 'text'`, warnings, errors);
+      } else {
+        warnings.push(`${where}.text is not a string; omitted from the canonical draft`);
+      }
+    } else if (label === "text") {
+      _issue(strict, `${where}: text items require a non-empty literal 'text'`, warnings, errors);
+    }
+    el.tags = _stringList(raw.tags, `${where}.tags`, strict, warnings, errors);
+    el.palette = _stringList(raw.palette, `${where}.palette`, strict, warnings, errors);
+    elements.push(el);
   });
   if (!elements.length) warnings.push("items is empty; the compiled prompt requires at least one item");
-  if (!summary.caption.trim()) warnings.push("summary.caption is empty");
-  return { state: { width: w, height: h2, summary, elements }, warnings };
+  return { state: { width: w, height: h2, summary, elements }, warnings, errors };
 }
 function _pruneLink(elements, groupId) {
   if (!groupId) return;
@@ -8423,7 +8639,16 @@ function createStudioStore() {
       store.state.ui = { ...emptyUi(), ...s.ui || {} };
       _syncSeq(store.state.elements);
     },
-    json: { editing: false, draft: "", syncError: "", wasOpen: false },
+    json: {
+      editing: false,
+      draft: "",
+      syncError: "",
+      syncWarnings: [],
+      syncNote: "",
+      applyErrors: [],
+      applyWarnings: [],
+      wasOpen: false
+    },
     refImage: "",
     clipboard: [],
     ctxMenu: null,
@@ -8435,6 +8660,8 @@ function createStudioStore() {
     },
     jsonStartEdit() {
       store.json.draft = serialize(store.state).draftPretty;
+      store.json.applyErrors = [];
+      store.json.applyWarnings = [];
       store.json.wasOpen = store.state.ui.jsonOpen;
       store.json.editing = true;
       store.state.ui.jsonOpen = true;
@@ -8448,19 +8675,29 @@ function createStudioStore() {
       if (res.ok) store.json.draft = JSON.stringify(res.obj, null, 2);
     },
     jsonApply() {
-      if (store.importDraftJson(store.json.draft).ok) {
+      const res = store.importDraftJson(store.json.draft);
+      store.json.applyErrors = res.errors ?? (res.error ? [res.error] : []);
+      store.json.applyWarnings = res.warnings ?? [];
+      if (res.ok) {
         store.json.editing = false;
         store.state.ui.jsonOpen = store.json.wasOpen;
       }
     },
-    importDraftJson(text, keepDims = false) {
+    importDraftJson(text, opts = {}) {
+      const keepDims = opts.keepDims ?? false;
+      const strict = opts.strict ?? true;
+      const bboxMode = opts.bboxMode ?? (strict ? "reject" : "clamp");
       const res = parseJsonLoose(text);
-      if (!res.ok) return { ok: false, error: res.error };
-      const { state, warnings } = resolveToState(
+      if (!res.ok) return { ok: false, error: res.error, errors: [res.error], warnings: [] };
+      const { state, warnings, errors } = resolveToState(
         res.obj,
         keepDims ? store.state.width : 1024,
-        keepDims ? store.state.height : 1024
+        keepDims ? store.state.height : 1024,
+        { strict, bboxMode }
       );
+      if (errors.length) {
+        return { ok: false, error: errors.join("; "), errors, warnings };
+      }
       const curUi = store.state.ui;
       const curOverlay = store.state.overlay;
       store.load({ ...state, ui: curUi, overlay: curOverlay });
@@ -8468,7 +8705,7 @@ function createStudioStore() {
       if (!keepDims && state.height) store.state.height = state.height;
       store.select(null);
       store.snapshot();
-      return { ok: true, warnings };
+      return { ok: true, warnings, errors: [] };
     }
   });
   return store;
@@ -8483,7 +8720,16 @@ function useStudioStore() {
   return inject(KEY);
 }
 const refSyncImage = /* @__PURE__ */ ref(null);
-const jsonSyncCaption = /* @__PURE__ */ ref({ json: "", n: 0 });
+const jsonSyncCaption = /* @__PURE__ */ ref({
+  json: "",
+  n: 0,
+  global: false,
+  force: false,
+  source: "",
+  importer: "",
+  itemCount: 0,
+  warnings: []
+});
 const events = api;
 function eventDetail(ev) {
   if (ev instanceof CustomEvent) {
@@ -8513,7 +8759,17 @@ function initRefSync() {
     events.addEventListener("moss-layout.json-sync", (ev) => {
       const d = eventDetail(ev);
       if (typeof d.json !== "string") return;
-      jsonSyncCaption.value = { json: d.json, n: jsonSyncCaption.value.n + 1 };
+      const warnings = Array.isArray(d.warnings) ? d.warnings.filter((w) => typeof w === "string") : [];
+      jsonSyncCaption.value = {
+        json: d.json,
+        n: jsonSyncCaption.value.n + 1,
+        global: d.global === true,
+        force: d.force === true,
+        source: str(d.source),
+        importer: str(d.importer),
+        itemCount: typeof d.item_count === "number" ? d.item_count : 0,
+        warnings
+      };
     });
   } catch (err) {
     console.warn("[MossLayoutStudio] sync listener failed to register", err);
@@ -8701,19 +8957,19 @@ const _hoisted_2$b = {
 };
 const _hoisted_3$b = { class: "cmenu" };
 const _hoisted_4$9 = { class: "crow" };
-const _hoisted_5$8 = {
+const _hoisted_5$9 = {
   key: 2,
   class: "divider"
 };
-const _hoisted_6$7 = { class: "cmenu" };
+const _hoisted_6$8 = { class: "cmenu" };
 const _hoisted_7$6 = { class: "crow" };
 const _hoisted_8$5 = { class: "crow" };
-const _hoisted_9$4 = { class: "crow" };
-const _hoisted_10$4 = { class: "crow" };
-const _hoisted_11$3 = { class: "crow ckrow" };
-const _hoisted_12$3 = ["src"];
-const _hoisted_13$3 = ["src"];
-const _hoisted_14$3 = {
+const _hoisted_9$5 = { class: "crow" };
+const _hoisted_10$5 = { class: "crow" };
+const _hoisted_11$4 = { class: "crow ckrow" };
+const _hoisted_12$4 = ["src"];
+const _hoisted_13$4 = ["src"];
+const _hoisted_14$4 = {
   key: 2,
   class: "livebadge"
 };
@@ -9165,7 +9421,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
             ]),
             _: 1
           })) : createCommentVNode("", true),
-          !__props.hideRef ? (openBlock(), createElementBlock("span", _hoisted_5$8)) : createCommentVNode("", true),
+          !__props.hideRef ? (openBlock(), createElementBlock("span", _hoisted_5$9)) : createCommentVNode("", true),
           createVNode(UiPopover, { align: "left" }, {
             trigger: withCtx(() => [
               createVNode(UiButton, {
@@ -9179,7 +9435,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
               })
             ]),
             default: withCtx(() => [
-              createBaseVNode("div", _hoisted_6$7, [
+              createBaseVNode("div", _hoisted_6$8, [
                 _cache[29] || (_cache[29] = createBaseVNode("div", { class: "cgroup" }, "canvas", -1)),
                 createBaseVNode("button", {
                   class: normalizeClass(["citem", { on: showLabels.value }]),
@@ -9227,7 +9483,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
                     ]
                   ])
                 ]),
-                createBaseVNode("label", _hoisted_9$4, [
+                createBaseVNode("label", _hoisted_9$5, [
                   _cache[25] || (_cache[25] = createTextVNode("fill ", -1)),
                   withDirectives(createBaseVNode("input", {
                     type: "range",
@@ -9244,7 +9500,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
                     ]
                   ])
                 ]),
-                createBaseVNode("label", _hoisted_10$4, [
+                createBaseVNode("label", _hoisted_10$5, [
                   _cache[26] || (_cache[26] = createTextVNode("label size ", -1)),
                   withDirectives(createBaseVNode("input", {
                     type: "number",
@@ -9260,7 +9516,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
                     ]
                   ])
                 ]),
-                createBaseVNode("div", _hoisted_11$3, [
+                createBaseVNode("div", _hoisted_11$4, [
                   createBaseVNode("label", null, [
                     withDirectives(createBaseVNode("input", {
                       type: "checkbox",
@@ -9321,15 +9577,15 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
             draggable: "false",
             alt: "reference",
             onLoad: onBackdropLoad
-          }, null, 44, _hoisted_12$3)) : createCommentVNode("", true),
+          }, null, 44, _hoisted_12$4)) : createCommentVNode("", true),
           livePreview.value && unref(previewSyncImage) ? (openBlock(), createElementBlock("img", {
             key: 1,
             class: "livelayer",
             src: unref(previewSyncImage),
             draggable: "false",
             alt: "live preview"
-          }, null, 8, _hoisted_13$3)) : createCommentVNode("", true),
-          livePreview.value && unref(previewSyncImage) ? (openBlock(), createElementBlock("span", _hoisted_14$3, [..._cache[36] || (_cache[36] = [
+          }, null, 8, _hoisted_13$4)) : createCommentVNode("", true),
+          livePreview.value && unref(previewSyncImage) ? (openBlock(), createElementBlock("span", _hoisted_14$4, [..._cache[36] || (_cache[36] = [
             createBaseVNode("i", { class: "mdi mdi-record" }, null, -1),
             createTextVNode(" live", -1)
           ])])) : createCommentVNode("", true),
@@ -9391,7 +9647,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const BBoxCanvas = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-0bf47a4c"]]);
+const BBoxCanvas = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-25c3fb06"]]);
 const J = { "Content-Type": "application/json" };
 function thumbUrl(dir, name, size = 256) {
   return `/mosslayout/thumb?dir=${encodeURIComponent(dir)}&name=${encodeURIComponent(name)}&size=${size}`;
@@ -9423,22 +9679,22 @@ const _hoisted_3$a = {
   class: "count"
 };
 const _hoisted_4$8 = { class: "search" };
-const _hoisted_5$7 = { class: "libbody" };
-const _hoisted_6$6 = {
+const _hoisted_5$8 = { class: "libbody" };
+const _hoisted_6$7 = {
   key: 0,
   class: "grid"
 };
 const _hoisted_7$5 = ["title", "onClick"];
 const _hoisted_8$4 = ["src", "alt"];
-const _hoisted_9$3 = {
+const _hoisted_9$4 = {
   key: 2,
   class: "badge"
 };
-const _hoisted_10$3 = ["onClick"];
-const _hoisted_11$2 = ["title"];
-const _hoisted_12$2 = { class: "cbtns" };
-const _hoisted_13$2 = ["onClick"];
-const _hoisted_14$2 = {
+const _hoisted_10$4 = ["onClick"];
+const _hoisted_11$3 = ["title"];
+const _hoisted_12$3 = { class: "cbtns" };
+const _hoisted_13$3 = ["onClick"];
+const _hoisted_14$3 = {
   key: 1,
   class: "empty"
 };
@@ -9661,8 +9917,8 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
               _: 1
             })
           ]),
-          createBaseVNode("div", _hoisted_5$7, [
-            shown.value.length ? (openBlock(), createElementBlock("div", _hoisted_6$6, [
+          createBaseVNode("div", _hoisted_5$8, [
+            shown.value.length ? (openBlock(), createElementBlock("div", _hoisted_6$7, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(shown.value, (t) => {
                 return openBlock(), createElementBlock("div", {
                   key: t.name,
@@ -9682,7 +9938,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                       key: 1,
                       class: normalizeClass(["mdi ph", loading.value ? "mdi-loading mdi-spin" : "mdi-image-outline"])
                     }, null, 2)),
-                    elCount(t) ? (openBlock(), createElementBlock("span", _hoisted_9$3, [
+                    elCount(t) ? (openBlock(), createElementBlock("span", _hoisted_9$4, [
                       _cache[14] || (_cache[14] = createBaseVNode("i", { class: "mdi mdi-shape-outline" }, null, -1)),
                       createTextVNode(" " + toDisplayString(elCount(t)), 1)
                     ])) : createCommentVNode("", true)
@@ -9693,11 +9949,11 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                     onClick: withModifiers(($event) => pendingDelete.value = t.name, ["stop"])
                   }, [..._cache[15] || (_cache[15] = [
                     createBaseVNode("i", { class: "mdi mdi-trash-can-outline" }, null, -1)
-                  ])], 8, _hoisted_10$3),
+                  ])], 8, _hoisted_10$4),
                   createBaseVNode("div", {
                     class: "name",
                     title: t.stem
-                  }, toDisplayString(t.stem), 9, _hoisted_11$2),
+                  }, toDisplayString(t.stem), 9, _hoisted_11$3),
                   pendingDelete.value === t.name ? (openBlock(), createElementBlock("div", {
                     key: 0,
                     class: "confirm",
@@ -9708,11 +9964,11 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                       createBaseVNode("i", { class: "mdi mdi-trash-can-outline" }),
                       createTextVNode(" Delete?")
                     ], -1)),
-                    createBaseVNode("div", _hoisted_12$2, [
+                    createBaseVNode("div", _hoisted_12$3, [
                       createBaseVNode("button", {
                         class: "yes",
                         onClick: ($event) => doDelete(t)
-                      }, "Delete", 8, _hoisted_13$2),
+                      }, "Delete", 8, _hoisted_13$3),
                       createBaseVNode("button", {
                         class: "no",
                         onClick: _cache[3] || (_cache[3] = ($event) => pendingDelete.value = null)
@@ -9721,7 +9977,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                   ])) : createCommentVNode("", true)
                 ], 2);
               }), 128))
-            ])) : loading.value ? (openBlock(), createElementBlock("p", _hoisted_14$2, [..._cache[17] || (_cache[17] = [
+            ])) : loading.value ? (openBlock(), createElementBlock("p", _hoisted_14$3, [..._cache[17] || (_cache[17] = [
               createBaseVNode("i", { class: "mdi mdi-loading mdi-spin" }, null, -1),
               createTextVNode(" loading…", -1)
             ])])) : query.value ? (openBlock(), createElementBlock("p", _hoisted_15$2, [
@@ -9824,8 +10080,8 @@ const _hoisted_1$8 = { class: "palette" };
 const _hoisted_2$8 = { class: "swatches" };
 const _hoisted_3$8 = ["onContextmenu"];
 const _hoisted_4$7 = ["title"];
-const _hoisted_5$6 = ["value", "onInput"];
-const _hoisted_6$5 = { class: "hint" };
+const _hoisted_5$7 = ["value", "onInput"];
+const _hoisted_6$6 = { class: "hint" };
 const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "PaletteEditor",
   props: {
@@ -9869,7 +10125,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
                   type: "color",
                   value: c,
                   onInput: ($event) => update(i, $event.target.value)
-                }, null, 40, _hoisted_5$6)
+                }, null, 40, _hoisted_5$7)
               ], 12, _hoisted_4$7)
             ], 40, _hoisted_3$8);
           }), 128)),
@@ -9880,7 +10136,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
             onClick: add
           }, "+")) : createCommentVNode("", true)
         ]),
-        createBaseVNode("div", _hoisted_6$5, toDisplayString(__props.modelValue.length) + "/" + toDisplayString(__props.max) + " " + toDisplayString(__props.label), 1)
+        createBaseVNode("div", _hoisted_6$6, toDisplayString(__props.modelValue.length) + "/" + toDisplayString(__props.max) + " " + toDisplayString(__props.label), 1)
       ]);
     };
   }
@@ -9970,8 +10226,8 @@ const _hoisted_1$6 = { class: "chead" };
 const _hoisted_2$6 = ["title"];
 const _hoisted_3$6 = ["value"];
 const _hoisted_4$6 = { class: "field" };
-const _hoisted_5$5 = { class: "field" };
-const _hoisted_6$4 = { class: "field" };
+const _hoisted_5$6 = { class: "field" };
+const _hoisted_6$5 = { class: "field" };
 const _hoisted_7$4 = { class: "presetsck" };
 const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "SummaryPanel",
@@ -10029,7 +10285,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                 [vModelText, unref(store).state.summary.caption]
               ])
             ]),
-            createBaseVNode("div", _hoisted_5$5, [
+            createBaseVNode("div", _hoisted_5$6, [
               _cache[8] || (_cache[8] = createBaseVNode("span", null, "meta (medium / genre tags)", -1)),
               createVNode(ComboInput, {
                 modelValue: metaText.value,
@@ -10038,7 +10294,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                 placeholder: "product campaign, studio photography"
               }, null, 8, ["modelValue", "options"])
             ]),
-            createBaseVNode("div", _hoisted_6$4, [
+            createBaseVNode("div", _hoisted_6$5, [
               _cache[9] || (_cache[9] = createBaseVNode("span", null, "color palette (optional)", -1)),
               createVNode(PaletteEditor, {
                 modelValue: unref(store).state.summary.palette,
@@ -10063,7 +10319,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const SummaryPanel = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-65088df0"]]);
+const SummaryPanel = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-a3f6dc63"]]);
 const _hoisted_1$5 = { class: "chead" };
 const _hoisted_2$5 = {
   class: "lhead",
@@ -10071,16 +10327,16 @@ const _hoisted_2$5 = {
 };
 const _hoisted_3$5 = { class: "lmenu" };
 const _hoisted_4$5 = ["onClick"];
-const _hoisted_5$4 = ["onClick"];
-const _hoisted_6$3 = ["onClick"];
+const _hoisted_5$5 = ["onClick"];
+const _hoisted_6$4 = ["onClick"];
 const _hoisted_7$3 = ["onClick"];
 const _hoisted_8$3 = { class: "adds" };
-const _hoisted_9$2 = ["draggable", "onClick", "onContextmenu", "onDragstart", "onDragover", "onDrop"];
-const _hoisted_10$2 = { class: "typeicon" };
-const _hoisted_11$1 = ["title"];
-const _hoisted_12$1 = { class: "snip" };
-const _hoisted_13$1 = ["onClick"];
-const _hoisted_14$1 = {
+const _hoisted_9$3 = ["draggable", "onClick", "onContextmenu", "onDragstart", "onDragover", "onDrop"];
+const _hoisted_10$3 = { class: "typeicon" };
+const _hoisted_11$2 = ["title"];
+const _hoisted_12$2 = { class: "snip" };
+const _hoisted_13$2 = ["onClick"];
+const _hoisted_14$2 = {
   key: 1,
   class: "empty"
 };
@@ -10173,7 +10429,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                   }, [..._cache[8] || (_cache[8] = [
                     createBaseVNode("i", { class: "mdi mdi-vector-square" }, null, -1),
                     createTextVNode(" objects", -1)
-                  ])], 10, _hoisted_5$4),
+                  ])], 10, _hoisted_5$5),
                   createBaseVNode("button", {
                     class: normalizeClass(["litem", { on: filter.value === "character" }]),
                     onClick: ($event) => {
@@ -10183,7 +10439,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                   }, [..._cache[9] || (_cache[9] = [
                     createBaseVNode("i", { class: "mdi mdi-account-outline" }, null, -1),
                     createTextVNode(" characters", -1)
-                  ])], 10, _hoisted_6$3),
+                  ])], 10, _hoisted_6$4),
                   createBaseVNode("button", {
                     class: normalizeClass(["litem", { on: filter.value === "text" }]),
                     onClick: ($event) => {
@@ -10259,7 +10515,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                   onClick: _cache[4] || (_cache[4] = withModifiers(() => {
                   }, ["stop"]))
                 }, null, 32)) : createCommentVNode("", true),
-                createBaseVNode("span", _hoisted_10$2, [
+                createBaseVNode("span", _hoisted_10$3, [
                   createBaseVNode("i", {
                     class: normalizeClass(["mdi", labelIcon(el.label)])
                   }, null, 2)
@@ -10272,30 +10528,32 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                   key: 1,
                   class: "mdi mdi-link-variant link",
                   title: "Linked ×" + unref(store).linkGroupSize(el.id)
-                }, null, 8, _hoisted_11$1)) : createCommentVNode("", true),
-                createBaseVNode("span", _hoisted_12$1, toDisplayString(el.label === "text" ? "“" + (el.text || "…") + "”" : el.caption || el.label + "…"), 1),
+                }, null, 8, _hoisted_11$2)) : createCommentVNode("", true),
+                createBaseVNode("span", _hoisted_12$2, toDisplayString(el.label === "text" ? "“" + (el.text || "…") + "”" : el.caption || el.label + "…"), 1),
                 createBaseVNode("button", {
                   class: "more",
                   title: "Actions (or right-click the row)",
                   onClick: withModifiers(($event) => openMenu($event, el.id), ["stop"])
                 }, [..._cache[14] || (_cache[14] = [
                   createBaseVNode("i", { class: "mdi mdi-dots-horizontal" }, null, -1)
-                ])], 8, _hoisted_13$1)
-              ], 46, _hoisted_9$2);
+                ])], 8, _hoisted_13$2)
+              ], 46, _hoisted_9$3);
             }), 128))
-          ], 32)) : unref(store).state.elements.length ? (openBlock(), createElementBlock("p", _hoisted_14$1, "no " + toDisplayString(filter.value) + " items", 1)) : (openBlock(), createElementBlock("p", _hoisted_15$1, "No items yet — draw a box on the canvas, or use + obj / + char / + text."))
+          ], 32)) : unref(store).state.elements.length ? (openBlock(), createElementBlock("p", _hoisted_14$2, "no " + toDisplayString(filter.value) + " items", 1)) : (openBlock(), createElementBlock("p", _hoisted_15$1, "No items yet — draw a box on the canvas, or use + obj / + char / + text."))
         ]),
         _: 1
       });
     };
   }
 });
-const ElementList = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-cdf8ce90"]]);
+const ElementList = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-198d4871"]]);
 const _hoisted_1$4 = { class: "jctrl" };
 const _hoisted_2$4 = ["title"];
 const _hoisted_3$4 = ["title"];
-const _hoisted_4$4 = {
-  key: 2,
+const _hoisted_4$4 = ["title"];
+const _hoisted_5$4 = ["title"];
+const _hoisted_6$3 = {
+  key: 4,
   class: "jtok",
   title: "Compiled prompt token estimate (rough)"
 };
@@ -10322,6 +10580,11 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       return warnings.value.length ? `${warnings.value.length} warning${warnings.value.length > 1 ? "s" : ""}:
 ${warnings.value.join("\n")}` : "Valid draft";
     });
+    const syncWarningTitle = computed(() => {
+      const n = j.syncWarnings.length;
+      return `${n} import warning${n === 1 ? "" : "s"}:
+${j.syncWarnings.join("\n")}`;
+    });
     function toggleSync() {
       store.state.ui.jsonSync = !store.state.ui.jsonSync;
       if (!store.state.ui.jsonSync) j.syncError = "";
@@ -10344,12 +10607,21 @@ ${warnings.value.join("\n")}` : "Valid draft";
           key: 0,
           class: "jstat mdi mdi-sync-alert bad",
           title: unref(j).syncError
-        }, null, 8, _hoisted_3$4)) : createCommentVNode("", true),
-        !unref(j).editing ? (openBlock(), createBlock(UiButton, {
+        }, null, 8, _hoisted_3$4)) : unref(j).syncWarnings.length ? (openBlock(), createElementBlock("i", {
           key: 1,
+          class: "jstat mdi mdi-sync-alert warn",
+          title: syncWarningTitle.value
+        }, null, 8, _hoisted_4$4)) : createCommentVNode("", true),
+        unref(j).syncNote ? (openBlock(), createElementBlock("span", {
+          key: 2,
+          class: "jnote",
+          title: unref(j).syncNote
+        }, toDisplayString(unref(j).syncNote), 9, _hoisted_5$4)) : createCommentVNode("", true),
+        !unref(j).editing ? (openBlock(), createBlock(UiButton, {
+          key: 3,
           icon: "",
           active: unref(store).state.ui.jsonSync,
-          title: "Live-import draft JSON from a MOSS Studio JSON Sync node",
+          title: "Live-import draft JSON from a MOSS Studio JSON Sync node (global/forced imports always apply)",
           onClick: toggleSync
         }, {
           default: withCtx(() => [..._cache[5] || (_cache[5] = [
@@ -10357,9 +10629,9 @@ ${warnings.value.join("\n")}` : "Valid draft";
           ])]),
           _: 1
         }, 8, ["active"])) : createCommentVNode("", true),
-        unref(store).state.ui.jsonOpen && !unref(j).editing ? (openBlock(), createElementBlock("span", _hoisted_4$4, "~" + toDisplayString(tokens.value) + " tok", 1)) : createCommentVNode("", true),
+        unref(store).state.ui.jsonOpen && !unref(j).editing ? (openBlock(), createElementBlock("span", _hoisted_6$3, "~" + toDisplayString(tokens.value) + " tok", 1)) : createCommentVNode("", true),
         _cache[10] || (_cache[10] = createBaseVNode("span", { class: "grow" }, null, -1)),
-        !unref(j).editing ? (openBlock(), createElementBlock(Fragment, { key: 3 }, [
+        !unref(j).editing ? (openBlock(), createElementBlock(Fragment, { key: 5 }, [
           unref(store).state.ui.jsonOpen ? (openBlock(), createBlock(UiButton, {
             key: 0,
             icon: "",
@@ -10395,7 +10667,7 @@ ${warnings.value.join("\n")}` : "Valid draft";
             ]),
             _: 1
           }, 8, ["title"])
-        ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 4 }, [
+        ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 6 }, [
           createVNode(UiButton, {
             title: "Re-indent the JSON",
             onClick: _cache[2] || (_cache[2] = ($event) => unref(store).jsonTidy())
@@ -10428,7 +10700,7 @@ ${warnings.value.join("\n")}` : "Valid draft";
     };
   }
 });
-const JsonControls = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-d7916295"]]);
+const JsonControls = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-7e90c0f0"]]);
 const _hoisted_1$3 = { class: "ehead" };
 const _hoisted_2$3 = ["title"];
 const _hoisted_3$3 = ["value"];
@@ -10440,8 +10712,8 @@ const _hoisted_5$3 = {
 const _hoisted_6$2 = ["value"];
 const _hoisted_7$2 = { class: "filine" };
 const _hoisted_8$2 = ["value", "placeholder"];
-const _hoisted_9$1 = { class: "filine" };
-const _hoisted_10$1 = { class: "filine" };
+const _hoisted_9$2 = { class: "filine" };
+const _hoisted_10$2 = { class: "filine" };
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "ElementEditor",
   setup(__props) {
@@ -10556,7 +10828,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               onInput: _cache[7] || (_cache[7] = ($event) => setShared("caption", $event.target.value))
             }, null, 40, _hoisted_8$2)
           ]),
-          createBaseVNode("div", _hoisted_9$1, [
+          createBaseVNode("div", _hoisted_9$2, [
             _cache[18] || (_cache[18] = createBaseVNode("span", null, "tags", -1)),
             createVNode(ComboInput, {
               modelValue: sharedTags.value,
@@ -10565,7 +10837,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               placeholder: "optional visual tags, comma-separated"
             }, null, 8, ["modelValue", "options"])
           ]),
-          createBaseVNode("div", _hoisted_10$1, [
+          createBaseVNode("div", _hoisted_10$2, [
             _cache[19] || (_cache[19] = createBaseVNode("span", null, "colours", -1)),
             createVNode(PaletteEditor, {
               modelValue: el.value.palette,
@@ -10580,7 +10852,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ElementEditor = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-250c5e97"]]);
+const ElementEditor = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-e27a795e"]]);
 const _hoisted_1$2 = {
   key: 1,
   class: "json"
@@ -10599,6 +10871,27 @@ const _hoisted_6$1 = { class: "errhead" };
 const _hoisted_7$1 = { class: "msg" };
 const _hoisted_8$1 = {
   key: 4,
+  class: "applyerr"
+};
+const _hoisted_9$1 = { class: "errlist" };
+const _hoisted_10$1 = {
+  key: 5,
+  class: "warnlist"
+};
+const _hoisted_11$1 = {
+  key: 0,
+  class: "syncbad"
+};
+const _hoisted_12$1 = {
+  key: 1,
+  class: "syncnote"
+};
+const _hoisted_13$1 = {
+  key: 2,
+  class: "warnlist"
+};
+const _hoisted_14$1 = {
+  key: 7,
   class: "warnlist"
 };
 const _sfc_main$2 = /* @__PURE__ */ defineComponent({
@@ -10739,7 +11032,34 @@ ${parseFrame.value}` : parseMsg.value;
               onClick: jumpToError
             }, toDisplayString(parseFrame.value), 1)) : createCommentVNode("", true)
           ])) : createCommentVNode("", true),
-          !unref(j).editing && warnings.value.length ? (openBlock(), createElementBlock("ul", _hoisted_8$1, [
+          unref(j).editing && unref(j).applyErrors.length ? (openBlock(), createElementBlock("div", _hoisted_8$1, [
+            _cache[2] || (_cache[2] = createBaseVNode("div", { class: "errhead" }, [
+              createBaseVNode("span", { class: "msg" }, "⚠ Import rejected — nothing was applied")
+            ], -1)),
+            createBaseVNode("ul", _hoisted_9$1, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(unref(j).applyErrors, (e, i) => {
+                return openBlock(), createElementBlock("li", { key: i }, toDisplayString(e), 1);
+              }), 128))
+            ])
+          ])) : createCommentVNode("", true),
+          unref(j).editing && unref(j).applyWarnings.length ? (openBlock(), createElementBlock("ul", _hoisted_10$1, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(unref(j).applyWarnings, (w, i) => {
+              return openBlock(), createElementBlock("li", { key: i }, toDisplayString(w), 1);
+            }), 128))
+          ])) : createCommentVNode("", true),
+          !unref(j).editing && (unref(j).syncError || unref(j).syncWarnings.length || unref(j).syncNote) ? (openBlock(), createElementBlock("div", {
+            key: 6,
+            class: normalizeClass(["syncbox", { bad: !!unref(j).syncError }])
+          }, [
+            unref(j).syncError ? (openBlock(), createElementBlock("div", _hoisted_11$1, "sync: " + toDisplayString(unref(j).syncError), 1)) : createCommentVNode("", true),
+            unref(j).syncNote ? (openBlock(), createElementBlock("div", _hoisted_12$1, toDisplayString(unref(j).syncNote), 1)) : createCommentVNode("", true),
+            unref(j).syncWarnings.length ? (openBlock(), createElementBlock("ul", _hoisted_13$1, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(unref(j).syncWarnings, (w, i) => {
+                return openBlock(), createElementBlock("li", { key: i }, "sync: " + toDisplayString(w), 1);
+              }), 128))
+            ])) : createCommentVNode("", true)
+          ], 2)) : createCommentVNode("", true),
+          !unref(j).editing && warnings.value.length ? (openBlock(), createElementBlock("ul", _hoisted_14$1, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(warnings.value, (w, i) => {
               return openBlock(), createElementBlock("li", { key: i }, toDisplayString(w), 1);
             }), 128))
@@ -10750,7 +11070,7 @@ ${parseFrame.value}` : parseMsg.value;
     };
   }
 });
-const JsonPreview = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-919c184b"]]);
+const JsonPreview = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-582fb67a"]]);
 const _hoisted_1$1 = { class: "ctxhead" };
 const _hoisted_2$1 = { class: "cnum" };
 const _hoisted_3$1 = { class: "ctxhead" };
@@ -10954,7 +11274,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ElementContextMenu = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-b170409c"]]);
+const ElementContextMenu = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-1a876ded"]]);
 const _hoisted_1 = { class: "main" };
 const _hoisted_2 = { class: "resmenu" };
 const _hoisted_3 = { class: "aspects" };
@@ -11006,12 +11326,21 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     watch(
       () => jsonSyncCaption.value.n,
       () => {
-        if (!store.state.ui.jsonSync) return;
-        const { json } = jsonSyncCaption.value;
-        if (json && json.trim()) {
-          const res = store.importDraftJson(json, true);
-          store.json.syncError = res.ok ? "" : `JSON sync: ${res.error || "invalid JSON"}`;
+        const ev = jsonSyncCaption.value;
+        const forced = ev.global || ev.force;
+        if (!forced && !store.state.ui.jsonSync) return;
+        if (!ev.json || !ev.json.trim()) return;
+        const label = ev.global ? "Global import" : ev.force ? "Forced JSON sync" : "JSON sync";
+        const res = store.importDraftJson(ev.json, { keepDims: true, strict: true });
+        store.json.syncWarnings = [.../* @__PURE__ */ new Set([...ev.warnings || [], ...res.warnings || []])];
+        if (!res.ok) {
+          store.json.syncError = `${label}: ${res.error || "invalid JSON"}`;
+          store.json.syncNote = "";
+          return;
         }
+        store.json.syncError = "";
+        const count = store.state.elements.length;
+        store.json.syncNote = `${label} applied · ${count} item${count === 1 ? "" : "s"} · ${store.state.width}×${store.state.height}`;
       }
     );
     const CORE_ASPECTS = [
@@ -11467,7 +11796,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const MossLayoutStudio = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-82d88978"]]);
+const MossLayoutStudio = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5dc6e0fa"]]);
 const SEL = "[data-ideogram]";
 function inWidget(e) {
   const t = e.target;

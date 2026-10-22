@@ -5,8 +5,29 @@ import { api } from '@comfy/api'
 import { ref } from 'vue'
 
 export const refSyncImage = ref<string | null>(null)
-// Draft JSON from a JSON Sync node; counter forces watchers on identical payloads.
-export const jsonSyncCaption = ref<{ json: string; n: number }>({ json: '', n: 0 })
+export interface JsonSyncEvent {
+  json: string
+  n: number
+  global: boolean
+  force: boolean
+  source: string
+  importer: string
+  itemCount: number
+  warnings: string[]
+}
+
+// Draft JSON from a JSON Sync node / HTTP import; counter forces watchers on
+// identical payloads. global/force bypass the per-studio jsonSync toggle.
+export const jsonSyncCaption = ref<JsonSyncEvent>({
+  json: '',
+  n: 0,
+  global: false,
+  force: false,
+  source: '',
+  importer: '',
+  itemCount: 0,
+  warnings: [],
+})
 
 // ComfyUI's api is an EventTarget at runtime; its package types don't expose it.
 const events = api as unknown as EventTarget
@@ -42,7 +63,19 @@ export function initRefSync() {
     events.addEventListener('moss-layout.json-sync', (ev) => {
       const d = eventDetail(ev)
       if (typeof d.json !== 'string') return
-      jsonSyncCaption.value = { json: d.json, n: jsonSyncCaption.value.n + 1 }
+      const warnings = Array.isArray(d.warnings)
+        ? d.warnings.filter((w): w is string => typeof w === 'string')
+        : []
+      jsonSyncCaption.value = {
+        json: d.json,
+        n: jsonSyncCaption.value.n + 1,
+        global: d.global === true,
+        force: d.force === true,
+        source: str(d.source),
+        importer: str(d.importer),
+        itemCount: typeof d.item_count === 'number' ? d.item_count : 0,
+        warnings,
+      }
     })
   } catch (err: unknown) {
     console.warn('[MossLayoutStudio] sync listener failed to register', err)

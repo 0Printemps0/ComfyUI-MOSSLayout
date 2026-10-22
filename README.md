@@ -70,8 +70,12 @@ Route a generation into it and studios with *sync* on use it as a trace
 backdrop. Passes the image through.
 
 ### MOSS Layout Studio JSON Sync
-Force-push a whole draft (or compiled) JSON to open studios with *json sync*
-on — for loading captions from an LLM node, a file, or your own tooling.
+Validate, canonicalize and push a whole draft (or compiled) JSON to open
+studios. `global` applies to every open Studio (ignoring the per-studio
+*json sync* toggle); `force` overrides the toggle too. For compiled JSON
+without `width`/`height`, set the node's `width`/`height` canvas. Invalid
+labels, missing `text`, unsupported `bbox_format` and out-of-canvas boxes make
+the node raise with the item index instead of silently rewriting the payload.
 
 ## Round-trip guarantee
 
@@ -123,8 +127,46 @@ python3 skills/moss-layout-prompt/scripts/submit.py draft.json --server http://1
 
 Programmatic surfaces: the workflow `draft` object, the node's `draft` input
 (overrides the editor at execution time), the `draft`/`prompt` outputs, the
-**MOSS Layout Studio JSON Sync** node, `POST /mosslayout/preview`, and the
-normal `/prompt` API (`MossLayoutStudio.inputs.studio = {"draft": ..., "studio": {}}`).
+**MOSS Layout Studio JSON Sync** node, `POST /mosslayout/import`,
+`POST /mosslayout/preview`, and the normal `/prompt` API
+(`MossLayoutStudio.inputs.studio = {"draft": ..., "studio": {}}`).
+
+## Global import (HTTP)
+
+Image-parsing / VLM scripts can hand a raw layout JSON to every open Studio.
+The importer accepts an **editor draft** (`abs`/`xyxy`, with or without
+`width`/`height`), a **compiled prompt** (`abs_centralized`/`yxyx`), or a
+caption-only payload, and returns a canonical `abs`/`xyxy` draft:
+
+```bash
+curl -X POST http://127.0.0.1:7860/mosslayout/import \
+  -H 'Content-Type: application/json' \
+  -d '{"json": "<compiled-or-draft-json>", "width": 1536, "height": 1024}'
+```
+
+Body fields:
+
+| field | default | meaning |
+|---|---|---|
+| `json` | required | JSON string or object (code fences tolerated) |
+| `width` / `height` | — | target canvas for compiled JSON without its own dims; both required together, multiples of 16 |
+| `broadcast` | `true` | send `moss-layout.json-sync` after a successful import |
+| `global` | `true` | event applies to every open Studio, regardless of its `jsonSync` toggle |
+| `force` | `true` | override the toggle even when `global` is false |
+| `bbox_mode` | `reject` | `reject` errors on out-of-canvas boxes; `clamp` clamps them and reports warnings |
+
+The response contains the canonical `draft` / `draft_json`, `compiled`,
+`warnings`, `errors`, `item_count` (input and output), `compiled`/`compilable`,
+`broadcast`, and `importer` / `importer_version` for script compatibility.
+On schema errors the HTTP status is 400, `draft` is `null`, and no event is
+broadcast. External `width`/`height` take priority over the target canvas.
+Unknown `bbox_coord_space` / `bbox_format` values are rejected, never silently
+treated as `abs`/`xyxy`; invalid labels, text items without `text`, and
+out-of-canvas boxes name the exact item index. Every valid item, including its
+`caption`, `text`, `tags`, `palette` and `bbox`, survives the round trip.
+
+The legacy per-studio behaviour is unchanged: a `moss-layout.json-sync` event
+without `global`/`force` still only applies where `jsonSync` is on.
 
 ## Development
 

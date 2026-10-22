@@ -77,14 +77,23 @@ export interface Draft {
   items: DraftItem[]
 }
 
+export type BboxMode = 'reject' | 'clamp'
+
+export interface ResolveOptions {
+  strict?: boolean
+  bboxMode?: BboxMode
+}
+
+export interface ResolveResult {
+  state: Partial<MossState>
+  warnings: string[]
+  errors: string[]
+}
+
 // ---- guards for untrusted JSON (workflow values, pasted text, sync payloads) ----
 
 function isNumArray(v: unknown): v is number[] {
   return Array.isArray(v) && v.length === 4 && v.every((x) => typeof x === 'number' && Number.isFinite(x))
-}
-
-function isStrArray(v: unknown): v is string[] {
-  return Array.isArray(v) && v.every((s) => typeof s === 'string' && s.trim() !== '')
 }
 
 // Colors auto-assigned to new boxes.
@@ -224,63 +233,322 @@ export function parseJsonLoose(text: string): { ok: true; obj: Record<string, un
   }
 }
 
-// Any of: draft JSON, compiled prompt JSON, {'caption': ...} -> editor state.
-// Compiled boxes are de-centered onto the given canvas. Mirrors resolve_payload.
-export function resolveToState(obj: unknown, width: number, height: number): { state: Partial<MossState>; warnings: string[] } {
-  const warnings: string[] = []
-  if (!isRecord(obj)) return { state: {}, warnings: ['payload is not a JSON object'] }
-  let src: Record<string, unknown> = obj
-  if (src.bbox_format === 'yxyx' || src.bbox_coord_space === 'abs_centralized') {
-    const rawItems = Array.isArray(src.items) ? src.items : []
-    src = {
-      width, height,
-      summary: src.summary ?? {},
-      items: rawItems.map((it) => {
-        if (!isRecord(it)) return it
-        const bb = it.bbox
-        const half_w = width >> 1, half_h = height >> 1
-        if (isNumArray(bb)) {
-          const [y1, x1, y2, x2] = bb
-          return { ...it, bbox: [x1 + half_w, y1 + half_h, x2 + half_w, y2 + half_h] }
-        }
-        return { ...it, bbox: [0, 0, Math.min(256, width), Math.min(256, height)] }
-      }),
+// Any of: draft JSON (abs/xyxy), compiled prompt JSON (abs_centralized/yxyx),
+// or {'caption': ...} -> editor state. Mirrors backend import_payload.
+//
+// Legacy workflow loads call this non-strict: coercions become warnings.
+// Manual paste / JSON Sync call it strict: invalid labels, missing text,
+// unsupported formats and out-of-canvas boxes are errors, and the caller must
+// not apply the result.
+function _issue(strict: boolean, message: string, warnings: string[], errors: string[]) {
+  if (strict) errors.push(message)
+  else warnings.push(message)
+}
+
+function _readDim(value: unknown, where: string, strict: boolean, warnings: string[], errors: string[]): number | null {
+  if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
+    _issue(strict, `${where} must be a positive integer multiple of 16; got ${String(value)}`, warnings, errors)
+    return null
+  }
+  if (strict) {
+    if (!Number.isInteger(value) || value % 16 !== 0) {
+      _issue(strict, `${where} must be a positive integer multiple of 16; got ${value}`, warnings, errors)
+      return null
     }
-    warnings.push(`imported a compiled prompt; boxes mapped onto the current canvas ${width}x${height} — set the canvas to the generation size for exact coordinates`)
-  } else if (typeof src.caption === 'string' && !('items' in src)) {
-    src = { width, height, summary: { caption: src.caption }, items: [] }
-    warnings.push('caption-only payload imported; add boxes to build a Layout')
+    return value
+  }
+  const snapped = snapDim(value)
+  if (!Number.isInteger(value) || value % 16 !== 0) {
+    warnings.push(`${where} ${value} is not a multiple of 16; snapped to ${snapped}`)
+  }
+  return snapped
+}
+
+function _stringList(value: unknown, where: string, strict: boolean, warnings: string[], errors: string[]): string[] {
+  if (value === undefined || value === null) return []
+  if (!Array.isArray(value)) {
+    _issue(strict, `${where}: expected an array of strings`, warnings, errors)
+    return []
+  }
+  const out: string[] = []
+  value.forEach((entry, j) => {
+    if (typeof entry === 'string') out.push(entry)
+    else warnings.push(`${where}[${j}]: non-string entry dropped`)
+  })
+  return out
+}
+
+function _fallbackBox(w: number, h: number): [number, number, number, number] {
+  return [0, 0, Math.min(64, Math.max(16, w)), Math.min(64, Math.max(16, h))]
+}
+
+function _fmtBox(box: unknown): string {
+  return Array.isArray(box) ? `[${box.map((v) => (typeof v === 'number' ? Number(v.toFixed(3)) : v)).join(', ')}]` : String(box)
+}
+
+export function resolveToState(
+  obj: unknown,
+  width: number,
+  height: number,
+  opts: ResolveOptions = {},
+): ResolveResult {
+  const strict = opts.strict ?? false
+  const bboxMode: BboxMode = opts.bboxMode ?? (strict ? 'reject' : 'clamp')
+  const warnings: string[] = []
+  const errors: string[] = []
+  if (!isRecord(obj)) {
+    _issue(strict, 'payload is not a JSON object', warnings, errors)
+    return { state: {}, warnings, errors }
   }
 
-  const w = snapDim(typeof src.width === 'number' ? src.width : 1024)
-  const h = snapDim(typeof src.height === 'number' ? src.height : 1024)
-  const rawSummary = isRecord(src.summary) ? src.summary : {}
-  const summary: SummaryState = {
-    caption: typeof rawSummary.caption === 'string' ? rawSummary.caption : '',
-    meta: isStrArray(rawSummary.meta) ? rawSummary.meta : [],
-    canvas: (CANVAS_MODES as readonly string[]).includes(rawSummary.canvas as string) ? (rawSummary.canvas as CanvasMode) : 'single',
-    palette: isStrArray(rawSummary.palette) ? rawSummary.palette : [],
-  }
-  const elements: MossElement[] = (Array.isArray(src.items) ? src.items : []).map((raw, i) => {
-    const it = isRecord(raw) ? raw : {}
-    const label: Label = (LABELS as string[]).includes(it.label as string) ? (it.label as Label) : 'object'
-    let bbox: [number, number, number, number]
-    if (isNumArray(it.bbox)) {
-      bbox = clampBbox(it.bbox, w, h)
+  // ---- format detection: never silently reinterpret an unknown format ----
+  const hasCoord = 'bbox_coord_space' in obj
+  const hasFmt = 'bbox_format' in obj
+  let compiled = false
+  let editor = false
+  if (hasCoord) {
+    const coord = obj.bbox_coord_space
+    if (typeof coord !== 'string') {
+      _issue(strict, 'bbox_coord_space must be a string', warnings, errors)
+    } else if (coord !== 'abs' && coord !== 'abs_centralized') {
+      _issue(strict, `unsupported bbox_coord_space '${coord}'; expected 'abs' or 'abs_centralized'`, warnings, errors)
+    } else if (coord === 'abs_centralized') {
+      compiled = true
     } else {
-      bbox = [0, 0, Math.min(256, w), Math.min(256, h)]
-      warnings.push(`items[${i}].bbox invalid; reset`)
+      editor = true
     }
+  }
+  if (hasFmt) {
+    const fmt = obj.bbox_format
+    if (typeof fmt !== 'string') {
+      _issue(strict, 'bbox_format must be a string', warnings, errors)
+    } else if (fmt !== 'xyxy' && fmt !== 'yxyx') {
+      _issue(strict, `unsupported bbox_format '${fmt}'; expected 'xyxy' or 'yxyx'`, warnings, errors)
+    } else if (fmt === 'yxyx') {
+      compiled = true
+    } else {
+      editor = true
+    }
+  }
+  if (compiled && editor) {
+    _issue(
+      strict,
+      'conflicting bbox_coord_space/bbox_format: compiled coordinates (abs_centralized/yxyx) '
+        + 'cannot be combined with editor coordinates (abs/xyxy)',
+      warnings,
+      errors,
+    )
+  }
+
+  type Kind = 'editor_draft' | 'compiled_prompt' | 'caption_only'
+  let kind: Kind = compiled ? 'compiled_prompt' : 'editor_draft'
+  if (!compiled && !editor && !hasCoord && !hasFmt) {
+    const summary = isRecord(obj.summary) ? obj.summary : {}
+    if (!('items' in obj) && (typeof obj.caption === 'string' || typeof summary.caption === 'string')) {
+      kind = 'caption_only'
+    } else {
+      warnings.push(
+        'bbox_coord_space/bbox_format missing; assuming an editor draft (abs/xyxy). '
+          + 'Compiled payloads must declare abs_centralized/yxyx.',
+      )
+    }
+  }
+
+  // ---- canvas: payload dims win; target is only a fallback ----
+  const hasW = 'width' in obj
+  const hasH = 'height' in obj
+  if (hasW !== hasH) _issue(strict, 'width and height must both be provided', warnings, errors)
+  const pw = hasW ? _readDim(obj.width, 'width', strict, warnings, errors) : null
+  const ph = hasH ? _readDim(obj.height, 'height', strict, warnings, errors) : null
+  const tw = _readDim(width, 'target width', strict, warnings, errors)
+  const th = _readDim(height, 'target height', strict, warnings, errors)
+
+  let w: number
+  let h: number
+  if (pw && ph) {
+    w = pw
+    h = ph
+    if (tw && th && (tw !== pw || th !== ph)) {
+      warnings.push(
+        `target canvas ${tw}x${th} ignored: payload declares ${pw}x${ph} `
+          + '(external width/height take priority)',
+      )
+    }
+    if (kind === 'compiled_prompt') {
+      warnings.push(`compiled prompt de-centered onto its declared canvas ${pw}x${ph}`)
+    }
+  } else if (kind === 'compiled_prompt') {
+    if (!hasW && !hasH) {
+      _issue(
+        strict,
+        'compiled prompt has no width/height; pass target width/height '
+          + '(the canvas cannot be inferred from center-origin boxes)',
+        warnings,
+        errors,
+      )
+    }
+    w = tw ?? snapDim(width)
+    h = th ?? snapDim(height)
+    if (tw && th) warnings.push(`compiled prompt has no width/height; de-centered onto target canvas ${tw}x${th}`)
+  } else if (tw && th) {
+    w = tw
+    h = th
+    if (!(hasW && hasH)) warnings.push(`width/height missing; using target canvas ${tw}x${th}`)
+  } else {
+    w = snapDim(width)
+    h = snapDim(height)
+    warnings.push('width/height missing; defaulted to 1024x1024')
+  }
+
+  // ---- summary ----
+  let rawSummary: Record<string, unknown> = {}
+  if (obj.summary !== undefined) {
+    if (isRecord(obj.summary)) rawSummary = obj.summary
+    else _issue(strict, 'summary must be an object', warnings, errors)
+  }
+  let caption = ''
+  if (kind === 'caption_only' && 'caption' in obj) {
+    if (typeof obj.caption === 'string') {
+      caption = obj.caption
+      if (typeof rawSummary.caption === 'string' && rawSummary.caption && rawSummary.caption !== caption) {
+        warnings.push('caption-only payload: root caption overrides summary.caption')
+      }
+    } else {
+      _issue(strict, 'caption must be a string', warnings, errors)
+    }
+  } else if ('caption' in rawSummary) {
+    if (typeof rawSummary.caption === 'string') caption = rawSummary.caption
+    else _issue(strict, 'summary.caption must be a string', warnings, errors)
+  }
+  if (!caption.trim()) warnings.push('summary.caption is empty; the compiled prompt requires caption text')
+
+  const meta = _stringList(rawSummary.meta, 'summary.meta', strict, warnings, errors)
+  const palette = _stringList(rawSummary.palette, 'summary.palette', strict, warnings, errors)
+  const canvasRaw = rawSummary.canvas ?? 'single'
+  const canvas: CanvasMode = (CANVAS_MODES as readonly string[]).includes(canvasRaw as string)
+    ? (canvasRaw as CanvasMode)
+    : (() => {
+        _issue(strict, `summary.canvas '${String(canvasRaw)}' invalid; expected single, multi_panel or collage`, warnings, errors)
+        return 'single' as CanvasMode
+      })()
+  for (const key of Object.keys(rawSummary)) {
+    if (!['meta', 'canvas', 'caption', 'palette'].includes(key)) {
+      warnings.push(`summary.${key}: not an official summary field; dropped`)
+    }
+  }
+  const summary: SummaryState = { caption, meta, canvas, palette }
+
+  // ---- items ----
+  let rawItems: unknown[] = []
+  if (obj.items === undefined) {
+    if (kind !== 'caption_only') warnings.push('items is missing; imported an empty layout')
+  } else if (!Array.isArray(obj.items)) {
+    _issue(strict, 'items must be an array', warnings, errors)
+  } else {
+    rawItems = obj.items
+  }
+
+  const halfW = w >> 1
+  const halfH = h >> 1
+  const elements: MossElement[] = []
+  rawItems.forEach((raw, i) => {
+    const where = `items[${i}]`
+    if (!isRecord(raw)) {
+      _issue(strict, `${where} is not an object; the item was not imported`, warnings, errors)
+      elements.push(newElement('object', _fallbackBox(w, h)))
+      return
+    }
+    for (const key of Object.keys(raw)) {
+      if (!['label', 'caption', 'bbox', 'text', 'tags', 'palette'].includes(key)) {
+        warnings.push(`${where}.${key}: not an official item field; dropped`)
+      }
+    }
+
+    let label: Label = 'object'
+    if (raw.label !== 'object' && raw.label !== 'character' && raw.label !== 'text') {
+      _issue(strict, `${where}.label '${String(raw.label)}' invalid; expected object, character or text`, warnings, errors)
+    } else {
+      label = raw.label
+    }
+
+    let itemCaption = ''
+    if (typeof raw.caption === 'string') {
+      itemCaption = raw.caption
+      if (!itemCaption.trim()) warnings.push(`${where}.caption is empty; the compiled prompt requires caption text`)
+    } else if (raw.caption !== undefined) {
+      _issue(strict, `${where}.caption must be a string`, warnings, errors)
+    }
+
+    let bbox: [number, number, number, number]
+    if (!isNumArray(raw.bbox)) {
+      _issue(strict, `${where}.bbox must be four finite numbers`, warnings, errors)
+      bbox = _fallbackBox(w, h)
+    } else {
+      const box: [number, number, number, number] = kind === 'compiled_prompt'
+        ? [
+            raw.bbox[1] + halfW, raw.bbox[0] + halfH,
+            raw.bbox[3] + halfW, raw.bbox[2] + halfH,
+          ]
+        : [...raw.bbox] as [number, number, number, number]
+      if (!(box[0] < box[2] && box[1] < box[3])) {
+        _issue(strict, `${where}.bbox must have positive width and height; got ${_fmtBox(box)}`, warnings, errors)
+        bbox = _fallbackBox(w, h)
+      } else if (!(0 <= box[0] && box[2] <= w && 0 <= box[1] && box[3] <= h)) {
+        if (bboxMode === 'clamp') {
+          const clamped = clampBbox(box, w, h)
+          if (!(clamped[0] < clamped[2] && clamped[1] < clamped[3])) {
+            _issue(
+              strict,
+              `${where}.bbox ${_fmtBox(box)} collapses to zero area when clamped to ${w}x${h}`,
+              warnings,
+              errors,
+            )
+            bbox = _fallbackBox(w, h)
+          } else {
+            warnings.push(`${where}.bbox ${_fmtBox(box)} exceeded canvas ${w}x${h}; clamped to ${_fmtBox(clamped)}`)
+            bbox = clamped
+          }
+        } else {
+          _issue(
+            strict,
+            `${where}.bbox ${_fmtBox(box)} exceeds canvas ${w}x${h} `
+              + "(bbox_mode='reject'; use 'clamp' to accept a clamped box)",
+            warnings,
+            errors,
+          )
+          bbox = clampBbox(box, w, h)
+          if (!(bbox[0] < bbox[2] && bbox[1] < bbox[3])) bbox = _fallbackBox(w, h)
+        }
+      } else {
+        bbox = box
+      }
+    }
+
     const el = newElement(label, bbox)
-    el.caption = typeof it.caption === 'string' ? it.caption : ''
-    el.text = typeof it.text === 'string' ? it.text : ''
-    el.tags = isStrArray(it.tags) ? it.tags : []
-    el.palette = isStrArray(it.palette) ? it.palette : []
-    return el
+    el.caption = itemCaption
+    if (raw.text !== undefined) {
+      if (typeof raw.text === 'string') {
+        if (label === 'text' && !raw.text.trim()) {
+          _issue(strict, `${where}: text items require a non-empty literal 'text'`, warnings, errors)
+        } else if (label !== 'text' && !raw.text.trim()) {
+          warnings.push(`${where}.text is empty; omitted from the canonical draft`)
+        }
+        el.text = raw.text
+      } else if (label === 'text') {
+        _issue(strict, `${where}: text items require a non-empty literal 'text'`, warnings, errors)
+      } else {
+        warnings.push(`${where}.text is not a string; omitted from the canonical draft`)
+      }
+    } else if (label === 'text') {
+      _issue(strict, `${where}: text items require a non-empty literal 'text'`, warnings, errors)
+    }
+    el.tags = _stringList(raw.tags, `${where}.tags`, strict, warnings, errors)
+    el.palette = _stringList(raw.palette, `${where}.palette`, strict, warnings, errors)
+    elements.push(el)
   })
+
   if (!elements.length) warnings.push('items is empty; the compiled prompt requires at least one item')
-  if (!summary.caption.trim()) warnings.push('summary.caption is empty')
-  return { state: { width: w, height: h, summary, elements }, warnings }
+  return { state: { width: w, height: h, summary, elements }, warnings, errors }
 }
 
 // Parse an aspect-ratio string ("16:9", "16x9") into width/height preserving the

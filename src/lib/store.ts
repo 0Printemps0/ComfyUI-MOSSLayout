@@ -1,5 +1,5 @@
 import { reactive, inject, provide, type InjectionKey } from 'vue'
-import { emptyState, emptyUi, newElement, newId, syncSeq, serialize, resolveToState, parseJsonLoose, type MossElement, type MossState, type Label } from './moss'
+import { emptyState, emptyUi, newElement, newId, syncSeq, serialize, resolveToState, parseJsonLoose, type MossElement, type MossState, type Label, type BboxMode } from './moss'
 
 // Fields linked elements share; bbox excluded so each copy keeps its position.
 export const SHARED_KEYS = ['label', 'caption', 'text', 'tags', 'palette', 'boxColor'] as const
@@ -34,6 +34,19 @@ function _expandGroups(elements: MossElement[], ids: string[]): string[] {
 function _flipBbox(el: MossElement, axis: 'h' | 'v', w: number, h: number) {
   const [x1, y1, x2, y2] = el.bbox
   el.bbox = axis === 'h' ? [w - x2, y1, w - x1, y2] : [x1, h - y2, x2, h - y1]
+}
+
+export interface ImportOptions {
+  keepDims?: boolean
+  strict?: boolean
+  bboxMode?: BboxMode
+}
+
+export interface ImportResult {
+  ok: boolean
+  error?: string
+  warnings?: string[]
+  errors?: string[]
 }
 
 // Clipboard entry; transient, not serialized.
@@ -79,7 +92,16 @@ export interface StudioStore {
   moveElementTo(id: string, index: number): void
   getElement(id: string | null): MossElement | undefined
   load(s: Partial<MossState>): void
-  json: { editing: boolean; draft: string; syncError: string; wasOpen: boolean }
+  json: {
+    editing: boolean
+    draft: string
+    syncError: string
+    syncWarnings: string[]
+    syncNote: string
+    applyErrors: string[]
+    applyWarnings: string[]
+    wasOpen: boolean
+  }
   refImage: string
   clipboard: ClipItem[]
   ctxMenu: { x: number; y: number; id: string } | null
@@ -89,7 +111,7 @@ export interface StudioStore {
   jsonCancel(): void
   jsonTidy(): void
   jsonApply(): void
-  importDraftJson(text: string, keepDims?: boolean): { ok: boolean; error?: string; warnings?: string[] }
+  importDraftJson(text: string, opts?: ImportOptions): ImportResult
   restoring: boolean
 }
 
@@ -363,7 +385,16 @@ export function createStudioStore(): StudioStore {
       _syncSeq(store.state.elements)
     },
 
-    json: { editing: false, draft: '', syncError: '', wasOpen: false },
+    json: {
+      editing: false,
+      draft: '',
+      syncError: '',
+      syncWarnings: [],
+      syncNote: '',
+      applyErrors: [],
+      applyWarnings: [],
+      wasOpen: false,
+    },
 
     refImage: '',
     clipboard: [] as ClipItem[],
@@ -376,6 +407,8 @@ export function createStudioStore(): StudioStore {
     },
     jsonStartEdit() {
       store.json.draft = serialize(store.state).draftPretty
+      store.json.applyErrors = []
+      store.json.applyWarnings = []
       store.json.wasOpen = store.state.ui.jsonOpen
       store.json.editing = true
       store.state.ui.jsonOpen = true
@@ -390,20 +423,30 @@ export function createStudioStore(): StudioStore {
       if (res.ok) store.json.draft = JSON.stringify(res.obj, null, 2)
     },
     jsonApply() {
-      if (store.importDraftJson(store.json.draft).ok) {
+      const res = store.importDraftJson(store.json.draft)
+      store.json.applyErrors = res.errors ?? (res.error ? [res.error] : [])
+      store.json.applyWarnings = res.warnings ?? []
+      if (res.ok) {
         store.json.editing = false
         store.state.ui.jsonOpen = store.json.wasOpen
       }
     },
-    importDraftJson(text: string, keepDims = false) {
-      // Tolerant of code fences and prose; accepts draft or compiled-prompt JSON.
+    importDraftJson(text: string, opts: ImportOptions = {}): ImportResult {
+      // Tolerant of code fences and prose; strict on schema by default.
+      const keepDims = opts.keepDims ?? false
+      const strict = opts.strict ?? true
+      const bboxMode: BboxMode = opts.bboxMode ?? (strict ? 'reject' : 'clamp')
       const res = parseJsonLoose(text)
-      if (!res.ok) return { ok: false, error: res.error }
-      const { state, warnings } = resolveToState(
+      if (!res.ok) return { ok: false, error: res.error, errors: [res.error], warnings: [] }
+      const { state, warnings, errors } = resolveToState(
         res.obj,
         keepDims ? store.state.width : 1024,
         keepDims ? store.state.height : 1024,
+        { strict, bboxMode },
       )
+      if (errors.length) {
+        return { ok: false, error: errors.join('; '), errors, warnings }
+      }
       const curUi = store.state.ui
       const curOverlay = store.state.overlay
       store.load({ ...state, ui: curUi, overlay: curOverlay })
@@ -411,7 +454,7 @@ export function createStudioStore(): StudioStore {
       if (!keepDims && state.height) store.state.height = state.height
       store.select(null)
       store.snapshot()
-      return { ok: true, warnings }
+      return { ok: true, warnings, errors: [] }
     },
   }) as StudioStore
   return store

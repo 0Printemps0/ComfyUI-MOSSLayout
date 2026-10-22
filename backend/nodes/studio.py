@@ -8,7 +8,13 @@ import json
 from comfy_api.latest import io
 
 from ..io_types import MossLayoutStudioType, MossLayoutExtrasType
-from ..utils.moss import compile_prompt, normalize_draft, parse_json_loose, resolve_payload
+from ..utils.moss import (
+    LayoutImportError,
+    compile_prompt,
+    normalize_draft,
+    parse_json_loose,
+    resolve_payload,
+)
 from ..utils.overlay import render_overlay, items_from_draft, bboxes_from_items, hex_to_rgb
 
 
@@ -64,9 +70,14 @@ class MossLayoutStudio(io.ComfyNode):
         warnings: list[str] = []
 
         if isinstance(draft, str) and draft.strip():
-            data = resolve_payload(parse_json_loose(draft),
-                                   _int(editor_draft.get("width"), 1024, 16, 8192),
-                                   _int(editor_draft.get("height"), 1024, 16, 8192), warnings)
+            try:
+                data = resolve_payload(parse_json_loose(draft),
+                                       _int(editor_draft.get("width"), 1024, 16, 8192),
+                                       _int(editor_draft.get("height"), 1024, 16, 8192), warnings)
+            except LayoutImportError as e:
+                raise ValueError(
+                    "MOSS Layout Studio: external draft rejected — " + " | ".join(e.errors)
+                ) from e
         else:
             data = normalize_draft(editor_draft, warnings)
 
