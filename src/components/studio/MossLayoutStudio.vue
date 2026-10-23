@@ -193,7 +193,9 @@ watch(
     }
     store.json.syncError = ''
     const count = store.state.elements.length
-    store.json.syncNote = `${label} applied · ${count} item${count === 1 ? '' : 's'} · ${store.state.width}×${store.state.height}`
+    const warnCount = store.json.syncWarnings.length
+    const warnNote = warnCount ? ` · ${warnCount} warning${warnCount === 1 ? '' : 's'}` : ''
+    store.json.syncNote = `${label} applied · ${count} item${count === 1 ? '' : 's'} · ${store.state.width}×${store.state.height}${warnNote}`
   },
 )
 

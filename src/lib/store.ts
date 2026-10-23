@@ -466,7 +466,9 @@ export function createStudioStore(): StudioStore {
         store.json.syncError = ''
         store.json.syncWarnings = res.warnings ?? []
         const n = store.state.elements.length
-        store.json.syncNote = `Clamped import applied · ${n} item${n === 1 ? '' : 's'}`
+        const warnCount = store.json.syncWarnings.length
+        const warnNote = warnCount ? ` · ${warnCount} warning${warnCount === 1 ? '' : 's'}` : ''
+        store.json.syncNote = `Clamped import applied · ${n} item${n === 1 ? '' : 's'}${warnNote}`
       }
     },
     importDraftJson(text: string, opts: ImportOptions = {}): ImportResult {
