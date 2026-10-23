@@ -2,10 +2,16 @@
 // our DOM widget never scroll it. Fix: patch canvas._mousewheel_callback to skip
 // in-widget targets, plus a capture-phase document listener that scrolls the nearest
 // scrollable ancestor and stops the event.
+//
+// Nodes 2.0 has a second path: its `forwardEventToCanvas` handler preventDefaults and
+// re-dispatches wheel events to the canvas. Stopping propagation in document capture
+// (before that handler) preserves native textarea scrolling and lets us scroll JSON
+// <pre> blocks manually. The old `[data-ideogram]` marker never matched this widget;
+// `[data-moss]` is the container set by mountWidget.
 
 import { app } from '@comfy/app'
 
-const SEL = '[data-ideogram]'
+const SEL = '[data-moss], [data-ideogram]'
 
 function inWidget(e: Event): boolean {
   const t = e.target as Element | null

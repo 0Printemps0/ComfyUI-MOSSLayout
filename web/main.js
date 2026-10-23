@@ -7901,6 +7901,7 @@ const liveApps = /* @__PURE__ */ new WeakMap();
 function mountWidget(node, opts) {
   const container = document.createElement("div");
   container.dataset["moss"] = opts.widgetType;
+  container.dataset["captureWheel"] = "true";
   Object.assign(container.style, {
     width: "100%",
     height: "100%",
@@ -11889,7 +11890,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 const MossLayoutStudio = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-0b14d4b3"]]);
-const SEL = "[data-ideogram]";
+const SEL = "[data-moss], [data-ideogram]";
 function inWidget(e) {
   const t = e.target;
   return !!(t && typeof t.closest === "function" && t.closest(SEL));

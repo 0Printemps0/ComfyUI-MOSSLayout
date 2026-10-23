@@ -43,6 +43,8 @@ const liveApps = new WeakMap<DOMWidget, VueApp>()
 export function mountWidget(node: NodeLike, opts: MountOptions): { widget: DOMWidget } {
   const container = document.createElement('div')
   container.dataset['moss'] = opts.widgetType
+  // Nodes 2.0 checks this marker before forwarding wheel events to the canvas.
+  container.dataset['captureWheel'] = 'true'
   Object.assign(container.style, {
     width: '100%',
     height: '100%',
