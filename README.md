@@ -64,6 +64,11 @@ Outputs:
 wheel forwarding from its scrollable children. Mouse wheel scrolls the JSON editor
 and preview normally; canvas zoom still works outside those scrollable areas.
 
+**Prompt-only PNGs:** when an imported image has only `prompt` metadata and the
+Studio's `draft` STRING input contains the full layout, the editor rebuilds its
+boxes/summary from that draft. The one-shot `draft` input is cleared afterwards so
+later UI edits are not overridden by the stale import.
+
 ### MOSS Layout Studio Extras
 `extras` → `overlay` (IMAGE), `alpha` (MASK), `width`, `height`, `bboxes`
 (BOUNDING_BOX). Composite the overlay over your generation to check whether the

@@ -303,13 +303,36 @@ function deriveDraft(state: Partial<MossState> | undefined): string {
   }
 }
 
+type DraftWidget = { name?: string; value?: unknown; link?: unknown }
+function draftInputWidget(): DraftWidget | undefined {
+  const node = props.node as { widgets?: DraftWidget[] } | undefined
+  return node?.widgets?.find((w) => w.name === 'draft')
+}
+
+function readDraftInput(): string {
+  const value = draftInputWidget()?.value
+  return typeof value === 'string' && value.trim() ? value : ''
+}
+
+function clearDraftInput(): boolean {
+  const widget = draftInputWidget()
+  const node = props.node as { inputs?: Array<{ name?: string; link?: unknown }> } | undefined
+  const linked = !!node?.inputs?.find((i) => i.name === 'draft')?.link
+  if (!widget || widget.link || linked) return false
+  widget.value = ''
+  return true
+}
+
 onMounted(() => {
   const v = props.widget?.value
+  const inputDraft = readDraftInput()
+  let loadedFromExternal = false
   if (isRecord(v) && isRecord(v.studio)) {
     const fromStudio = deriveDraft(v.studio as unknown as MossState)
-    const savedDraft = typeof v.draft === 'string' ? v.draft : JSON.stringify(v.draft ?? {})
+    const savedDraft = inputDraft || (typeof v.draft === 'string' ? v.draft : JSON.stringify(v.draft ?? {}))
     if (fromStudio === savedDraft) {
       store.load(v.studio as Partial<MossState>)
+      loadedFromExternal = !!inputDraft
     } else {
       const parsed = parseJsonLoose(savedDraft)
       if (parsed.ok) {
@@ -317,9 +340,18 @@ onMounted(() => {
         const ui = (v.studio as Partial<MossState>).ui
         const overlay = (v.studio as Partial<MossState>).overlay
         store.load({ ...state, ui, overlay })
+        loadedFromExternal = !!inputDraft
       } else {
         store.load(v.studio as Partial<MossState>)
       }
+    }
+    if (loadedFromExternal) {
+      const cleared = clearDraftInput()
+      store.json.syncError = ''
+      store.json.syncWarnings = []
+      store.json.syncNote = cleared
+        ? 'Loaded external draft into editor · draft input cleared'
+        : 'Draft input is connected · it overrides editor changes'
     }
   } else if (isRecord(v) && (v.draft || v.caption)) {
     const parsed = parseJsonLoose(typeof v.draft === 'string' ? v.draft : JSON.stringify(v.draft))
