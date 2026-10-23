@@ -13,6 +13,8 @@ export interface JsonSyncEvent {
   source: string
   importer: string
   itemCount: number
+  bboxMode: string
+  bboxTolerance: number
   warnings: string[]
 }
 
@@ -26,6 +28,8 @@ export const jsonSyncCaption = ref<JsonSyncEvent>({
   source: '',
   importer: '',
   itemCount: 0,
+  bboxMode: 'auto',
+  bboxTolerance: 2,
   warnings: [],
 })
 
@@ -74,6 +78,8 @@ export function initRefSync() {
         source: str(d.source),
         importer: str(d.importer),
         itemCount: typeof d.item_count === 'number' ? d.item_count : 0,
+        bboxMode: typeof d.bbox_mode === 'string' ? d.bbox_mode : 'auto',
+        bboxTolerance: typeof d.bbox_tolerance === 'number' ? d.bbox_tolerance : 2,
         warnings,
       }
     })

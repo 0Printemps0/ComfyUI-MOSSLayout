@@ -73,9 +73,11 @@ backdrop. Passes the image through.
 Validate, canonicalize and push a whole draft (or compiled) JSON to open
 studios. `global` applies to every open Studio (ignoring the per-studio
 *json sync* toggle); `force` overrides the toggle too. For compiled JSON
-without `width`/`height`, set the node's `width`/`height` canvas. Invalid
-labels, missing `text`, unsupported `bbox_format` and out-of-canvas boxes make
-the node raise with the item index instead of silently rewriting the payload.
+without `width`/`height`, set the node's `width`/`height` canvas. `bbox_mode`
+defaults to `auto` (clamps edge overflow up to `bbox_tolerance`, default 2 px);
+`reject` fails on any overflow, `clamp` clamps any overflow. Invalid labels,
+missing `text` and unsupported `bbox_format` still raise with the item index
+instead of silently rewriting the payload.
 
 ## Round-trip guarantee
 
@@ -153,7 +155,8 @@ Body fields:
 | `broadcast` | `true` | send `moss-layout.json-sync` after a successful import |
 | `global` | `true` | event applies to every open Studio, regardless of its `jsonSync` toggle |
 | `force` | `true` | override the toggle even when `global` is false |
-| `bbox_mode` | `reject` | `reject` errors on out-of-canvas boxes; `clamp` clamps them and reports warnings |
+| `bbox_mode` | `auto` | `auto` clamps edge overflow up to `bbox_tolerance`; `reject` errors on any overflow; `clamp` clamps any overflow and reports warnings |
+| `bbox_tolerance` | `2.0` | Maximum pixel overflow accepted by `auto` before it errors |
 
 The response contains the canonical `draft` / `draft_json`, `compiled`,
 `warnings`, `errors`, `item_count` (input and output), `compiled`/`compilable`,

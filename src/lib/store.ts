@@ -1,5 +1,5 @@
 import { reactive, inject, provide, type InjectionKey } from 'vue'
-import { emptyState, emptyUi, newElement, newId, syncSeq, serialize, resolveToState, parseJsonLoose, type MossElement, type MossState, type Label, type BboxMode } from './moss'
+import { emptyState, emptyUi, newElement, newId, syncSeq, serialize, resolveToState, parseJsonLoose, clampBbox, type MossElement, type MossState, type Label, type BboxMode } from './moss'
 
 // Fields linked elements share; bbox excluded so each copy keeps its position.
 export const SHARED_KEYS = ['label', 'caption', 'text', 'tags', 'palette', 'boxColor'] as const
@@ -40,6 +40,7 @@ export interface ImportOptions {
   keepDims?: boolean
   strict?: boolean
   bboxMode?: BboxMode
+  bboxTolerance?: number
 }
 
 export interface ImportResult {
@@ -111,6 +112,8 @@ export interface StudioStore {
   jsonCancel(): void
   jsonTidy(): void
   jsonApply(): void
+  jsonApplyClamp(): void
+  refitToCanvas(): number
   importDraftJson(text: string, opts?: ImportOptions): ImportResult
   restoring: boolean
 }
@@ -378,6 +381,28 @@ export function createStudioStore(): StudioStore {
     getElement(id: string | null) {
       return store.state.elements.find((e) => e.id === id)
     },
+    refitToCanvas() {
+      const w = store.state.width
+      const h = store.state.height
+      let changed = 0
+      for (const el of store.state.elements) {
+        let box = clampBbox(el.bbox, w, h)
+        if (!(box[0] < box[2] && box[1] < box[3])) {
+          // Fully outside; keep a small box at the nearest edge instead of collapsing.
+          const cx = Math.max(0, Math.min(w, Math.round((el.bbox[0] + el.bbox[2]) / 2)))
+          const cy = Math.max(0, Math.min(h, Math.round((el.bbox[1] + el.bbox[3]) / 2)))
+          const x1 = Math.max(0, Math.min(w - 16, cx - 8))
+          const y1 = Math.max(0, Math.min(h - 16, cy - 8))
+          box = [x1, y1, Math.min(w, x1 + 16), Math.min(h, y1 + 16)]
+        }
+        if (box.some((v, i) => v !== el.bbox[i])) {
+          el.bbox = box
+          changed += 1
+        }
+      }
+      if (changed) store.snapshot()
+      return changed
+    },
     load(s: Partial<MossState>) {
       Object.assign(store.state, emptyState(), s)
       // deep-merge ui/overlay so older saves (missing newer keys) get defaults
@@ -431,18 +456,32 @@ export function createStudioStore(): StudioStore {
         store.state.ui.jsonOpen = store.json.wasOpen
       }
     },
+    jsonApplyClamp() {
+      const res = store.importDraftJson(store.json.draft, { bboxMode: 'clamp' })
+      store.json.applyErrors = res.errors ?? (res.error ? [res.error] : [])
+      store.json.applyWarnings = res.warnings ?? []
+      if (res.ok) {
+        store.json.editing = false
+        store.state.ui.jsonOpen = store.json.wasOpen
+        store.json.syncError = ''
+        store.json.syncWarnings = res.warnings ?? []
+        const n = store.state.elements.length
+        store.json.syncNote = `Clamped import applied · ${n} item${n === 1 ? '' : 's'}`
+      }
+    },
     importDraftJson(text: string, opts: ImportOptions = {}): ImportResult {
       // Tolerant of code fences and prose; strict on schema by default.
       const keepDims = opts.keepDims ?? false
       const strict = opts.strict ?? true
       const bboxMode: BboxMode = opts.bboxMode ?? (strict ? 'reject' : 'clamp')
+      const bboxTolerance = opts.bboxTolerance ?? 2
       const res = parseJsonLoose(text)
       if (!res.ok) return { ok: false, error: res.error, errors: [res.error], warnings: [] }
       const { state, warnings, errors } = resolveToState(
         res.obj,
         keepDims ? store.state.width : 1024,
         keepDims ? store.state.height : 1024,
-        { strict, bboxMode },
+        { strict, bboxMode, bboxTolerance },
       )
       if (errors.length) {
         return { ok: false, error: errors.join('; '), errors, warnings }

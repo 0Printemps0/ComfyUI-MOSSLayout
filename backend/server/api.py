@@ -56,6 +56,8 @@ def _json_sync_payload(result: dict, *, global_flag: bool, force: bool, source: 
         "warnings": list(result["warnings"]),
         "item_count": result["item_count"],
         "canvas": result["canvas"],
+        "bbox_mode": result.get("bbox_mode"),
+        "bbox_tolerance": result.get("bbox_tolerance"),
     }
 
 
@@ -178,6 +180,8 @@ if _routes is not None:
         source_format = "invalid"
         item_count = 0
         compilable = False
+        bbox_mode = "auto"
+        bbox_tolerance = 2.0
         try:
             if isinstance(text, str):
                 raw = parse_json_loose(text) if text.strip() else {}
@@ -187,7 +191,9 @@ if _routes is not None:
                 raise ValueError("json must be a JSON string or object")
             result = import_payload(
                 raw, target_width=width, target_height=height,
-                bbox_mode="reject", source="preview",
+                bbox_mode=body.get("bbox_mode", "auto"),
+                bbox_tolerance=body.get("bbox_tolerance", 2.0),
+                source="preview",
             )
             data = result["draft"] or {}
             errors = result["errors"]
@@ -195,6 +201,8 @@ if _routes is not None:
             source_format = result["source_format"]
             item_count = result["item_count"]
             compilable = result["compilable"]
+            bbox_mode = result["bbox_mode"]
+            bbox_tolerance = result["bbox_tolerance"]
         except ValueError as e:
             errors.append(str(e))
         preview = ""
@@ -222,6 +230,8 @@ if _routes is not None:
             "source_format": source_format,
             "item_count": item_count,
             "compilable": compilable,
+            "bbox_mode": bbox_mode,
+            "bbox_tolerance": bbox_tolerance,
             **_importer_info("preview"),
         })
 
@@ -230,7 +240,8 @@ if _routes is not None:
         """Normalize and globally import an external MOSS Layout JSON.
 
         Body: {json | object, width?, height?, broadcast?=true, global?=true,
-               force?=true, bbox_mode?='reject'|'clamp'}
+               force?=true, bbox_mode?='auto'|'reject'|'clamp',
+               bbox_tolerance?=2.0}
 
         Returns the canonical abs/xyxy draft, warnings, errors, item counts and
         importer version. With broadcast=true (default) the same canonical JSON
@@ -295,7 +306,8 @@ if _routes is not None:
             raw,
             target_width=body.get("width"),
             target_height=body.get("height"),
-            bbox_mode=body.get("bbox_mode", "reject"),
+            bbox_mode=body.get("bbox_mode", "auto"),
+            bbox_tolerance=body.get("bbox_tolerance", 2.0),
             source="http-import",
         )
         result["warnings"] = extra_warnings + result["warnings"]

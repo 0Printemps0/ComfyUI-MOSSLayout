@@ -73,7 +73,8 @@ class MossLayoutStudio(io.ComfyNode):
             try:
                 data = resolve_payload(parse_json_loose(draft),
                                        _int(editor_draft.get("width"), 1024, 16, 8192),
-                                       _int(editor_draft.get("height"), 1024, 16, 8192), warnings)
+                                       _int(editor_draft.get("height"), 1024, 16, 8192), warnings,
+                                       bbox_mode="auto", bbox_tolerance=2.0)
             except LayoutImportError as e:
                 raise ValueError(
                     "MOSS Layout Studio: external draft rejected — " + " | ".join(e.errors)

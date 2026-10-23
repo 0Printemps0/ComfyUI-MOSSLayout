@@ -227,6 +227,41 @@ class ImportPayloadTests(unittest.TestCase):
         self.assertTrue(any("clamped" in w and "items[0].bbox" in w for w in clamped["warnings"]))
         self.assertEqual(clamped["bbox_mode"], "clamp")
 
+    def test_auto_clamps_within_tolerance(self):
+        payload = editor_payload()
+        payload["items"][0]["bbox"] = [120, 180, 1538, 720]
+
+        result = m.import_payload(payload, bbox_mode="auto", bbox_tolerance=2)
+        self.assertTrue(result["ok"], result["errors"])
+        self.assertEqual(result["item_count"], 3)
+        self.assertEqual(result["draft"]["items"][0]["bbox"], [120, 180, 1536, 720])
+        self.assertEqual(result["bbox_mode"], "auto")
+        self.assertEqual(result["bbox_tolerance"], 2.0)
+        self.assertTrue(any("auto-clamped" in w and "items[0].bbox" in w for w in result["warnings"]))
+
+    def test_auto_rejects_beyond_tolerance(self):
+        payload = editor_payload()
+        payload["items"][0]["bbox"] = [120, 180, 1539, 720]
+
+        result = m.import_payload(payload, bbox_mode="auto", bbox_tolerance=2)
+        self.assertFalse(result["ok"])
+        self.assertIsNone(result["draft"])
+        self.assertTrue(any("items[0].bbox" in e and "tolerance=2" in e for e in result["errors"]))
+        self.assertTrue(any("3px" in e for e in result["errors"]))
+
+    def test_auto_tolerance_zero_matches_reject_for_small_overflow(self):
+        payload = editor_payload()
+        payload["items"][0]["bbox"] = [120, 180, 1536.5, 720]
+
+        result = m.import_payload(payload, bbox_mode="auto", bbox_tolerance=0)
+        self.assertFalse(result["ok"])
+        self.assertTrue(any("0.5px" in e for e in result["errors"]))
+
+    def test_auto_tolerance_must_be_non_negative(self):
+        result = m.import_payload(editor_payload(), bbox_mode="auto", bbox_tolerance=-1)
+        self.assertFalse(result["ok"])
+        self.assertTrue(any("bbox_tolerance" in e for e in result["errors"]))
+
     def test_unsupported_bbox_format_is_an_error(self):
         payload = editor_payload(bbox_format="coco")
         result = m.import_payload(payload)

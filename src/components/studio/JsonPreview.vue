@@ -26,7 +26,10 @@
       <pre v-if="parseFrame" class="errframe" title="Jump to this line" @click="jumpToError">{{ parseFrame }}</pre>
     </div>
     <div v-if="j.editing && j.applyErrors.length" class="applyerr">
-      <div class="errhead"><span class="msg">⚠ Import rejected — nothing was applied</span></div>
+      <div class="errhead">
+        <span class="msg">⚠ Import rejected — nothing was applied</span>
+        <button v-if="canClamp" class="ebtn clamp" title="Clamp every out-of-canvas bbox and apply" @click="store.jsonApplyClamp()">clamp &amp; apply</button>
+      </div>
       <ul class="errlist">
         <li v-for="(e, i) in j.applyErrors" :key="i">{{ e }}</li>
       </ul>
@@ -93,6 +96,9 @@ const parseInfo = computed<{ error: string; line: number | null; col: number | n
   }
 })
 const parseError = computed(() => parseInfo.value.error)
+const canClamp = computed(() =>
+  j.applyErrors.some((e) => /exceeds canvas/i.test(e) && !/collapses/i.test(e)),
+)
 const parseMsg = computed(() => {
   const { error, line, col } = parseInfo.value
   if (!error) return ''
@@ -175,6 +181,7 @@ textarea.json.bad { border-color: #f87171; }
 .errhead .msg { flex: 1; font-size: 11px; color: #f87171; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ebtn { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer; }
 .ebtn:hover { color: var(--st-text); border-color: var(--st-accent); }
+.ebtn.clamp { color: #fbbf24; border-color: rgba(251, 191, 36, .45); }
 .errframe {
   background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);
   border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;

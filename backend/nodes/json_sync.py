@@ -30,6 +30,10 @@ class MossLayoutJsonSync(io.ComfyNode):
                                  tooltip="Apply to every open Studio, including ones with json sync off"),
                 io.Boolean.Input("force", default=False,
                                  tooltip="Override the per-studio json-sync toggle (implied by global)"),
+                io.Combo.Input("bbox_mode", options=["auto", "reject", "clamp"], default="auto",
+                               tooltip="auto = clamp small edge overflows within tolerance; reject = fail; clamp = clamp any overflow"),
+                io.Float.Input("bbox_tolerance", default=2.0, min=0.0, max=64.0, step=0.5,
+                               tooltip="Max pixels a bbox may overflow the canvas before auto mode rejects it"),
             ],
             outputs=[io.String.Output(display_name="json")],
         )
@@ -39,7 +43,8 @@ class MossLayoutJsonSync(io.ComfyNode):
         return float("nan")  # always re-broadcast
 
     @classmethod
-    def execute(cls, json="", enable=True, width=0, height=0, force=False, **kwargs) -> io.NodeOutput:
+    def execute(cls, json="", enable=True, width=0, height=0, force=False,
+                bbox_mode="auto", bbox_tolerance=2.0, **kwargs) -> io.NodeOutput:
         if not (enable and isinstance(json, str) and json.strip()):
             return io.NodeOutput(json)
 
@@ -59,7 +64,8 @@ class MossLayoutJsonSync(io.ComfyNode):
             payload,
             target_width=width_i or None,
             target_height=height_i or None,
-            bbox_mode="reject",
+            bbox_mode=bbox_mode,
+            bbox_tolerance=bbox_tolerance,
             source="json-sync-node",
         )
         if result["errors"]:
@@ -79,6 +85,8 @@ class MossLayoutJsonSync(io.ComfyNode):
                 "source": "json-sync-node",
                 "importer": result["importer"],
                 "warnings": result["warnings"],
+                "bbox_mode": result["bbox_mode"],
+                "bbox_tolerance": result["bbox_tolerance"],
             })
         except Exception as e:
             print(f"[MossLayoutJsonSync] sync failed: {e}")

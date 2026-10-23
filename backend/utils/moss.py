@@ -17,7 +17,7 @@ SUMMARY_KEYS = ["meta", "canvas", "caption", "palette"]
 
 # Bumped whenever the external-import contract changes. Exposed by
 # POST /mosslayout/import so image-parsing scripts can assert compatibility.
-IMPORTER_VERSION = "1.0.0"
+IMPORTER_VERSION = "1.1.0"
 IMPORTER_NAME = "mosslayout-import"
 
 
@@ -400,7 +400,8 @@ def _box_text(box) -> str:
 
 
 def _canonical_item(raw, index: int, kind: str, width: int | None, height: int | None,
-                    bbox_mode: str, errors: list[str], warnings: list[str]) -> dict | None:
+                    bbox_mode: str, bbox_tolerance: float,
+                    errors: list[str], warnings: list[str]) -> dict | None:
     where = f"items[{index}]"
     if not isinstance(raw, dict):
         errors.append(f"{where} is not an object; the item was not imported")
@@ -441,7 +442,11 @@ def _canonical_item(raw, index: int, kind: str, width: int | None, height: int |
             shown = _box_text(box)
             if kind == "compiled_prompt":
                 shown += f" after de-centering onto {width}x{height}"
-            if bbox_mode == "clamp":
+            overflow = max(0.0 - box[0], box[2] - width, 0.0 - box[1], box[3] - height)
+            should_clamp = bbox_mode == "clamp" or (
+                bbox_mode == "auto" and overflow <= bbox_tolerance
+            )
+            if should_clamp:
                 cx1 = min(max(box[0], 0), width)
                 cx2 = min(max(box[2], 0), width)
                 cy1 = min(max(box[1], 0), height)
@@ -453,15 +458,28 @@ def _canonical_item(raw, index: int, kind: str, width: int | None, height: int |
                     )
                     box = None
                 else:
+                    how = "auto-clamped" if bbox_mode == "auto" else "clamped"
+                    extra = (
+                        f" (overflow {overflow:g}px <= tolerance {bbox_tolerance:g}px)"
+                        if bbox_mode == "auto" else ""
+                    )
                     warnings.append(
                         f"{where}.bbox {shown} exceeded canvas {width}x{height}; "
-                        f"clamped to {_box_text([cx1, cy1, cx2, cy2])}"
+                        f"{how} to {_box_text([cx1, cy1, cx2, cy2])}{extra}"
                     )
                     box = [cx1, cy1, cx2, cy2]
+            elif bbox_mode == "auto":
+                errors.append(
+                    f"{where}.bbox {shown} exceeds canvas {width}x{height} by "
+                    f"{overflow:g}px (bbox_mode='auto', tolerance={bbox_tolerance:g}px; "
+                    "use 'clamp' to accept a clamped box)"
+                )
+                box = None
             else:
                 errors.append(
                     f"{where}.bbox {shown} exceeds canvas {width}x{height} "
-                    "(bbox_mode='reject'; use 'clamp' to accept a clamped box)"
+                    "(bbox_mode='reject'; use 'auto' with a tolerance or 'clamp' "
+                    "to accept a clamped box)"
                 )
                 box = None
 
@@ -490,7 +508,8 @@ def _canonical_item(raw, index: int, kind: str, width: int | None, height: int |
 
 
 def import_payload(payload, target_width=None, target_height=None, bbox_mode: str = "reject",
-                   source: str = "external", warn_target_mismatch: bool = True) -> dict:
+                   bbox_tolerance: float = 2.0, source: str = "external",
+                   warn_target_mismatch: bool = True) -> dict:
     """Loose external payload -> canonical abs/xyxy draft, with explicit diagnostics.
 
     Accepted: editor draft (abs/xyxy), compiled prompt (abs_centralized/yxyx),
@@ -506,6 +525,7 @@ def import_payload(payload, target_width=None, target_height=None, bbox_mode: st
         "source": source,
         "source_format": "invalid",
         "bbox_mode": bbox_mode,
+        "bbox_tolerance": bbox_tolerance,
         "canvas": None,
         "draft": None,
         "draft_json": None,
@@ -521,10 +541,21 @@ def import_payload(payload, target_width=None, target_height=None, bbox_mode: st
     if not isinstance(payload, dict):
         errors.append("payload must be a JSON object")
         return result
-    if bbox_mode not in ("reject", "clamp"):
-        errors.append(f"bbox_mode {bbox_mode!r} invalid; expected 'reject' or 'clamp'")
+    if bbox_mode not in ("reject", "auto", "clamp"):
+        errors.append(
+            f"bbox_mode {bbox_mode!r} invalid; expected 'reject', 'auto' or 'clamp'"
+        )
         bbox_mode = "reject"
         result["bbox_mode"] = bbox_mode
+    try:
+        bbox_tolerance = float(bbox_tolerance)
+    except (TypeError, ValueError):
+        errors.append("bbox_tolerance must be a finite number >= 0")
+        bbox_tolerance = 2.0
+    if not math.isfinite(bbox_tolerance) or bbox_tolerance < 0:
+        errors.append("bbox_tolerance must be a finite number >= 0")
+        bbox_tolerance = 2.0
+    result["bbox_tolerance"] = bbox_tolerance
 
     kind = _detect_payload_kind(payload, errors, warnings)
     result["source_format"] = kind
@@ -556,7 +587,9 @@ def import_payload(payload, target_width=None, target_height=None, bbox_mode: st
 
     items: list[dict] = []
     for i, raw in enumerate(raw_items):
-        item = _canonical_item(raw, i, kind, width, height, bbox_mode, errors, warnings)
+        item = _canonical_item(
+            raw, i, kind, width, height, bbox_mode, bbox_tolerance, errors, warnings
+        )
         if item is not None:
             items.append(item)
     result["output_item_count"] = len(items)
@@ -592,7 +625,8 @@ def import_payload(payload, target_width=None, target_height=None, bbox_mode: st
     return result
 
 
-def resolve_payload(obj: dict, width: int, height: int, warnings: list[str]) -> dict:
+def resolve_payload(obj: dict, width: int, height: int, warnings: list[str],
+                    bbox_mode: str = "reject", bbox_tolerance: float = 0.0) -> dict:
     """Any of: draft JSON, compiled prompt JSON, or {'caption': ...} -> canonical draft.
 
     Strict on schema and geometry: unsupported formats, invalid labels, missing
@@ -601,8 +635,8 @@ def resolve_payload(obj: dict, width: int, height: int, warnings: list[str]) -> 
     does not declare width/height.
     """
     result = import_payload(
-        obj, target_width=width, target_height=height, bbox_mode="reject",
-        source="resolve", warn_target_mismatch=False,
+        obj, target_width=width, target_height=height, bbox_mode=bbox_mode,
+        bbox_tolerance=bbox_tolerance, source="resolve", warn_target_mismatch=False,
     )
     warnings.extend(result["warnings"])
     if result["errors"]:

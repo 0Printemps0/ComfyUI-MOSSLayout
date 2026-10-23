@@ -32,6 +32,10 @@
                 <div class="rfoot">
                   <span class="rmp">≈ {{ mpActual }} MP</span>
                 </div>
+                <div v-if="outsideCount" class="roob">
+                  <span><i class="mdi mdi-alert-outline"></i> {{ outsideCount }} box{{ outsideCount === 1 ? '' : 'es' }} outside</span>
+                  <button class="refit" title="Clamp every box into the current canvas" @click="refitBoxes">refit</button>
+                </div>
               </div>
             </UiPopover>
           </template>
@@ -175,7 +179,12 @@ watch(
     if (!forced && !store.state.ui.jsonSync) return
     if (!ev.json || !ev.json.trim()) return
     const label = ev.global ? 'Global import' : ev.force ? 'Forced JSON sync' : 'JSON sync'
-    const res = store.importDraftJson(ev.json, { keepDims: true, strict: true })
+    const res = store.importDraftJson(ev.json, {
+      keepDims: true,
+      strict: true,
+      bboxMode: ev.bboxMode as 'auto' | 'reject' | 'clamp',
+      bboxTolerance: ev.bboxTolerance,
+    })
     store.json.syncWarnings = [...new Set([...(ev.warnings || []), ...(res.warnings || [])])]
     if (!res.ok) {
       store.json.syncError = `${label}: ${res.error || 'invalid JSON'}`
@@ -203,6 +212,12 @@ const aspect = ref('1:1')
 const mp = ref(1)
 const MP_PRESETS = [0.5, 1, 2, 4]
 const mpActual = computed(() => ((store.state.width * store.state.height) / (1024 * 1024)).toFixed(2))
+const outsideCount = computed(() =>
+  store.state.elements.filter((e) =>
+    e.bbox[0] < 0 || e.bbox[1] < 0
+    || e.bbox[2] > store.state.width || e.bbox[3] > store.state.height,
+  ).length,
+)
 function aspectRectStyle(a: { w: number; h: number }) {
   const s = 15 / Math.max(a.w, a.h)
   return { width: Math.round(a.w * s) + 'px', height: Math.round(a.h * s) + 'px' }
@@ -245,6 +260,13 @@ function seedRes() {
     (best, x) => (Math.abs(x.w / x.h - r) < Math.abs(best.w / best.h - r) ? x : best),
     CORE_ASPECTS[0],
   ).label
+}
+function refitBoxes() {
+  const n = store.refitToCanvas()
+  if (!n) return
+  store.json.syncError = ''
+  store.json.syncWarnings = []
+  store.json.syncNote = `Canvas refit · ${n} box${n === 1 ? '' : 'es'} clamped`
 }
 
 function plainState(): MossState {
@@ -371,6 +393,9 @@ onMounted(() => {
 .swap { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 26px; height: 26px; cursor: pointer; flex: none; }
 .swap:hover { color: var(--st-accent); border-color: var(--st-accent); }
 .rfoot { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--st-muted); }
+.roob { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 5px; border-top: 1px solid var(--st-border); font-size: 10px; color: #f59e0b; }
+.roob .refit { background: var(--st-btn); border: 1px solid rgba(245, 158, 11, .45); color: #fbbf24; border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer; }
+.roob .refit:hover { border-color: #fbbf24; }
 .help { display: flex; flex-direction: column; gap: 6px; min-width: 240px; max-width: 300px; font-size: 11px; }
 .help .h { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted); margin: 2px 0 0; }
 .help dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0; }

@@ -1,4 +1,4 @@
-(function(){var s=document.createElement('style');s.setAttribute('data-extension','comfyui-mosslayout');s.textContent="\n.ui-btn[data-v-37e21519] {\r\n  display: inline-flex; align-items: center; justify-content: center; gap: 4px;\r\n  min-height: 24px; padding: 3px 9px; box-sizing: border-box;\r\n  background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\r\n  border-radius: var(--radius-sm, 5px); font-size: 11px; line-height: 1; cursor: pointer; font-family: inherit;\r\n  white-space: nowrap; transition: border-color .1s, background .1s;\n}\n.ui-btn.icon[data-v-37e21519] { min-width: 26px; padding: 0 6px; font-size: 12px;\n}\n.ui-btn[data-v-37e21519] .mdi { font-size: 15px; line-height: 1;\n}\n.ui-btn[data-v-37e21519]:hover { border-color: var(--st-accent);\n}\n.ui-btn[data-v-37e21519]:disabled { opacity: .4; cursor: default;\n}\n.ui-btn[data-v-37e21519]:disabled:hover { border-color: var(--st-border);\n}\n.ui-btn.on[data-v-37e21519],\r\n.ui-btn.primary[data-v-37e21519] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.ui-btn.primary[data-v-37e21519]:hover { filter: brightness(1.08);\n}\r\n\n.ui-pop[data-v-3afe332d] { position: relative; display: inline-flex;\n}\n.ui-pop-panel[data-v-3afe332d] {\r\n  position: absolute; top: calc(100% + 5px); z-index: 50;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 10px 12px; min-width: 240px; max-width: 320px; max-height: 360px; overflow-y: auto;\r\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\r\n  font-size: 11px; line-height: 1.5; color: var(--st-text); cursor: default;\n}\n.ui-pop-panel.right[data-v-3afe332d] { right: 0;\n}\n.ui-pop-panel.left[data-v-3afe332d] { left: 0;\n}\n.ui-pop-panel.up[data-v-3afe332d] { top: auto; bottom: calc(100% + 5px);\n}\r\n\n.canvas-wrap[data-v-25c3fb06] { display: flex; flex-direction: column; gap: 6px;\n}\n.toolbar[data-v-25c3fb06] { display: flex; flex-wrap: wrap; gap: 5px; align-items: center;\n}\n.mdi[data-v-25c3fb06] { font-size: 15px; line-height: 1;\n}\n.tag .mdi[data-v-25c3fb06] { font-size: 1em;\n}\n.seg[data-v-25c3fb06] { display: flex; gap: 2px;\n}\n.divider[data-v-25c3fb06] { width: 1px; height: 18px; background: var(--st-border); margin: 0 2px;\n}\n.spacer[data-v-25c3fb06] { flex: 1 1 auto;\n}\n.cmenu[data-v-25c3fb06] { display: flex; flex-direction: column; gap: 5px; min-width: 170px;\n}\n.citem[data-v-25c3fb06] { display: flex; align-items: center; gap: 6px; text-align: left; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 5px 8px; font-size: 11px; cursor: pointer;\n}\n.citem[data-v-25c3fb06]:hover { border-color: var(--st-accent);\n}\n.citem.on[data-v-25c3fb06] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.crow[data-v-25c3fb06] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.crow input[type='range'][data-v-25c3fb06] { flex: 1; accent-color: var(--st-accent);\n}\n.crow input[type='number'][data-v-25c3fb06] { width: 54px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.ckrow[data-v-25c3fb06] { gap: 12px;\n}\n.cdiv[data-v-25c3fb06] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n.cgroup[data-v-25c3fb06] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.chint[data-v-25c3fb06] { margin: 2px 0 0; font-size: 10px; line-height: 1.4; color: var(--st-muted);\n}\n.cic[data-v-25c3fb06] { display: inline-flex; align-items: center; justify-content: center; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; width: 26px; height: 24px; cursor: pointer;\n}\n.cic[data-v-25c3fb06]:hover { border-color: var(--st-accent);\n}\n.stage[data-v-25c3fb06] {\r\n  position: relative; width: 100%; background: var(--st-input);\r\n  border: 1px solid var(--st-border); border-radius: 6px; overflow: hidden;\r\n  touch-action: none; user-select: none; cursor: crosshair;\n}\n.stage.dragging[data-v-25c3fb06] { cursor: grabbing;\n}\n.stage[data-v-25c3fb06]:focus { outline: none;\n}\n.backdrop[data-v-25c3fb06] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\r\n/* no z-index: DOM order paints it above the backdrop but below the grid/boxes */\n.livelayer[data-v-25c3fb06] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\n.livebadge[data-v-25c3fb06] {\r\n  position: absolute; top: 6px; left: 6px; z-index: 2; pointer-events: none;\r\n  display: inline-flex; align-items: center; gap: 3px;\r\n  background: rgba(0,0,0,.6); color: #fff; border-radius: 4px;\r\n  padding: 1px 6px 1px 4px; font-size: 9px; font-weight: 700;\r\n  text-transform: uppercase; letter-spacing: .5px;\n}\n.livebadge .mdi[data-v-25c3fb06] { font-size: 11px; color: #ef4444; animation: livepulse-25c3fb06 1.2s ease-in-out infinite;\n}\n@keyframes livepulse-25c3fb06 {\n0%, 100% { opacity: 1;\n}\n50% { opacity: .25;\n}\n}\n.grid[data-v-25c3fb06] {\r\n  position: absolute; inset: 0; pointer-events: none;\r\n  background-image: linear-gradient(to right, rgba(128,128,128,.18) 1px, transparent 1px),\r\n    linear-gradient(to bottom, rgba(128,128,128,.18) 1px, transparent 1px);\r\n  background-size: 10% 10%;\n}\n.box[data-v-25c3fb06] { position: absolute; box-sizing: border-box; cursor: move; background: transparent; transition: background .1s;\n}\r\n/* border as ::after (painted after children) so the outline sits over the label */\n.box[data-v-25c3fb06]::after { content: ''; position: absolute; inset: 0; border: 2px solid var(--c, #60a5fa); pointer-events: none;\n}\n.box[data-v-25c3fb06]:hover { background: var(--fill);\n}\n.box.sel[data-v-25c3fb06] { background: var(--fill); box-shadow: 0 0 0 1.5px var(--st-accent, #60a5fa); z-index: 4;\n}\n.box.primary[data-v-25c3fb06] { box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--st-accent, #60a5fa), 0 0 10px rgba(0,0,0,.6); z-index: 5;\n}\n.box.draft[data-v-25c3fb06] { opacity: 0.8; pointer-events: none; background: rgba(156,163,175,.12);\n}\n.box.draft[data-v-25c3fb06]::after { border-style: dashed;\n}\n.groupframe[data-v-25c3fb06] { position: absolute; box-sizing: border-box; border: 1px dashed var(--gc, var(--st-accent, #60a5fa)); background: transparent; z-index: 6; pointer-events: none;\n}\n.groupframe .h[data-v-25c3fb06] { pointer-events: auto; background: var(--gc, var(--st-accent, #60a5fa)); border-color: #fff;\n}\n.marquee[data-v-25c3fb06] { position: absolute; box-sizing: border-box; border: 1px solid var(--st-accent, #60a5fa); background: color-mix(in srgb, var(--st-accent, #60a5fa) 15%, transparent); z-index: 7; pointer-events: none;\n}\n.tag[data-v-25c3fb06] {\r\n  position: absolute; top: 0; left: 0; transform: translateY(-100%);\r\n  display: inline-flex; align-items: center; gap: 3px;\r\n  font-size: 10px; line-height: 1.4; padding: 1px 5px; white-space: nowrap;\r\n  max-width: 240px; overflow: hidden; border-radius: 3px 3px 0 0; pointer-events: none;\n}\n.tag .tagi[data-v-25c3fb06] { flex: none;\n}\n.tag .tagn[data-v-25c3fb06] { flex: none; font-weight: 700; font-variant-numeric: tabular-nums;\n}\r\n/* text hidden by default (icon + index only); shown on hover/selection */\n.tag .tagt[data-v-25c3fb06] { display: none; overflow: hidden; text-overflow: ellipsis; max-width: 200px;\n}\n.box:hover .tag .tagt[data-v-25c3fb06], .box.sel .tag .tagt[data-v-25c3fb06], .box.primary .tag .tagt[data-v-25c3fb06] { display: inline;\n}\n.tag .tagt[data-v-25c3fb06]::before { content: '· ';\n}\r\n/* per-group color tab on the label's left edge; negative margins bleed to the tag edges */\n.tag.grouped .gseg[data-v-25c3fb06] { flex: none; align-self: stretch; width: 4px; margin: -1px 3px -1px -5px; border-radius: 3px 0 0 0; background: var(--gc, var(--st-accent));\n}\n.h[data-v-25c3fb06] { position: absolute; width: 11px; height: 11px; background: #fff; border: 1px solid #333; border-radius: 2px; z-index: 1;\n}\n.h-nw[data-v-25c3fb06] { top: -6px; left: -6px; cursor: nwse-resize;\n}\n.h-n[data-v-25c3fb06]  { top: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-ne[data-v-25c3fb06] { top: -6px; right: -6px; cursor: nesw-resize;\n}\n.h-e[data-v-25c3fb06]  { top: 50%; right: -6px; margin-top: -5px; cursor: ew-resize;\n}\n.h-se[data-v-25c3fb06] { bottom: -6px; right: -6px; cursor: nwse-resize;\n}\n.h-s[data-v-25c3fb06]  { bottom: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-sw[data-v-25c3fb06] { bottom: -6px; left: -6px; cursor: nesw-resize;\n}\n.h-w[data-v-25c3fb06]  { top: 50%; left: -6px; margin-top: -5px; cursor: ew-resize;\n}\r\n\r\n/* absolute over .studio (which is position:relative) */\n.liboverlay[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 60;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 72%, transparent);\r\n  backdrop-filter: blur(4px);\r\n  display: flex; padding: 12px; box-sizing: border-box;\r\n  border-radius: 8px; /* follow the node's rounded corners */\n}\n.libpanel[data-v-5382e446] {\r\n  flex: 1; min-height: 0; display: flex; flex-direction: column;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 3px);\r\n  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5); overflow: hidden;\n}\r\n\r\n/* ── header ─────────────────────────────────────────────── */\n.libhead[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-bottom: 1px solid var(--st-border); flex-wrap: wrap;\n}\n.libhead .t[data-v-5382e446] { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; letter-spacing: .2px;\n}\n.libhead .t .mdi[data-v-5382e446] { font-size: 17px; color: var(--st-accent);\n}\n.count[data-v-5382e446] {\r\n  display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 18px;\r\n  padding: 0 6px; border-radius: 9px; background: color-mix(in srgb, var(--st-accent) 22%, transparent);\r\n  color: var(--st-accent); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;\n}\n.grow[data-v-5382e446] { flex: 1;\n}\n.search[data-v-5382e446] { display: flex; align-items: center; gap: 4px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 7px; padding: 0 6px; height: 28px; transition: border-color .12s;\n}\n.search[data-v-5382e446]:focus-within { border-color: var(--st-accent);\n}\n.search .mdi[data-v-5382e446] { font-size: 14px; color: var(--st-muted);\n}\n.search input[data-v-5382e446] { background: none; border: none; outline: none; color: var(--st-text); font-size: 11px; font-family: inherit; width: 130px; padding: 0;\n}\n.search .clr[data-v-5382e446] { display: inline-flex; background: none; border: none; color: var(--st-muted); cursor: pointer; padding: 0;\n}\n.search .clr[data-v-5382e446]:hover { color: var(--st-text);\n}\r\n\r\n/* ── body / grid ────────────────────────────────────────── */\n.libbody[data-v-5382e446] { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 11px;\n}\n.grid[data-v-5382e446] { display: grid; grid-template-columns: repeat(auto-fill, minmax(138px, 1fr)); gap: 11px;\n}\n.tile[data-v-5382e446] {\r\n  position: relative; display: flex; flex-direction: column; gap: 6px; padding: 6px;\r\n  background: var(--st-input); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 1px);\r\n  transition: border-color .12s, box-shadow .12s, transform .1s;\n}\n.tile[data-v-5382e446]:hover { border-color: var(--st-accent); box-shadow: 0 0 0 1px var(--st-accent) inset, 0 6px 16px rgba(0, 0, 0, .35); transform: translateY(-2px);\n}\n.tile.confirming[data-v-5382e446] { border-color: #ef4444; box-shadow: 0 0 0 1px #ef4444 inset;\n}\n.thumb[data-v-5382e446] {\r\n  position: relative; width: 100%; aspect-ratio: 1; border-radius: 5px; overflow: hidden;\r\n  border: none; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 60%, #000);\n}\r\n/* cover so the thumbnail fills the frame without letterbox bars */\n.thumb img[data-v-5382e446] { width: 100%; height: 100%; object-fit: cover; display: block;\n}\n.thumb .ph[data-v-5382e446] { font-size: 24px; color: var(--st-muted); opacity: .45;\n}\n.badge[data-v-5382e446] {\r\n  position: absolute; top: 5px; left: 5px; display: inline-flex; align-items: center; gap: 3px;\r\n  padding: 1px 6px; border-radius: 8px; background: rgba(0, 0, 0, .62); color: #fff;\r\n  font-size: 10px; font-weight: 600; backdrop-filter: blur(2px);\n}\n.badge .mdi[data-v-5382e446] { font-size: 11px;\n}\n.del[data-v-5382e446] {\r\n  position: absolute; top: 9px; right: 9px; z-index: 2; display: inline-flex; align-items: center; justify-content: center;\r\n  width: 24px; height: 24px; border-radius: 6px; background: rgba(0, 0, 0, .55); border: none; color: #fff;\r\n  cursor: pointer; opacity: 0; transition: opacity .12s, background .12s;\n}\n.del .mdi[data-v-5382e446] { font-size: 15px;\n}\n.tile:hover .del[data-v-5382e446] { opacity: 1;\n}\n.del[data-v-5382e446]:hover { background: #dc2626;\n}\n.name[data-v-5382e446] { font-size: 11px; color: var(--st-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px;\n}\r\n\r\n/* delete confirm overlay over the tile */\n.confirm[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px;\r\n  background: color-mix(in srgb, var(--st-panel) 88%, transparent); backdrop-filter: blur(2px);\r\n  border-radius: inherit; padding: 8px; text-align: center;\n}\n.confirm .q[data-v-5382e446] { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--st-text);\n}\n.confirm .q .mdi[data-v-5382e446] { color: #ef4444; font-size: 15px;\n}\n.cbtns[data-v-5382e446] { display: flex; gap: 6px;\n}\n.cbtns button[data-v-5382e446] { border: none; border-radius: 6px; padding: 5px 11px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: inherit;\n}\n.cbtns .yes[data-v-5382e446] { background: #dc2626; color: #fff;\n}\n.cbtns .yes[data-v-5382e446]:hover { background: #ef4444;\n}\n.cbtns .no[data-v-5382e446] { background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\n}\n.cbtns .no[data-v-5382e446]:hover { border-color: var(--st-accent);\n}\r\n\r\n/* ── empty / loading ────────────────────────────────────── */\n.empty[data-v-5382e446] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; height: 100%; min-height: 180px; color: var(--st-muted); font-size: 12px; text-align: center;\n}\n.empty .mdi[data-v-5382e446] { font-size: 17px;\n}\n.empty .big[data-v-5382e446] { font-size: 40px; opacity: .35;\n}\n.empty small[data-v-5382e446] { font-size: 11px; opacity: .8;\n}\r\n\r\n/* ── footer / save bar ──────────────────────────────────── */\n.libfoot[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-top: 1px solid var(--st-border); background: color-mix(in srgb, var(--st-bg, #1a1a1f) 35%, transparent); flex-wrap: wrap;\n}\n.libfoot .fic[data-v-5382e446] { font-size: 16px; color: var(--st-muted);\n}\n.nm[data-v-5382e446] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 7px; padding: 6px 9px; font-size: 11px; font-family: inherit; width: 150px;\n}\n.nm[data-v-5382e446]:focus { outline: none; border-color: var(--st-accent);\n}\n.thumbck[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); white-space: nowrap; cursor: pointer;\n}\n.thumbck.disabled[data-v-5382e446] { opacity: .45; cursor: not-allowed;\n}\n.flash[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--st-accent); white-space: nowrap;\n}\n.flash .mdi[data-v-5382e446] { font-size: 14px;\n}\n.flash.err[data-v-5382e446] { color: #f87171;\n}\n.flash-enter-active[data-v-5382e446], .flash-leave-active[data-v-5382e446] { transition: opacity .18s;\n}\n.flash-enter-from[data-v-5382e446], .flash-leave-to[data-v-5382e446] { opacity: 0;\n}\r\n\n.ui-card[data-v-665b913d] {\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 8px; display: flex; flex-direction: column; gap: 7px;\n}\n.ui-card-head[data-v-665b913d] { display: flex; align-items: center; justify-content: space-between; gap: 8px;\n}\n.ui-card-title[data-v-665b913d] { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\r\n\n.palette[data-v-bd1d882e] { display: flex; flex-direction: column; gap: 4px;\n}\n.swatches[data-v-bd1d882e] { display: flex; flex-wrap: wrap; gap: 6px; align-items: center;\n}\n.swatch-wrap[data-v-bd1d882e] { position: relative;\n}\n.swatch[data-v-bd1d882e] {\r\n  display: block; width: 26px; height: 26px; border-radius: 5px;\r\n  border: 1px solid var(--st-border); cursor: pointer; overflow: hidden;\n}\n.swatch input[data-v-bd1d882e] { opacity: 0; width: 100%; height: 100%; cursor: pointer;\n}\n.add[data-v-bd1d882e] {\r\n  width: 26px; height: 26px; border-radius: 5px; cursor: pointer;\r\n  border: 1px dashed var(--st-border); background: transparent;\r\n  color: var(--st-muted); font-size: 16px; line-height: 1;\n}\n.hint[data-v-bd1d882e] { font-size: 10px; color: var(--st-muted);\n}\r\n\n.combo[data-v-2f602dd0] { display: flex; gap: 4px;\n}\n.combo input[data-v-2f602dd0] { flex: 1; min-width: 0; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 6px; font-size: 12px;\n}\n.cpick[data-v-2f602dd0] { flex: none; width: 74px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 5px; cursor: pointer; font-size: 11px; padding: 0 2px;\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\r\n\n.chead[data-v-a3f6dc63] { display: flex; align-items: center; gap: 4px;\n}\n.grow[data-v-a3f6dc63] { flex: 1 1 auto;\n}\n.fold[data-v-a3f6dc63] { display: inline-flex; align-items: center; background: none; border: none; cursor: pointer; color: var(--st-muted); padding: 0; margin-left: -3px;\n}\n.fold[data-v-a3f6dc63]:hover { color: var(--st-text);\n}\n.fold .mdi[data-v-a3f6dc63] { font-size: 16px; line-height: 1;\n}\n.lhead[data-v-a3f6dc63] { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\n.canvasmode[data-v-a3f6dc63] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 11px; padding: 2px 4px;\n}\n.field[data-v-a3f6dc63] { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--st-muted);\n}\n.field textarea[data-v-a3f6dc63] {\r\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit; line-height: 1.45;\r\n  min-height: 72px;\n}\n.field textarea[data-v-a3f6dc63]:focus, .canvasmode[data-v-a3f6dc63]:focus { outline: none; border-color: var(--st-accent);\n}\n.presetsck[data-v-a3f6dc63] { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--st-muted); cursor: pointer;\n}\r\n\n.adds[data-v-198d4871] { display: flex; gap: 4px;\n}\n.chead[data-v-198d4871] { display: flex; align-items: center; gap: 4px;\n}\n.lhead[data-v-198d4871] { display: inline-flex; align-items: center; gap: 1px; background: none; border: none; cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted); padding: 0;\n}\n.lhead[data-v-198d4871]:hover { color: var(--st-text);\n}\n.lhead .mdi[data-v-198d4871] { font-size: 15px;\n}\n.lhead .flt[data-v-198d4871] { font-size: 13px; margin-right: 2px;\n}\n.lmenu[data-v-198d4871] { display: flex; flex-direction: column; gap: 1px; min-width: 150px;\n}\n.litem[data-v-198d4871] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 8px; border-radius: 5px; font-size: 11px; cursor: pointer;\n}\n.litem[data-v-198d4871]:hover { background: var(--st-btn);\n}\n.litem.on[data-v-198d4871] { color: var(--st-accent);\n}\n.litem .mdi[data-v-198d4871] { font-size: 15px; color: var(--st-muted);\n}\n.litem.on .mdi[data-v-198d4871] { color: var(--st-accent);\n}\nul[data-v-198d4871] { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; flex: 1 1 auto; min-height: 0; overflow-y: auto;\n}\nli[data-v-198d4871] {\r\n  position: relative;\r\n  display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 5px;\r\n  background: var(--st-input); border: 1px solid transparent; cursor: pointer; font-size: 12px; color: var(--st-text);\r\n  transition: opacity .12s, box-shadow .12s, background .12s;\n}\nli[data-v-198d4871]:hover { border-color: var(--st-border);\n}\nli.sel[data-v-198d4871] { border-color: var(--st-accent);\n}\r\n/* primary = the item the editor targets */\nli.primary[data-v-198d4871] { border-color: var(--st-accent); background: color-mix(in srgb, var(--st-accent) 18%, var(--st-input));\n}\nli.primary .snip[data-v-198d4871] { font-weight: 600;\n}\r\n/* per-group color sliver; absolute inside the existing padding so rows stay aligned */\nli.grouped[data-v-198d4871]::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 5px 0 0 5px; background: var(--gc, var(--st-accent));\n}\nli.dragging[data-v-198d4871] { opacity: .35;\n}\nli.dragover[data-v-198d4871] { box-shadow: inset 0 3px 0 -1px var(--st-accent); background: color-mix(in srgb, var(--st-accent) 12%, var(--st-input));\n}\n.handle[data-v-198d4871] { flex: none; color: var(--st-muted); cursor: grab; font-size: 14px; opacity: .3; margin: 0 -4px 0 -2px; transition: opacity .12s, color .12s;\n}\nli:hover .handle[data-v-198d4871] { opacity: .85;\n}\n.handle[data-v-198d4871]:hover { color: var(--st-accent);\n}\n.handle[data-v-198d4871]:active { cursor: grabbing;\n}\n.typeicon[data-v-198d4871] { flex: none; color: var(--st-muted); line-height: 1; display: inline-flex;\n}\n.typeicon .mdi[data-v-198d4871] { font-size: 15px;\n}\n.idxchip[data-v-198d4871] {\r\n  flex: none; min-width: 17px; height: 16px; padding: 0 4px; box-sizing: border-box;\r\n  display: inline-flex; align-items: center; justify-content: center;\r\n  border-radius: 4px; background: var(--st-accent); color: #fff;\r\n  font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums;\r\n  text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\n}\n.link[data-v-198d4871] { flex: none; font-size: 13px; color: var(--st-muted);\n}\n.snip[data-v-198d4871] { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.more[data-v-198d4871] { display: inline-flex; align-items: center; justify-content: center; flex: none; background: none; border: none; color: var(--st-muted); border-radius: 4px; width: 20px; height: 20px; cursor: pointer; padding: 0; opacity: 0; transition: opacity .12s;\n}\n.more .mdi[data-v-198d4871] { font-size: 16px;\n}\nli:hover .more[data-v-198d4871], li.sel .more[data-v-198d4871] { opacity: 1;\n}\n.more[data-v-198d4871]:hover { color: var(--st-text); background: var(--st-btn);\n}\n.empty[data-v-198d4871] { font-size: 11px; color: var(--st-muted); margin: 2px 0;\n}\r\n\n.jctrl[data-v-7e90c0f0] { display: flex; align-items: center; gap: 5px; flex-wrap: nowrap;\n}\n.grow[data-v-7e90c0f0] { flex: 1 1 auto;\n}\n.jstat[data-v-7e90c0f0] { font-size: 15px; line-height: 1; cursor: help;\n}\n.jstat.good[data-v-7e90c0f0] { color: #34d399;\n}\n.jstat.warn[data-v-7e90c0f0] { color: #f59e0b;\n}\n.jstat.bad[data-v-7e90c0f0] { color: #f87171;\n}\n.jnote[data-v-7e90c0f0] {\r\n  max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\r\n  font-size: 10px; color: var(--st-muted); background: var(--st-btn);\r\n  border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px);\r\n  padding: 2px 6px; cursor: help;\n}\n.jtok[data-v-7e90c0f0] { display: inline-flex; align-items: center; min-height: 24px; box-sizing: border-box; font-size: 10px; color: var(--st-muted); font-family: ui-monospace, monospace; background: var(--st-btn); border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px); padding: 0 7px; cursor: help;\n}\r\n\n.ehead[data-v-e27a795e] { display: flex; align-items: center; gap: 6px; width: 100%; flex-wrap: wrap;\n}\n.grow[data-v-e27a795e] { flex: 1 1 auto;\n}\r\n/* overflow:hidden clips the absolute color input to the chip so it can't overlap the type buttons */\n.idchip[data-v-e27a795e] { position: relative; display: inline-flex; flex: none; cursor: pointer; overflow: hidden; border-radius: 5px;\n}\n.idchip .n[data-v-e27a795e] {\r\n  display: inline-flex; align-items: center; justify-content: center;\r\n  min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box;\r\n  border-radius: 5px; color: #fff; font-size: 11px; font-weight: 700;\r\n  font-variant-numeric: tabular-nums; text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\r\n  border: 1px solid rgba(0, 0, 0, .25);\n}\n.idchip input[data-v-e27a795e] { position: absolute; inset: 0; opacity: 0; cursor: pointer;\n}\n.seg[data-v-e27a795e] { display: flex; gap: 2px;\n}\n.filine[data-v-e27a795e] { display: flex; gap: 8px; align-items: flex-start; font-size: 11px; color: var(--st-muted);\n}\n.filine > span[data-v-e27a795e] { width: 44px; flex: none; padding-top: 5px; text-align: right;\n}\n.filine input[type='text'][data-v-e27a795e], .filine textarea[data-v-e27a795e] {\r\n  flex: 1; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit;\n}\n.filine[data-v-e27a795e] .palette { flex: 1;\n}\r\n\n.jcard[data-v-582fb67a] { display: flex; flex-direction: column; gap: 6px; min-height: 0;\n}\n.json[data-v-582fb67a] {\r\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 6px; padding: 8px; font-size: 11px; line-height: 1.5;\r\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\r\n  max-height: 240px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-word;\n}\ntextarea.json[data-v-582fb67a] { width: 100%; box-sizing: border-box; resize: vertical; min-height: 140px;\n}\ntextarea.json[data-v-582fb67a]:focus, textarea.json.bad[data-v-582fb67a]:focus { outline: none;\n}\ntextarea.json.bad[data-v-582fb67a] { border-color: #f87171;\n}\n.compiled[data-v-582fb67a] { position: relative; display: flex; flex-direction: column; gap: 2px;\n}\n.clbl[data-v-582fb67a] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.cbtn[data-v-582fb67a] { position: absolute; right: 10px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 22px; height: 20px; cursor: pointer; font-size: 12px; line-height: 1;\n}\n.cbtn[data-v-582fb67a]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.cline[data-v-582fb67a] {\r\n  background: var(--st-input); border: 1px dashed var(--st-border); color: var(--st-muted);\r\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\r\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\r\n  max-height: 110px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-all;\n}\n.parseerr[data-v-582fb67a] { display: flex; flex-direction: column; gap: 4px;\n}\n.errhead[data-v-582fb67a] { display: flex; align-items: center; gap: 6px;\n}\n.errhead .msg[data-v-582fb67a] { flex: 1; font-size: 11px; color: #f87171; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.ebtn[data-v-582fb67a] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer;\n}\n.ebtn[data-v-582fb67a]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.errframe[data-v-582fb67a] {\r\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\r\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\r\n  max-height: 120px; overflow: auto; margin: 0; cursor: pointer;\n}\n.warnlist[data-v-582fb67a] { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f59e0b; display: flex; flex-direction: column; gap: 2px;\n}\n.errlist[data-v-582fb67a] { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f87171; display: flex; flex-direction: column; gap: 2px;\n}\n.applyerr[data-v-582fb67a] { display: flex; flex-direction: column; gap: 4px;\n}\n.syncbox[data-v-582fb67a] { border-top: 1px solid var(--st-border); padding-top: 6px; display: flex; flex-direction: column; gap: 3px;\n}\n.syncbad[data-v-582fb67a] { font-size: 10px; color: #f87171; overflow-wrap: anywhere;\n}\n.syncnote[data-v-582fb67a] { font-size: 10px; color: #34d399; overflow-wrap: anywhere;\n}\r\n\n.ctxbg[data-v-1a876ded] { position: fixed; inset: 0; z-index: 10000;\n}\n.ctx[data-v-1a876ded] {\r\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\r\n  --st-input: var(--comfy-input-bg, #15151a);\r\n  --st-btn: var(--comfy-input-bg, #2a2a30);\r\n  --st-text: var(--input-text, #e5e5ea);\r\n  --st-muted: var(--descrip-text, #9aa0aa);\r\n  --st-border: var(--border-color, #3a3a44);\r\n  --st-accent: var(--p-primary-color, #3b82f6);\r\n  --st-radius: var(--radius-md, 6px);\r\n  position: fixed; min-width: 172px; z-index: 10001;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius);\r\n  padding: 4px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\r\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\r\n  display: flex; flex-direction: column; gap: 1px;\n}\n.ctxhead[data-v-1a876ded] { display: flex; align-items: center; gap: 6px; padding: 4px 9px 6px; color: var(--st-muted);\n}\n.ctxhead .cdot[data-v-1a876ded] { width: 9px; height: 9px; border-radius: 2px; flex: none;\n}\n.ctxhead .cnum[data-v-1a876ded] { font-size: 11px; font-weight: 600;\n}\n.ctxhead .mdi[data-v-1a876ded] { font-size: 14px; margin-left: auto;\n}\n.ctxedit[data-v-1a876ded] { margin: 0 4px 4px; padding: 5px 7px; background: var(--st-input, #15151a); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 12px; font-family: inherit;\n}\n.ctxedit[data-v-1a876ded]:focus { outline: none; border-color: var(--st-accent);\n}\n.ctxitem[data-v-1a876ded] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 9px; border-radius: calc(var(--st-radius) - 1px); cursor: pointer; font-size: 12px;\n}\n.ctxitem[data-v-1a876ded]:hover { background: var(--st-btn);\n}\n.ctxitem .mdi[data-v-1a876ded] { font-size: 15px; color: var(--st-muted);\n}\n.ctxkey[data-v-1a876ded] { margin-left: auto; font-size: 10px; color: var(--st-muted); opacity: .7;\n}\n.ctxitem.del[data-v-1a876ded]:hover { background: #b91c1c; color: #fff;\n}\n.ctxitem.del:hover .mdi[data-v-1a876ded] { color: #fff;\n}\n.ctxdiv[data-v-1a876ded] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\r\n\r\n/* Map ComfyUI theme vars to semantic names (dark fallbacks); inherited by children. */\n.studio[data-v-5dc6e0fa] {\r\n  --st-bg: var(--comfy-menu-bg, #1a1a1f);\r\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\r\n  --st-input: var(--comfy-input-bg, #15151a);\r\n  --st-btn: var(--comfy-input-bg, #2a2a30);\r\n  --st-border: var(--border-color, #3a3a44);\r\n  --st-text: var(--input-text, #e5e5ea);\r\n  --st-muted: var(--descrip-text, #9aa0aa);\r\n  --st-accent: var(--p-primary-color, #60a5fa);\r\n  --st-on-accent: var(--p-primary-button-text-color, #fff);\r\n  --st-radius: var(--radius-md, 6px);\r\n  color: var(--st-text);\r\n  background: var(--st-bg);\r\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\r\n  height: 100%;\r\n  overflow-y: auto;\r\n  overscroll-behavior: contain;\n}\n.main[data-v-5dc6e0fa] { display: flex; gap: 8px;\n}\n.left[data-v-5dc6e0fa] { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column;\n}\n.right[data-v-5dc6e0fa] { flex: none; width: 265px; display: flex; flex-direction: column; gap: 8px;\n}\n.drawer-backdrop[data-v-5dc6e0fa] { display: none;\n}\n.slim-controls[data-v-5dc6e0fa] { display: none;\n}\n@media (max-width: 760px) {\n.main[data-v-5dc6e0fa] { position: relative;\n}\n.right[data-v-5dc6e0fa] {\r\n    position: absolute; right: 0; top: 0; bottom: 0; z-index: 30;\r\n    background: var(--st-panel); padding: 8px; width: 260px;\r\n    transform: translateX(100%); transition: transform .15s;\n}\n.studio.panel-open .right[data-v-5dc6e0fa] { transform: none;\n}\n.studio.panel-open .drawer-backdrop[data-v-5dc6e0fa] { display: block; position: absolute; inset: 0; z-index: 29; background: rgba(0,0,0,.4);\n}\n.slim-controls[data-v-5dc6e0fa] { display: inline-flex;\n}\n}\n.resmenu[data-v-5dc6e0fa] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.rsec[data-v-5dc6e0fa], .rdiv[data-v-5dc6e0fa] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.rdiv[data-v-5dc6e0fa] { border-top: 1px solid var(--st-border); margin: 2px 0;\n}\n.aspects[data-v-5dc6e0fa] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;\n}\n.achip[data-v-5dc6e0fa] { display: flex; flex-direction: column; align-items: center; gap: 3px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 6px; padding: 6px 2px; cursor: pointer;\n}\n.achip.on[data-v-5dc6e0fa] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.arect[data-v-5dc6e0fa] { border: 1.5px solid currentColor; border-radius: 2px; display: block;\n}\n.albl[data-v-5dc6e0fa] { font-size: 9px; font-variant-numeric: tabular-nums;\n}\n.mprow[data-v-5dc6e0fa] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.mppresets[data-v-5dc6e0fa] { display: flex; gap: 3px;\n}\n.mpp[data-v-5dc6e0fa] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; font-size: 10px; padding: 2px 6px; cursor: pointer;\n}\n.mpp.on[data-v-5dc6e0fa] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.mprow input[type='number'][data-v-5dc6e0fa] { width: 52px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.whrow[data-v-5dc6e0fa] { display: flex; align-items: center; gap: 8px;\n}\n.whrow label[data-v-5dc6e0fa] { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); flex: 1;\n}\n.whrow input[data-v-5dc6e0fa] { width: 100%; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 4px; font-size: 12px;\n}\n.swap[data-v-5dc6e0fa] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 26px; height: 26px; cursor: pointer; flex: none;\n}\n.swap[data-v-5dc6e0fa]:hover { color: var(--st-accent); border-color: var(--st-accent);\n}\n.rfoot[data-v-5dc6e0fa] { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--st-muted);\n}\n.help[data-v-5dc6e0fa] { display: flex; flex-direction: column; gap: 6px; min-width: 240px; max-width: 300px; font-size: 11px;\n}\n.help .h[data-v-5dc6e0fa] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted); margin: 2px 0 0;\n}\n.help dl[data-v-5dc6e0fa] { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0;\n}\n.help dt[data-v-5dc6e0fa] { color: var(--st-muted); white-space: nowrap;\n}\n.help dd[data-v-5dc6e0fa] { margin: 0;\n}\n.help .tip[data-v-5dc6e0fa] { color: var(--st-muted); font-size: 10px; margin: 4px 0 0;\n}\n.help .credit[data-v-5dc6e0fa] { color: var(--st-muted); font-size: 9px; margin: 6px 0 0; border-top: 1px solid var(--st-border); padding-top: 6px;\n}\n.help .credit a[data-v-5dc6e0fa] { color: var(--st-accent);\n}\n.resetc[data-v-5dc6e0fa] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.resetc .rq[data-v-5dc6e0fa] { margin: 0; font-size: 12px; font-weight: 600;\n}\n.resetc .rh[data-v-5dc6e0fa] { margin: 0; font-size: 10px; color: var(--st-muted);\n}\n.rbtns[data-v-5dc6e0fa] { display: flex; gap: 6px; justify-content: flex-end;\n}\n.rno[data-v-5dc6e0fa], .ryes[data-v-5dc6e0fa] { border: 1px solid var(--st-border); background: var(--st-btn); color: var(--st-text); border-radius: 5px; padding: 4px 10px; font-size: 11px; cursor: pointer;\n}\n.ryes[data-v-5dc6e0fa] { background: #b91c1c; border-color: #b91c1c; color: #fff;\n}\r\n";document.head.appendChild(s);})();import { app } from "../../../scripts/app.js";
+(function(){var s=document.createElement('style');s.setAttribute('data-extension','comfyui-mosslayout');s.textContent="\n.ui-btn[data-v-37e21519] {\r\n  display: inline-flex; align-items: center; justify-content: center; gap: 4px;\r\n  min-height: 24px; padding: 3px 9px; box-sizing: border-box;\r\n  background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\r\n  border-radius: var(--radius-sm, 5px); font-size: 11px; line-height: 1; cursor: pointer; font-family: inherit;\r\n  white-space: nowrap; transition: border-color .1s, background .1s;\n}\n.ui-btn.icon[data-v-37e21519] { min-width: 26px; padding: 0 6px; font-size: 12px;\n}\n.ui-btn[data-v-37e21519] .mdi { font-size: 15px; line-height: 1;\n}\n.ui-btn[data-v-37e21519]:hover { border-color: var(--st-accent);\n}\n.ui-btn[data-v-37e21519]:disabled { opacity: .4; cursor: default;\n}\n.ui-btn[data-v-37e21519]:disabled:hover { border-color: var(--st-border);\n}\n.ui-btn.on[data-v-37e21519],\r\n.ui-btn.primary[data-v-37e21519] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.ui-btn.primary[data-v-37e21519]:hover { filter: brightness(1.08);\n}\r\n\n.ui-pop[data-v-3afe332d] { position: relative; display: inline-flex;\n}\n.ui-pop-panel[data-v-3afe332d] {\r\n  position: absolute; top: calc(100% + 5px); z-index: 50;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 10px 12px; min-width: 240px; max-width: 320px; max-height: 360px; overflow-y: auto;\r\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\r\n  font-size: 11px; line-height: 1.5; color: var(--st-text); cursor: default;\n}\n.ui-pop-panel.right[data-v-3afe332d] { right: 0;\n}\n.ui-pop-panel.left[data-v-3afe332d] { left: 0;\n}\n.ui-pop-panel.up[data-v-3afe332d] { top: auto; bottom: calc(100% + 5px);\n}\r\n\n.canvas-wrap[data-v-25c3fb06] { display: flex; flex-direction: column; gap: 6px;\n}\n.toolbar[data-v-25c3fb06] { display: flex; flex-wrap: wrap; gap: 5px; align-items: center;\n}\n.mdi[data-v-25c3fb06] { font-size: 15px; line-height: 1;\n}\n.tag .mdi[data-v-25c3fb06] { font-size: 1em;\n}\n.seg[data-v-25c3fb06] { display: flex; gap: 2px;\n}\n.divider[data-v-25c3fb06] { width: 1px; height: 18px; background: var(--st-border); margin: 0 2px;\n}\n.spacer[data-v-25c3fb06] { flex: 1 1 auto;\n}\n.cmenu[data-v-25c3fb06] { display: flex; flex-direction: column; gap: 5px; min-width: 170px;\n}\n.citem[data-v-25c3fb06] { display: flex; align-items: center; gap: 6px; text-align: left; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 5px 8px; font-size: 11px; cursor: pointer;\n}\n.citem[data-v-25c3fb06]:hover { border-color: var(--st-accent);\n}\n.citem.on[data-v-25c3fb06] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent, #fff);\n}\n.crow[data-v-25c3fb06] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.crow input[type='range'][data-v-25c3fb06] { flex: 1; accent-color: var(--st-accent);\n}\n.crow input[type='number'][data-v-25c3fb06] { width: 54px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.ckrow[data-v-25c3fb06] { gap: 12px;\n}\n.cdiv[data-v-25c3fb06] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\n.cgroup[data-v-25c3fb06] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.chint[data-v-25c3fb06] { margin: 2px 0 0; font-size: 10px; line-height: 1.4; color: var(--st-muted);\n}\n.cic[data-v-25c3fb06] { display: inline-flex; align-items: center; justify-content: center; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; width: 26px; height: 24px; cursor: pointer;\n}\n.cic[data-v-25c3fb06]:hover { border-color: var(--st-accent);\n}\n.stage[data-v-25c3fb06] {\r\n  position: relative; width: 100%; background: var(--st-input);\r\n  border: 1px solid var(--st-border); border-radius: 6px; overflow: hidden;\r\n  touch-action: none; user-select: none; cursor: crosshair;\n}\n.stage.dragging[data-v-25c3fb06] { cursor: grabbing;\n}\n.stage[data-v-25c3fb06]:focus { outline: none;\n}\n.backdrop[data-v-25c3fb06] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\r\n/* no z-index: DOM order paints it above the backdrop but below the grid/boxes */\n.livelayer[data-v-25c3fb06] { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;\n}\n.livebadge[data-v-25c3fb06] {\r\n  position: absolute; top: 6px; left: 6px; z-index: 2; pointer-events: none;\r\n  display: inline-flex; align-items: center; gap: 3px;\r\n  background: rgba(0,0,0,.6); color: #fff; border-radius: 4px;\r\n  padding: 1px 6px 1px 4px; font-size: 9px; font-weight: 700;\r\n  text-transform: uppercase; letter-spacing: .5px;\n}\n.livebadge .mdi[data-v-25c3fb06] { font-size: 11px; color: #ef4444; animation: livepulse-25c3fb06 1.2s ease-in-out infinite;\n}\n@keyframes livepulse-25c3fb06 {\n0%, 100% { opacity: 1;\n}\n50% { opacity: .25;\n}\n}\n.grid[data-v-25c3fb06] {\r\n  position: absolute; inset: 0; pointer-events: none;\r\n  background-image: linear-gradient(to right, rgba(128,128,128,.18) 1px, transparent 1px),\r\n    linear-gradient(to bottom, rgba(128,128,128,.18) 1px, transparent 1px);\r\n  background-size: 10% 10%;\n}\n.box[data-v-25c3fb06] { position: absolute; box-sizing: border-box; cursor: move; background: transparent; transition: background .1s;\n}\r\n/* border as ::after (painted after children) so the outline sits over the label */\n.box[data-v-25c3fb06]::after { content: ''; position: absolute; inset: 0; border: 2px solid var(--c, #60a5fa); pointer-events: none;\n}\n.box[data-v-25c3fb06]:hover { background: var(--fill);\n}\n.box.sel[data-v-25c3fb06] { background: var(--fill); box-shadow: 0 0 0 1.5px var(--st-accent, #60a5fa); z-index: 4;\n}\n.box.primary[data-v-25c3fb06] { box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--st-accent, #60a5fa), 0 0 10px rgba(0,0,0,.6); z-index: 5;\n}\n.box.draft[data-v-25c3fb06] { opacity: 0.8; pointer-events: none; background: rgba(156,163,175,.12);\n}\n.box.draft[data-v-25c3fb06]::after { border-style: dashed;\n}\n.groupframe[data-v-25c3fb06] { position: absolute; box-sizing: border-box; border: 1px dashed var(--gc, var(--st-accent, #60a5fa)); background: transparent; z-index: 6; pointer-events: none;\n}\n.groupframe .h[data-v-25c3fb06] { pointer-events: auto; background: var(--gc, var(--st-accent, #60a5fa)); border-color: #fff;\n}\n.marquee[data-v-25c3fb06] { position: absolute; box-sizing: border-box; border: 1px solid var(--st-accent, #60a5fa); background: color-mix(in srgb, var(--st-accent, #60a5fa) 15%, transparent); z-index: 7; pointer-events: none;\n}\n.tag[data-v-25c3fb06] {\r\n  position: absolute; top: 0; left: 0; transform: translateY(-100%);\r\n  display: inline-flex; align-items: center; gap: 3px;\r\n  font-size: 10px; line-height: 1.4; padding: 1px 5px; white-space: nowrap;\r\n  max-width: 240px; overflow: hidden; border-radius: 3px 3px 0 0; pointer-events: none;\n}\n.tag .tagi[data-v-25c3fb06] { flex: none;\n}\n.tag .tagn[data-v-25c3fb06] { flex: none; font-weight: 700; font-variant-numeric: tabular-nums;\n}\r\n/* text hidden by default (icon + index only); shown on hover/selection */\n.tag .tagt[data-v-25c3fb06] { display: none; overflow: hidden; text-overflow: ellipsis; max-width: 200px;\n}\n.box:hover .tag .tagt[data-v-25c3fb06], .box.sel .tag .tagt[data-v-25c3fb06], .box.primary .tag .tagt[data-v-25c3fb06] { display: inline;\n}\n.tag .tagt[data-v-25c3fb06]::before { content: '· ';\n}\r\n/* per-group color tab on the label's left edge; negative margins bleed to the tag edges */\n.tag.grouped .gseg[data-v-25c3fb06] { flex: none; align-self: stretch; width: 4px; margin: -1px 3px -1px -5px; border-radius: 3px 0 0 0; background: var(--gc, var(--st-accent));\n}\n.h[data-v-25c3fb06] { position: absolute; width: 11px; height: 11px; background: #fff; border: 1px solid #333; border-radius: 2px; z-index: 1;\n}\n.h-nw[data-v-25c3fb06] { top: -6px; left: -6px; cursor: nwse-resize;\n}\n.h-n[data-v-25c3fb06]  { top: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-ne[data-v-25c3fb06] { top: -6px; right: -6px; cursor: nesw-resize;\n}\n.h-e[data-v-25c3fb06]  { top: 50%; right: -6px; margin-top: -5px; cursor: ew-resize;\n}\n.h-se[data-v-25c3fb06] { bottom: -6px; right: -6px; cursor: nwse-resize;\n}\n.h-s[data-v-25c3fb06]  { bottom: -6px; left: 50%; margin-left: -5px; cursor: ns-resize;\n}\n.h-sw[data-v-25c3fb06] { bottom: -6px; left: -6px; cursor: nesw-resize;\n}\n.h-w[data-v-25c3fb06]  { top: 50%; left: -6px; margin-top: -5px; cursor: ew-resize;\n}\r\n\r\n/* absolute over .studio (which is position:relative) */\n.liboverlay[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 60;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 72%, transparent);\r\n  backdrop-filter: blur(4px);\r\n  display: flex; padding: 12px; box-sizing: border-box;\r\n  border-radius: 8px; /* follow the node's rounded corners */\n}\n.libpanel[data-v-5382e446] {\r\n  flex: 1; min-height: 0; display: flex; flex-direction: column;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 3px);\r\n  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5); overflow: hidden;\n}\r\n\r\n/* ── header ─────────────────────────────────────────────── */\n.libhead[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-bottom: 1px solid var(--st-border); flex-wrap: wrap;\n}\n.libhead .t[data-v-5382e446] { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; letter-spacing: .2px;\n}\n.libhead .t .mdi[data-v-5382e446] { font-size: 17px; color: var(--st-accent);\n}\n.count[data-v-5382e446] {\r\n  display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 18px;\r\n  padding: 0 6px; border-radius: 9px; background: color-mix(in srgb, var(--st-accent) 22%, transparent);\r\n  color: var(--st-accent); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;\n}\n.grow[data-v-5382e446] { flex: 1;\n}\n.search[data-v-5382e446] { display: flex; align-items: center; gap: 4px; background: var(--st-input); border: 1px solid var(--st-border); border-radius: 7px; padding: 0 6px; height: 28px; transition: border-color .12s;\n}\n.search[data-v-5382e446]:focus-within { border-color: var(--st-accent);\n}\n.search .mdi[data-v-5382e446] { font-size: 14px; color: var(--st-muted);\n}\n.search input[data-v-5382e446] { background: none; border: none; outline: none; color: var(--st-text); font-size: 11px; font-family: inherit; width: 130px; padding: 0;\n}\n.search .clr[data-v-5382e446] { display: inline-flex; background: none; border: none; color: var(--st-muted); cursor: pointer; padding: 0;\n}\n.search .clr[data-v-5382e446]:hover { color: var(--st-text);\n}\r\n\r\n/* ── body / grid ────────────────────────────────────────── */\n.libbody[data-v-5382e446] { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 11px;\n}\n.grid[data-v-5382e446] { display: grid; grid-template-columns: repeat(auto-fill, minmax(138px, 1fr)); gap: 11px;\n}\n.tile[data-v-5382e446] {\r\n  position: relative; display: flex; flex-direction: column; gap: 6px; padding: 6px;\r\n  background: var(--st-input); border: 1px solid var(--st-border); border-radius: calc(var(--st-radius, 6px) + 1px);\r\n  transition: border-color .12s, box-shadow .12s, transform .1s;\n}\n.tile[data-v-5382e446]:hover { border-color: var(--st-accent); box-shadow: 0 0 0 1px var(--st-accent) inset, 0 6px 16px rgba(0, 0, 0, .35); transform: translateY(-2px);\n}\n.tile.confirming[data-v-5382e446] { border-color: #ef4444; box-shadow: 0 0 0 1px #ef4444 inset;\n}\n.thumb[data-v-5382e446] {\r\n  position: relative; width: 100%; aspect-ratio: 1; border-radius: 5px; overflow: hidden;\r\n  border: none; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center;\r\n  background: color-mix(in srgb, var(--st-bg, #1a1a1f) 60%, #000);\n}\r\n/* cover so the thumbnail fills the frame without letterbox bars */\n.thumb img[data-v-5382e446] { width: 100%; height: 100%; object-fit: cover; display: block;\n}\n.thumb .ph[data-v-5382e446] { font-size: 24px; color: var(--st-muted); opacity: .45;\n}\n.badge[data-v-5382e446] {\r\n  position: absolute; top: 5px; left: 5px; display: inline-flex; align-items: center; gap: 3px;\r\n  padding: 1px 6px; border-radius: 8px; background: rgba(0, 0, 0, .62); color: #fff;\r\n  font-size: 10px; font-weight: 600; backdrop-filter: blur(2px);\n}\n.badge .mdi[data-v-5382e446] { font-size: 11px;\n}\n.del[data-v-5382e446] {\r\n  position: absolute; top: 9px; right: 9px; z-index: 2; display: inline-flex; align-items: center; justify-content: center;\r\n  width: 24px; height: 24px; border-radius: 6px; background: rgba(0, 0, 0, .55); border: none; color: #fff;\r\n  cursor: pointer; opacity: 0; transition: opacity .12s, background .12s;\n}\n.del .mdi[data-v-5382e446] { font-size: 15px;\n}\n.tile:hover .del[data-v-5382e446] { opacity: 1;\n}\n.del[data-v-5382e446]:hover { background: #dc2626;\n}\n.name[data-v-5382e446] { font-size: 11px; color: var(--st-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px;\n}\r\n\r\n/* delete confirm overlay over the tile */\n.confirm[data-v-5382e446] {\r\n  position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px;\r\n  background: color-mix(in srgb, var(--st-panel) 88%, transparent); backdrop-filter: blur(2px);\r\n  border-radius: inherit; padding: 8px; text-align: center;\n}\n.confirm .q[data-v-5382e446] { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--st-text);\n}\n.confirm .q .mdi[data-v-5382e446] { color: #ef4444; font-size: 15px;\n}\n.cbtns[data-v-5382e446] { display: flex; gap: 6px;\n}\n.cbtns button[data-v-5382e446] { border: none; border-radius: 6px; padding: 5px 11px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: inherit;\n}\n.cbtns .yes[data-v-5382e446] { background: #dc2626; color: #fff;\n}\n.cbtns .yes[data-v-5382e446]:hover { background: #ef4444;\n}\n.cbtns .no[data-v-5382e446] { background: var(--st-btn); color: var(--st-text); border: 1px solid var(--st-border);\n}\n.cbtns .no[data-v-5382e446]:hover { border-color: var(--st-accent);\n}\r\n\r\n/* ── empty / loading ────────────────────────────────────── */\n.empty[data-v-5382e446] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; height: 100%; min-height: 180px; color: var(--st-muted); font-size: 12px; text-align: center;\n}\n.empty .mdi[data-v-5382e446] { font-size: 17px;\n}\n.empty .big[data-v-5382e446] { font-size: 40px; opacity: .35;\n}\n.empty small[data-v-5382e446] { font-size: 11px; opacity: .8;\n}\r\n\r\n/* ── footer / save bar ──────────────────────────────────── */\n.libfoot[data-v-5382e446] { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-top: 1px solid var(--st-border); background: color-mix(in srgb, var(--st-bg, #1a1a1f) 35%, transparent); flex-wrap: wrap;\n}\n.libfoot .fic[data-v-5382e446] { font-size: 16px; color: var(--st-muted);\n}\n.nm[data-v-5382e446] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 7px; padding: 6px 9px; font-size: 11px; font-family: inherit; width: 150px;\n}\n.nm[data-v-5382e446]:focus { outline: none; border-color: var(--st-accent);\n}\n.thumbck[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); white-space: nowrap; cursor: pointer;\n}\n.thumbck.disabled[data-v-5382e446] { opacity: .45; cursor: not-allowed;\n}\n.flash[data-v-5382e446] { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--st-accent); white-space: nowrap;\n}\n.flash .mdi[data-v-5382e446] { font-size: 14px;\n}\n.flash.err[data-v-5382e446] { color: #f87171;\n}\n.flash-enter-active[data-v-5382e446], .flash-leave-active[data-v-5382e446] { transition: opacity .18s;\n}\n.flash-enter-from[data-v-5382e446], .flash-leave-to[data-v-5382e446] { opacity: 0;\n}\r\n\n.ui-card[data-v-665b913d] {\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius, 6px);\r\n  padding: 8px; display: flex; flex-direction: column; gap: 7px;\n}\n.ui-card-head[data-v-665b913d] { display: flex; align-items: center; justify-content: space-between; gap: 8px;\n}\n.ui-card-title[data-v-665b913d] { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\r\n\n.palette[data-v-bd1d882e] { display: flex; flex-direction: column; gap: 4px;\n}\n.swatches[data-v-bd1d882e] { display: flex; flex-wrap: wrap; gap: 6px; align-items: center;\n}\n.swatch-wrap[data-v-bd1d882e] { position: relative;\n}\n.swatch[data-v-bd1d882e] {\r\n  display: block; width: 26px; height: 26px; border-radius: 5px;\r\n  border: 1px solid var(--st-border); cursor: pointer; overflow: hidden;\n}\n.swatch input[data-v-bd1d882e] { opacity: 0; width: 100%; height: 100%; cursor: pointer;\n}\n.add[data-v-bd1d882e] {\r\n  width: 26px; height: 26px; border-radius: 5px; cursor: pointer;\r\n  border: 1px dashed var(--st-border); background: transparent;\r\n  color: var(--st-muted); font-size: 16px; line-height: 1;\n}\n.hint[data-v-bd1d882e] { font-size: 10px; color: var(--st-muted);\n}\r\n\n.combo[data-v-2f602dd0] { display: flex; gap: 4px;\n}\n.combo input[data-v-2f602dd0] { flex: 1; min-width: 0; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; padding: 6px; font-size: 12px;\n}\n.cpick[data-v-2f602dd0] { flex: none; width: 74px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 5px; cursor: pointer; font-size: 11px; padding: 0 2px;\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\n.cpick[data-v-2f602dd0]:hover { border-color: var(--st-accent);\n}\r\n\n.chead[data-v-a3f6dc63] { display: flex; align-items: center; gap: 4px;\n}\n.grow[data-v-a3f6dc63] { flex: 1 1 auto;\n}\n.fold[data-v-a3f6dc63] { display: inline-flex; align-items: center; background: none; border: none; cursor: pointer; color: var(--st-muted); padding: 0; margin-left: -3px;\n}\n.fold[data-v-a3f6dc63]:hover { color: var(--st-text);\n}\n.fold .mdi[data-v-a3f6dc63] { font-size: 16px; line-height: 1;\n}\n.lhead[data-v-a3f6dc63] { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted);\n}\n.canvasmode[data-v-a3f6dc63] { background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 11px; padding: 2px 4px;\n}\n.field[data-v-a3f6dc63] { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--st-muted);\n}\n.field textarea[data-v-a3f6dc63] {\r\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit; line-height: 1.45;\r\n  min-height: 72px;\n}\n.field textarea[data-v-a3f6dc63]:focus, .canvasmode[data-v-a3f6dc63]:focus { outline: none; border-color: var(--st-accent);\n}\n.presetsck[data-v-a3f6dc63] { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--st-muted); cursor: pointer;\n}\r\n\n.adds[data-v-198d4871] { display: flex; gap: 4px;\n}\n.chead[data-v-198d4871] { display: flex; align-items: center; gap: 4px;\n}\n.lhead[data-v-198d4871] { display: inline-flex; align-items: center; gap: 1px; background: none; border: none; cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--st-muted); padding: 0;\n}\n.lhead[data-v-198d4871]:hover { color: var(--st-text);\n}\n.lhead .mdi[data-v-198d4871] { font-size: 15px;\n}\n.lhead .flt[data-v-198d4871] { font-size: 13px; margin-right: 2px;\n}\n.lmenu[data-v-198d4871] { display: flex; flex-direction: column; gap: 1px; min-width: 150px;\n}\n.litem[data-v-198d4871] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 8px; border-radius: 5px; font-size: 11px; cursor: pointer;\n}\n.litem[data-v-198d4871]:hover { background: var(--st-btn);\n}\n.litem.on[data-v-198d4871] { color: var(--st-accent);\n}\n.litem .mdi[data-v-198d4871] { font-size: 15px; color: var(--st-muted);\n}\n.litem.on .mdi[data-v-198d4871] { color: var(--st-accent);\n}\nul[data-v-198d4871] { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; flex: 1 1 auto; min-height: 0; overflow-y: auto;\n}\nli[data-v-198d4871] {\r\n  position: relative;\r\n  display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 5px;\r\n  background: var(--st-input); border: 1px solid transparent; cursor: pointer; font-size: 12px; color: var(--st-text);\r\n  transition: opacity .12s, box-shadow .12s, background .12s;\n}\nli[data-v-198d4871]:hover { border-color: var(--st-border);\n}\nli.sel[data-v-198d4871] { border-color: var(--st-accent);\n}\r\n/* primary = the item the editor targets */\nli.primary[data-v-198d4871] { border-color: var(--st-accent); background: color-mix(in srgb, var(--st-accent) 18%, var(--st-input));\n}\nli.primary .snip[data-v-198d4871] { font-weight: 600;\n}\r\n/* per-group color sliver; absolute inside the existing padding so rows stay aligned */\nli.grouped[data-v-198d4871]::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 5px 0 0 5px; background: var(--gc, var(--st-accent));\n}\nli.dragging[data-v-198d4871] { opacity: .35;\n}\nli.dragover[data-v-198d4871] { box-shadow: inset 0 3px 0 -1px var(--st-accent); background: color-mix(in srgb, var(--st-accent) 12%, var(--st-input));\n}\n.handle[data-v-198d4871] { flex: none; color: var(--st-muted); cursor: grab; font-size: 14px; opacity: .3; margin: 0 -4px 0 -2px; transition: opacity .12s, color .12s;\n}\nli:hover .handle[data-v-198d4871] { opacity: .85;\n}\n.handle[data-v-198d4871]:hover { color: var(--st-accent);\n}\n.handle[data-v-198d4871]:active { cursor: grabbing;\n}\n.typeicon[data-v-198d4871] { flex: none; color: var(--st-muted); line-height: 1; display: inline-flex;\n}\n.typeicon .mdi[data-v-198d4871] { font-size: 15px;\n}\n.idxchip[data-v-198d4871] {\r\n  flex: none; min-width: 17px; height: 16px; padding: 0 4px; box-sizing: border-box;\r\n  display: inline-flex; align-items: center; justify-content: center;\r\n  border-radius: 4px; background: var(--st-accent); color: #fff;\r\n  font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums;\r\n  text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\n}\n.link[data-v-198d4871] { flex: none; font-size: 13px; color: var(--st-muted);\n}\n.snip[data-v-198d4871] { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.more[data-v-198d4871] { display: inline-flex; align-items: center; justify-content: center; flex: none; background: none; border: none; color: var(--st-muted); border-radius: 4px; width: 20px; height: 20px; cursor: pointer; padding: 0; opacity: 0; transition: opacity .12s;\n}\n.more .mdi[data-v-198d4871] { font-size: 16px;\n}\nli:hover .more[data-v-198d4871], li.sel .more[data-v-198d4871] { opacity: 1;\n}\n.more[data-v-198d4871]:hover { color: var(--st-text); background: var(--st-btn);\n}\n.empty[data-v-198d4871] { font-size: 11px; color: var(--st-muted); margin: 2px 0;\n}\r\n\n.jctrl[data-v-7e90c0f0] { display: flex; align-items: center; gap: 5px; flex-wrap: nowrap;\n}\n.grow[data-v-7e90c0f0] { flex: 1 1 auto;\n}\n.jstat[data-v-7e90c0f0] { font-size: 15px; line-height: 1; cursor: help;\n}\n.jstat.good[data-v-7e90c0f0] { color: #34d399;\n}\n.jstat.warn[data-v-7e90c0f0] { color: #f59e0b;\n}\n.jstat.bad[data-v-7e90c0f0] { color: #f87171;\n}\n.jnote[data-v-7e90c0f0] {\r\n  max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\r\n  font-size: 10px; color: var(--st-muted); background: var(--st-btn);\r\n  border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px);\r\n  padding: 2px 6px; cursor: help;\n}\n.jtok[data-v-7e90c0f0] { display: inline-flex; align-items: center; min-height: 24px; box-sizing: border-box; font-size: 10px; color: var(--st-muted); font-family: ui-monospace, monospace; background: var(--st-btn); border: 1px solid var(--st-border); border-radius: var(--radius-sm, 5px); padding: 0 7px; cursor: help;\n}\r\n\n.ehead[data-v-e27a795e] { display: flex; align-items: center; gap: 6px; width: 100%; flex-wrap: wrap;\n}\n.grow[data-v-e27a795e] { flex: 1 1 auto;\n}\r\n/* overflow:hidden clips the absolute color input to the chip so it can't overlap the type buttons */\n.idchip[data-v-e27a795e] { position: relative; display: inline-flex; flex: none; cursor: pointer; overflow: hidden; border-radius: 5px;\n}\n.idchip .n[data-v-e27a795e] {\r\n  display: inline-flex; align-items: center; justify-content: center;\r\n  min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box;\r\n  border-radius: 5px; color: #fff; font-size: 11px; font-weight: 700;\r\n  font-variant-numeric: tabular-nums; text-shadow: 0 1px 1px rgba(0, 0, 0, .35);\r\n  border: 1px solid rgba(0, 0, 0, .25);\n}\n.idchip input[data-v-e27a795e] { position: absolute; inset: 0; opacity: 0; cursor: pointer;\n}\n.seg[data-v-e27a795e] { display: flex; gap: 2px;\n}\n.filine[data-v-e27a795e] { display: flex; gap: 8px; align-items: flex-start; font-size: 11px; color: var(--st-muted);\n}\n.filine > span[data-v-e27a795e] { width: 44px; flex: none; padding-top: 5px; text-align: right;\n}\n.filine input[type='text'][data-v-e27a795e], .filine textarea[data-v-e27a795e] {\r\n  flex: 1; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 5px; padding: 6px; font-size: 12px; resize: vertical; font-family: inherit;\n}\n.filine[data-v-e27a795e] .palette { flex: 1;\n}\r\n\n.jcard[data-v-d977b910] { display: flex; flex-direction: column; gap: 6px; min-height: 0;\n}\n.json[data-v-d977b910] {\r\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 6px; padding: 8px; font-size: 11px; line-height: 1.5;\r\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\r\n  max-height: 240px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-word;\n}\ntextarea.json[data-v-d977b910] { width: 100%; box-sizing: border-box; resize: vertical; min-height: 140px;\n}\ntextarea.json[data-v-d977b910]:focus, textarea.json.bad[data-v-d977b910]:focus { outline: none;\n}\ntextarea.json.bad[data-v-d977b910] { border-color: #f87171;\n}\n.compiled[data-v-d977b910] { position: relative; display: flex; flex-direction: column; gap: 2px;\n}\n.clbl[data-v-d977b910] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.cbtn[data-v-d977b910] { position: absolute; right: 10px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 22px; height: 20px; cursor: pointer; font-size: 12px; line-height: 1;\n}\n.cbtn[data-v-d977b910]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.cline[data-v-d977b910] {\r\n  background: var(--st-input); border: 1px dashed var(--st-border); color: var(--st-muted);\r\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\r\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\r\n  max-height: 110px; overflow: auto; margin: 0; white-space: pre-wrap; word-break: break-all;\n}\n.parseerr[data-v-d977b910] { display: flex; flex-direction: column; gap: 4px;\n}\n.errhead[data-v-d977b910] { display: flex; align-items: center; gap: 6px;\n}\n.errhead .msg[data-v-d977b910] { flex: 1; font-size: 11px; color: #f87171; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\n}\n.ebtn[data-v-d977b910] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer;\n}\n.ebtn[data-v-d977b910]:hover { color: var(--st-text); border-color: var(--st-accent);\n}\n.ebtn.clamp[data-v-d977b910] { color: #fbbf24; border-color: rgba(251, 191, 36, .45);\n}\n.errframe[data-v-d977b910] {\r\n  background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text);\r\n  border-radius: 6px; padding: 6px 8px; font-size: 10px; line-height: 1.5;\r\n  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;\r\n  max-height: 120px; overflow: auto; margin: 0; cursor: pointer;\n}\n.warnlist[data-v-d977b910] { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f59e0b; display: flex; flex-direction: column; gap: 2px;\n}\n.errlist[data-v-d977b910] { margin: 0; padding: 0 0 0 16px; font-size: 10px; color: #f87171; display: flex; flex-direction: column; gap: 2px;\n}\n.applyerr[data-v-d977b910] { display: flex; flex-direction: column; gap: 4px;\n}\n.syncbox[data-v-d977b910] { border-top: 1px solid var(--st-border); padding-top: 6px; display: flex; flex-direction: column; gap: 3px;\n}\n.syncbad[data-v-d977b910] { font-size: 10px; color: #f87171; overflow-wrap: anywhere;\n}\n.syncnote[data-v-d977b910] { font-size: 10px; color: #34d399; overflow-wrap: anywhere;\n}\r\n\n.ctxbg[data-v-1a876ded] { position: fixed; inset: 0; z-index: 10000;\n}\n.ctx[data-v-1a876ded] {\r\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\r\n  --st-input: var(--comfy-input-bg, #15151a);\r\n  --st-btn: var(--comfy-input-bg, #2a2a30);\r\n  --st-text: var(--input-text, #e5e5ea);\r\n  --st-muted: var(--descrip-text, #9aa0aa);\r\n  --st-border: var(--border-color, #3a3a44);\r\n  --st-accent: var(--p-primary-color, #3b82f6);\r\n  --st-radius: var(--radius-md, 6px);\r\n  position: fixed; min-width: 172px; z-index: 10001;\r\n  background: var(--st-panel); border: 1px solid var(--st-border); border-radius: var(--st-radius);\r\n  padding: 4px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);\r\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\r\n  display: flex; flex-direction: column; gap: 1px;\n}\n.ctxhead[data-v-1a876ded] { display: flex; align-items: center; gap: 6px; padding: 4px 9px 6px; color: var(--st-muted);\n}\n.ctxhead .cdot[data-v-1a876ded] { width: 9px; height: 9px; border-radius: 2px; flex: none;\n}\n.ctxhead .cnum[data-v-1a876ded] { font-size: 11px; font-weight: 600;\n}\n.ctxhead .mdi[data-v-1a876ded] { font-size: 14px; margin-left: auto;\n}\n.ctxedit[data-v-1a876ded] { margin: 0 4px 4px; padding: 5px 7px; background: var(--st-input, #15151a); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 5px; font-size: 12px; font-family: inherit;\n}\n.ctxedit[data-v-1a876ded]:focus { outline: none; border-color: var(--st-accent);\n}\n.ctxitem[data-v-1a876ded] { display: flex; align-items: center; gap: 8px; text-align: left; background: none; border: none; color: var(--st-text); padding: 6px 9px; border-radius: calc(var(--st-radius) - 1px); cursor: pointer; font-size: 12px;\n}\n.ctxitem[data-v-1a876ded]:hover { background: var(--st-btn);\n}\n.ctxitem .mdi[data-v-1a876ded] { font-size: 15px; color: var(--st-muted);\n}\n.ctxkey[data-v-1a876ded] { margin-left: auto; font-size: 10px; color: var(--st-muted); opacity: .7;\n}\n.ctxitem.del[data-v-1a876ded]:hover { background: #b91c1c; color: #fff;\n}\n.ctxitem.del:hover .mdi[data-v-1a876ded] { color: #fff;\n}\n.ctxdiv[data-v-1a876ded] { border-top: 1px solid var(--st-border); margin: 3px 0;\n}\r\n\r\n/* Map ComfyUI theme vars to semantic names (dark fallbacks); inherited by children. */\n.studio[data-v-4d1586af] {\r\n  --st-bg: var(--comfy-menu-bg, #1a1a1f);\r\n  --st-panel: var(--comfy-menu-secondary-bg, #202026);\r\n  --st-input: var(--comfy-input-bg, #15151a);\r\n  --st-btn: var(--comfy-input-bg, #2a2a30);\r\n  --st-border: var(--border-color, #3a3a44);\r\n  --st-text: var(--input-text, #e5e5ea);\r\n  --st-muted: var(--descrip-text, #9aa0aa);\r\n  --st-accent: var(--p-primary-color, #60a5fa);\r\n  --st-on-accent: var(--p-primary-button-text-color, #fff);\r\n  --st-radius: var(--radius-md, 6px);\r\n  color: var(--st-text);\r\n  background: var(--st-bg);\r\n  font-family: var(--p-font-family, -apple-system, system-ui, sans-serif);\r\n  height: 100%;\r\n  overflow-y: auto;\r\n  overscroll-behavior: contain;\n}\n.main[data-v-4d1586af] { display: flex; gap: 8px;\n}\n.left[data-v-4d1586af] { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column;\n}\n.right[data-v-4d1586af] { flex: none; width: 265px; display: flex; flex-direction: column; gap: 8px;\n}\n.drawer-backdrop[data-v-4d1586af] { display: none;\n}\n.slim-controls[data-v-4d1586af] { display: none;\n}\n@media (max-width: 760px) {\n.main[data-v-4d1586af] { position: relative;\n}\n.right[data-v-4d1586af] {\r\n    position: absolute; right: 0; top: 0; bottom: 0; z-index: 30;\r\n    background: var(--st-panel); padding: 8px; width: 260px;\r\n    transform: translateX(100%); transition: transform .15s;\n}\n.studio.panel-open .right[data-v-4d1586af] { transform: none;\n}\n.studio.panel-open .drawer-backdrop[data-v-4d1586af] { display: block; position: absolute; inset: 0; z-index: 29; background: rgba(0,0,0,.4);\n}\n.slim-controls[data-v-4d1586af] { display: inline-flex;\n}\n}\n.resmenu[data-v-4d1586af] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.rsec[data-v-4d1586af], .rdiv[data-v-4d1586af] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted);\n}\n.rdiv[data-v-4d1586af] { border-top: 1px solid var(--st-border); margin: 2px 0;\n}\n.aspects[data-v-4d1586af] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;\n}\n.achip[data-v-4d1586af] { display: flex; flex-direction: column; align-items: center; gap: 3px; background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 6px; padding: 6px 2px; cursor: pointer;\n}\n.achip.on[data-v-4d1586af] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.arect[data-v-4d1586af] { border: 1.5px solid currentColor; border-radius: 2px; display: block;\n}\n.albl[data-v-4d1586af] { font-size: 9px; font-variant-numeric: tabular-nums;\n}\n.mprow[data-v-4d1586af] { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--st-muted);\n}\n.mppresets[data-v-4d1586af] { display: flex; gap: 3px;\n}\n.mpp[data-v-4d1586af] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; font-size: 10px; padding: 2px 6px; cursor: pointer;\n}\n.mpp.on[data-v-4d1586af] { border-color: var(--st-accent); color: var(--st-accent);\n}\n.mprow input[type='number'][data-v-4d1586af] { width: 52px; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 3px; font-size: 11px;\n}\n.whrow[data-v-4d1586af] { display: flex; align-items: center; gap: 8px;\n}\n.whrow label[data-v-4d1586af] { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--st-muted); flex: 1;\n}\n.whrow input[data-v-4d1586af] { width: 100%; background: var(--st-input); border: 1px solid var(--st-border); color: var(--st-text); border-radius: 4px; padding: 4px; font-size: 12px;\n}\n.swap[data-v-4d1586af] { background: var(--st-btn); border: 1px solid var(--st-border); color: var(--st-muted); border-radius: 4px; width: 26px; height: 26px; cursor: pointer; flex: none;\n}\n.swap[data-v-4d1586af]:hover { color: var(--st-accent); border-color: var(--st-accent);\n}\n.rfoot[data-v-4d1586af] { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--st-muted);\n}\n.roob[data-v-4d1586af] { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 5px; border-top: 1px solid var(--st-border); font-size: 10px; color: #f59e0b;\n}\n.roob .refit[data-v-4d1586af] { background: var(--st-btn); border: 1px solid rgba(245, 158, 11, .45); color: #fbbf24; border-radius: 4px; padding: 2px 8px; font-size: 10px; cursor: pointer;\n}\n.roob .refit[data-v-4d1586af]:hover { border-color: #fbbf24;\n}\n.help[data-v-4d1586af] { display: flex; flex-direction: column; gap: 6px; min-width: 240px; max-width: 300px; font-size: 11px;\n}\n.help .h[data-v-4d1586af] { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--st-muted); margin: 2px 0 0;\n}\n.help dl[data-v-4d1586af] { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0;\n}\n.help dt[data-v-4d1586af] { color: var(--st-muted); white-space: nowrap;\n}\n.help dd[data-v-4d1586af] { margin: 0;\n}\n.help .tip[data-v-4d1586af] { color: var(--st-muted); font-size: 10px; margin: 4px 0 0;\n}\n.help .credit[data-v-4d1586af] { color: var(--st-muted); font-size: 9px; margin: 6px 0 0; border-top: 1px solid var(--st-border); padding-top: 6px;\n}\n.help .credit a[data-v-4d1586af] { color: var(--st-accent);\n}\n.resetc[data-v-4d1586af] { display: flex; flex-direction: column; gap: 6px; min-width: 210px;\n}\n.resetc .rq[data-v-4d1586af] { margin: 0; font-size: 12px; font-weight: 600;\n}\n.resetc .rh[data-v-4d1586af] { margin: 0; font-size: 10px; color: var(--st-muted);\n}\n.rbtns[data-v-4d1586af] { display: flex; gap: 6px; justify-content: flex-end;\n}\n.rno[data-v-4d1586af], .ryes[data-v-4d1586af] { border: 1px solid var(--st-border); background: var(--st-btn); color: var(--st-text); border-radius: 5px; padding: 4px 10px; font-size: 11px; cursor: pointer;\n}\n.ryes[data-v-4d1586af] { background: #b91c1c; border-color: #b91c1c; color: #fff;\n}\r\n";document.head.appendChild(s);})();import { app } from "../../../scripts/app.js";
 import { api } from "../../../scripts/api.js";
 /**
 * @vue/shared v3.5.44
@@ -8118,6 +8118,8 @@ function _fmtBox(box) {
 function resolveToState(obj, width, height, opts = {}) {
   const strict = opts.strict ?? false;
   const bboxMode = opts.bboxMode ?? (strict ? "reject" : "clamp");
+  const rawTolerance = Number(opts.bboxTolerance ?? 2);
+  const bboxTolerance = Number.isFinite(rawTolerance) ? Math.max(0, rawTolerance) : 2;
   const warnings = [];
   const errors = [];
   if (!isRecord(obj)) {
@@ -8296,7 +8298,9 @@ function resolveToState(obj, width, height, opts = {}) {
         _issue(strict, `${where}.bbox must have positive width and height; got ${_fmtBox(box)}`, warnings, errors);
         bbox = _fallbackBox(w, h2);
       } else if (!(0 <= box[0] && box[2] <= w && 0 <= box[1] && box[3] <= h2)) {
-        if (bboxMode === "clamp") {
+        const overflow = Math.max(0 - box[0], box[2] - w, 0 - box[1], box[3] - h2);
+        const shouldClamp = bboxMode === "clamp" || bboxMode === "auto" && overflow <= bboxTolerance;
+        if (shouldClamp) {
           const clamped = clampBbox(box, w, h2);
           if (!(clamped[0] < clamped[2] && clamped[1] < clamped[3])) {
             _issue(
@@ -8307,13 +8311,16 @@ function resolveToState(obj, width, height, opts = {}) {
             );
             bbox = _fallbackBox(w, h2);
           } else {
-            warnings.push(`${where}.bbox ${_fmtBox(box)} exceeded canvas ${w}x${h2}; clamped to ${_fmtBox(clamped)}`);
+            const how = bboxMode === "auto" ? "auto-clamped" : "clamped";
+            const extra = bboxMode === "auto" ? ` (overflow ${overflow.toFixed(2)}px <= tolerance ${bboxTolerance}px)` : "";
+            warnings.push(`${where}.bbox ${_fmtBox(box)} exceeded canvas ${w}x${h2}; ${how} to ${_fmtBox(clamped)}${extra}`);
             bbox = clamped;
           }
         } else {
+          const hint = bboxMode === "auto" ? `bbox_mode='auto', tolerance=${bboxTolerance}px; use 'clamp' to accept a clamped box` : "bbox_mode='reject'; use 'auto' with a tolerance or 'clamp' to accept a clamped box";
           _issue(
             strict,
-            `${where}.bbox ${_fmtBox(box)} exceeds canvas ${w}x${h2} (bbox_mode='reject'; use 'clamp' to accept a clamped box)`,
+            `${where}.bbox ${_fmtBox(box)} exceeds canvas ${w}x${h2} by ${overflow.toFixed(2)}px (${hint})`,
             warnings,
             errors
           );
@@ -8634,6 +8641,27 @@ function createStudioStore() {
     getElement(id) {
       return store.state.elements.find((e) => e.id === id);
     },
+    refitToCanvas() {
+      const w = store.state.width;
+      const h2 = store.state.height;
+      let changed = 0;
+      for (const el of store.state.elements) {
+        let box = clampBbox(el.bbox, w, h2);
+        if (!(box[0] < box[2] && box[1] < box[3])) {
+          const cx = Math.max(0, Math.min(w, Math.round((el.bbox[0] + el.bbox[2]) / 2)));
+          const cy = Math.max(0, Math.min(h2, Math.round((el.bbox[1] + el.bbox[3]) / 2)));
+          const x1 = Math.max(0, Math.min(w - 16, cx - 8));
+          const y1 = Math.max(0, Math.min(h2 - 16, cy - 8));
+          box = [x1, y1, Math.min(w, x1 + 16), Math.min(h2, y1 + 16)];
+        }
+        if (box.some((v, i) => v !== el.bbox[i])) {
+          el.bbox = box;
+          changed += 1;
+        }
+      }
+      if (changed) store.snapshot();
+      return changed;
+    },
     load(s) {
       Object.assign(store.state, emptyState(), s);
       store.state.ui = { ...emptyUi(), ...s.ui || {} };
@@ -8683,17 +8711,31 @@ function createStudioStore() {
         store.state.ui.jsonOpen = store.json.wasOpen;
       }
     },
+    jsonApplyClamp() {
+      const res = store.importDraftJson(store.json.draft, { bboxMode: "clamp" });
+      store.json.applyErrors = res.errors ?? (res.error ? [res.error] : []);
+      store.json.applyWarnings = res.warnings ?? [];
+      if (res.ok) {
+        store.json.editing = false;
+        store.state.ui.jsonOpen = store.json.wasOpen;
+        store.json.syncError = "";
+        store.json.syncWarnings = res.warnings ?? [];
+        const n = store.state.elements.length;
+        store.json.syncNote = `Clamped import applied · ${n} item${n === 1 ? "" : "s"}`;
+      }
+    },
     importDraftJson(text, opts = {}) {
       const keepDims = opts.keepDims ?? false;
       const strict = opts.strict ?? true;
       const bboxMode = opts.bboxMode ?? (strict ? "reject" : "clamp");
+      const bboxTolerance = opts.bboxTolerance ?? 2;
       const res = parseJsonLoose(text);
       if (!res.ok) return { ok: false, error: res.error, errors: [res.error], warnings: [] };
       const { state, warnings, errors } = resolveToState(
         res.obj,
         keepDims ? store.state.width : 1024,
         keepDims ? store.state.height : 1024,
-        { strict, bboxMode }
+        { strict, bboxMode, bboxTolerance }
       );
       if (errors.length) {
         return { ok: false, error: errors.join("; "), errors, warnings };
@@ -8728,6 +8770,8 @@ const jsonSyncCaption = /* @__PURE__ */ ref({
   source: "",
   importer: "",
   itemCount: 0,
+  bboxMode: "auto",
+  bboxTolerance: 2,
   warnings: []
 });
 const events = api;
@@ -8768,6 +8812,8 @@ function initRefSync() {
         source: str(d.source),
         importer: str(d.importer),
         itemCount: typeof d.item_count === "number" ? d.item_count : 0,
+        bboxMode: typeof d.bbox_mode === "string" ? d.bbox_mode : "auto",
+        bboxTolerance: typeof d.bbox_tolerance === "number" ? d.bbox_tolerance : 2,
         warnings
       };
     });
@@ -8973,12 +9019,12 @@ const _hoisted_14$4 = {
   key: 2,
   class: "livebadge"
 };
-const _hoisted_15$3 = ["data-box"];
+const _hoisted_15$4 = ["data-box"];
 const _hoisted_16$2 = {
   key: 0,
   class: "gseg"
 };
-const _hoisted_17$1 = { class: "tagn" };
+const _hoisted_17$2 = { class: "tagn" };
 const _hoisted_18$1 = { class: "tagt" };
 const _hoisted_19 = ["data-handle"];
 const _hoisted_20 = ["data-handle"];
@@ -9606,7 +9652,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
                 createBaseVNode("i", {
                   class: normalizeClass(["mdi tagi", el.linkId ? "mdi-link-variant" : labelIcon(el.label)])
                 }, null, 2),
-                createBaseVNode("span", _hoisted_17$1, toDisplayString(i + 1), 1),
+                createBaseVNode("span", _hoisted_17$2, toDisplayString(i + 1), 1),
                 createBaseVNode("span", _hoisted_18$1, toDisplayString(el.label === "text" ? el.text || "text" : el.caption || el.label), 1)
               ], 6)) : createCommentVNode("", true),
               el.id === unref(store).selectedId && unref(store).selectedIds.length === 1 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, renderList(HANDLES, (hdl) => {
@@ -9616,7 +9662,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
                   "data-handle": hdl
                 }, null, 10, _hoisted_19);
               }), 64)) : createCommentVNode("", true)
-            ], 14, _hoisted_15$3);
+            ], 14, _hoisted_15$4);
           }), 128)),
           groupBox.value ? (openBlock(), createElementBlock("div", {
             key: 3,
@@ -9698,7 +9744,7 @@ const _hoisted_14$3 = {
   key: 1,
   class: "empty"
 };
-const _hoisted_15$2 = {
+const _hoisted_15$3 = {
   key: 2,
   class: "empty"
 };
@@ -9706,7 +9752,7 @@ const _hoisted_16$1 = {
   key: 3,
   class: "empty"
 };
-const _hoisted_17 = { class: "libfoot" };
+const _hoisted_17$1 = { class: "libfoot" };
 const _hoisted_18 = ["disabled"];
 const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "StudioLibrary",
@@ -9980,7 +10026,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
             ])) : loading.value ? (openBlock(), createElementBlock("p", _hoisted_14$3, [..._cache[17] || (_cache[17] = [
               createBaseVNode("i", { class: "mdi mdi-loading mdi-spin" }, null, -1),
               createTextVNode(" loading…", -1)
-            ])])) : query.value ? (openBlock(), createElementBlock("p", _hoisted_15$2, [
+            ])])) : query.value ? (openBlock(), createElementBlock("p", _hoisted_15$3, [
               _cache[18] || (_cache[18] = createBaseVNode("i", { class: "mdi mdi-magnify" }, null, -1)),
               createTextVNode(" No templates match “" + toDisplayString(query.value) + "”.", 1)
             ])) : (openBlock(), createElementBlock("p", _hoisted_16$1, [..._cache[19] || (_cache[19] = [
@@ -9993,7 +10039,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
               ], -1)
             ])]))
           ]),
-          createBaseVNode("footer", _hoisted_17, [
+          createBaseVNode("footer", _hoisted_17$1, [
             _cache[22] || (_cache[22] = createBaseVNode("i", { class: "mdi mdi-content-save-outline fic" }, null, -1)),
             withDirectives(createBaseVNode("input", {
               "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => saveName.value = $event),
@@ -10340,7 +10386,7 @@ const _hoisted_14$2 = {
   key: 1,
   class: "empty"
 };
-const _hoisted_15$1 = {
+const _hoisted_15$2 = {
   key: 2,
   class: "empty"
 };
@@ -10539,7 +10585,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                 ])], 8, _hoisted_13$2)
               ], 46, _hoisted_9$3);
             }), 128))
-          ], 32)) : unref(store).state.elements.length ? (openBlock(), createElementBlock("p", _hoisted_14$2, "no " + toDisplayString(filter.value) + " items", 1)) : (openBlock(), createElementBlock("p", _hoisted_15$1, "No items yet — draw a box on the canvas, or use + obj / + char / + text."))
+          ], 32)) : unref(store).state.elements.length ? (openBlock(), createElementBlock("p", _hoisted_14$2, "no " + toDisplayString(filter.value) + " items", 1)) : (openBlock(), createElementBlock("p", _hoisted_15$2, "No items yet — draw a box on the canvas, or use + obj / + char / + text."))
         ]),
         _: 1
       });
@@ -10873,24 +10919,25 @@ const _hoisted_8$1 = {
   key: 4,
   class: "applyerr"
 };
-const _hoisted_9$1 = { class: "errlist" };
-const _hoisted_10$1 = {
+const _hoisted_9$1 = { class: "errhead" };
+const _hoisted_10$1 = { class: "errlist" };
+const _hoisted_11$1 = {
   key: 5,
   class: "warnlist"
 };
-const _hoisted_11$1 = {
+const _hoisted_12$1 = {
   key: 0,
   class: "syncbad"
 };
-const _hoisted_12$1 = {
+const _hoisted_13$1 = {
   key: 1,
   class: "syncnote"
 };
-const _hoisted_13$1 = {
+const _hoisted_14$1 = {
   key: 2,
   class: "warnlist"
 };
-const _hoisted_14$1 = {
+const _hoisted_15$1 = {
   key: 7,
   class: "warnlist"
 };
@@ -10933,6 +10980,9 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       }
     });
     const parseError = computed(() => parseInfo.value.error);
+    const canClamp = computed(
+      () => j.applyErrors.some((e) => /exceeds canvas/i.test(e) && !/collapses/i.test(e))
+    );
     const parseMsg = computed(() => {
       const { error, line, col } = parseInfo.value;
       if (!error) return "";
@@ -10999,7 +11049,7 @@ ${parseFrame.value}` : parseMsg.value;
             [vModelText, unref(j).draft]
           ]) : (openBlock(), createElementBlock("pre", _hoisted_1$2, toDisplayString(pretty.value), 1)),
           !unref(j).editing ? (openBlock(), createElementBlock("div", _hoisted_2$2, [
-            _cache[1] || (_cache[1] = createBaseVNode("span", {
+            _cache[2] || (_cache[2] = createBaseVNode("span", {
               class: "clbl",
               title: "The compiled model prompt — what the prompt output sends to the sampler"
             }, "compiled prompt", -1)),
@@ -11033,16 +11083,22 @@ ${parseFrame.value}` : parseMsg.value;
             }, toDisplayString(parseFrame.value), 1)) : createCommentVNode("", true)
           ])) : createCommentVNode("", true),
           unref(j).editing && unref(j).applyErrors.length ? (openBlock(), createElementBlock("div", _hoisted_8$1, [
-            _cache[2] || (_cache[2] = createBaseVNode("div", { class: "errhead" }, [
-              createBaseVNode("span", { class: "msg" }, "⚠ Import rejected — nothing was applied")
-            ], -1)),
-            createBaseVNode("ul", _hoisted_9$1, [
+            createBaseVNode("div", _hoisted_9$1, [
+              _cache[3] || (_cache[3] = createBaseVNode("span", { class: "msg" }, "⚠ Import rejected — nothing was applied", -1)),
+              canClamp.value ? (openBlock(), createElementBlock("button", {
+                key: 0,
+                class: "ebtn clamp",
+                title: "Clamp every out-of-canvas bbox and apply",
+                onClick: _cache[1] || (_cache[1] = ($event) => unref(store).jsonApplyClamp())
+              }, "clamp & apply")) : createCommentVNode("", true)
+            ]),
+            createBaseVNode("ul", _hoisted_10$1, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(unref(j).applyErrors, (e, i) => {
                 return openBlock(), createElementBlock("li", { key: i }, toDisplayString(e), 1);
               }), 128))
             ])
           ])) : createCommentVNode("", true),
-          unref(j).editing && unref(j).applyWarnings.length ? (openBlock(), createElementBlock("ul", _hoisted_10$1, [
+          unref(j).editing && unref(j).applyWarnings.length ? (openBlock(), createElementBlock("ul", _hoisted_11$1, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(unref(j).applyWarnings, (w, i) => {
               return openBlock(), createElementBlock("li", { key: i }, toDisplayString(w), 1);
             }), 128))
@@ -11051,15 +11107,15 @@ ${parseFrame.value}` : parseMsg.value;
             key: 6,
             class: normalizeClass(["syncbox", { bad: !!unref(j).syncError }])
           }, [
-            unref(j).syncError ? (openBlock(), createElementBlock("div", _hoisted_11$1, "sync: " + toDisplayString(unref(j).syncError), 1)) : createCommentVNode("", true),
-            unref(j).syncNote ? (openBlock(), createElementBlock("div", _hoisted_12$1, toDisplayString(unref(j).syncNote), 1)) : createCommentVNode("", true),
-            unref(j).syncWarnings.length ? (openBlock(), createElementBlock("ul", _hoisted_13$1, [
+            unref(j).syncError ? (openBlock(), createElementBlock("div", _hoisted_12$1, "sync: " + toDisplayString(unref(j).syncError), 1)) : createCommentVNode("", true),
+            unref(j).syncNote ? (openBlock(), createElementBlock("div", _hoisted_13$1, toDisplayString(unref(j).syncNote), 1)) : createCommentVNode("", true),
+            unref(j).syncWarnings.length ? (openBlock(), createElementBlock("ul", _hoisted_14$1, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(unref(j).syncWarnings, (w, i) => {
                 return openBlock(), createElementBlock("li", { key: i }, "sync: " + toDisplayString(w), 1);
               }), 128))
             ])) : createCommentVNode("", true)
           ], 2)) : createCommentVNode("", true),
-          !unref(j).editing && warnings.value.length ? (openBlock(), createElementBlock("ul", _hoisted_14$1, [
+          !unref(j).editing && warnings.value.length ? (openBlock(), createElementBlock("ul", _hoisted_15$1, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(warnings.value, (w, i) => {
               return openBlock(), createElementBlock("li", { key: i }, toDisplayString(w), 1);
             }), 128))
@@ -11070,7 +11126,7 @@ ${parseFrame.value}` : parseMsg.value;
     };
   }
 });
-const JsonPreview = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-582fb67a"]]);
+const JsonPreview = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-d977b910"]]);
 const _hoisted_1$1 = { class: "ctxhead" };
 const _hoisted_2$1 = { class: "cnum" };
 const _hoisted_3$1 = { class: "ctxhead" };
@@ -11286,11 +11342,15 @@ const _hoisted_8 = ["onClick"];
 const _hoisted_9 = { class: "whrow" };
 const _hoisted_10 = { class: "rfoot" };
 const _hoisted_11 = { class: "rmp" };
-const _hoisted_12 = { class: "resetc" };
-const _hoisted_13 = { class: "rbtns" };
-const _hoisted_14 = ["onClick"];
+const _hoisted_12 = {
+  key: 0,
+  class: "roob"
+};
+const _hoisted_13 = { class: "resetc" };
+const _hoisted_14 = { class: "rbtns" };
 const _hoisted_15 = ["onClick"];
-const _hoisted_16 = { class: "slim-controls" };
+const _hoisted_16 = ["onClick"];
+const _hoisted_17 = { class: "slim-controls" };
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "MossLayoutStudio",
   props: {
@@ -11331,7 +11391,12 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         if (!forced && !store.state.ui.jsonSync) return;
         if (!ev.json || !ev.json.trim()) return;
         const label = ev.global ? "Global import" : ev.force ? "Forced JSON sync" : "JSON sync";
-        const res = store.importDraftJson(ev.json, { keepDims: true, strict: true });
+        const res = store.importDraftJson(ev.json, {
+          keepDims: true,
+          strict: true,
+          bboxMode: ev.bboxMode,
+          bboxTolerance: ev.bboxTolerance
+        });
         store.json.syncWarnings = [.../* @__PURE__ */ new Set([...ev.warnings || [], ...res.warnings || []])];
         if (!res.ok) {
           store.json.syncError = `${label}: ${res.error || "invalid JSON"}`;
@@ -11357,6 +11422,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const mp = /* @__PURE__ */ ref(1);
     const MP_PRESETS = [0.5, 1, 2, 4];
     const mpActual = computed(() => (store.state.width * store.state.height / (1024 * 1024)).toFixed(2));
+    const outsideCount = computed(
+      () => store.state.elements.filter(
+        (e) => e.bbox[0] < 0 || e.bbox[1] < 0 || e.bbox[2] > store.state.width || e.bbox[3] > store.state.height
+      ).length
+    );
     function aspectRectStyle(a) {
       const s = 15 / Math.max(a.w, a.h);
       return { width: Math.round(a.w * s) + "px", height: Math.round(a.h * s) + "px" };
@@ -11397,6 +11467,13 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         (best, x) => Math.abs(x.w / x.h - r) < Math.abs(best.w / best.h - r) ? x : best,
         CORE_ASPECTS[0]
       ).label;
+    }
+    function refitBoxes() {
+      const n = store.refitToCanvas();
+      if (!n) return;
+      store.json.syncError = "";
+      store.json.syncWarnings = [];
+      store.json.syncNote = `Canvas refit · ${n} box${n === 1 ? "" : "es"} clamped`;
     }
     function plainState() {
       return JSON.parse(JSON.stringify(store.state));
@@ -11493,7 +11570,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                   ])]),
                   _: 1
                 }, 8, ["disabled"]),
-                _cache[18] || (_cache[18] = createBaseVNode("span", { class: "divider" }, null, -1)),
+                _cache[19] || (_cache[19] = createBaseVNode("span", { class: "divider" }, null, -1)),
                 createVNode(UiPopover, { align: "left" }, {
                   trigger: withCtx(() => [
                     createVNode(UiButton, { title: "Resolution — aspect ratio × megapixels" }, {
@@ -11505,7 +11582,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                   ]),
                   default: withCtx(() => [
                     createBaseVNode("div", _hoisted_2, [
-                      _cache[16] || (_cache[16] = createBaseVNode("div", { class: "rsec" }, "aspect ratio", -1)),
+                      _cache[17] || (_cache[17] = createBaseVNode("div", { class: "rsec" }, "aspect ratio", -1)),
                       createBaseVNode("div", _hoisted_3, [
                         (openBlock(), createElementBlock(Fragment, null, renderList(CORE_ASPECTS, (a) => {
                           return createBaseVNode("button", {
@@ -11522,7 +11599,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                           ], 10, _hoisted_4);
                         }), 64))
                       ]),
-                      _cache[17] || (_cache[17] = createBaseVNode("div", { class: "rdiv" }, null, -1)),
+                      _cache[18] || (_cache[18] = createBaseVNode("div", { class: "rdiv" }, null, -1)),
                       createBaseVNode("div", _hoisted_6, [
                         _cache[12] || (_cache[12] = createBaseVNode("span", null, "megapixels", -1)),
                         createBaseVNode("div", _hoisted_7, [
@@ -11597,7 +11674,18 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                       ]),
                       createBaseVNode("div", _hoisted_10, [
                         createBaseVNode("span", _hoisted_11, "≈ " + toDisplayString(mpActual.value) + " MP", 1)
-                      ])
+                      ]),
+                      outsideCount.value ? (openBlock(), createElementBlock("div", _hoisted_12, [
+                        createBaseVNode("span", null, [
+                          _cache[16] || (_cache[16] = createBaseVNode("i", { class: "mdi mdi-alert-outline" }, null, -1)),
+                          createTextVNode(" " + toDisplayString(outsideCount.value) + " box" + toDisplayString(outsideCount.value === 1 ? "" : "es") + " outside", 1)
+                        ]),
+                        createBaseVNode("button", {
+                          class: "refit",
+                          title: "Clamp every box into the current canvas",
+                          onClick: refitBoxes
+                        }, "refit")
+                      ])) : createCommentVNode("", true)
                     ])
                   ]),
                   _: 1
@@ -11609,7 +11697,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                   title: "Library — save / load layout templates",
                   onClick: _cache[5] || (_cache[5] = ($event) => libraryOpen.value = true)
                 }, {
-                  default: withCtx(() => [..._cache[19] || (_cache[19] = [
+                  default: withCtx(() => [..._cache[20] || (_cache[20] = [
                     createBaseVNode("i", { class: "mdi mdi-bookshelf" }, null, -1)
                   ])]),
                   _: 1
@@ -11620,14 +11708,14 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                       icon: "",
                       title: "Help"
                     }, {
-                      default: withCtx(() => [..._cache[20] || (_cache[20] = [
+                      default: withCtx(() => [..._cache[21] || (_cache[21] = [
                         createBaseVNode("i", { class: "mdi mdi-help-circle-outline" }, null, -1)
                       ])]),
                       _: 1
                     })
                   ]),
                   default: withCtx(() => [
-                    _cache[21] || (_cache[21] = createBaseVNode("div", { class: "help" }, [
+                    _cache[22] || (_cache[22] = createBaseVNode("div", { class: "help" }, [
                       createBaseVNode("p", { class: "h" }, "Canvas"),
                       createBaseVNode("dl", null, [
                         createBaseVNode("dt", null, "drag empty space"),
@@ -11722,46 +11810,46 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                       icon: "",
                       title: "Clear everything"
                     }, {
-                      default: withCtx(() => [..._cache[22] || (_cache[22] = [
+                      default: withCtx(() => [..._cache[23] || (_cache[23] = [
                         createBaseVNode("i", { class: "mdi mdi-broom" }, null, -1)
                       ])]),
                       _: 1
                     })
                   ]),
                   default: withCtx(({ close }) => [
-                    createBaseVNode("div", _hoisted_12, [
-                      _cache[24] || (_cache[24] = createBaseVNode("p", { class: "rq" }, [
+                    createBaseVNode("div", _hoisted_13, [
+                      _cache[25] || (_cache[25] = createBaseVNode("p", { class: "rq" }, [
                         createBaseVNode("i", { class: "mdi mdi-alert-outline" }),
                         createTextVNode(" Clear the whole studio?")
                       ], -1)),
-                      _cache[25] || (_cache[25] = createBaseVNode("p", { class: "rh" }, "Removes every item and resets the summary — can't be undone past here.", -1)),
-                      createBaseVNode("div", _hoisted_13, [
+                      _cache[26] || (_cache[26] = createBaseVNode("p", { class: "rh" }, "Removes every item and resets the summary — can't be undone past here.", -1)),
+                      createBaseVNode("div", _hoisted_14, [
                         createBaseVNode("button", {
                           class: "rno",
                           onClick: ($event) => close()
-                        }, "Cancel", 8, _hoisted_14),
+                        }, "Cancel", 8, _hoisted_15),
                         createBaseVNode("button", {
                           class: "ryes",
                           onClick: ($event) => {
                             resetAll();
                             close();
                           }
-                        }, [..._cache[23] || (_cache[23] = [
+                        }, [..._cache[24] || (_cache[24] = [
                           createBaseVNode("i", { class: "mdi mdi-broom" }, null, -1),
                           createTextVNode(" Clear all", -1)
-                        ])], 8, _hoisted_15)
+                        ])], 8, _hoisted_16)
                       ])
                     ])
                   ]),
                   _: 1
                 }),
-                createBaseVNode("span", _hoisted_16, [
+                createBaseVNode("span", _hoisted_17, [
                   createVNode(UiButton, {
                     icon: "",
                     title: panelOpen.value ? "Hide controls" : "Show controls",
                     onClick: _cache[6] || (_cache[6] = ($event) => panelOpen.value = !panelOpen.value)
                   }, {
-                    default: withCtx(() => [..._cache[26] || (_cache[26] = [
+                    default: withCtx(() => [..._cache[27] || (_cache[27] = [
                       createBaseVNode("i", { class: "mdi mdi-dock-right" }, null, -1)
                     ])]),
                     _: 1
@@ -11796,7 +11884,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const MossLayoutStudio = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5dc6e0fa"]]);
+const MossLayoutStudio = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-4d1586af"]]);
 const SEL = "[data-ideogram]";
 function inWidget(e) {
   const t = e.target;

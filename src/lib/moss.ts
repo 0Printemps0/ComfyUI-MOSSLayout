@@ -77,11 +77,12 @@ export interface Draft {
   items: DraftItem[]
 }
 
-export type BboxMode = 'reject' | 'clamp'
+export type BboxMode = 'reject' | 'auto' | 'clamp'
 
 export interface ResolveOptions {
   strict?: boolean
   bboxMode?: BboxMode
+  bboxTolerance?: number
 }
 
 export interface ResolveResult {
@@ -157,7 +158,7 @@ export function snapDim(v: number): number {
   return Math.max(16, Math.floor(n / 16) * 16)
 }
 
-function clampBbox(b: [number, number, number, number], w: number, h: number): [number, number, number, number] {
+export function clampBbox(b: [number, number, number, number], w: number, h: number): [number, number, number, number] {
   let [x1, y1, x2, y2] = b
   x1 = Math.max(0, Math.min(w, x1)); x2 = Math.max(0, Math.min(w, x2))
   y1 = Math.max(0, Math.min(h, y1)); y2 = Math.max(0, Math.min(h, y2))
@@ -294,6 +295,8 @@ export function resolveToState(
 ): ResolveResult {
   const strict = opts.strict ?? false
   const bboxMode: BboxMode = opts.bboxMode ?? (strict ? 'reject' : 'clamp')
+  const rawTolerance = Number(opts.bboxTolerance ?? 2)
+  const bboxTolerance = Number.isFinite(rawTolerance) ? Math.max(0, rawTolerance) : 2
   const warnings: string[] = []
   const errors: string[] = []
   if (!isRecord(obj)) {
@@ -494,7 +497,10 @@ export function resolveToState(
         _issue(strict, `${where}.bbox must have positive width and height; got ${_fmtBox(box)}`, warnings, errors)
         bbox = _fallbackBox(w, h)
       } else if (!(0 <= box[0] && box[2] <= w && 0 <= box[1] && box[3] <= h)) {
-        if (bboxMode === 'clamp') {
+        const overflow = Math.max(0 - box[0], box[2] - w, 0 - box[1], box[3] - h)
+        const shouldClamp = bboxMode === 'clamp'
+          || (bboxMode === 'auto' && overflow <= bboxTolerance)
+        if (shouldClamp) {
           const clamped = clampBbox(box, w, h)
           if (!(clamped[0] < clamped[2] && clamped[1] < clamped[3])) {
             _issue(
@@ -505,14 +511,20 @@ export function resolveToState(
             )
             bbox = _fallbackBox(w, h)
           } else {
-            warnings.push(`${where}.bbox ${_fmtBox(box)} exceeded canvas ${w}x${h}; clamped to ${_fmtBox(clamped)}`)
+            const how = bboxMode === 'auto' ? 'auto-clamped' : 'clamped'
+            const extra = bboxMode === 'auto'
+              ? ` (overflow ${overflow.toFixed(2)}px <= tolerance ${bboxTolerance}px)`
+              : ''
+            warnings.push(`${where}.bbox ${_fmtBox(box)} exceeded canvas ${w}x${h}; ${how} to ${_fmtBox(clamped)}${extra}`)
             bbox = clamped
           }
         } else {
+          const hint = bboxMode === 'auto'
+            ? `bbox_mode='auto', tolerance=${bboxTolerance}px; use 'clamp' to accept a clamped box`
+            : "bbox_mode='reject'; use 'auto' with a tolerance or 'clamp' to accept a clamped box"
           _issue(
             strict,
-            `${where}.bbox ${_fmtBox(box)} exceeds canvas ${w}x${h} `
-              + "(bbox_mode='reject'; use 'clamp' to accept a clamped box)",
+            `${where}.bbox ${_fmtBox(box)} exceeds canvas ${w}x${h} by ${overflow.toFixed(2)}px (${hint})`,
             warnings,
             errors,
           )
