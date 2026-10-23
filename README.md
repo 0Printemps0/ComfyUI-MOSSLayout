@@ -60,6 +60,10 @@ Outputs:
 | `extras` | MOSS_LAYOUT_EXTRAS | overlay / alpha / width / height / bboxes bundle |
 | `draft` input (optional) | STRING | whole-segment draft (or compiled) JSON; non-empty overrides the editor |
 
+**Nodes 2.0:** the widget marks its container `data-capture-wheel="true"` and stops
+wheel forwarding from its scrollable children. Mouse wheel scrolls the JSON editor
+and preview normally; canvas zoom still works outside those scrollable areas.
+
 ### MOSS Layout Studio Extras
 `extras` → `overlay` (IMAGE), `alpha` (MASK), `width`, `height`, `bboxes`
 (BOUNDING_BOX). Composite the overlay over your generation to check whether the
