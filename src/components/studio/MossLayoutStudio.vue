@@ -291,8 +291,16 @@ function scheduleSnapshot() {
 // byte-for-byte; otherwise (a script edited the draft) the draft is authoritative
 // and editor-only metadata is regenerated. This keeps the whole-segment JSON the
 // single source of truth for scripts while the editor round-trips losslessly.
-function deriveDraft(state: MossState) {
-  return JSON.stringify(serialize(state).draft)
+function deriveDraft(state: Partial<MossState> | undefined): string {
+  // Workflows produced by the API/CLI may carry only { width, height } in the
+  // editor state while the full layout lives in `draft`. Never throw here; an
+  // empty result forces the draft-authoritative path below.
+  if (!state || !Array.isArray(state.elements) || !state.summary) return ''
+  try {
+    return JSON.stringify(serialize(state as MossState).draft)
+  } catch {
+    return ''
+  }
 }
 
 onMounted(() => {
